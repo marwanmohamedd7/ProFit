@@ -8,7 +8,7 @@ function PendingTrainerPersonalData() {
 
                 <div className=" grid gap-4">
                     <h1 className="text-blue-900 font-bold text-lg capitalize">personal information</h1>
-                    <img className="w-28 h-auto rounded-md" src="/marwan.jpg" alt="" />
+                    <img className="w-28 h-auto rounded-md" src="/uifaces-popular-image (1).jpg" alt="" />
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
