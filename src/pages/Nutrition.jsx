@@ -1,7 +1,7 @@
 import BreadCrumbs from "../ui/BreadCrumbs";
 import Title from "../ui/Title";
 import CompoundTabs from "../ui/CompoundTabs";
-import ProfitFoods from "../features/nutrition/ProfitFoods/ProfitFoods";
+import ProfitFoods from "../features/nutrition/ProFitFoods/ProfitFoods";
 
 function Nutrition() {
   return <div className="space-y-4">

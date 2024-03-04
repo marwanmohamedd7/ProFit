@@ -1,5 +1,6 @@
-import Table from "../../ui/Table"
+import Table from "../../../ui/Table"
 import NutritionRow from "./NutritionRow";
+// import NutritionRow from "./NutritionRow";
 
 const data = [
     { id: 1, name: 'Chicken', quantity: '100 grams', calories: '239 Kcal', protein: '27g', fats: '14g', carbs: '0g', category: 'Chicken', imageUrl: 'chicken-unsplash.jpg' },

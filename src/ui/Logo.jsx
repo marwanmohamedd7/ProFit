@@ -1,4 +1,4 @@
-function Logo() {
+function Logo({ actor }) {
   return (
     <div className="flex justify-center text-center py-[0.2rem] sm:py-[0.42rem]  border-solid border-b border-grey-100">
 

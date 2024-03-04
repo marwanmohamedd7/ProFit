@@ -1,7 +1,6 @@
 import FloatingLabelInput from "../../../ui/FloatingLabelInput"
 
 function PendingTrainerPersonalData() {
-
     return (
         <div className="container max-w-7xl mx-auto p-4 sm:p-6 bg-white rounded-md border">
             <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>

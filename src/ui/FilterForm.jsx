@@ -8,7 +8,7 @@ import Button from "./Button";
 function FilterForm({ filterAttr }) {
     const [isOpen, setIsOpen] = useState(false)
     return !isOpen ? (
-        <Button onClick={() => setIsOpen(true)}>
+        <Button onclick={() => setIsOpen(true)}>
             <span><CiFilter /></span>
             <span>Filter</span>
             <span><HiMiniChevronDown /></span>
@@ -21,7 +21,7 @@ function FilterForm({ filterAttr }) {
                 </div>
 
                 <div className="col-span-3 flex justify-start space-x-4">
-                    <Button type="primary" onClick={() => setIsOpen(false)}>
+                    <Button type="primary" onclick={() => setIsOpen(false)}>
                         <span><CiFilter /></span>
                         <span>Filter</span>
                     </Button>

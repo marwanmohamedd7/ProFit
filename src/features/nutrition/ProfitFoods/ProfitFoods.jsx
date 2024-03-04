@@ -1,7 +1,8 @@
-import Button from "../../../ui/Button"
 import FilterForm from "../../../ui/FilterForm"
+import Modal from "../../../ui/Modal"
 import SearchInput from "../../../ui/SearchInput"
-import NutritionTable from "../NutritionTable"
+import NutritionTable from "../ProFitFoods/NutritionTable"
+import CreateFood from "./CreateFood"
 
 function ProfitFoods() {
     return (
@@ -36,11 +37,19 @@ function ProfitFoods() {
             } />
             <div className="flex flex-wrap gap-2 md:gap-0 justify-between mb-2">
                 <SearchInput placeholder="Search Food Name..." />
-                <Button>Create New Food +</Button>
+                <Modal>
+                    <Modal.Open opens="create-new-food">
+                        Create New Food +
+                    </Modal.Open>
+                    <Modal.Window opens="create-new-food">
+                        <CreateFood />
+                    </Modal.Window>
+                </Modal>
             </div>
             <NutritionTable />
         </>
     )
 }
+
 
 export default ProfitFoods

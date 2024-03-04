@@ -24,7 +24,7 @@ function PendingTrainerProfessionalCredentials() {
                         {tags.map((tag, index) => (
                             <div className="flex items-center gap-2 bg-gray-200 rounded px-2 py-1" key={index}>
                                 <span>{tag}</span>
-                                <Button type="remove" onClick={() => removeTag(index)}>&times;</Button>
+                                <Button type="remove" onclick={() => removeTag(index)}>&times;</Button>
                             </div>
                         ))}
                         <input
