@@ -1,5 +1,4 @@
 import { cloneElement, createContext, useContext, useState } from "react"
-import Button from "./Button"
 import { HiXMark } from "react-icons/hi2";
 import { createPortal } from "react-dom";
 import useOutSideClick from "../hooks/useOutSideClick";
@@ -21,9 +20,7 @@ function Modal({ children }) {
 function Open({ opens: openWindow, children }) {
   const { open } = useContext(ModalContext)
   return (
-    <Button onclick={() => open(openWindow)}>
-      {children}
-    </Button>
+    cloneElement(children, { onclick: () => open(openWindow) })
   )
 }
 

@@ -1,3 +1,4 @@
+import Button from "../../../ui/Button"
 import FilterForm from "../../../ui/FilterForm"
 import Modal from "../../../ui/Modal"
 import SearchInput from "../../../ui/SearchInput"
@@ -39,7 +40,7 @@ function ProfitFoods() {
                 <SearchInput placeholder="Search Food Name..." />
                 <Modal>
                     <Modal.Open opens="create-new-food">
-                        Create New Food +
+                        <Button >Create New Food +</Button>
                     </Modal.Open>
                     <Modal.Window opens="create-new-food">
                         <CreateFood />
