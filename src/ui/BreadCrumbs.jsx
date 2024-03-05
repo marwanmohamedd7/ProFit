@@ -29,9 +29,7 @@ function BreadCrumbs() {
                             {
                                 pathNames.map((item, index) => {
                                     const routeTo = `/${pathNames.slice(0, index + 1).join('/')}`.replace(" ", "-");
-                                    console.log(routeTo)
                                     const isLast = index === pathNames.length - 1;
-                                    console.log(isLast)
                                     return isLast ? (
                                         <li key={index}>
                                             <div className="flex items-center text-gray-600">
