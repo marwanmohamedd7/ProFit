@@ -1,7 +1,7 @@
 import Title from "../ui/Title";
 import BreadCrumbs from "../ui/BreadCrumbs";
 
-function Transcations() {
+function Financial() {
   return (
     <div className="space-y-4">
       <div>
@@ -12,4 +12,4 @@ function Transcations() {
   )
 }
 
-export default Transcations;
+export default Financial;

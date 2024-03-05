@@ -12,7 +12,7 @@ function PendingTrainerCard({ trainer }) {
                     <span>{trainer.phone}</span>
                 </p>
             </div>
-            <Button type="primary" to={"/trainer-approval/trainer-profile"}>
+            <Button type="primary" to={"/admin/trainer-approval/trainer-profile"}>
                 <span>Review Profile</span><IoEyeOutline />
             </Button>
             <div className="text-blue-700 text-xs">07 Jan, 2024 at 09:28 PM</div>

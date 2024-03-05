@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { useGetPageLocation } from "../hooks/useGetPageLocation"
 
 function BreadCrumbs() {
-    const pathNames = useGetPageLocation()
+    const { pathNames, role } = useGetPageLocation()
     const active = `text-blue-700`
     return (
         <nav className="flex text-sm mb-4 rounded-lg justify-start items-center max-w-auto" aria-label="Breadcrumb">
@@ -11,7 +11,7 @@ function BreadCrumbs() {
                 {pathNames.length === 1 && pathNames[0] === "dashboard" ?
                     (
                         <li className="inline-flex items-center">
-                            <NavLink to="/dashboard" className={`inline-flex items-center gap-2 font-semibold hover:text-blue-700 ${active}`}>
+                            <NavLink to={`/${role}`} className={`inline-flex items-center gap-2 font-semibold hover:text-blue-700 ${active}`}>
                                 <HiOutlineHome />
                                 <span>Home</span>
                             </NavLink>
@@ -21,7 +21,7 @@ function BreadCrumbs() {
                     (
                         <>
                             <li className="inline-flex items-center">
-                                <NavLink to="/dashboard" className="inline-flex items-center gap-2 font-semibold hover:text-blue-700">
+                                <NavLink to={`/${role}`} className="inline-flex items-center gap-2 font-semibold hover:text-blue-700">
                                     <HiOutlineHome />
                                     <span>Home</span>
                                 </NavLink>
@@ -29,12 +29,14 @@ function BreadCrumbs() {
                             {
                                 pathNames.map((item, index) => {
                                     const routeTo = `/${pathNames.slice(0, index + 1).join('/')}`.replace(" ", "-");
+                                    console.log(routeTo)
                                     const isLast = index === pathNames.length - 1;
+                                    console.log(isLast)
                                     return isLast ? (
                                         <li key={index}>
                                             <div className="flex items-center text-gray-600">
                                                 <span className="text-md"><HiChevronRight /></span>
-                                                <NavLink to={routeTo} className={`ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700 ${active}`}>
+                                                <NavLink to={`/${role}${routeTo}`} className={`ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700 ${active}`}>
                                                     {item}
                                                 </NavLink>
                                             </div>
@@ -43,7 +45,7 @@ function BreadCrumbs() {
                                         <li key={index}>
                                             <div className={`flex items-center text-gray-600`}>
                                                 <span className="text-md"><HiChevronRight /></span>
-                                                <NavLink to={routeTo} className="ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700">
+                                                <NavLink to={`/${role}${routeTo}`} className="ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700">
                                                     {item}
                                                 </NavLink>
                                             </div>

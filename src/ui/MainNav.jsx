@@ -1,26 +1,28 @@
 // import styled from "styled-components";
 import { HiOutlineViewGrid } from "react-icons/hi";
+import { BiMessageSquareDetail } from "react-icons/bi";
 import { HiOutlineCheckCircle, HiOutlineUsers } from "react-icons/hi2";
-import { IoNutritionOutline } from "react-icons/io5";
-import { CiDumbbell } from "react-icons/ci";
+import { IoGlobeOutline, IoNutritionOutline } from "react-icons/io5";
+import { CiDumbbell, CiPercent } from "react-icons/ci";
 import { CiWallet } from "react-icons/ci";
-import { PiHeadphones } from "react-icons/pi";
+import { PiCurrencyCircleDollar, PiHeadphones, PiUsersThreeLight } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
 import MainNavLists from "./MainNavLists";
 import Button from "./Button";
+import { useGetPageLocation } from "../hooks/useGetPageLocation";
 
-const sidebarBtnsData = [
+const sidebarBtnsDataAdmin = [
   {
     title: "overview",
     btns: [{
       name: "dashboard",
       type: "sideBtn",
-      to: "/dashboard",
+      to: "admin/dashboard",
       icon: <HiOutlineViewGrid />
     }, {
       name: "trainer-approval",
       type: "sideBtn",
-      to: "/trainer-approval",
+      to: "admin/trainer-approval",
       icon: <HiOutlineCheckCircle />
     }],
   },
@@ -29,7 +31,7 @@ const sidebarBtnsData = [
     btns: [{
       name: "system-users",
       type: "sideBtn",
-      to: "/system-users",
+      to: "admin/system-users",
       icon: <HiOutlineUsers />
     }],
   },
@@ -38,13 +40,13 @@ const sidebarBtnsData = [
     btns: [{
       name: "nutrition",
       type: "sideBtn",
-      to: "/nutrition",
+      to: "admin/nutrition",
       icon: <IoNutritionOutline />
     },
     {
       name: "workout",
       type: "sideBtn",
-      to: "/workout",
+      to: "admin/workout",
       icon: <CiDumbbell />
     }
     ],
@@ -54,7 +56,7 @@ const sidebarBtnsData = [
     btns: [{
       name: "financial",
       type: "sideBtn",
-      to: "/transcations",
+      to: "admin/transcations",
       icon: <CiWallet />
     }]
   },
@@ -63,21 +65,97 @@ const sidebarBtnsData = [
     btns: [{
       name: "support",
       type: "sideBtn",
-      to: "/support",
+      to: "admin/support",
       icon: <PiHeadphones />
     }]
   },
 ]
+const sidebarBtnsDataTrainer = [
+  {
+    title: "management",
+    btns: [
+      {
+        name: "dashboard",
+        type: "sideBtn",
+        to: "trainer/dashboard",
+        icon: <HiOutlineViewGrid />
+      }, {
+        name: "my-portfolio",
+        type: "sideBtn",
+        to: "trainer/portfolio",
+        icon: <IoGlobeOutline />
+      }, {
+        name: "trainees",
+        type: "sideBtn",
+        to: "trainer/trainees",
+        icon: <PiUsersThreeLight />
+      }, {
+        name: "messages",
+        type: "sideBtn",
+        to: "trainer/messages",
+        icon: <BiMessageSquareDetail />
+      }
+    ],
+  },
+  {
+    title: "content library",
+    btns: [
+      {
+        name: "nutrition",
+        type: "sideBtn",
+        to: "trainer/nutrition",
+        icon: <IoNutritionOutline />
+      },
+      {
+        name: "workout",
+        type: "sideBtn",
+        to: "trainer/workout",
+        icon: <CiDumbbell />
+      }
+    ],
+  },
+  {
+    title: "finance",
+    btns: [
+      {
+        name: "packages",
+        type: "sideBtn",
+        to: "trainer/packages",
+        icon: <CiPercent />
+      },
+      {
+        name: "transcations",
+        type: "sideBtn",
+        to: "trainer/transcations",
+        icon: <PiCurrencyCircleDollar />
+      }
+    ],
+  },
+]
 
 function MainNav() {
+  const { role } = useGetPageLocation()
   return (
     <div
       className="capitalize mx-2 my-4 sm:mx-3 flex flex-col
      justify-between text-sm sm:text-base"
     >
       <ul className="flex flex-col gap-1">
-        {sidebarBtnsData.map((btnData, index) =>
-          <MainNavLists key={index} data={btnData} />)}
+
+
+        {
+          role === "admin" ?
+            <>
+              {sidebarBtnsDataAdmin.map((btnData, index) =>
+                <MainNavLists key={index} data={btnData} />)}
+            </>
+            :
+            <>
+              {sidebarBtnsDataTrainer.map((btnData, index) =>
+                <MainNavLists key={index} data={btnData} />)}
+            </>
+        }
+
       </ul>
 
       <Button type="logout" name="logout" to={"/login"}>

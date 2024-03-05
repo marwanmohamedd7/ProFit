@@ -1,4 +1,8 @@
-function Logo({ actor }) {
+import { useGetPageLocation } from "../hooks/useGetPageLocation";
+
+function Logo() {
+  const { role } = useGetPageLocation()
+
   return (
     <div className="flex justify-center text-center py-[0.2rem] sm:py-[0.42rem]  border-solid border-b border-grey-100">
 
@@ -43,7 +47,7 @@ function Logo({ actor }) {
             </span>
           </h1>
           <span className="text-xs text-gray-500 font-normal p-0 m-0">
-            admin panel
+            {role} panel
           </span>
         </div>
 

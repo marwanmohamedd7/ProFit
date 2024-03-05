@@ -1,7 +1,7 @@
 import BreadCrumbs from "../ui/BreadCrumbs";
 import Title from "../ui/Title";
 
-function Dashboard() {
+function DashboardAdmin() {
   return <div className="space-y-4">
     <div>
       <BreadCrumbs />
@@ -9,4 +9,4 @@ function Dashboard() {
     </div>
   </div>
 }
-  export default Dashboard;
+export default DashboardAdmin;
