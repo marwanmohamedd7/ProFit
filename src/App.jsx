@@ -21,35 +21,44 @@ import NutritionTrainer from "./pagesTrainer/NutritionTrainer";
 import WorkoutTrainer from "./pagesTrainer/WorkoutTrainer";
 import Packages from "./pagesTrainer/Packages";
 import Transcations from "./pagesTrainer/Transcations";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<Navigate replace to="login" />} />
         <Route element={<AppLayout />}>
-          <Route index element={<Navigate replace to="login" />} />
-          <Route element={<Admin />}>
-            <Route path="admin" element={<Navigate replace to="/admin/dashboard" />} />
-            <Route path="admin/dashboard" element={<DashboardAdmin />} />
-            <Route path="admin/trainer-approval" element={<TrainersApproval />} />
-            <Route path="admin/trainer-approval/trainer-profile" element={<TrainerReview />} />
-            <Route path="admin/nutrition" element={<Nutrition />} />
-            <Route path="admin/workout" element={<Workout />} />
-            <Route path="admin/system-users" element={<Users />} />
-            <Route path="admin/account" element={<Account />} />
-            <Route path="admin/Financial" element={<Financial />} />
-            <Route path="admin/support" element={<Support />} />
+          <Route path="admin" element={
+            <ProtectedRoute requiredRole="admin">
+              <Admin />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<DashboardAdmin />} />
+            <Route path="trainer-approval" element={<TrainersApproval />} />
+            <Route path="trainer-approval/trainer-profile" element={<TrainerReview />} />
+            <Route path="nutrition" element={<Nutrition />} />
+            <Route path="workout" element={<Workout />} />
+            <Route path="system-users" element={<Users />} />
+            <Route path="account" element={<Account />} />
+            <Route path="Financial" element={<Financial />} />
+            <Route path="support" element={<Support />} />
           </Route>
-          <Route element={<Trainer />}>
-            <Route path="trainer" element={<Navigate replace to="/trainer/dashboard" />} />
-            <Route path="trainer/dashboard" element={<DashboardTrainer />} />
-            <Route path="trainer/portfolio" element={<Portfolio />} />
-            <Route path="trainer/trainees" element={<Trainees />} />
-            <Route path="trainer/messages" element={<Messages />} />
-            <Route path="trainer/nutrition" element={<NutritionTrainer />} />
-            <Route path="trainer/workout" element={<WorkoutTrainer />} />
-            <Route path="trainer/packages" element={<Packages />} />
-            <Route path="trainer/transcations" element={<Transcations />} />
+          <Route path="trainer" element={
+            <ProtectedRoute requiredRole="trainer">
+              <Trainer />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<DashboardTrainer />} />
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="trainees" element={<Trainees />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="nutrition" element={<NutritionTrainer />} />
+            <Route path="workout" element={<WorkoutTrainer />} />
+            <Route path="packages" element={<Packages />} />
+            <Route path="transcations" element={<Transcations />} />
           </Route>
         </Route>
         <Route path="login" element={<Login />} />

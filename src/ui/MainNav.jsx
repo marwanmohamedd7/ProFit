@@ -1,6 +1,6 @@
 // import styled from "styled-components";
 import { HiOutlineViewGrid } from "react-icons/hi";
-import { BiMessageSquareDetail } from "react-icons/bi";
+import { BiMessageRoundedDetail } from "react-icons/bi";
 import { HiOutlineCheckCircle, HiOutlineUsers } from "react-icons/hi2";
 import { IoGlobeOutline, IoNutritionOutline } from "react-icons/io5";
 import { CiDumbbell, CiPercent } from "react-icons/ci";
@@ -56,7 +56,7 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "financial",
       type: "sideBtn",
-      to: "admin/transcations",
+      to: "admin/Financial",
       icon: <CiWallet />
     }]
   },
@@ -93,7 +93,7 @@ const sidebarBtnsDataTrainer = [
         name: "messages",
         type: "sideBtn",
         to: "trainer/messages",
-        icon: <BiMessageSquareDetail />
+        icon: <BiMessageRoundedDetail />
       }
     ],
   },
@@ -141,8 +141,6 @@ function MainNav() {
      justify-between text-sm sm:text-base"
     >
       <ul className="flex flex-col gap-1">
-
-
         {
           role === "admin" ?
             <>
@@ -155,7 +153,6 @@ function MainNav() {
                 <MainNavLists key={index} data={btnData} />)}
             </>
         }
-
       </ul>
 
       <Button type="logout" name="logout" to={"/login"}>
