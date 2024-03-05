@@ -3,9 +3,9 @@ import NutritionRow from "./NutritionRow";
 // import NutritionRow from "./NutritionRow";
 
 const data = [
-    { id: 1, name: 'Chicken', quantity: '100 grams', calories: '239 Kcal', protein: '27g', fats: '14g', carbs: '0g', category: 'Chicken', imageUrl: 'chicken-unsplash.jpg' },
-    { id: 2, name: 'Egg', quantity: '100 grams', calories: '155 Kcal', protein: '13g', fats: '11g', carbs: '1.1g', category: 'Egg', imageUrl: 'chicken-unsplash.jpg' },
-    { id: 3, name: 'meat', quantity: '100 grams', calories: '155 Kcal', protein: '13g', fats: '11g', carbs: '1.1g', category: 'Egg', imageUrl: 'chicken-unsplash.jpg' },
+    { id: 1, name: 'Chicken', quantity: '100 grams', calories: '239 Kcal', protein: '27g', fats: '14g', carbs: '0g', category: 'Chicken', imageUrl: '/chicken-unsplash.jpg' },
+    { id: 2, name: 'Egg', quantity: '100 grams', calories: '155 Kcal', protein: '13g', fats: '11g', carbs: '1.1g', category: 'Egg', imageUrl: '/chicken-unsplash.jpg' },
+    { id: 3, name: 'meat', quantity: '100 grams', calories: '155 Kcal', protein: '13g', fats: '11g', carbs: '1.1g', category: 'Egg', imageUrl: '/chicken-unsplash.jpg' },
     // ... other food items
 ];
 
