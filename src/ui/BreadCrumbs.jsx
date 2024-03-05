@@ -1,9 +1,9 @@
 import { HiChevronRight, HiOutlineHome } from "react-icons/hi"
 import { NavLink } from "react-router-dom"
-import { useGetPageData } from "../hooks/useGetPageData"
+import { useGetPageLocation } from "../hooks/useGetPageLocation"
 
 function BreadCrumbs() {
-    const pathNames = useGetPageData()
+    const pathNames = useGetPageLocation()
     const active = `text-blue-700`
     return (
         <nav className="flex text-sm mb-4 rounded-lg justify-start items-center max-w-auto" aria-label="Breadcrumb">

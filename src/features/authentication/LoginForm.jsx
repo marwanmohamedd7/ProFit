@@ -1,6 +1,6 @@
 import { GoArrowRight } from "react-icons/go";
 import Button from "../../ui/Button";
-import FloatingLabelInput from "../../ui/FloatingLabelInput"
+import InputFloatingLabel from "../../ui/InputFloatingLabel"
 
 function LoginForm() {
   // Handle form submission
@@ -12,8 +12,8 @@ function LoginForm() {
     <form className="space-y-10" onSubmit={handleSubmit}>
       <div className="space-y-4">
         <div className="rounded-md shadow-sm space-y-4">
-          <FloatingLabelInput item={{ label: "email address", id: "email_address" }} />
-          <FloatingLabelInput item={{ label: "password", id: "password" }} />
+          <InputFloatingLabel item={{ label: "email address", id: "email_address" }} />
+          <InputFloatingLabel item={{ label: "password", id: "password" }} />
         </div>
 
         <div className="flex items-center gap-2">

@@ -27,7 +27,8 @@ function Open({ children, opens: opensTab }) {
     const { selectedTab, open } = useContext(TabsContext);
     return <NavLink
         onClick={() => open(opensTab)}
-        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b-2  ${opensTab === selectedTab ? 'text-blue-600 border-blue-500' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
+        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b-2
+         ${opensTab === selectedTab ? 'text-blue-600 border-blue-500' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
             }`}
     >
         {children}

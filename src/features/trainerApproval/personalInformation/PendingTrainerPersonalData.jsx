@@ -1,4 +1,4 @@
-import FloatingLabelInput from "../../../ui/FloatingLabelInput"
+import InputFloatingLabel from "../../../ui/InputFloatingLabel"
 
 function PendingTrainerPersonalData() {
     return (
@@ -11,9 +11,9 @@ function PendingTrainerPersonalData() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
-                    <FloatingLabelInput item={{ id: "first_name", label: "first name", defaultValue: "Ahmed" }} />
-                    <FloatingLabelInput item={{ id: "last_name", label: "last name", defaultValue: "Mohamed" }} />
-                    <FloatingLabelInput item={{ id: "email", label: "email", defaultValue: "Ahmed@gmail.com" }} />
+                    <InputFloatingLabel item={{ id: "first_name", label: "first name", defaultValue: "Ahmed" }} />
+                    <InputFloatingLabel item={{ id: "last_name", label: "last name", defaultValue: "Mohamed" }} />
+                    <InputFloatingLabel item={{ id: "email", label: "email", defaultValue: "Ahmed@gmail.com" }} />
                 </div>
 
                 <div className=" grid grid-cols-2 w-11/12 sm:w-full sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-6 xl:grid-cols-7  gap-4">
@@ -25,12 +25,12 @@ function PendingTrainerPersonalData() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
-                    <FloatingLabelInput item={{ id: "national_ID", label: "national ID*", defaultValue: "1202125213", type: "number" }} />
-                    <FloatingLabelInput item={{ id: "country", label: "country*", defaultValue: "Egypt" }} />
-                    <FloatingLabelInput item={{ id: "state", label: "state*", defaultValue: "Alexandria" }} />
-                    <FloatingLabelInput item={{ id: "city", label: "city*", defaultValue: "Miami" }} />
-                    <FloatingLabelInput item={{ id: "phone_number", label: "phone number*", defaultValue: "01009821081", type: "number" }} />
-                    <FloatingLabelInput item={{ id: "birth_date", label: "birth date*", defaultValue: "Miami", type: "date" }} />
+                    <InputFloatingLabel item={{ id: "national_ID", label: "national ID*", defaultValue: "1202125213", type: "number" }} />
+                    <InputFloatingLabel item={{ id: "country", label: "country*", defaultValue: "Egypt" }} />
+                    <InputFloatingLabel item={{ id: "state", label: "state*", defaultValue: "Alexandria" }} />
+                    <InputFloatingLabel item={{ id: "city", label: "city*", defaultValue: "Miami" }} />
+                    <InputFloatingLabel item={{ id: "phone_number", label: "phone number*", defaultValue: "01009821081", type: "number" }} />
+                    <InputFloatingLabel item={{ id: "birth_date", label: "birth date*", defaultValue: "Miami", type: "date" }} />
                 </div>
 
                 <div className="space-y-1">

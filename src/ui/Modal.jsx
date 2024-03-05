@@ -30,8 +30,8 @@ function Window({ opens: openWindow, children }) {
   if (openName !== openWindow) return null
   return (
     createPortal(
-      <div className="fixed inset-0 flex flex-col justify-center bg-gray-500 bg-opacity-50 overflow-y-auto" id="my-modal">
-        <div ref={ref} className="relative justify-center mx-auto px-4 pb-4 border w-11/12 xl:w-8/12 lg:w-9/12 shadow-lg rounded-md bg-white divide-y">
+      <div className="fixed h-dvh w-full backdrop-blur-sm inset-0 bg-gray-500 bg-opacity-50 overflow-y-auto transition-all duration-500" id="my-modal">
+        <div ref={ref} className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] transition-all duration-500 px-4 pb-4 border shadow-lg rounded-md bg-white divide-y">
           <div className="flex justify-between items-center">
             <h3 className="text-lg leading-6 font-bold text-blue-900 py-4 capitalize">{openWindow.split("-").join(" ")}</h3>
             <button onClick={close} className="text-xl font-semibold text-gray-400"><HiXMark /></button>

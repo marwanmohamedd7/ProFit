@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-export function useGetPageData() {
+export function useGetPageLocation() {
   const { pathname } = useLocation();
   // Splitting the URL into an
   let pathNames = pathname.split("/").filter((x) => x);

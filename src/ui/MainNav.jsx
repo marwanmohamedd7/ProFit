@@ -9,6 +9,66 @@ import { CiLogout } from "react-icons/ci";
 import MainNavLists from "./MainNavLists";
 import Button from "./Button";
 
+const sidebarBtnsData = [
+  {
+    title: "overview",
+    btns: [{
+      name: "dashboard",
+      type: "sideBtn",
+      to: "/dashboard",
+      icon: <HiOutlineViewGrid />
+    }, {
+      name: "trainer-approval",
+      type: "sideBtn",
+      to: "/trainer-approval",
+      icon: <HiOutlineCheckCircle />
+    }],
+  },
+  {
+    title: "user management",
+    btns: [{
+      name: "system-users",
+      type: "sideBtn",
+      to: "/system-users",
+      icon: <HiOutlineUsers />
+    }],
+  },
+  {
+    title: "content management",
+    btns: [{
+      name: "nutrition",
+      type: "sideBtn",
+      to: "/nutrition",
+      icon: <IoNutritionOutline />
+    },
+    {
+      name: "workout",
+      type: "sideBtn",
+      to: "/workout",
+      icon: <CiDumbbell />
+    }
+    ],
+  },
+  {
+    title: "financial management",
+    btns: [{
+      name: "financial",
+      type: "sideBtn",
+      to: "/transcations",
+      icon: <CiWallet />
+    }]
+  },
+  {
+    title: "support and help",
+    btns: [{
+      name: "support",
+      type: "sideBtn",
+      to: "/support",
+      icon: <PiHeadphones />
+    }]
+  },
+]
+
 function MainNav() {
   return (
     <div
@@ -16,45 +76,12 @@ function MainNav() {
      justify-between text-sm sm:text-base"
     >
       <ul className="flex flex-col gap-1">
-        <MainNavLists title="overview">
-          <Button type="mainBtn" page="dashboard" to={"/dashboard"}>
-            <HiOutlineViewGrid className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-          <Button type="mainBtn" page="trainer-approval" to={"/trainer-approval"}>
-            <HiOutlineCheckCircle className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-        </MainNavLists>
-
-        <MainNavLists title="user management">
-          <Button type="mainBtn" page="system-users" to={"/system-users"}>
-            <HiOutlineUsers className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-        </MainNavLists>
-
-        <MainNavLists title="content management">
-          <Button type="mainBtn" page="nutrition" to={"/nutrition"}>
-            <IoNutritionOutline className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-          <Button type="mainBtn" page="workout" to={"/workout"}>
-            <CiDumbbell className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-        </MainNavLists>
-
-        <MainNavLists title="financial management">
-          <Button type="mainBtn" page="financial" to={"/transcations"}>
-            <CiWallet className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-        </MainNavLists>
-
-        <MainNavLists title="support and help">
-          <Button type="mainBtn" page="support" to={"/support"}>
-            <PiHeadphones className="w-4 sm:w-5 h-4 sm:h-5" />
-          </Button>
-        </MainNavLists>
+        {sidebarBtnsData.map((btnData, index) =>
+          <MainNavLists key={index} data={btnData} />)}
       </ul>
 
-      <Button type="logout" page="logout" to={"/login"}>
-        <CiLogout className="w-4 sm:w-5 h-4 sm:h-5" />
+      <Button type="logout" name="logout" to={"/login"}>
+        <CiLogout className="text-xl" />
       </Button>
     </div>
   );

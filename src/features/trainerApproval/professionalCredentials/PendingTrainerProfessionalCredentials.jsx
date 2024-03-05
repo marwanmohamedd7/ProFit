@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../../ui/Button";
-import FloatingLabelInput from "../../../ui/FloatingLabelInput";
+import InputFloatingLabel from "../../../ui/InputFloatingLabel";
 
 function PendingTrainerProfessionalCredentials() {
     const [tags, setTags] = useState(['weight loss', 'muscle gain', 'fitness', 'muscle gain']);
@@ -40,7 +40,7 @@ function PendingTrainerProfessionalCredentials() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-end">
-                    <FloatingLabelInput item={{ label: "Years of experience*", id: "experience", type: "number", defaultValue: "7", disabled: true }} />
+                    <InputFloatingLabel item={{ label: "Years of experience*", id: "experience", type: "number", defaultValue: "7", disabled: true }} />
                 </div>
             </div>
         </section>
