@@ -1,11 +1,13 @@
 import { GoArrowRight } from "react-icons/go";
-import Button from "../../ui/Button";
-import InputFloatingLabel from "../../ui/InputFloatingLabel"
+import Button from "../../../ui/Button";
+import InputFloatingLabel from "../../../ui/InputFloatingLabel"
+import { NavLink } from "react-router-dom";
 
 function LoginForm() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("yess")
     // Implement your login logic here
   };
   return (
@@ -29,10 +31,17 @@ function LoginForm() {
         </div>
       </div>
 
-      <Button type="login" to="/dashboard">
-        <span>Login</span>
-        <span className="text-lg"><GoArrowRight /></span>
-      </Button>
+      <div className="flex flex-col justify-center gap-4">
+        <Button type="submit">
+          <span>Login</span>
+          <span className="text-lg"><GoArrowRight /></span>
+        </Button>
+        <p className="text-gray-400 text-xs tracking-wide flex items-center gap-1">
+          <span className="capitalize">don't have an account yet?</span>
+          <NavLink to="/signup" className="text-blue-600 font-bold">Sign up</NavLink>
+        </p>
+      </div>
+
     </form>
   )
 }

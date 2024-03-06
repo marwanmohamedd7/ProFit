@@ -17,39 +17,25 @@ function Button({ children, onclick, type, to, name: pageName }) {
   }
 
   if (type === "sideBtn") return (
-    <button>
-      <NavLink to={to} className={({ isActive }) => isActive ?
-        `${styles.main} ${styles.sideBtn} bg-blue-700 text-blue-50`
-        :
-        `${styles.main} ${styles.sideBtn} text-blue-700 hover:bg-blue-100`}>
-        {children}
-        <span>{pageName}</span>
-      </NavLink>
-    </button>
+    <NavLink replace={true} to={to} className={({ isActive }) => isActive ?
+      `${styles.main} ${styles.sideBtn} bg-blue-700 text-blue-50`
+      :
+      `${styles.main} ${styles.sideBtn} text-blue-700 hover:bg-blue-100`}>
+      {children}
+      <span>{pageName}</span>
+    </NavLink>
   )
 
-  if (type === "primary" && to) return (
-    <button>
-      <NavLink to={to} className={`${styles.main} ${styles.primary}`}>
-        {children}
-      </NavLink>
-    </button>
-  )
-
-  if (type === "login" && to) return (
-    <button className={styles.login}>
-      <NavLink to={to} className={`${styles.main} ${styles.primary}`}>
-        {children}
-      </NavLink>
-    </button>
+  if (type === "submit") return (
+    <button className={`${styles.main} ${styles.primary} ${styles.login}`} >
+      {children}
+    </ button>
   )
 
   if (type === "logout") return (
-    <button>
-      <NavLink to={to} className={`${styles.main} ${styles.logout}`}>
-        {children}
-        <span>{pageName}</span>
-      </NavLink>
+    <button className={`${styles.main} ${styles.logout}`}>
+      {children}
+      <span>{pageName}</span>
     </button>
   )
 

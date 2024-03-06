@@ -22,6 +22,7 @@ import WorkoutTrainer from "./pagesTrainer/WorkoutTrainer";
 import Packages from "./pagesTrainer/Packages";
 import Transcations from "./pagesTrainer/Transcations";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import SignUp from "./pagesTrainer/SignUp";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
             <Route path="transcations" element={<Transcations />} />
           </Route>
         </Route>
+        <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

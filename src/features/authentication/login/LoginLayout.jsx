@@ -1,6 +1,7 @@
+import { NavLink } from "react-router-dom"
 import LoginForm from "./LoginForm"
 
-function LoginFormLayout() {
+function LoginLayout() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full flex flex-col gap-6 p-10 rounded-md border bg-white shadow-md">
@@ -20,9 +21,10 @@ function LoginFormLayout() {
                 <div className="space-y-4">
                     <h3 className="capitalize text-lg text-blue-700 font-bold">Administrator Access</h3>
                     <LoginForm />
+                    
                 </div>
             </div>
         </div>
     )
 }
-export default LoginFormLayout
+export default LoginLayout
