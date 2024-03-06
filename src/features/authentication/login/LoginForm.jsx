@@ -11,7 +11,7 @@ function LoginForm() {
     // Implement your login logic here
   };
   return (
-    <form className="space-y-10" onSubmit={handleSubmit}>
+    <form className="space-y-8" onSubmit={handleSubmit}>
       <div className="space-y-4">
         <div className="rounded-md shadow-sm space-y-4">
           <InputFloatingLabel item={{ label: "email address", id: "email_address" }} />
