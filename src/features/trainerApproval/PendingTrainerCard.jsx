@@ -1,7 +1,9 @@
 import { IoEyeOutline } from "react-icons/io5"
 import Button from "../../ui/Button"
+import { useNavigate } from "react-router-dom"
 
 function PendingTrainerCard({ trainer }) {
+    const navigate = useNavigate()
     return (
         <div className="bg-white p-4 shadow-md rounded-lg flex flex-col items-center gap-2 text-center">
             <img className="w-24 h-24 bg-gray-200 rounded-md" src="/uifaces-popular-image.jpg" alt="" />{/* Placeholder for the image */}
@@ -12,7 +14,7 @@ function PendingTrainerCard({ trainer }) {
                     <span>{trainer.phone}</span>
                 </p>
             </div>
-            <Button type="primary" to={"/admin/trainer-approval/trainer-profile"}>
+            <Button type="primary" onclick={() => navigate("/admin/trainer-approval/trainer-profile")}>
                 <span>Review Profile</span><IoEyeOutline />
             </Button>
             <div className="text-blue-700 text-xs">07 Jan, 2024 at 09:28 PM</div>

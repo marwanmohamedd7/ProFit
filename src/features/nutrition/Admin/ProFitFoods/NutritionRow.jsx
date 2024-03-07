@@ -1,5 +1,5 @@
 import { HiPencil, HiTrash } from "react-icons/hi"
-import Table from "../../../ui/Table"
+import Table from "../../../../ui/Table"
 
 function NutritionRow({ food }) {
     return (

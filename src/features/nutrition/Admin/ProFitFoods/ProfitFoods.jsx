@@ -1,8 +1,8 @@
-import Button from "../../../ui/Button"
-import FilterForm from "../../../ui/FilterForm"
-import Modal from "../../../ui/Modal"
-import SearchInput from "../../../ui/SearchInput"
-import NutritionTable from "../ProFitFoods/NutritionTable"
+import Button from "../../../../ui/Button"
+import FilterForm from "../../../../ui/FilterForm"
+import Modal from "../../../../ui/Modal"
+import SearchInput from "../../../../ui/SearchInput"
+import NutritionTable from "./NutritionTable"
 import CreateFood from "./CreateFood"
 
 function ProfitFoods() {

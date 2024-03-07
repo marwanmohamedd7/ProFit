@@ -18,7 +18,7 @@ function CreatingProfile() {
                     </div>
                 </div>
                 <div className="space-y-4 pt-6">
-                    <h3 className="capitalize text-lg text-blue-700 font-bold">create new account</h3>
+                    <h3 className="capitalize text-lg text-blue-700 font-extrabold">create new account</h3>
                     <SignUpForm />
                 </div>
             </div>

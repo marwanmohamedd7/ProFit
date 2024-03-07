@@ -1,7 +1,7 @@
 import Title from "../ui/Title";
 import BreadCrumbs from "../ui/BreadCrumbs";
 import CompoundTabs from "../ui/CompoundTabs";
-import Exercises from "../features/workout/exercises/Exercises";
+import Exercises from "../features/workout/Admin/exercises/Exercises";
 
 function Workout() {
   return <div className="space-y-4">

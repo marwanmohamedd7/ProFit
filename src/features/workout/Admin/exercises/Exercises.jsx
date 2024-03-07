@@ -1,6 +1,6 @@
-import Button from "../../../ui/Button"
-import FilterForm from "../../../ui/FilterForm"
-import SearchInput from "../../../ui/SearchInput"
+import Button from "../../../../ui/Button"
+import FilterForm from "../../../../ui/FilterForm"
+import SearchInput from "../../../../ui/SearchInput"
 import WorkoutTable from "../WorkoutTable"
 
 function Exercises() {

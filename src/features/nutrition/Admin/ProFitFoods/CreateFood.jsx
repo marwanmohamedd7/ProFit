@@ -1,7 +1,6 @@
-import Button from "../../../ui/Button"
-import Input from "../../../ui/Input";
-import InputDropdown from "../../../ui/InputDropdown";
-import FloatingLabelInput from "../../../ui/InputFloatingLabel"
+import Button from "../../../../ui/Button"
+import Input from "../../../../ui/Input";
+import InputDropdown from "../../../../ui/InputDropdown";
 
 function CreateFood({ onCloseModal }) {
     const formAttributes_1 = [

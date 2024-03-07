@@ -1,5 +1,5 @@
 import LoginBackgroundCover from "../features/authentication/login/LoginBackgroundCover"
-import CreatingProfile from "../features/authentication/signup/CreatingProfile"
+import CreatingProfile from "../features/authentication/Trainer/signup/CreatingProfile"
 
 function SignUp() {
     return (

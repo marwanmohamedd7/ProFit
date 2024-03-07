@@ -1,4 +1,4 @@
-import Table from "../../../ui/Table"
+import Table from "../../../../ui/Table"
 import NutritionRow from "./NutritionRow";
 // import NutritionRow from "./NutritionRow";
 
