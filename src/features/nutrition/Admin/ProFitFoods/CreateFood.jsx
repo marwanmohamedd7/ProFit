@@ -96,7 +96,7 @@ function CreateFood({ onCloseModal }) {
                 <Button type="primary" >
                     <span>Add new food</span>
                 </Button>
-                <Button onclick={onCloseModal} type="reset">
+                <Button onClick={onCloseModal} type="secondary">
                     <span>cancel</span>
                 </Button>
             </div>

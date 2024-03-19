@@ -38,7 +38,8 @@ function Row({ children }) {
   return children
 }
 
-function Footer() {
+function Footer({ total }) {
+  if (total <= 10) return null
   return (
     <tfoot className='text-gray-600 bg-gray-50 border'>
       <tr>

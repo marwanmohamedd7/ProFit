@@ -35,7 +35,7 @@ function LoginForm() {
       </div>
 
       <div className="flex flex-col justify-center gap-4">
-        <Button type="submit">
+        <Button type="login">
           <span>Login</span>
           <span className="text-lg"><GoArrowRight /></span>
         </Button>

@@ -10,13 +10,13 @@ function TrainerReview() {
     <div className="space-y-2">
       <BreadCrumbs />
       <PendingTrainerBriefDataCard />
-      <CompoundTabs defaultTab="personal-information">
+      <CompoundTabs defaultTab="PersonalInformation">
         <CompoundTabs.Tabs>
-          <CompoundTabs.Open opens="personal-information">personal information</CompoundTabs.Open>
+          <CompoundTabs.Open opens="PersonalInformation">personal information</CompoundTabs.Open>
           <CompoundTabs.Open opens="professional-credentials">professional credentials</CompoundTabs.Open>
           <CompoundTabs.Open opens="subscription-pricing">subscription pricing</CompoundTabs.Open>
         </CompoundTabs.Tabs>
-        <CompoundTabs.Window opens="personal-information">
+        <CompoundTabs.Window opens="PersonalInformation">
           <PendingTrainerPersonalData />
         </CompoundTabs.Window>
         <CompoundTabs.Window opens="professional-credentials">

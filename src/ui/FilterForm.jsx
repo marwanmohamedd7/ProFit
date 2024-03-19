@@ -8,7 +8,7 @@ import InputDropdown from "./InputDropdown";
 function FilterForm({ filterAttr }) {
     const [isOpen, setIsOpen] = useState(false)
     return !isOpen ? (
-        <Button onclick={() => setIsOpen(true)}>
+        <Button onClick={() => setIsOpen(true)}>
             <span><CiFilter /></span>
             <span>Filter</span>
             <span><HiMiniChevronDown /></span>
@@ -21,11 +21,11 @@ function FilterForm({ filterAttr }) {
                 </div>
 
                 <div className="col-span-3 flex justify-start space-x-4">
-                    <Button type="primary" onclick={() => setIsOpen(false)}>
+                    <Button type="primary" onClick={() => setIsOpen(false)}>
                         <span><CiFilter /></span>
                         <span>Filter</span>
                     </Button>
-                    <Button type="reset">
+                    <Button type="secondary">
                         <span><FaDeleteLeft /></span>
                         <span>Clear</span>
                     </Button>
