@@ -4,8 +4,7 @@ import Button from "../../../../../ui/Button"
 import { useState } from "react"
 
 function SocialMedia({ link, register, disabled }) {
-    // console.log(link)
-    const [showLink, setShowLink] = useState("h")
+    const [showLink, setShowLink] = useState("")
     return (
         <div className="flex flex-wrap items-center justify-between gap-4 border-gray-300 rounded py-2">
             <span className="text-xl basis-40 flex items-center gap-4 text-gray-600" >

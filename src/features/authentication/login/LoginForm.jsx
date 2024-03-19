@@ -7,7 +7,6 @@ function LoginForm() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("yess")
     // Implement your login logic here
   };
   return (

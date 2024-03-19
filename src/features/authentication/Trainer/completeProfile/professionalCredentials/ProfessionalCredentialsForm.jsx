@@ -51,7 +51,6 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
             userData = Object.values(userData)
             for (const [i, value] of formData.entries()) if (value !== userData[i]) isTrue = false
         }
-        console.log(isTrue)
         if (isTrue) {
             navigate("/complete-profile/subscription-pricing")
         } else {

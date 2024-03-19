@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form"
-import Button from "../../../../../ui/Button"
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import { useCreatePackage } from "./useCreatePackage";
-import ActiveButton from "../../../../../ui/ActiveButton";
 import { useState } from "react";
-import SpinnerMini from "../../../../../ui/SpinnerMini";
+import { useCreatePackage } from "./useCreatePackage";
 import { useUpdatePackage } from "./useUpdatePackage";
+import Button from "../../../../../ui/Button"
+import SpinnerMini from "../../../../../ui/SpinnerMini";
+import ActiveButton from "../../../../../ui/ActiveButton";
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 
 function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     const { createPackage, isCreating } = useCreatePackage()

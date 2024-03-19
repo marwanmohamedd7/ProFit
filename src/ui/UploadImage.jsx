@@ -8,10 +8,10 @@ function UploadImage({
     error,
     rules,
     control,
+    onReset,
     src = null,
     dimentions = "",
     disabled = false,
-    onReset,
     photo: photoType,
 },
 ) {
