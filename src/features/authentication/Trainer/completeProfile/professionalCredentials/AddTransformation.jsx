@@ -11,10 +11,8 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
     const { updateTransformartion, isUpdating } = useUpdateTransformation()
     const isLoading = isCreating || isUpdating;
     const { _id: transformationId, ...transformationValues } = transformationToUpdate
-    const aft = transformationValues?.afterImage?.startsWith("http://localhost:4000/uploads/") ? transformationValues?.afterImage.replace("http://localhost:4000/uploads/", "") : transformationValues?.afterImage
-    const bef = transformationValues?.beforeImage?.startsWith("http://localhost:4000/uploads/") ? transformationValues?.beforeImage.replace("http://localhost:4000/uploads/", "") : transformationValues?.beforeImage
     const isUpdateSession = Boolean(transformationId)
-    const { formState: { errors }, register, handleSubmit, reset, control } = useForm({
+    const { formState: { errors }, register, handleSubmit, reset, watch, control } = useForm({
         defaultValues: isUpdateSession ? transformationValues : {}
     })
 
@@ -50,23 +48,10 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
         // for (let entry of formData.entries()) {
         //     console.log(entry[0], entry[1]);
         // }
-
-        // Append title and description to the FormData
-        // formData.append("title", data.title);
-        // formData.append("description", data.description);
-
-        // // Append beforeImage and afterImage if they are not empty
-        // if (data.beforeImage instanceof File) {
-        //     formData.append("beforeImage", data.beforeImage);
-        // }
-
-        // if (data.afterImage instanceof File) {
-        //     formData.append("afterImage", data.afterImage);
-        // }
     }
 
     return (
-        <form className="space-y-8 py-4 w-96">
+        <form className="space-y-8 py-4">
             <div className="flex items-center gap-4">
                 <UploadImageForm
                     id="beforeImage"
@@ -74,9 +59,9 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
                     control={control}
                     disabled={isLoading}
                     error={errors?.beforeImage?.message}
-                    src={bef}
-                    dimentions="w-40 h-60"
-                    // src={transformationValues?.beforeImage ?? null}
+                    // src={bef}
+                    dimentions="w-52"
+                    src={transformationValues?.beforeImage ?? null}
                     rules={{ required: "before transformation photo is required" }}
                 />
                 <UploadImageForm
@@ -85,14 +70,14 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
                     control={control}
                     disabled={isLoading}
                     error={errors?.afterImage?.message}
-                    src={aft}
-                    dimentions="w-40 h-60"
-                    // src={transformationValues?.afterImage ?? null}
+                    // src={aft}
+                    dimentions="w-52"
+                    src={transformationValues?.afterImage ?? null}
                     rules={{ required: "after transformation photo is required" }}
                 />
             </div>
             <div className="flex flex-col justify-center gap-4">
-                <InputFloatingLabel item={{ id: "title", label: "Transformation title", type: "text" }}
+                <InputFloatingLabel item={{ id: "title", label: "Transformation title", type: "text", value: watch("title") }}
                     disabled={isLoading}
                     error={errors?.title?.message}
                     register={
@@ -111,7 +96,7 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
                         }
                     }
                 />
-                <InputFloatingLabel item={{ id: "description", label: "Transformation description", type: "text" }}
+                <InputFloatingLabel item={{ id: "description", label: "Transformation description", type: "text", value: watch("description") }}
                     disabled={isLoading}
                     error={errors?.description?.message}
                     register={

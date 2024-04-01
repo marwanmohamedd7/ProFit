@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-function Button({ children, onClick, type, to, name: pageName, stylee, disabled = false }) {
+function Button({ children, onClick, type, to, name: pageName, customeStyle, disabled = false }) {
   pageName = pageName?.replaceAll("-", " ");
   const styles = {
     main: `font-semibold capitalize transition-all duration-300 flex items-center gap-2 sm:gap-3 px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-md`,
@@ -29,58 +29,58 @@ function Button({ children, onClick, type, to, name: pageName, stylee, disabled 
   )
 
   if (type === "login") return (
-    <button disabled={disabled} type="submit" className={`${styles.main} ${styles.primary} ${styles.login} ${stylee}`} >
+    <button disabled={disabled} type="submit" className={`${styles.main} ${styles.primary} ${styles.login} ${customeStyle}`} >
       {children}
     </ button>
   )
 
   if (type === "logout") return (
-    <button onClick={onClick} disabled={disabled} className={`${styles.main} ${styles.logout} ${stylee}`}>
+    <button onClick={onClick} disabled={disabled} className={`${styles.main} ${styles.logout} ${customeStyle}`}>
       {children}
       <span>{pageName}</span>
     </button>
   )
 
   if (type === "secondary") return (
-    <button disabled={disabled} onClick={onClick} className={`${styles.secondary} ${stylee}`}>
+    <button disabled={disabled} onClick={onClick} className={`${styles.secondary} ${customeStyle}`}>
       {children}
     </button>
   )
 
   if (type === "remove") return (
-    <button disabled={disabled} onClick={onClick} className={`${styles.remove} ${stylee}`}>
+    <button disabled={disabled} onClick={onClick} className={`${styles.remove} ${customeStyle}`}>
       {children}
     </button>
   )
 
   if (type === "accept") return (
-    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.accept} ${stylee}`}>
+    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.accept} ${customeStyle}`}>
       {children}
     </button>
   )
 
   if (type === "decline") return (
-    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.decline} ${stylee}`}>
+    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.decline} ${customeStyle}`}>
       {children}
     </button>
   )
 
   if (type === "icon-update")
     return (
-      <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.iconUpdate} ${stylee}`} >
+      <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.iconUpdate} ${customeStyle}`} >
         {children}
       </button>
     )
 
   if (type === "icon-delete")
     return (
-      <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.iconDelete} ${stylee}`} >
+      <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.iconDelete} ${customeStyle}`} >
         {children}
       </button>
     )
 
   return (
-    <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.main} ${styles.primary} ${stylee}`} >
+    <button disabled={disabled} type="submit" onClick={onClick} className={`${styles.main} ${styles.primary} ${customeStyle}`} >
       {children}
     </button>
   )

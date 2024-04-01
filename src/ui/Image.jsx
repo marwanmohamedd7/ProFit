@@ -2,19 +2,18 @@ import { MdOutlineEdit } from "react-icons/md"
 import Modal from "./Modal"
 import SpinnerMini from "./SpinnerMini"
 import ImageCropper from "./ImageCropper"
-import { HiMiniCheckCircle } from "react-icons/hi2"
 
-function Image({ id, error, src, dimensions = "w-24 h-24", minDimension, photoType, disabled, onCropComplete, register }) {
+function Image({ id, error, src, dimensions = "w-24 h-24", minDimension, photoType, disabled, onCropComplete }) {
     return (
         <Modal>
             <Modal.Open opens="upload image">
-                <div className={`relative ${dimensions} mb-4`}>
+                <div className={`relative ${dimensions} mb-2.5`}>
                     <button
                         className="cursor-pointer absolute right-[-6%] top-[-6%] text-blue-50 p-1 rounded-full bg-blue-700"
                     >
                         <MdOutlineEdit />
                     </button>
-                    {typeof src === "string" ?
+                    {typeof src === "string" && !disabled ?
                         <div className="w-full h-full">
                             <img className="rounded-md w-full h-full" src={src} alt={id} />
                         </div>
@@ -22,17 +21,11 @@ function Image({ id, error, src, dimensions = "w-24 h-24", minDimension, photoTy
                         <div
                             className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimensions} capitalize`}
                         >
-                            {
-                                !src ?
-                                    <>
-                                        <span>upload</span>
-                                        <span>{photoType} photo</span>
-                                    </>
-                                    :
-                                    <>
-                                        <span className="text-blue-700 text-3xl"><HiMiniCheckCircle /></span>
-                                        <span className="text-blue-700 text-lg font-bold capitalize">uploaded</span>
-                                    </>
+                            {disabled ? <SpinnerMini /> :
+                                <>
+                                    <span>upload</span>
+                                    <span>{photoType} photo</span>
+                                </>
                             }
                         </div>
                     }
@@ -40,7 +33,7 @@ function Image({ id, error, src, dimensions = "w-24 h-24", minDimension, photoTy
                 </div>
             </Modal.Open>
             <Modal.Window opens="upload image">
-                <ImageCropper register={register} minDimension={minDimension} onCropComplete={onCropComplete} />
+                <ImageCropper minDimension={minDimension} onCropComplete={onCropComplete} />
             </Modal.Window>
         </Modal>
     )

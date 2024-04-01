@@ -11,85 +11,83 @@ import Image from "../../../../../ui/Image";
 
 function PersonalInfoForm({ getPersonalInfo = {} }) {
     const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const [isLoadingImg, setIsLoadingImg] = useState(false)
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
     const { _id, profilePhoto, ...PersonalInfo } = getPersonalInfo || {};
     const getSession = Boolean(_id)
     const { formState: { errors }, register, handleSubmit, reset, watch, setValue, getValues } = useForm({
         defaultValues: getSession ? PersonalInfo : {},
     });
-
     function onSubmit(data) {
-        if (!data) return;
-        console.log(data)
-        let isMatching = true;
-        if (PersonalInfo) {
-            const newData = Object.values(data)
-            const oldData = Object.values(PersonalInfo)
-            for (const [i, value] of newData.entries()) if (value !== oldData[i]) isMatching = false
+        if (!data || !profilePhoto) {
+            !profilePhoto && setError("Profile photo is required")
+            return
         }
-        // if (isMatching) {
-        //     navigate("/complete-profile/professional-credentials")
-        // }
-        // else {
-        //     const formData = new FormData();
-        //     for (const key in data) {
-        //         if (data.hasOwnProperty(key)) {
-        //             formData.append(key, data[key]);
-        //         }
-        //     }
-        //     setPersonalInfo(formData, {
-        //         onSuccess: ({ message }) => {
-        //             reset()
-        //             toast.success(message)
-        //             navigate("/complete-profile/professional-credentials")
-        //         }
-        //     });
-        // }
+        let isMatching = true;
+        const formData = new FormData();
+        if (PersonalInfo) {
+            const newData = Object.entries(data)
+            const oldData = Object.entries(PersonalInfo)
+            for (const [i, [key, value]] of newData.entries()) if (value !== oldData[i][1]) {
+                isMatching = false
+                formData.append(key, value);
+            }
+            !isMatching ?
+                setPersonalInfo(formData, {
+                    onSuccess: ({ message }) => {
+                        reset()
+                        toast.success(message)
+                        navigate("/complete-profile/professional-credentials")
+                    }
+                })
+                : navigate("/complete-profile/professional-credentials")
+        } else {
+            for (const [key, value] of Object.entries(data)) formData.append(key, value);
+            setPersonalInfo(formData, {
+                onSuccess: ({ message }) => {
+                    reset()
+                    toast.success(message)
+                    navigate("/complete-profile/professional-credentials")
+                }
+            });
+        }
     }
 
     function onCropComplete(croppedImgFile) {
         if (!croppedImgFile) return
+        if (error) setError("")
+        setIsLoadingImg(true)
         setValue("profilePhoto", croppedImgFile, { shouldValidate: true })
-        // const image = {
-        //     profilePhoto: getValues().profilePhoto
-        // };
-        // console.log(image)
-        // const formData = new FormData();
-        // // Append the image file to formData. The key is 'image', and the value is the file object.
-        // if (image.profilePhoto instanceof File) {
-        //     formData.append('profilePhoto', image.profilePhoto);
-        // }
-
-        // setPersonalInfo(formData, {
-        //     onSuccess: () => {
-        //         reset()
-        //         toast.success("Avatar uploaded successfully")
-        //     }
-        // });
-
+        const image = {
+            profilePhoto: getValues().profilePhoto
+        };
+        const formData = new FormData();
+        // Append the image file to formData. The key is 'image', and the value is the file object.
+        if (image.profilePhoto instanceof File) {
+            formData.append('profilePhoto', image.profilePhoto);
+        }
+        setPersonalInfo(formData, {
+            onSuccess: () => {
+                reset()
+                setIsLoadingImg(false)
+                toast.success("Avatar uploaded successfully")
+            }
+        });
     }
 
     return (
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
                 <h1 className="text-blue-900 font-bold text-lg capitalize">personal information</h1>
-                {/* <UploadImage
-                    id="profilePhoto"
-                    photo="(profile)"
-                    error={avatarExist}
-                    onChange={handleImage}
-                    dimentions="w-28 h-28"
-                    disabled={isLoadingSettingInfo}
-                    src={profilePhoto ?? null}
-                /> */}
                 <Image
-                    photoType="(profile)"
+                    error={error}
                     minDimension={150}
-                    dimensions="w-28 h-28"
+                    photoType="(profile)"
+                    dimensions="w-32 h-32"
                     onCropComplete={onCropComplete}
-                    src={profilePhoto ?? getValues()?.profilePhoto}
-                    disabled={isLoadingSettingInfo}
-                    error={errors?.profilePhoto?.message}
+                    disabled={isLoadingSettingInfo && isLoadingImg}
+                    src={profilePhoto || getValues()?.profilePhoto}
                 />
             </div>
 
@@ -166,7 +164,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                     id="biography"
                     disabled={isLoadingSettingInfo}
                     //  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
-                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 disabled:bg-gray-50 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     {...register("biography", {
                         required: false,
                         // required: "This field is required",
@@ -202,7 +200,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
             </div>
 
             <div className="flex justify-end items-center">
-                <Button disabled={isLoadingSettingInfo}>{isLoadingSettingInfo ? <SpinnerMini /> :
+                <Button disabled={isLoadingSettingInfo}>{isLoadingSettingInfo && !isLoadingImg ? <SpinnerMini /> :
                     <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                         <span>next page</span>
                         <span className="text-xl"><HiArrowLongRight /></span>

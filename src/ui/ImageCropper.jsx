@@ -57,7 +57,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
     }
 
     return (
-        <div className="min-w-96" id="image-cropper">
+        <div className="w-full" id="image-cropper">
             <label htmlFor="file">
                 <span className="sr-only">Upload photo</span>
                 <input
@@ -71,8 +71,8 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
             </label>
             {error && <p className="text-red-400 text-xs">{error}</p>}
             {imgSrc &&
-                <div className="flex gap-10">
-                    <div className="flex flex-col items-start gap-2">
+                <div className="space-y-2">
+                    <div className="flex flex-col items-center gap-2">
                         <ReactCrop
                             crop={crop}
                             circularCrop
@@ -88,10 +88,13 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
                                 ref={imgRef}
                                 src={imgSrc}
                                 onLoad={onImageLoad}
+                                className="w-fit"
                                 style={{ maxHeight: "65vh" }}
                             />
                         </ReactCrop>
-                        <Button stylee="my-2"
+                    </div>
+                    <div className="flex justify-end items-end">
+                        <Button customeStyle="my-2"
                             onClick={() => {
                                 setCanvasPreview(
                                     imgRef.current, // HTML ImageElement
@@ -109,10 +112,10 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
                                     // const formData = new FormData();
                                     // formData.append("file", file);
                                     onCropComplete(file)
-                                    onCloseModal()
+                                    // onCloseModal()
                                 })
                             }}
-                        >Crop image</Button>
+                        >done</Button>
                     </div>
                     {crop &&
                         <canvas
