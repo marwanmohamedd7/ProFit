@@ -9,7 +9,6 @@ import SpinnerMini from "../../../../ui/SpinnerMini";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignUpForm() {
-    const navigate = useNavigate();
     const { signup, isSignningUp } = useSignup()
     const { register, formState: { errors }, handleSubmit, getValues, watch, reset } = useForm()
 
@@ -18,10 +17,7 @@ function SignUpForm() {
         if (!data) return null;
         const { confirm_password, ...signUpData } = data
         signup(signUpData, {
-            onSuccess: () => {
-                reset()
-                !isSignningUp && navigate("/complete-profile", { replace: true });
-            }
+            onSuccess: () => reset()
         })
     };
 

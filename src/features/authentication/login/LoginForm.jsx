@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
 import Button from "../../../ui/Button";
 import InputFloatingLabel from "../../../ui/InputFloatingLabel"
@@ -7,7 +7,6 @@ import { useLogin } from "./useLogin";
 import SpinnerMini from "../../../ui/SpinnerMini";
 
 function LoginForm() {
-  const navigate = useNavigate();
   const { login, isLogginIn } = useLogin()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,17 +17,9 @@ function LoginForm() {
     if (!email || !password) return
     // Implement your login logic here
     login({ email, password }, {
-      onSuccess: ({ user: { role, status = "" }, token = "" }) => {
+      onSuccess: () => {
         setEmail("")
         setPassword("")
-        if (!isLogginIn) {
-          if (token && role === "admin")
-            navigate("/admin", { replace: true });
-          if (token && role !== "admin" && status === "accepted")
-            navigate("/trainer", { replace: true });
-          if (!token && role !== "admin" && status === "incomplete")
-            navigate("/complete-profile", { replace: true });
-        }
       },
       onSettled: () => setPassword("")
     })
