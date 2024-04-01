@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
 import { GoArrowRight } from "react-icons/go"
