@@ -12,6 +12,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
     const [error, setError] = useState("");
     const [imgSrc, setImgSrc] = useState("");
 
+    // Function to handle file selection and read the file as a data URL
     function onSelectFile(e) {
         e.preventDefault();
         const file = e.target.files?.[0];
@@ -25,6 +26,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
             imageElement.addEventListener("load", (e) => {
                 if (error) setError("")
                 const { naturalWidth, naturalHeight } = e.currentTarget;
+                // Check if the image dimensions meet the minimum requirements
                 if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
                     setError(`Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels. Please upload an image with larger dimensions.`)
                     return setImgSrc("")
@@ -35,6 +37,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
         reader.readAsDataURL(file);
     }
 
+    // Function to initialize the crop area when the image loads
     function onImageLoad(e) {
         e.preventDefault();
         let { width, height } = e.currentTarget;
@@ -42,6 +45,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
         const cropHeightInPercent = (MIN_DIMENSION / height) * 100;
         width = cropWidthInPercent
         height = cropHeightInPercent
+        // Define and center the initial crop area
         const crop = makeAspectCrop(
             {
                 unit: "%",
