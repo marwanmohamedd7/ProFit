@@ -1,19 +1,14 @@
-import { HiArrowLongRight, HiTrash } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineEdit } from "react-icons/md";
+import { HiArrowLongRight } from "react-icons/hi2";
 import { Controller, useForm } from "react-hook-form";
-import { useGetTransformations } from "./useGetTransformations";
 import { useSetProfileCredentials } from "./useSetProfileCredentials";
 import Select from "react-select";
-import toast from "react-hot-toast";
 import SocialMedia from "./SocialMedia";
-import Empty from "../../../../../ui/Empty";
-import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
-import Transformation from "./Transformation";
-import AddTransformation from "./AddTransformation";
+import Transformations from "./Transformations";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+import QualificationAndAchievement from "./QualificationAndAchievement"
 
 const options = [
     { value: "weight_loss", label: "Weight Loss" },
@@ -28,86 +23,79 @@ const options = [
 function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
     const navigate = useNavigate()
     const { setProfessionalCred, isLoading: isLoadingSettingCred } = useSetProfileCredentials()
-    const { id, qualificationImgs: imgs, socialMedia, ...values } = getProfessionalCred || {};
-    const getSession = Boolean(id)
-    const { transformations = [], isLoading: isLoadingTransformations } = useGetTransformations()
-    const { register, formState: { errors }, control, handleSubmit, reset } = useForm({
+    const { _id, socialMedia, qualificationsAndAchievements, ...values } = getProfessionalCred || {};
+    const getSession = Boolean(_id)
+    const { register, formState: { errors }, control, handleSubmit,watch, reset } = useForm({
         defaultValues: getSession ? { ...values, ...socialMedia } : {}
     })
-    const isLoading = isLoadingTransformations || isLoadingSettingCred
+    const isLoading = isLoadingSettingCred;
 
     function onsubmit(data) {
         if (!data) return null
-        let isTrue = true;
+        let isMatching = true;
         if (getProfessionalCred) {
             // 1- structure necessary properties
-            let formData = { ...data }
-            let userData = { ...values, ...socialMedia }
-            // 2- Convert the "specialization" array into a sorted string
-            formData.specialization = formData.specialization.map(item => item.value).sort().join(",")
-            userData.specialization = userData.specialization.map(item => item.value).sort().join(",")
-            // 3- compare data with the server's one and make changes
-            formData = Object.values(formData)
-            userData = Object.values(userData)
-            for (const [i, value] of formData.entries()) if (value !== userData[i]) isTrue = false
-        }
-        if (isTrue) {
-            navigate("/complete-profile/subscription-pricing")
-        } else {
-            const {
-                experience,
-                specialization,
-                x = socialMedia.x,
-                facebook = socialMedia.facebook,
-                instagram = socialMedia.instagram,
-            } = data;
+            let newData = { ...data }
+            let oldData = { ...values, ...socialMedia }
 
-            // get specialization data from user and database and merge them into one array of objects to send the new one the database
-            const specializes = values.specialization.length ? [...values.specialization, ...specialization] : specialization;
-            // Filter the duplicated specializes
-            const uniqueSpecializes = specializes.filter((item, index, self) =>
-                index === self.findIndex((t) => (
-                    t.value === item.value && t.label === item.label
-                ))
-            );
-            const profileCred = {
+            // 2- Convert the "specialization" array into a sorted string
+            newData.specializations = newData.specializations.map(item => item.value).sort().join(",")
+            oldData.specializations = oldData.specializations.map(item => item.value).sort().join(",")
+
+            // 3- compare data with the server's one and make changes
+            newData = Object.values(newData)
+            oldData = Object.values(oldData)
+            for (const [i, value] of newData.entries()) if (value !== oldData[i] && typeof value === "string") isMatching = false;
+        }
+        if (isMatching) navigate("/complete-profile/subscription-pricing")
+        else {
+            const { facebook, instagram, X, ...credValues } = data
+            const credData = {
+                ...credValues,
                 socialMedia: {
                     facebook: facebook,
                     instagram: instagram,
-                    x: x,
-                },
-                experience,
-                specialization: uniqueSpecializes,
+                    X: X,
+                }
             }
-            setProfessionalCred(profileCred, {
+            setProfessionalCred(credData, {
                 onSuccess: () => {
                     reset()
-                    toast.success("Data saved successfully");
                     navigate("/complete-profile/subscription-pricing")
                 }
             })
         }
     }
 
-    function handleImage(file) {
-        const image = `${Math.random()}-${file.name}`;
-        // get the image from user and imgs from database and merge them into one array
-        const qualificationImgs = imgs?.length ? [...imgs, image] : [image]
-        setProfessionalCred({ qualificationImgs }, {
-            onSuccess: () => {
-                toast.success("Image added successfully");
-            }
-        })
-    }
-
-    function handleDeleteImage(img) {
-        const newImages = imgs.filter(item => item !== img);
-        setProfessionalCred({ qualificationImgs: newImages }, {
-            onSuccess: () => {
-                toast.success("Image deleted successfully");
-            }
-        })
-    }
+    const customStyles = {
+        control: (provided, state) => ({
+            ...provided,
+            border: '1px solid #ccc', // Adjust the border color to match your theme
+            padding: '2px',   // Increase padding
+            boxShadow: 'none', // Remove boxShadow
+            borderRadius: "8px",
+            '&:hover': { borderColor: '#aaa' }, // Adjust hover state
+        }),
+        placeholder: (provided, state) => ({
+            ...provided,
+            color: '#666', // Placeholder text color
+        }),
+        multiValue: (provided, state) => ({
+            ...provided,
+            backgroundColor: '#e9e9e9', // Background of selected values
+        }),
+        multiValueLabel: (provided, state) => ({
+            ...provided,
+            color: '#333', // Text color of selected values
+        }),
+        multiValueRemove: (provided, state) => ({
+            ...provided,
+            '&:hover': {
+                backgroundColor: '#c23b22', // Background of the remove icon on hover
+                color: 'white', // Color of the remove icon on hover
+            },
+        }),
+    };
 
     return (
         <form className="space-y-8" onSubmit={handleSubmit(onsubmit)}>
@@ -139,27 +127,28 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
                         </div> */}
                         <div className="relative">
                             <Controller
-                                name="specialization"
+                                name="specializations"
                                 control={control}
-                                rules={{ required: 'Specialization field cannot be empty.' }}
+                                rules={{ required: 'specializations field cannot be empty.' }}
                                 render={({ field }) => (
                                     <Select
                                         {...field}
                                         disabled={isLoading}
                                         options={options} // Make sure 'options' is defined somewhere in your component
                                         isMulti
-                                        placeholder="specialization"
+                                        placeholder="specializations"
                                         classNamePrefix="select"
+                                        styles={customStyles}
                                     />
                                 )}
                             />
-                            {errors.specialization && <span className="text-xs text-red-700">{errors.specialization.message}</span>}
+                            {errors.specializations && <span className="text-xs text-red-700">{errors.specializations.message}</span>}
                         </div>
                         <div className="flex flex-col justify-end">
-                            <InputFloatingLabel item={{ label: "Years of experience*", id: "experience", type: "number" }}
+                            <InputFloatingLabel item={{ label: "Years of Experience*", id: "yearsOfExperience", type: "number", value: watch("yearsOfExperience") }}
                                 disabled={isLoading}
-                                register={{ ...register("experience", { required: "experience field cannot be empty." }) }}
-                                error={errors?.experience?.message} />
+                                register={{ ...register("yearsOfExperience", { required: "Experience field cannot be empty." }) }}
+                                error={errors?.yearsOfExperience?.message} />
                         </div>
                     </div>
 
@@ -168,76 +157,13 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
                 {/* Qualifications and Achievements */}
                 <section className="container space-y-4">
                     <h2 className="text-xl text-blue-900 font-bold">Qualifications and Achievements*</h2>
-                    <div className="flex flex-wrap items-center gap-3">
-                        {imgs?.map((img, index) => (
-                            <div key={index} className="relative">
-                                <div onClick={() => handleDeleteImage(img)}
-                                    className="cursor-pointer absolute right-[-7.5%] top-[-7.5%] text-blue-50 p-1 rounded-full bg-red-700"
-                                >
-                                    <HiTrash />
-                                </div>
-                                <img src={img ? "/uifaces-popular-image (1).jpg" : img} alt="achievement" className="w-28 h-28 rounded-md" />
-                            </div>
-                        ))}
-                        <div className="relative">
-                            <label
-                                htmlFor={"image"}
-                                className="cursor-pointer absolute right-[-7.5%] top-[-7.5%] text-blue-50 p-1 rounded-full bg-blue-700"
-                            >
-                                <MdOutlineEdit />
-                            </label>
-                            <div
-                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border h-28 w-28 capitalize`}
-                            >
-                                {isLoadingSettingCred ?
-                                    <SpinnerMini />
-                                    :
-                                    <>
-                                        <span>upload</span>
-                                        <span>(certifcate) photo</span>
-                                    </>
-                                }
-                            </div>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                id="image"
-                                className="hidden"
-                                disabled={isLoading}
-                                onChange={(e) => handleImage(e.target.files[0])}
-                            />
-                        </div>
-                    </div>
+                    <QualificationAndAchievement />
                 </section>
 
                 {/* Clients Transformation Photos */}
                 <section className="container space-y-4">
                     <h2 className="text-xl text-blue-900 font-bold">Clients Transformation Photos <span className="font-medium text-lg">(optional)</span></h2>
-                    {
-                        !transformations.length ?
-                            <div className="w-1/2">
-                                <Empty resource={"transformations"} />
-                            </div>
-                            :
-                            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
-                                {transformations.map((transformation, index) => <Transformation transformation={transformation} key={index} />)}
-                            </div>
-                    }
-                    <Modal>
-                        <Modal.Window opens="add-new-transformation">
-                            <AddTransformation />
-                        </Modal.Window>
-                        <Modal.Open opens="add-new-transformation">
-                            <Button
-                                disabled={isLoading}
-                                onClick={(e) => e.preventDefault()} type="secondary">
-                                <p className="flex justify-center items-center gap-2 capitalize">
-                                    <span>add new tranformation</span>
-                                    <span className="text-lg">&#43;</span>
-                                </p>
-                            </Button>
-                        </Modal.Open>
-                    </Modal>
+                    <Transformations />
                 </section>
 
                 {/* Social Media and Contact Links */}
@@ -252,31 +178,32 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
                             disabled={isLoading}
                             register={{ ...register("instagram", { required: false }) }}
                         />
-                        <SocialMedia link={{ url: socialMedia?.x ?? "", name: 'Twitter (X)', img: '/images/X.png' }}
+                        <SocialMedia link={{ url: socialMedia?.X ?? "", name: 'Twitter (X)', img: '/images/X.png' }}
                             disabled={isLoading}
-                            register={{ ...register("x", { required: false }) }}
+                            register={{ ...register("X", { required: false }) }}
                         />
                     </div>
                 </section>
             </div >
+
             <div className="flex justify-between items-center">
-                <Button type="secondary" onClick={(e) => {
+                <Button disabled={isLoading} type="secondary" onClick={(e) => {
                     e.preventDefault()
                     navigate("/complete-profile/personal-information")
-                }} disabled={isLoading}>back</Button>
+                }}>back</Button>
                 <Button disabled={isLoading}>{isLoading ? <SpinnerMini /> :
                     <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                         <span>next page</span>
                         <span className="text-xl"><HiArrowLongRight /></span>
                     </p>
                 }</Button>
-
             </div>
         </form >
     )
 }
 
 export default ProfessionalCredentialsForm
+
 
 
 
@@ -291,3 +218,25 @@ export default ProfessionalCredentialsForm
 //         setInputValue('');
 //     }
 // };
+
+
+// // get specialization data from user and database and merge them into one array of objects to send the new one the database
+// // const specializes = values.specializations.length ? [...values.specializations, ...specializations] : specializations;
+// const specializes = specializations;
+
+// // Filter the duplicated specializes
+// const uniqueSpecializes = specializes.filter((item, index, self) =>
+//     index === self.findIndex((t) => (
+//         t.value === item.value && t.label === item.label
+//     ))
+// );
+
+// const profileCred = {
+//     socialMedia: {
+//         facebook: facebook,
+//         instagram: instagram,
+//         X: X,
+//     },
+//     yearsOfExperience,
+//     specializations: uniqueSpecializes,
+// }

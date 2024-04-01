@@ -1,11 +1,11 @@
 import { HiPencil, HiTrash } from "react-icons/hi2"
-import Table from "../../../../../ui/Table"
-import ActiveButton from "../../../../../ui/ActiveButton"
 import { useDeletePackage } from "./useDeletePackage"
-import SpinnerMini from "../../../../../ui/SpinnerMini"
-import Modal from "../../../../../ui/Modal"
 import AddPackage from "./AddPackage"
+import Modal from "../../../../../ui/Modal"
+import Table from "../../../../../ui/Table"
 import Button from "../../../../../ui/Button"
+import SpinnerMini from "../../../../../ui/SpinnerMini"
+import ActiveButton from "../../../../../ui/ActiveButton"
 
 function ProfilePackagesTableRow({ packagee }) {
     const { deletePackage, isDeleting } = useDeletePackage()
@@ -37,7 +37,7 @@ function ProfilePackagesTableRow({ packagee }) {
                         </Modal>
 
                         <Button type="icon-delete"
-                            onClick={() => onDelete(packagee.id)}
+                            onClick={() => onDelete(packagee._id)}
                             disabled={isDeleting}
                         >
                             {isDeleting ? <SpinnerMini /> : <HiTrash />}

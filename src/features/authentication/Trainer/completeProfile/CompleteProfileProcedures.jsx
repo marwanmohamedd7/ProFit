@@ -1,3 +1,5 @@
+import { FaCheck } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const procedures = [
     {
         pageName: "personal-information",
@@ -23,6 +25,7 @@ const procedures = [
 ]
 
 function CompleteProfileProcedures({ page }) {
+    const navigate = useNavigate();
     return (
         <div className="relative flex flex-col justify-around xl:px-16 lg:px-10 md:px-8 sm:px-6 px-4"
             style={
@@ -56,11 +59,11 @@ function CompleteProfileProcedures({ page }) {
                                 border: `border-gray-500`
                             }
                             return <div key={index} className={`flex items-center ${style.text} gap-4`} >
-                                <h4 className={`rounded-full px-3 py-1 border ${style.border} ${style?.bg ? `${style.bg} text-white` : ``} justify-center items-center flex`}>
-                                    <span className="">{index + 1}</span>
+                                <h4 className={`rounded-full ${page > index ? "p-2.5" : "px-3 py-1"} border ${style.border} ${style?.bg ? `${style.bg} text-white` : ``} justify-center items-center flex`}>
+                                    <span className="">{page > index ? <span className="text-sm"><FaCheck /></span> : index + 1}</span>
                                 </h4>
                                 <p className="flex flex-col gap-1">
-                                    <span className={`${style.font ? style.font : "font-semibold"} capitalize`}>{(step.pageName).replace("-", " ")}</span>
+                                    <span className={`${style.font ? style.font : "font-semibold"} capitalize`}>{(step.pageName).replaceAll("-", " ")}</span>
                                     <span className="text-xs">{step.desc}</span>
                                 </p>
                             </div>
@@ -70,9 +73,9 @@ function CompleteProfileProcedures({ page }) {
                 </div>
             </div>
             <p className="text-center text-sm text-gray-500">
-                <span className="">Already have an account ?</span>
-                <span className="text-neutral-400 "> </span>
-                <span className="text-blue-700 font-bold">Log in</span>
+                <span className="">Already have an account?</span>
+                <span className="text-neutral-400"> </span>
+                <span className="text-blue-700 font-bold cursor-pointer" onClick={() => navigate("/login")}>Log in</span>
             </p>
         </div>
     )

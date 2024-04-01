@@ -10,7 +10,7 @@ import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     const { createPackage, isCreating } = useCreatePackage()
     const { updatePackage, isUpdating } = useUpdatePackage()
-    const { id: packageId, ...packageValues } = packageToUpdate;
+    const { _id: packageId, ...packageValues } = packageToUpdate;
     const [isActive, setIsActive] = useState(packageValues?.active ?? true)
     const isUpdateSession = Boolean(packageId);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -19,17 +19,23 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     let isLoading = isCreating || isUpdating;
     function onSubmit(data) {
         if (!data) return;
+        let isMatching = true;
+        const packageData = { ...data, active: isActive };
         if (isUpdateSession) {
-            // update the existing session with new data
-            updatePackage({ updatedPackageData: { ...data, active: isActive }, id: packageId }, {
-                onSettled: () => {
-                    reset()
-                    onCloseModal()
-                }
-            })
+            const newData = Object.values(packageData)
+            const oldData = Object.values(packageValues)
+            for (const [i, value] of newData.entries()) if (value !== oldData[i]) isMatching = false
+            !isMatching ?
+                // update the existing session with new data
+                updatePackage({ updatedPackageData: packageData, id: packageId }, {
+                    onSuccess: () => {
+                        reset()
+                        onCloseModal()
+                    }
+                }) : onCloseModal()
         } else {
-            createPackage({ ...data, active: isActive }, {
-                onSettled: () => {
+            createPackage(packageData, {
+                onSuccess: () => {
                     reset()
                     onCloseModal()
                 }
@@ -60,9 +66,9 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                                 })}
                             >
                                 <option value="">package type</option>
-                                <option value="diet">diet</option>
-                                <option value="workout">workout</option>
-                                <option value="diet & workout">diet & workout</option>
+                                <option value="Nutrition Plan">Nutrition Plan</option>
+                                <option value="Workout Plan">Workout Plan</option>
+                                <option value="Nutrition & Workout Plan">Nutrition & Workout Plan</option>
 
                             </select>
                         </div>
@@ -131,6 +137,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                             {
                                 ...register("subscribersLimit", {
                                     required: 'This field is required',
+                                    valueAsNumber: true, // convert the input to number type
                                 })
                             }
                         }
@@ -153,7 +160,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                         {isLoading ? <span className="text-xs"><SpinnerMini /></span> :
                             <>
                                 <span>{isUpdateSession ? "update package" : "Add package"}</span>
-                                <span> &#43;</span>
+                                <span>&#43;</span>
                             </>
                         }
                     </p>

@@ -2,15 +2,17 @@ import { useForm } from "react-hook-form"
 import { useCreateTransformation } from "./useCreateTransformation"
 import { useUpdateTransformation } from "./useUpdateTransformation"
 import Button from "../../../../../ui/Button"
-import UploadImage from "../../../../../ui/UploadImage"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+import UploadImageForm from "../../../../../ui/UploadImageForm"
 
 function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
     const { createTransformation, isCreating } = useCreateTransformation()
     const { updateTransformartion, isUpdating } = useUpdateTransformation()
     const isLoading = isCreating || isUpdating;
-    const { id: transformationId, ...transformationValues } = transformationToUpdate
+    const { _id: transformationId, ...transformationValues } = transformationToUpdate
+    const aft = transformationValues?.afterImage?.startsWith("http://localhost:4000/uploads/") ? transformationValues?.afterImage.replace("http://localhost:4000/uploads/", "") : transformationValues?.afterImage
+    const bef = transformationValues?.beforeImage?.startsWith("http://localhost:4000/uploads/") ? transformationValues?.beforeImage.replace("http://localhost:4000/uploads/", "") : transformationValues?.beforeImage
     const isUpdateSession = Boolean(transformationId)
     const { formState: { errors }, register, handleSubmit, reset, control } = useForm({
         defaultValues: isUpdateSession ? transformationValues : {}
@@ -18,48 +20,74 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
 
     function onSubmit(data) {
         if (!data) return
-        const beforeTransformationImg = typeof data.imageBefore === "string" ? data.imageBefore : `${Math.random()}-${data.imageBefore.name}`;
-        const afterTransformationImg = typeof data.imageAfter === "string" ? data.imageAfter : `${Math.random()}-${data.imageAfter.name}`;
-        const transformationData = {
-            ...data,
-            imageBefore: beforeTransformationImg,
-            imageAfter: afterTransformationImg,
-        };
+        let isMatching = true;
+        const formData = new FormData();
         if (isUpdateSession) {
-            updateTransformartion({ transformationData, id: transformationId }, {
-                onSettled: () => {
-                    reset()
-                    onCloseModal()
-                }
-            })
+            const newData = Object.entries(data)
+            const oldData = Object.entries(transformationValues)
+            for (const [i, [key, value]] of newData.entries()) if (value !== oldData[i][1]) {
+                isMatching = false
+                formData.append(key, value);
+            }
+            !isMatching ?
+                updateTransformartion({ formData, id: transformationId }, {
+                    onSuccess: () => {
+                        reset()
+                        onCloseModal()
+                    }
+                })
+                : onCloseModal()
         } else {
-            createTransformation(transformationData, {
-                onSettled: () => {
+            for (const [key, value] of Object.entries(data)) formData.append(key, value);
+            createTransformation(formData, {
+                onSuccess: () => {
                     reset()
                     onCloseModal()
                 }
             })
         }
+        // Iterate over each key in data and show the formData values 
+        // for (let entry of formData.entries()) {
+        //     console.log(entry[0], entry[1]);
+        // }
+
+        // Append title and description to the FormData
+        // formData.append("title", data.title);
+        // formData.append("description", data.description);
+
+        // // Append beforeImage and afterImage if they are not empty
+        // if (data.beforeImage instanceof File) {
+        //     formData.append("beforeImage", data.beforeImage);
+        // }
+
+        // if (data.afterImage instanceof File) {
+        //     formData.append("afterImage", data.afterImage);
+        // }
     }
+
     return (
-        <form className="space-y-8 py-4">
+        <form className="space-y-8 py-4 w-96">
             <div className="flex items-center gap-4">
-                <UploadImage
-                    id="imageBefore"
+                <UploadImageForm
+                    id="beforeImage"
                     photo="(Before)"
                     control={control}
                     disabled={isLoading}
-                    error={errors?.imageBefore?.message}
-                    src={transformationValues?.imageBefore ?? null}
+                    error={errors?.beforeImage?.message}
+                    src={bef}
+                    dimentions="w-40 h-60"
+                    // src={transformationValues?.beforeImage ?? null}
                     rules={{ required: "before transformation photo is required" }}
                 />
-                <UploadImage
-                    id="imageAfter"
+                <UploadImageForm
+                    id="afterImage"
                     photo="(After)"
                     control={control}
                     disabled={isLoading}
-                    error={errors?.imageAfter?.message}
-                    src={transformationValues?.imageAfter ?? null}
+                    error={errors?.afterImage?.message}
+                    src={aft}
+                    dimentions="w-40 h-60"
+                    // src={transformationValues?.afterImage ?? null}
                     rules={{ required: "after transformation photo is required" }}
                 />
             </div>

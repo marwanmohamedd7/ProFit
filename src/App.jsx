@@ -1,3 +1,4 @@
+import 'react-image-crop/dist/ReactCrop.css'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -13,7 +14,6 @@ import Financial from "./pagesAdmin/Financial";
 import TrainersApproval from "./pagesAdmin/TrainersApproval";
 import TrainerReview from "./pagesAdmin/TrainerReview";
 import PageNotFound from "./pagesAdmin/PageNotFound";
-import AppLayout from "./ui/AppLayout";
 import Admin from "./ui/Admin";
 import Trainer from "./ui/Trainer";
 import Portfolio from "./pagesTrainer/Portfolio";
@@ -27,6 +27,10 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import SignUp from "./pagesTrainer/SignUp";
 import CompleteProfile from "./pagesTrainer/CompleteProfile";
 import { Toaster } from "react-hot-toast";
+import { useCurrentUser } from "./context/UserProvider";
+import checkTokenValidity from "./utils/checkTokenValidity";
+import { useEffect } from "react";
+import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,49 +41,66 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+  const { setUserToken, setUserRole } = useCurrentUser();
+  const token = localStorage.getItem("userToken"); // Retrieve the token from local storage
+  const isValid = token ? checkTokenValidity(token) : "";
+  useEffect(function () {
+    if (isValid && token) {
+      setUserToken(token)
+      setUserRole(isValid.payload.role)
+    };
+  }, [setUserToken, setUserRole, token, isValid])
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
           <Route index element={<Navigate replace to="login" />} />
-          <Route element={<AppLayout />}>
-            <Route path="admin" element={
-              <ProtectedRoute requiredRole="admin">
-                <Admin />
-              </ProtectedRoute>
-            }>
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<DashboardAdmin />} />
-              <Route path="trainer-approval" element={<TrainersApproval />} />
-              <Route path="trainer-approval/trainer-profile" element={<TrainerReview />} />
-              <Route path="nutrition" element={<Nutrition />} />
-              <Route path="workout" element={<Workout />} />
-              <Route path="system-users" element={<Users />} />
-              <Route path="account" element={<Account />} />
-              <Route path="Financial" element={<Financial />} />
-              <Route path="support" element={<Support />} />
-            </Route>
-            <Route path="trainer" element={
-              <ProtectedRoute requiredRole="trainer">
-                <Trainer />
-              </ProtectedRoute>
-            }>
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<DashboardTrainer />} />
-              <Route path="portfolio" element={<Portfolio />} />
-              <Route path="trainees" element={<Trainees />} />
-              <Route path="messages" element={<Messages />} />
-              <Route path="nutrition" element={<NutritionTrainer />} />
-              <Route path="workout" element={<WorkoutTrainer />} />
-              <Route path="packages" element={<Packages />} />
-              <Route path="transcations" element={<Transcations />} />
-            </Route>
+
+          <Route path="admin" element={
+            <ProtectedRoute role="admin">
+              <Admin />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<DashboardAdmin />} />
+            <Route path="trainer-approval" element={<TrainersApproval />} />
+            <Route path="trainer-approval/trainer-profile" element={<TrainerReview />} />
+            <Route path="nutrition" element={<Nutrition />} />
+            <Route path="workout" element={<Workout />} />
+            <Route path="system-users" element={<Users />} />
+            <Route path="account" element={<Account />} />
+            <Route path="Financial" element={<Financial />} />
+            <Route path="support" element={<Support />} />
           </Route>
+
+          <Route path="trainer" element={
+            <ProtectedRoute role="trainer">
+              <Trainer />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<DashboardTrainer />} />
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="trainees" element={<Trainees />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="nutrition" element={<NutritionTrainer />} />
+            <Route path="workout" element={<WorkoutTrainer />} />
+            <Route path="packages" element={<Packages />} />
+            <Route path="transcations" element={<Transcations />} />
+          </Route>
+
+          <Route path="complete-profile" element={<Navigate replace to="personal-information" />} />
+          <Route path="complete-profile/:page" element={
+            <ProtectedRouteProfile role="trainer">
+              <CompleteProfile />
+            </ProtectedRouteProfile>
+          } />
+
+          <Route path="*" element={<PageNotFound />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
-          <Route path="complete-profile/:page" element={<CompleteProfile />} />
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter >
       <Toaster

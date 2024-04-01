@@ -1,13 +1,12 @@
+import { useNavigate } from "react-router-dom"
+import { useGetPackages } from "./useGetPackages"
+import { HiArrowLongRight } from "react-icons/hi2"
+import AddPackage from "./AddPackage"
 import Modal from "../../../../../ui/Modal"
 import Button from "../../../../../ui/Button"
-import ProfilePackagesTable from "./ProfilePackagesTable"
-import AddPackage from "./AddPackage"
 import Spinner from "../../../../../ui/Spinner"
-import { useGetPackages } from "./useGetPackages"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
-import { useNavigate } from "react-router-dom"
-import { HiArrowLongRight } from "react-icons/hi2"
-
+import ProfilePackagesTable from "./ProfilePackagesTable"
 
 function SubscriptionPricing() {
     const navigate = useNavigate()

@@ -1,109 +1,95 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiArrowLongRight } from "react-icons/hi2";
 import { useSetPersonalInfo } from "./useSetPersonalInfo";
 import Button from "../../../../../ui/Button";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
 import UploadImage from "../../../../../ui/UploadImage";
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import { HiArrowLongRight } from "react-icons/hi2";
+import toast from "react-hot-toast";
 
 function PersonalInfoForm({ getPersonalInfo = {} }) {
     const navigate = useNavigate()
-    const [onReset, setOnReset] = useState(false)
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
-    const { id, ...PersonalInfo } = getPersonalInfo || {}
-    const getSession = Boolean(id)
-    const { formState: { errors }, register, handleSubmit, reset, control } = useForm({
+    const { _id, profilePhoto, ...PersonalInfo } = getPersonalInfo || {};
+    const [avatarExist, setAvatarExist] = useState("")
+    const [avatar, setAvatar] = useState(profilePhoto ?? null)
+    const getSession = Boolean(_id)
+    const { formState: { errors }, register, handleSubmit, reset, watch } = useForm({
         defaultValues: getSession ? PersonalInfo : {},
     });
 
     function onSubmit(data) {
-        if (!data) return
-        let isTrue = true;
-        if (PersonalInfo) {
-            const formData = Object.values(data)
-            const userData = Object.values(PersonalInfo)
-            for (const [i, value] of formData.entries()) if (value !== userData[i]) isTrue = false
+        if (!data || !avatar) {
+            setAvatarExist("Please upload an avatar.")
+            return;
         }
-
-        if (isTrue) {
+        let isMatching = true;
+        if (PersonalInfo) {
+            const newData = Object.values(data)
+            const oldData = Object.values(PersonalInfo)
+            for (const [i, value] of newData.entries()) if (value !== oldData[i]) isMatching = false
+        }
+        if (isMatching) {
             navigate("/complete-profile/professional-credentials")
         } else {
-            const profileImage = `${Math.random()}-${data.avatar.name}`;
-            setPersonalInfo({ ...data, avatar: profileImage }, {
-                onSettled: () => {
+            const formData = new FormData();
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    formData.append(key, data[key]);
+                }
+            }
+            setPersonalInfo(formData, {
+                onSuccess: ({ message }) => {
                     reset()
-                    setOnReset(true)
+                    toast.success(message)
                     navigate("/complete-profile/professional-credentials")
                 }
             });
         }
     }
+    function handleImage(e) {
+        e.preventDefault();
+        if (!e.target.files[0].type.includes('image')) return
+        setAvatarExist("")
+        setAvatar(e.target.files[0]);
+
+        const image = {
+            profilePhoto: e.target.files[0]
+        };
+
+        const formData = new FormData();
+        // Append the image file to formData. The key is 'image', and the value is the file object.
+        if (image.profilePhoto instanceof File) {
+            formData.append('profilePhoto', image.profilePhoto);
+        }
+
+        setPersonalInfo(formData, {
+            onSuccess: () => {
+                reset()
+                toast.success("Avatar uploaded successfully")
+            }
+        });
+    }
+
     return (
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
                 <h1 className="text-blue-900 font-bold text-lg capitalize">personal information</h1>
                 <UploadImage
-                    id="avatar"
+                    id="profilePhoto"
                     photo="(profile)"
-                    onReset={onReset}
-                    control={control}
+                    error={avatarExist}
+                    onChange={handleImage}
+                    dimentions="w-28 h-28 rounded-full"
                     disabled={isLoadingSettingInfo}
-                    dimentions="h-28 w-28"
-                    error={errors?.avatar?.message}
-                    src={PersonalInfo?.avatar ?? null}
-                    rules={{ required: "Profile photo is required" }}
+                    src={profilePhoto ?? null}
                 />
-                {/* <div>
-                    <div className="relative w-28">
-                        <label
-                            htmlFor={"avatar"}
-                            className="cursor-pointer absolute right-[-6%] top-[-6%] text-blue-50 p-1 rounded-full bg-blue-700"
-                        >
-                            <MdOutlineEdit />
-                        </label>
-                        <div
-                            className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border h-28 w-28 capitalize`}
-                        >
-
-                            {avatar ?
-                                <>
-                                    {typeof avatar === "string" ?
-                                        <img src={avatar} alt="avatar" />
-                                        :
-                                        <>
-                                            <span className="text-blue-700 text-3xl"><HiMiniCheckCircle /></span>
-                                            <span className="text-blue-700 text-lg font-bold capitalize">uploaded</span>
-                                        </>
-                                    }
-                                </>
-                                :
-                                <>
-                                    <span>upload</span>
-                                    <span>(certifcate) photo</span>
-                                </>
-                            }
-
-                        </div>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            id="avatar"
-                            className="hidden"
-                            disabled={isLoadingSettingInfo}
-                            {...register("avatar", {
-                                required: "Profile photo is required",
-                                onChange: (e) => setAvatar(e.target.files[0])
-                            })}
-                        />
-                    </div>
-                    {errors?.avatar?.message && <span className="text-red-700 text-xs">{errors?.avatar?.message}</span>}
-                </div> */}
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
-                <InputFloatingLabel item={{ id: "country", label: "country*" }}
+                <InputFloatingLabel item={{ id: "country", label: "country*", value: watch("country") }}
                     disabled={isLoadingSettingInfo}
                     error={errors?.country?.message}
                     register={
@@ -115,7 +101,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                     }
                 />
 
-                <InputFloatingLabel item={{ id: "state", label: "state*" }}
+                <InputFloatingLabel item={{ id: "state", label: "state*", value: watch("state") }}
                     disabled={isLoadingSettingInfo}
                     error={errors?.state?.message}
                     register={
@@ -127,7 +113,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                     }
                 />
 
-                <InputFloatingLabel item={{ id: "city", label: "city*" }}
+                <InputFloatingLabel item={{ id: "city", label: "city*", value: watch("city") }}
                     disabled={isLoadingSettingInfo}
                     error={errors?.city?.message}
                     register={
@@ -138,12 +124,12 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                         }
                     }
                 />
-                <InputFloatingLabel item={{ id: "phone_number", label: "phone number*", type: "number" }}
+                <InputFloatingLabel item={{ id: "phoneNumber", label: "phone number*", type: "number", value: watch("phoneNumber") }}
                     disabled={isLoadingSettingInfo}
-                    error={errors?.phone_number?.message}
+                    error={errors?.phoneNumber?.message}
                     register={
                         {
-                            ...register("phone_number", {
+                            ...register("phoneNumber", {
                                 required: 'This field is required',
                                 minLength: {
                                     value: 11,
@@ -156,12 +142,12 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                         }
                     }
                 />
-                <InputFloatingLabel item={{ id: "birth_date", label: "birth date*", type: "date" }}
+                <InputFloatingLabel item={{ id: "birthDate", label: "birth date*", type: "date", value: watch("birthDate") }}
                     disabled={isLoadingSettingInfo}
-                    error={errors?.birth_date?.message}
+                    error={errors?.birthDate?.message}
                     register={
                         {
-                            ...register("birth_date", {
+                            ...register("birthDate", {
                                 required: 'This field is required',
                             })
                         }
@@ -170,19 +156,18 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
             </div>
 
             <div className="space-y-1">
-                <label htmlFor="description" className="block text-sm font-medium capitalize text-gray-700">biography*</label>
+                <label htmlFor="biography" className="block text-sm font-medium capitalize text-gray-700">biography*</label>
                 <textarea
-                    id="description"
+                    id="biography"
                     disabled={isLoadingSettingInfo}
                     //  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    error={errors?.birth_date?.message}
-                    {...register("description", {
+                    {...register("biography", {
                         required: false,
                         // required: "This field is required",
                     })}
                 />
-                {errors?.description?.message && <span className="text-xs text-red-700">{errors?.description?.message}</span>}
+                {errors?.biography?.message && <span className="text-xs text-red-700">{errors?.description?.message}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -192,7 +177,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                         disabled={isLoadingSettingInfo}
                         {...register("gender", { required: 'This field is required' })}
                         type="radio"
-                        value="male"
+                        value="Male"
                         className="form-radio"
                     />
                     <span>Male</span>
@@ -203,7 +188,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                         disabled={isLoadingSettingInfo}
                         {...register("gender", { required: 'This field is required' })}
                         type="radio"
-                        value="female"
+                        value="Female"
                         className="form-radio"
                     />
                     <span>Female</span>

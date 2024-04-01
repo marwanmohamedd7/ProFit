@@ -1,5 +1,5 @@
 
-function InputFloatingLabel({ item: { label, id, defaultValue = "", placeholder = "", type = "text", paddingStyle = "" }, onChange, disabled = false, error, register }) {
+function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", type = "text", paddingStyle = "" }, onChange, disabled = false, error, register }) {
     return (
         <div className="flex flex-col gap-1">
             <div className="relative">
@@ -7,7 +7,7 @@ function InputFloatingLabel({ item: { label, id, defaultValue = "", placeholder 
                     id={id}
                     type={type}
                     disabled={disabled}
-                    defaultValue={defaultValue}
+                    value={value}
                     placeholder={placeholder}
                     onChange={onChange}
                     {...register}

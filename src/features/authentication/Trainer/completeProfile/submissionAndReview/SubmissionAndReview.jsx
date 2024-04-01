@@ -1,12 +1,33 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { useCurrentUser } from "../../../../../context/UserProvider";
+import { useSubmitProfile } from "./useSubmitProfile";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Button from "../../../../../ui/Button"
-import { useState } from "react";
+import SpinnerMini from "../../../../../ui/SpinnerMini";
 
 function SubmissionAndReview() {
     const navigate = useNavigate()
     const [terms, setTerms] = useState(true)
-    const [agree, setAgree] = useState(true)
+    const { setUserToken, setUserRole } = useCurrentUser()
+    const { submitProfile, isSubmitting } = useSubmitProfile()
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const submitionData = {
+            status: 'pending',
+            acceptPolicy: terms,
+        }
+        submitProfile(submitionData, {
+            onSuccess: () => {
+                // remove token to end session and redirect user to login page
+                setUserRole(null);
+                setUserToken(null);
+                localStorage.removeItem("userToken");
+                navigate("/login", { replace: true });
+            }
+        })
+    }
 
     return (
         <div className="container flex flex-col gap-8">
@@ -37,21 +58,7 @@ function SubmissionAndReview() {
                         onChange={() => setTerms(value => !value)}
                     />
                     <label htmlFor="terms-conditions" className="text-blue-800 text-sm font-semibold">
-                        <span>I accept the platform's <strong className="text-blue-700">terms</strong> and <strong className="text-blue-700">conditions</strong> or privacy policy.</span>
-                    </label>
-                </div>
-
-                <div className="inline-flex items-center gap-4">
-                    <input
-                        type="checkbox"
-                        id="read-agree"
-                        name="read-agree"
-                        className="form-checkbox h-4 w-4 text-blue-700 accent-blue-700 rounded-md focus:outline-none transition-all duration-300"
-                        checked={agree}
-                        onChange={() => setAgree(value => !value)}
-                    />
-                    <label htmlFor="read-agree" className="text-blue-800 text-sm font-semibold">
-                        <span>By using ProFIT, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</span>
+                        <span>I accept the platform's <strong className="text-blue-700 tracking-wide">terms</strong> and <strong className="text-blue-700 tracking-wide">conditions</strong> or privacy policy.</span>
                     </label>
                 </div>
             </div>
@@ -61,11 +68,13 @@ function SubmissionAndReview() {
                     e.preventDefault()
                     navigate("/complete-profile/subscription-pricing")
                 }} type="secondary">back</Button>
-                <Button>
-                    <p className="flex justify-center font-bold tracking-wide items-center gap-2">
-                        <span>submit request</span>
-                        <span className="text-xl"><HiArrowLongRight /></span>
-                    </p>
+                <Button onClick={handleSubmit}>
+                    {isSubmitting ? <SpinnerMini /> :
+                        <p className="flex justify-center font-bold tracking-wide items-center gap-2">
+                            <span>submit request</span>
+                            <span className="text-xl"><HiArrowLongRight /></span>
+                        </p>
+                    }
                 </Button>
             </div>
 

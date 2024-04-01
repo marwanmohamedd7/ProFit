@@ -1,29 +1,35 @@
-import { HiPencil, HiTrash } from "react-icons/hi2"
-import Button from "../../../../../ui/Button"
-import { useDeleteTransformation } from "./useDeleteTransformation"
-import SpinnerMini from "../../../../../ui/SpinnerMini"
 import Modal from "../../../../../ui/Modal"
+import Button from "../../../../../ui/Button"
 import AddTransformation from "./AddTransformation"
+import SpinnerMini from "../../../../../ui/SpinnerMini"
+import { HiPencil, HiTrash } from "react-icons/hi2"
+import { useDeleteTransformation } from "./useDeleteTransformation"
 
-function Transformation({ transformation }) {
+function TransformationCard({ transformation }) {
     const { deleteTransformation, isDeleting } = useDeleteTransformation()
     function onDelete(e, id) {
         e.preventDefault()
         if (!id) return
         deleteTransformation(id);
     }
+
     return (
-        <div className="flex flex-col justify-between gap-2 p-2 shadow rounded-lg bg-gray-50">
+        <div className="grid grid-rows-[14rem_auto] gap-2 p-2 shadow rounded-lg">
             <div className="flex items-center justify-center gap-2">
-                <img src={"/uifaces-popular-image (1).jpg"} alt="Before" className="w-[49%] rounded-md" />
-                <img src={"/uifaces-popular-image.jpg"} alt="After" className="w-[49%] rounded-md" />
+                <div className="w-full h-full">
+                    <img src={transformation.beforeImage} alt="Before" className="w-full h-full rounded-md" />
+                </div>
+                <div className="w-full h-full">
+                    <img src={transformation.afterImage} alt="After" className="w-full h-full rounded-md" />
+                </div>
+                {/* <img src={transformation.beforeImage} alt="Before" className="w-[49%] rounded-md" /> */}
+                {/* <img src={transformation.afterImage} alt="After" className="w-[49%] rounded-md" /> */}
             </div>
             <div className="flex flex-col justify-between gap-4 h-full">
                 <div className="flex flex-col gap-1 p-1">
                     <h4 className="text-lg text-blue-700 font-bold capitalize">{transformation.title}</h4>
                     <p className="text-sm text-gray-500">
                         {transformation.description}
-                        {/* {transformation.description2} */}
                     </p>
                 </div>
                 <div className="flex items-center justify-end gap-2">
@@ -40,7 +46,7 @@ function Transformation({ transformation }) {
                         </Modal.Window>
                     </Modal>
                     <Button type="icon-delete"
-                        onClick={(e) => onDelete(e, transformation.id)}
+                        onClick={(e) => onDelete(e, transformation._id)}
                         disabled={isDeleting}
                     >
                         {isDeleting ? <SpinnerMini /> : <HiTrash />}
@@ -51,4 +57,4 @@ function Transformation({ transformation }) {
     )
 }
 
-export default Transformation
+export default TransformationCard

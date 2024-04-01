@@ -1,11 +1,10 @@
-import { useGetPageLocation } from "../hooks/useGetPageLocation";
+import { useCurrentUser } from "../context/UserProvider";
 
 function Logo() {
-  const { role } = useGetPageLocation()
+  const { userRole } = useCurrentUser()
 
   return (
     <div className="flex justify-center text-center py-[0.2rem] sm:py-[0.42rem]  border-solid border-b border-grey-100">
-
       <div className="rounded-md w-36 p-1 sm:p-0 flex items-center justify-center gap-3 capitalize">
         <div className="bg-blue-900 rounded-lg px-1 py-2">
           <svg
@@ -47,7 +46,7 @@ function Logo() {
             </span>
           </h1>
           <span className="text-xs text-gray-500 font-normal p-0 m-0">
-            {role} panel
+            {userRole} panel
           </span>
         </div>
 

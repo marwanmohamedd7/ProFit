@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom"
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import Button from "../../../../../ui/Button"
 import { useState } from "react"
+import { NavLink } from "react-router-dom"
+import Button from "../../../../../ui/Button"
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 
 function SocialMedia({ link, register, disabled }) {
     const [showLink, setShowLink] = useState("")

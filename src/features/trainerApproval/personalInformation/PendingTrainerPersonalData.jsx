@@ -11,9 +11,9 @@ function PendingTrainerPersonalData() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
-                    <InputFloatingLabel item={{ id: "first_name", label: "first name", defaultValue: "Ahmed" }} />
-                    <InputFloatingLabel item={{ id: "last_name", label: "last name", defaultValue: "Mohamed" }} />
-                    <InputFloatingLabel item={{ id: "email", label: "email", defaultValue: "Ahmed@gmail.com" }} />
+                    <InputFloatingLabel item={{ id: "first_name", label: "first name", value: "Ahmed" }} />
+                    <InputFloatingLabel item={{ id: "last_name", label: "last name", value: "Mohamed" }} />
+                    <InputFloatingLabel item={{ id: "email", label: "email", value: "Ahmed@gmail.com" }} />
                 </div>
 
                 <div className=" grid grid-cols-2 w-11/12 sm:w-full sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-6 xl:grid-cols-7  gap-4">
@@ -25,12 +25,12 @@ function PendingTrainerPersonalData() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
-                    <InputFloatingLabel item={{ id: "national_ID", label: "national ID*", defaultValue: "1202125213", type: "number" }} />
-                    <InputFloatingLabel item={{ id: "country", label: "country*", defaultValue: "Egypt" }} />
-                    <InputFloatingLabel item={{ id: "state", label: "state*", defaultValue: "Alexandria" }} />
-                    <InputFloatingLabel item={{ id: "city", label: "city*", defaultValue: "Miami" }} />
-                    <InputFloatingLabel item={{ id: "phone_number", label: "phone number*", defaultValue: "01009821081", type: "number" }} />
-                    <InputFloatingLabel item={{ id: "birth_date", label: "birth date*", defaultValue: "Miami", type: "date" }} />
+                    <InputFloatingLabel item={{ id: "national_ID", label: "national ID*", value: "1202125213", type: "number" }} />
+                    <InputFloatingLabel item={{ id: "country", label: "country*", value: "Egypt" }} />
+                    <InputFloatingLabel item={{ id: "state", label: "state*", value: "Alexandria" }} />
+                    <InputFloatingLabel item={{ id: "city", label: "city*", value: "Miami" }} />
+                    <InputFloatingLabel item={{ id: "phone_number", label: "phone number*", value: "01009821081", type: "number" }} />
+                    <InputFloatingLabel item={{ id: "birth_date", label: "birth date*", value: "Miami", type: "date" }} />
                 </div>
 
                 <div className="space-y-1">

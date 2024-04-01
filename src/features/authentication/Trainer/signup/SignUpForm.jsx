@@ -9,18 +9,18 @@ import SpinnerMini from "../../../../ui/SpinnerMini";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignUpForm() {
+    const navigate = useNavigate();
     const { signup, isSignningUp } = useSignup()
-    const navigate = useNavigate()
-    const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm()
+    const { register, formState: { errors }, handleSubmit, getValues, watch, reset } = useForm()
     // Handle form submission
     async function onsubmit(data) {
         if (!data) return null;
         const { confirm_password, ...signUpData } = data
         signup(signUpData, {
-            onSettled: () => {
+            onSuccess: () => {
                 reset()
-                navigate("/complete-profile/personal-information")
-            },
+                !isSignningUp && navigate("/complete-profile");
+            }
         })
     };
 
@@ -28,40 +28,46 @@ function SignUpForm() {
         <form className="space-y-10" onSubmit={handleSubmit(onsubmit)}>
             <div className="space-y-6">
                 <div className="rounded-md shadow-sm space-y-4">
-                    <InputFloatingLabel item={{ label: "first name", id: "firstName" }}
-                        disabled={isSignningUp}
-                        error={errors?.firstName?.message}
-                        register={{
-                            ...register("firstName", {
-                                required: "This field is required",
-                                minLength: {
-                                    value: 2
-                                },
-                                maxLength: {
-                                    value: 30
-                                }
-                            })
-                        }} />
-                    <InputFloatingLabel item={{ label: "last name", id: "lastName" }}
-                        disabled={isSignningUp}
-                        error={errors?.lastName?.message}
-                        register={{
-                            ...register("lastName", {
-                                required: "This field is required",
-                                minLength: {
-                                    value: 2
-                                },
-                                maxLength: {
-                                    value: 30
-                                }
-                            })
-                        }}
-                    />
-                    <InputFloatingLabel item={{ id: "national_ID", label: "national ID*", type: "number" }}
-                        error={errors?.national_ID?.message}
+                    <div className="flex justify-between items-center gap-4">
+                        <div className="w-full">
+                            <InputFloatingLabel item={{ label: "first name", id: "firstName", value: watch("firstName") }}
+                                disabled={isSignningUp}
+                                error={errors?.firstName?.message}
+                                register={{
+                                    ...register("firstName", {
+                                        required: "This field is required",
+                                        minLength: {
+                                            value: 2
+                                        },
+                                        maxLength: {
+                                            value: 30
+                                        }
+                                    })
+                                }} />
+                        </div>
+                        <div className="w-full">
+                            <InputFloatingLabel item={{ label: "last name", id: "lastName", value: watch("lastName") }}
+                                disabled={isSignningUp}
+                                error={errors?.lastName?.message}
+                                register={{
+                                    ...register("lastName", {
+                                        required: "This field is required",
+                                        minLength: {
+                                            value: 2
+                                        },
+                                        maxLength: {
+                                            value: 30
+                                        }
+                                    })
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <InputFloatingLabel item={{ id: "nationalId", label: "national ID*", type: "number", value: watch("nationalId") }}
+                        error={errors?.nationalId?.message}
                         register={
                             {
-                                ...register("national_ID", {
+                                ...register("nationalId", {
                                     required: 'This field is required',
                                     minLength: {
                                         value: 14,
@@ -75,11 +81,11 @@ function SignUpForm() {
                             }
                         }
                     />
-                    <InputFloatingLabel item={{ label: "email address", id: "email_address", type: "email" }}
+                    <InputFloatingLabel item={{ label: "email address", id: "email", type: "email", value: watch("email") }}
                         disabled={isSignningUp}
-                        error={errors?.email_address?.message}
+                        error={errors?.email?.message}
                         register={{
-                            ...register("email_address", {
+                            ...register("email", {
                                 required: "This field is required",
                                 pattern: {
                                     value: /\S+@\S+\.\S+/,
@@ -88,7 +94,7 @@ function SignUpForm() {
                             })
                         }}
                     />
-                    <InputFloatingLabel item={{ label: "password", id: "password", type: "password" }}
+                    <InputFloatingLabel item={{ label: "password", id: "password", type: "password", value: watch("password") }}
                         disabled={isSignningUp}
                         error={errors?.password?.message}
                         register={{
@@ -100,7 +106,7 @@ function SignUpForm() {
                             })
                         }}
                     />
-                    <InputFloatingLabel item={{ label: "confirm password", id: "confirm_password", type: "password" }}
+                    <InputFloatingLabel item={{ label: "confirm password", id: "confirm_password", type: "password", value: watch("confirm_password") }}
                         disabled={isSignningUp}
                         error={errors?.confirm_password?.message}
                         register={{

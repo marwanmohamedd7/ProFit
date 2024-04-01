@@ -40,7 +40,7 @@ function PendingTrainerProfessionalCredentials() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-end">
-                    <InputFloatingLabel item={{ label: "Years of experience*", id: "experience", type: "number", defaultValue: "7", disabled: true }} />
+                    <InputFloatingLabel item={{ label: "Years of experience*", id: "experience", type: "number", value: "7", disabled: true }} />
                 </div>
             </div>
         </section>

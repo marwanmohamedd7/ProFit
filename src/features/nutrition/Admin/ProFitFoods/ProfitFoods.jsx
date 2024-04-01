@@ -40,7 +40,7 @@ function ProfitFoods() {
                 <SearchInput placeholder="Search Food Name..." />
                 <Modal>
                     <Modal.Open opens="create-new-food">
-                        <Button >Create New Food +</Button>
+                        <Button>Create New Food +</Button>
                     </Modal.Open>
                     <Modal.Window opens="create-new-food">
                         <CreateFood />

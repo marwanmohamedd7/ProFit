@@ -1,82 +1,31 @@
 {
-  "signup": [
-    {
-      "id": "bb0f",
-      "firstName": "marwan",
-      "lastName": "youssef",
-      "national_ID": "55555555555555",
-      "email_address": "maro.jk2345@gmail.com",
-      "password": "12457893"
-    },
-    {
-      "id": "270d",
-      "firstName": "shehab",
-      "lastName": "eldein",
-      "national_ID": "55555555555555",
-      "email_address": "maro.jk234@gmail.com",
-      "password": "12457893"
-    }
-  ],
+  "signup": [],
   "personalInfo": [
     {
       "id": "e540",
-      "phone_number": "01009821081",
-      "country": "misr",
-      "city": "new york",
-      "state": "Alexandria",
-      "birth_date": "2024-03-27",
-      "avatar": "0.3027361728503948-undefined",
+      "phone_number": null,
+      "country": null,
+      "city": null,
+      "state": null,
+      "birth_date": null,
+      "avatar": null,
       "description": null,
-      "gender": "male"
+      "gender": null
     }
   ],
   "professionalCred": [
     {
       "id": "022f",
-      "experience": "9",
-      "specialization": [
-        {
-          "value": "muscle_gain",
-          "label": "Muscle Gain"
-        },
-        {
-          "value": "crossfit",
-          "label": "Crossfit"
-        }
-      ],
-      "qualificationImgs": [
-        "0.603767675566284-1e487d81147f95d2bc6ff301e30377cf.jpg",
-        "0.25728242232528853-fba338b6e82d427c10da4233485c82be.jpg"
-      ],
+      "experience": null,
+      "specialization": [],
+      "qualificationImgs": [],
       "socialMedia": {
-        "facebook": "https://www.facebook.com/miro.yossef.92/",
-        "instagram": "https://www.instagram.com/marwan.mohamed23/",
-        "x": "https://twitter.com/marwanmohamedd9"
+        "facebook": null,
+        "instagram": null,
+        "x": null
       }
     }
   ],
-  "clientsTransformation": [
-    {
-      "id": "64ef",
-      "title": "shehab eldin",
-      "description": "ragel gad3 w moltzm w mazbot w 3aml ma3na ahla sho8l",
-      "imageBefore": "0.8359085385639271-fba338b6e82d427c10da4233485c82be.jpg",
-      "imageAfter": "0.15335865211833766-WhatsApp Image 2023-11-21 at 18.58.20_96d1e692.jpg"
-    },
-    {
-      "id": "9238",
-      "title": "malll",
-      "description": "we don't know what's coming but we work for it",
-      "imageBefore": "0.1559876325437668-1e487d81147f95d2bc6ff301e30377cf.jpg",
-      "imageAfter": "0.4498133873596313-fba338b6e82d427c10da4233485c82be.jpg"
-    },
-    {
-      "id": "f681",
-      "title": "marwann",
-      "description": "ay 5araa bs ragel mazbot",
-      "imageBefore": "0.20412668439738413-1e487d81147f95d2bc6ff301e30377cf.jpg",
-      "imageAfter": "0.7711820724051324-fba338b6e82d427c10da4233485c82be.jpg"
-    }
-  ],
+  "clientsTransformation": [],
   "packages": []
 }

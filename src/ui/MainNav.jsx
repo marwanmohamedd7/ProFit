@@ -9,7 +9,9 @@ import { PiCurrencyCircleDollar, PiHeadphones, PiUsersThreeLight } from "react-i
 import { CiLogout } from "react-icons/ci";
 import MainNavLists from "./MainNavLists";
 import Button from "./Button";
-import { useGetPageLocation } from "../hooks/useGetPageLocation";
+import { useCurrentUser } from "../context/UserProvider";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const sidebarBtnsDataAdmin = [
   {
@@ -17,12 +19,12 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "dashboard",
       type: "sideBtn",
-      to: "admin/dashboard",
+      to: "dashboard",
       icon: <HiOutlineViewGrid />
     }, {
       name: "trainer-approval",
       type: "sideBtn",
-      to: "admin/trainer-approval",
+      to: "trainer-approval",
       icon: <HiOutlineCheckCircle />
     }],
   },
@@ -31,7 +33,7 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "system-users",
       type: "sideBtn",
-      to: "admin/system-users",
+      to: "system-users",
       icon: <HiOutlineUsers />
     }],
   },
@@ -40,13 +42,13 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "nutrition",
       type: "sideBtn",
-      to: "admin/nutrition",
+      to: "nutrition",
       icon: <IoNutritionOutline />
     },
     {
       name: "workout",
       type: "sideBtn",
-      to: "admin/workout",
+      to: "workout",
       icon: <CiDumbbell />
     }
     ],
@@ -56,7 +58,7 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "financial",
       type: "sideBtn",
-      to: "admin/Financial",
+      to: "Financial",
       icon: <CiWallet />
     }]
   },
@@ -65,7 +67,7 @@ const sidebarBtnsDataAdmin = [
     btns: [{
       name: "support",
       type: "sideBtn",
-      to: "admin/support",
+      to: "support",
       icon: <PiHeadphones />
     }]
   },
@@ -77,22 +79,22 @@ const sidebarBtnsDataTrainer = [
       {
         name: "dashboard",
         type: "sideBtn",
-        to: "trainer/dashboard",
+        to: "dashboard",
         icon: <HiOutlineViewGrid />
       }, {
         name: "my-portfolio",
         type: "sideBtn",
-        to: "trainer/portfolio",
+        to: "portfolio",
         icon: <IoGlobeOutline />
       }, {
         name: "trainees",
         type: "sideBtn",
-        to: "trainer/trainees",
+        to: "trainees",
         icon: <PiUsersThreeLight />
       }, {
         name: "messages",
         type: "sideBtn",
-        to: "trainer/messages",
+        to: "messages",
         icon: <BiMessageRoundedDetail />
       }
     ],
@@ -103,13 +105,13 @@ const sidebarBtnsDataTrainer = [
       {
         name: "nutrition",
         type: "sideBtn",
-        to: "trainer/nutrition",
+        to: "nutrition",
         icon: <IoNutritionOutline />
       },
       {
         name: "workout",
         type: "sideBtn",
-        to: "trainer/workout",
+        to: "workout",
         icon: <CiDumbbell />
       }
     ],
@@ -120,13 +122,13 @@ const sidebarBtnsDataTrainer = [
       {
         name: "packages",
         type: "sideBtn",
-        to: "trainer/packages",
+        to: "packages",
         icon: <CiPercent />
       },
       {
         name: "transcations",
         type: "sideBtn",
-        to: "trainer/transcations",
+        to: "transcations",
         icon: <PiCurrencyCircleDollar />
       }
     ],
@@ -134,7 +136,16 @@ const sidebarBtnsDataTrainer = [
 ]
 
 function MainNav() {
-  const { role } = useGetPageLocation()
+  const navigate = useNavigate()
+  const { setUserId, setUserToken, setUserRole, userRole } = useCurrentUser();
+  function handleLogout() {
+    setUserId(null)
+    setUserRole(null);
+    setUserToken(null);
+    localStorage.removeItem("userToken");
+    navigate("/login", { replace: true });
+    toast.success("You have been logged out successfully!")
+  }
   return (
     <div
       className="capitalize mx-2 my-4 sm:mx-3 flex flex-col
@@ -142,7 +153,7 @@ function MainNav() {
     >
       <ul className="flex flex-col gap-1">
         {
-          role === "admin" ?
+          userRole === "admin" ?
             <>
               {sidebarBtnsDataAdmin.map((btnData, index) =>
                 <MainNavLists key={index} data={btnData} />)}
@@ -155,7 +166,7 @@ function MainNav() {
         }
       </ul>
 
-      <Button type="logout" name="logout" to={"/login"}>
+      <Button onClick={handleLogout} type="logout" name="logout" to={"/login"}>
         <CiLogout className="text-xl" />
       </Button>
     </div>

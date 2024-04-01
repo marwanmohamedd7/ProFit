@@ -17,7 +17,7 @@ function ProfilePackagesTable({ packages }) {
                     <th className="px-6 py-2">actions</th>
                 </tr>
             </Table.Header>
-            <Table.Body data={packages} render={(packagee) => <ProfilePackagesTableRow packagee={packagee} key={packagee.id} />} />
+            <Table.Body data={packages} render={(packagee) => <ProfilePackagesTableRow packagee={packagee} key={packagee._id} />} />
             <Table.Footer total={packages.length} />
         </Table>
     )

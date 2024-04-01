@@ -1,4 +1,5 @@
 import BreadCrumbs from "../ui/BreadCrumbs";
+import Image from "../ui/Image";
 import Title from "../ui/Title";
 
 function DashboardTrainer() {
@@ -6,6 +7,7 @@ function DashboardTrainer() {
         <div>
             <BreadCrumbs />
             <Title />
+            <Image/>
         </div>
     </div>
 }
