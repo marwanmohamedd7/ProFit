@@ -5,86 +5,91 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { useSetPersonalInfo } from "./useSetPersonalInfo";
 import Button from "../../../../../ui/Button";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
-import UploadImage from "../../../../../ui/UploadImage";
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 import toast from "react-hot-toast";
+import Image from "../../../../../ui/Image";
 
 function PersonalInfoForm({ getPersonalInfo = {} }) {
     const navigate = useNavigate()
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
     const { _id, profilePhoto, ...PersonalInfo } = getPersonalInfo || {};
-    const [avatarExist, setAvatarExist] = useState("")
-    const [avatar, setAvatar] = useState(profilePhoto ?? null)
     const getSession = Boolean(_id)
-    const { formState: { errors }, register, handleSubmit, reset, watch } = useForm({
+    const { formState: { errors }, register, handleSubmit, reset, watch, setValue, getValues } = useForm({
         defaultValues: getSession ? PersonalInfo : {},
     });
 
     function onSubmit(data) {
-        if (!data || !avatar) {
-            setAvatarExist("Please upload an avatar.")
-            return;
-        }
+        if (!data) return;
+        console.log(data)
         let isMatching = true;
         if (PersonalInfo) {
             const newData = Object.values(data)
             const oldData = Object.values(PersonalInfo)
             for (const [i, value] of newData.entries()) if (value !== oldData[i]) isMatching = false
         }
-        if (isMatching) {
-            navigate("/complete-profile/professional-credentials")
-        } else {
-            const formData = new FormData();
-            for (const key in data) {
-                if (data.hasOwnProperty(key)) {
-                    formData.append(key, data[key]);
-                }
-            }
-            setPersonalInfo(formData, {
-                onSuccess: ({ message }) => {
-                    reset()
-                    toast.success(message)
-                    navigate("/complete-profile/professional-credentials")
-                }
-            });
-        }
+        // if (isMatching) {
+        //     navigate("/complete-profile/professional-credentials")
+        // }
+        // else {
+        //     const formData = new FormData();
+        //     for (const key in data) {
+        //         if (data.hasOwnProperty(key)) {
+        //             formData.append(key, data[key]);
+        //         }
+        //     }
+        //     setPersonalInfo(formData, {
+        //         onSuccess: ({ message }) => {
+        //             reset()
+        //             toast.success(message)
+        //             navigate("/complete-profile/professional-credentials")
+        //         }
+        //     });
+        // }
     }
-    function handleImage(e) {
-        e.preventDefault();
-        if (!e.target.files[0].type.includes('image')) return
-        setAvatarExist("")
-        setAvatar(e.target.files[0]);
 
-        const image = {
-            profilePhoto: e.target.files[0]
-        };
+    function onCropComplete(croppedImgFile) {
+        if (!croppedImgFile) return
+        setValue("profilePhoto", croppedImgFile, { shouldValidate: true })
+        // const image = {
+        //     profilePhoto: getValues().profilePhoto
+        // };
+        // console.log(image)
+        // const formData = new FormData();
+        // // Append the image file to formData. The key is 'image', and the value is the file object.
+        // if (image.profilePhoto instanceof File) {
+        //     formData.append('profilePhoto', image.profilePhoto);
+        // }
 
-        const formData = new FormData();
-        // Append the image file to formData. The key is 'image', and the value is the file object.
-        if (image.profilePhoto instanceof File) {
-            formData.append('profilePhoto', image.profilePhoto);
-        }
+        // setPersonalInfo(formData, {
+        //     onSuccess: () => {
+        //         reset()
+        //         toast.success("Avatar uploaded successfully")
+        //     }
+        // });
 
-        setPersonalInfo(formData, {
-            onSuccess: () => {
-                reset()
-                toast.success("Avatar uploaded successfully")
-            }
-        });
     }
 
     return (
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
                 <h1 className="text-blue-900 font-bold text-lg capitalize">personal information</h1>
-                <UploadImage
+                {/* <UploadImage
                     id="profilePhoto"
                     photo="(profile)"
                     error={avatarExist}
                     onChange={handleImage}
-                    dimentions="w-28 h-28 rounded-full"
+                    dimentions="w-28 h-28"
                     disabled={isLoadingSettingInfo}
                     src={profilePhoto ?? null}
+                /> */}
+                <Image
+                    photoType="(profile)"
+                    minDimension={150}
+                    dimensions="w-28 h-28"
+                    onCropComplete={onCropComplete}
+                    src={profilePhoto ?? getValues()?.profilePhoto}
+                    disabled={isLoadingSettingInfo}
+                    error={errors?.profilePhoto?.message}
                 />
             </div>
 
