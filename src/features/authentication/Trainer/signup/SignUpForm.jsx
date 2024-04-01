@@ -5,7 +5,6 @@ import { GoArrowRight } from "react-icons/go"
 import Button from "../../../../ui/Button"
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 import SpinnerMini from "../../../../ui/SpinnerMini";
-import Spinner from "../../../../ui/Spinner";
 
 // Email regex: /\S+@\S+\.\S+/
 
@@ -14,7 +13,6 @@ function SignUpForm() {
     const { signup, isSignningUp } = useSignup()
     const { register, formState: { errors }, handleSubmit, getValues, watch, reset } = useForm()
 
-    if (isSignningUp) return <Spinner />
     // Handle form submission
     async function onsubmit(data) {
         if (!data) return null;
