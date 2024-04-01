@@ -75,7 +75,7 @@ function CompleteProfileProcedures({ page }) {
             <p className="text-center text-sm text-gray-500">
                 <span className="">Already have an account?</span>
                 <span className="text-neutral-400"> </span>
-                <span className="text-blue-700 font-bold cursor-pointer" onClick={() => navigate("/login")}>Log in</span>
+                <span className="text-blue-700 font-bold cursor-pointer" onClick={() => navigate("/login", { replace: true })}>Log in</span>
             </p>
         </div>
     )

@@ -47,7 +47,7 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
             oldData = Object.values(oldData)
             for (const [i, value] of newData.entries()) if (value !== oldData[i] && typeof value === "string") isMatching = false;
         }
-        if (isMatching) navigate("/complete-profile/subscription-pricing")
+        if (isMatching) navigate("/complete-profile/subscription-pricing", { replace: true })
         else {
             const { facebook, instagram, X, ...credValues } = data
             const credData = {
@@ -61,7 +61,7 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
             setProfessionalCred(credData, {
                 onSuccess: () => {
                     reset()
-                    navigate("/complete-profile/subscription-pricing")
+                    navigate("/complete-profile/subscription-pricing", { replace: true })
                 }
             })
         }
@@ -171,14 +171,17 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
                     <h2 className="text-xl text-blue-900 font-bold">Social Media and Contact Links</h2>
                     <div className="space-y-2">
                         <SocialMedia link={{ url: socialMedia?.facebook ?? "", name: 'Facebook', img: '/images/facebook.png' }}
+                            watch={watch("facebook")}
                             disabled={isLoading}
                             register={{ ...register("facebook", { required: false }) }}
                         />
                         <SocialMedia link={{ url: socialMedia?.instagram ?? "", name: 'Instagram', img: '/images/instagram.png' }}
+                            watch={watch("instagram")}
                             disabled={isLoading}
                             register={{ ...register("instagram", { required: false }) }}
                         />
                         <SocialMedia link={{ url: socialMedia?.X ?? "", name: 'Twitter (X)', img: '/images/X.png' }}
+                            watch={watch("X")}
                             disabled={isLoading}
                             register={{ ...register("X", { required: false }) }}
                         />
@@ -189,7 +192,7 @@ function ProfessionalCredentialsForm({ getProfessionalCred = {} }) {
             <div className="flex justify-between items-center">
                 <Button disabled={isLoading} type="secondary" onClick={(e) => {
                     e.preventDefault()
-                    navigate("/complete-profile/personal-information")
+                    navigate("/complete-profile/personal-information", { replace: true })
                 }}>back</Button>
                 <Button disabled={isLoading}>{isLoading ? <SpinnerMini /> :
                     <p className="flex justify-center font-bold tracking-wide items-center gap-2">

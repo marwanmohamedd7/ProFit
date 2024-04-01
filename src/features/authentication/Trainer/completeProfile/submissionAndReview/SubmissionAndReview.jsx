@@ -66,7 +66,7 @@ function SubmissionAndReview() {
             <div className="flex justify-between items-center">
                 <Button onClick={(e) => {
                     e.preventDefault()
-                    navigate("/complete-profile/subscription-pricing")
+                    navigate("/complete-profile/subscription-pricing", { replace: true })
                 }} type="secondary">back</Button>
                 <Button onClick={handleSubmit}>
                     {isSubmitting ? <SpinnerMini /> :

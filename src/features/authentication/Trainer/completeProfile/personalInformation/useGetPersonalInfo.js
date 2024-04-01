@@ -3,9 +3,9 @@ import { getPersonalInfo as apiGetPersonalInfo } from "../../../../../services/a
 import { useCurrentUser } from "../../../../../context/UserProvider";
 
 export function useGetPersonalInfo() {
-  const { userToken } = useCurrentUser();
+  const { userId, userToken } = useCurrentUser();
   const { data: getPersonalInfo, isLoading: isLoadingGettingInfo } = useQuery({
-    queryKey: ["personalInfo"],
+    queryKey: ["personalInfo", userId],
     queryFn: () => apiGetPersonalInfo(userToken),
   });
   return { getPersonalInfo: getPersonalInfo?.trainer, isLoadingGettingInfo };

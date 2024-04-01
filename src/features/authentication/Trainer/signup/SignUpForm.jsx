@@ -19,7 +19,7 @@ function SignUpForm() {
         signup(signUpData, {
             onSuccess: () => {
                 reset()
-                !isSignningUp && navigate("/complete-profile");
+                !isSignningUp && navigate("/complete-profile", { replace: true });
             }
         })
     };

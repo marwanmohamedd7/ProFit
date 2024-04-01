@@ -35,11 +35,11 @@ function SubscriptionPricing() {
                 <div className="flex justify-between items-center">
                     <Button type="secondary" onClick={(e) => {
                         e.preventDefault()
-                        navigate("/complete-profile/professional-credentials")
+                        navigate("/complete-profile/professional-credentials", { replace: true })
                     }} disabled={isLoading}>back</Button>
                     <Button onClick={(e) => {
                         e.preventDefault()
-                        navigate("/complete-profile/submission-and-review")
+                        navigate("/complete-profile/submission-and-review", { replace: true })
                     }} disabled={isLoading}>
                         {isLoading ? <SpinnerMini /> :
                             <p className="flex justify-center font-bold tracking-wide items-center gap-2">

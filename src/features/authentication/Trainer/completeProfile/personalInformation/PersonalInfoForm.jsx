@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { useSetPersonalInfo } from "./useSetPersonalInfo";
+import toast from "react-hot-toast";
+import Image from "../../../../../ui/Image";
 import Button from "../../../../../ui/Button";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import toast from "react-hot-toast";
-import Image from "../../../../../ui/Image";
 
 function PersonalInfoForm({ getPersonalInfo = {} }) {
     const navigate = useNavigate()
@@ -29,7 +29,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
         if (PersonalInfo) {
             const newData = Object.entries(data)
             const oldData = Object.entries(PersonalInfo)
-            for (const [i, [key, value]] of newData.entries()) if (value !== oldData[i][1]) {
+            for (const [i, [key, value]] of newData.entries()) if (!oldData[i] || value !== oldData[i][1]) {
                 isMatching = false
                 formData.append(key, value);
             }
@@ -38,7 +38,7 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
                     onSuccess: ({ message }) => {
                         reset()
                         toast.success(message)
-                        navigate("/complete-profile/professional-credentials")
+                        navigate("/complete-profile/professional-credentials", { replace: true })
                     }
                 })
                 : navigate("/complete-profile/professional-credentials")
@@ -69,7 +69,6 @@ function PersonalInfoForm({ getPersonalInfo = {} }) {
         }
         setPersonalInfo(formData, {
             onSuccess: () => {
-                reset()
                 setIsLoadingImg(false)
                 toast.success("Avatar uploaded successfully")
             }

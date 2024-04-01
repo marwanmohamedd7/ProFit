@@ -116,7 +116,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
                                     // const formData = new FormData();
                                     // formData.append("file", file);
                                     onCropComplete(file)
-                                    // onCloseModal()
+                                    onCloseModal()
                                 })
                             }}
                         >done</Button>

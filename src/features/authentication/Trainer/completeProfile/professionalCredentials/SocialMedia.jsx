@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import Button from "../../../../../ui/Button"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 
-function SocialMedia({ link, register, disabled }) {
+function SocialMedia({ link, register, disabled, watch }) {
     const [showLink, setShowLink] = useState("")
     return (
         <div className="flex flex-wrap items-center justify-between gap-4 border-gray-300 rounded py-2">
@@ -20,7 +20,7 @@ function SocialMedia({ link, register, disabled }) {
                         <InputFloatingLabel
                             disabled={disabled}
                             register={register}
-                            item={{ label: link.name, id: link.name, paddingStyle: "py-2 px-2" }} />
+                            item={{ label: link.name, id: link.name, paddingStyle: "py-2 px-2", value: watch }} />
                     </div>
                 }
                 <Button

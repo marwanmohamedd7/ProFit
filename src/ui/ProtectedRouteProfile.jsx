@@ -16,8 +16,8 @@ function ProtectedRouteProfile({ children, role }) {
             if (isAuthenticated === "admin") navigate("/admin", { replace: true });
             else navigate("/login", { replace: true });
         }
-        if (isAuthenticated === role && !isLoading && status === "pending") navigate("/login", { replace: true });
-        if (isAuthenticated === role && !isLoading && status === "accepted") navigate("/trainer", { replace: true });
+        if (isAuthenticated === role && status === "pending" && !isLoading) navigate("/login", { replace: true });
+        if (isAuthenticated === role && status === "accepted" && !isLoading) navigate("/trainer", { replace: true });
         // if (isAuthenticated === role && !isLoading && status === "accepted") navigate(-1, { replace: true });
     }, [isAuthenticated, isLoading, status, role, navigate])
 
@@ -27,7 +27,7 @@ function ProtectedRouteProfile({ children, role }) {
     </div>
 
     // 4. If all checks pass, render the children components
-    if (isAuthenticated === role && !isLoading && status === "incomplete") return children;
+    if (isAuthenticated === role && status === "incomplete" && !isLoading) return children;
 }
 
 export default ProtectedRouteProfile

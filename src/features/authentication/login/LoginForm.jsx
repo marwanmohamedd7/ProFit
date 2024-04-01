@@ -68,7 +68,7 @@ function LoginForm() {
         </Button>
         <p className="text-gray-400 text-xs tracking-wide flex items-center gap-1">
           <span className="capitalize">don't have an account yet?</span>
-          <NavLink to="/signup" className="text-blue-600 font-bold">Sign up</NavLink>
+          <NavLink to="/signup" replace={true} className="text-blue-600 font-bold">Sign up</NavLink>
         </p>
       </div>
 

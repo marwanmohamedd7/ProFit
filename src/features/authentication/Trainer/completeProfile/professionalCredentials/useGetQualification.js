@@ -3,9 +3,9 @@ import { useCurrentUser } from "../../../../../context/UserProvider";
 import { getQualifications as apiGetQualifications } from "../../../../../services/apiCompleteProfile";
 
 export function useGetQualification() {
-  const { userToken } = useCurrentUser();
+  const { userId, userToken } = useCurrentUser();
   const { data: getQualifications, isLoading } = useQuery({
-    queryKey: ["qualifications"],
+    queryKey: ["qualifications", userId],
     queryFn: () => apiGetQualifications(userToken),
     retry: 2, // If the request fails, retry once more
   });

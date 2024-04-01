@@ -13,7 +13,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     const { _id: packageId, ...packageValues } = packageToUpdate;
     const [isActive, setIsActive] = useState(packageValues?.active ?? true)
     const isUpdateSession = Boolean(packageId);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm({
         defaultValues: isUpdateSession ? packageValues : {},
     });
     let isLoading = isCreating || isUpdating;
@@ -47,7 +47,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
 
             <div className="py-4 space-y-4">
                 <div className="grid grid-cols-2 gap-x-2">
-                    <InputFloatingLabel item={{ id: "packageName", label: "package name" }}
+                    <InputFloatingLabel item={{ id: "packageName", label: "package name", value: watch("packageName") }}
                         error={errors?.packageName?.message}
                         register={
                             {
@@ -131,7 +131,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                         {errors?.duration?.message && <span className="text-xs text-red-700">{errors?.duration?.message}</span>}
                     </div>
 
-                    <InputFloatingLabel item={{ id: "subscribersLimit", label: "subscribers limitation", type: "number" }}
+                    <InputFloatingLabel item={{ id: "subscribersLimit", label: "subscribers limitation", type: "number", value: watch("subscribersLimit") }}
                         error={errors?.subscribersLimit?.message}
                         register={
                             {

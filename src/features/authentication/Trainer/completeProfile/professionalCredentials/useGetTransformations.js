@@ -3,9 +3,9 @@ import { getTransformations } from "../../../../../services/apiCompleteProfile";
 import { useCurrentUser } from "../../../../../context/UserProvider";
 
 export function useGetTransformations() {
-  const { userToken } = useCurrentUser();
+  const { userId, userToken } = useCurrentUser();
   const { data: transformations, isLoading } = useQuery({
-    queryKey: ["transformations"],
+    queryKey: ["transformations", userId],
     queryFn: () => getTransformations(userToken),
   });
   return { transformations: transformations?.data, isLoading };

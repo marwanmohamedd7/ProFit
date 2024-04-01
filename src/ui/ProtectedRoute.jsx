@@ -15,14 +15,14 @@ function ProtectedRoute({ children, role }) {
         if (!isAuthenticated && !isLoading) navigate("/login", { replace: true })
         // if he tries to access a restricted route without being authorized for accessing it?
         if (isAuthenticated !== role && !isLoading) {
-            if (isAuthenticated === 'admin') navigate("/admin", { replace: true })
-            else if (isAuthenticated === 'trainer' && status === 'accepted') navigate("/trainer", { replace: true })
-            else if (isAuthenticated === 'trainer' && status === 'incomplete') navigate("/complete-profile", { replace: true });
-        // if (isAuthenticated === role && !isLoading && status === "incomplete") navigate(-1, { replace: true });
+            if (isAuthenticated === 'admin' && !isLoading) navigate("/admin", { replace: true })
+            else if (isAuthenticated === 'trainer' && status === 'accepted' && !isLoading) navigate("/trainer", { replace: true })
+            else if (isAuthenticated === 'trainer' && status === 'incomplete' && !isLoading) navigate("/complete-profile", { replace: true });
+            // if (isAuthenticated === role && !isLoading && status === "incomplete") navigate(-1, { replace: true });
             else navigate("/login", { replace: true })
         }
-        if (isAuthenticated === role && !isLoading && status === "pending") navigate("/login", { replace: true });
-        if (isAuthenticated === role && !isLoading && status === "incomplete") navigate("/complete-profile", { replace: true });
+        if (isAuthenticated === role && status === "pending" && !isLoading) navigate("/login", { replace: true });
+        if (isAuthenticated === role && status === "incomplete" && !isLoading) navigate("/complete-profile", { replace: true });
         // if (isAuthenticated === role && !isLoading && status === "incomplete") navigate(-1, { replace: true });
     }, [isAuthenticated, isLoading, status, role, navigate])
 
@@ -32,8 +32,8 @@ function ProtectedRoute({ children, role }) {
     </div>
 
     // 4. If all checks pass, render the children components
-    if (isAuthenticated === role && !isLoading && !status) return children;
-    if (isAuthenticated === role && !isLoading && status === "accepted") return children;
+    if (isAuthenticated === role && !status && !isLoading) return children;
+    if (isAuthenticated === role && status === "accepted" && !isLoading) return children;
 }
 
 export default ProtectedRoute

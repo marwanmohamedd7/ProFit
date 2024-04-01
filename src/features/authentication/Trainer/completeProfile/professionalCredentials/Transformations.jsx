@@ -12,7 +12,7 @@ function Transformation() {
         <>
             {
                 !transformations.length || isLoading ?
-                    <div className="w-1/2">
+                    <div className="lg:w-1/2 w-full">
                         {
                             isLoading ?
                                 <div className="bg-gray-100 text-center p-1 rounded-md shadow-sm flex justify-center items-center">
