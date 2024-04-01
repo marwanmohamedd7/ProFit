@@ -5,13 +5,15 @@ import InputFloatingLabel from "../../../ui/InputFloatingLabel"
 import { useState } from "react";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../../ui/SpinnerMini";
+import Spinner from "../../../ui/Spinner";
 
 function LoginForm() {
   const navigate = useNavigate();
-  const { login, isLoading } = useLogin()
+  const { login, isLogginIn } = useLogin()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  if (isLogginIn) return <Spinner />
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,11 +23,11 @@ function LoginForm() {
       onSuccess: ({ user: { role, status = "" }, token = "" }) => {
         setEmail("")
         setPassword("")
-        if (token && role === "admin" && !isLoading)
+        if (token && role === "admin" && !isLogginIn)
           navigate("/admin", { replace: true });
-        if (token && role !== "admin" && status === "accepted" && !isLoading)
+        if (token && role !== "admin" && status === "accepted" && !isLogginIn)
           navigate("/trainer", { replace: true });
-        if (!token && role !== "admin" && status === "incomplete" && !isLoading)
+        if (!token && role !== "admin" && status === "incomplete" && !isLogginIn)
           navigate("/complete-profile", { replace: true });
       },
       onSettled: () => setPassword("")
@@ -57,7 +59,7 @@ function LoginForm() {
 
       <div className="flex flex-col justify-center gap-4">
         <Button type="login">
-          {isLoading ?
+          {isLogginIn ?
             <SpinnerMini />
             :
             <>

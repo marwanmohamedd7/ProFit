@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 export function useLogin() {
   const queryClient = useQueryClient();
   const { setUserId, setUserToken, setUserRole } = useCurrentUser();
-  const { mutate: login, isPending: isLoading } = useMutation({
+  const { mutate: login, isPending: isLogginIn } = useMutation({
     mutationFn: apiLogin,
     onSuccess: ({ message, token = "" }) => {
       toast.success(message);
@@ -22,5 +22,5 @@ export function useLogin() {
     },
     onError: ({ message }) => toast.error(message),
   });
-  return { login, isLoading };
+  return { login, isLogginIn };
 }
