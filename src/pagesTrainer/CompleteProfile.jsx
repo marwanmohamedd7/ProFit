@@ -1,4 +1,4 @@
-import CompleteProfileLayout from "../features/authentication/Trainer/completeProfile/CompleteProfileLayout"
+import CompleteProfileLayout from "../features/Trainer/completeProfile/CompleteProfileLayout"
 
 function CompleteProfile() {
     return <CompleteProfileLayout />

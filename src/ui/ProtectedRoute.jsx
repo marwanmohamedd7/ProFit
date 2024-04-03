@@ -1,7 +1,7 @@
 import Spinner from "./Spinner"
-import { useUser } from "../features/authentication/useUser"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "../features/common/authentication/useUser"
 
 function ProtectedRoute({ children, role }) {
     const navigate = useNavigate()
@@ -9,7 +9,7 @@ function ProtectedRoute({ children, role }) {
     // 1. Load the authenticated user
     // isAuthenticated: returns the role of the authenticated user (which user is logged in)
     const { isLoading, isAuthenticated, status } = useUser()
-    
+
     // 2. If there is No authenticated user, redirect to login page
     useEffect(function () {
         if (!isAuthenticated && !isLoading) navigate("/login", { replace: true })
@@ -34,6 +34,7 @@ function ProtectedRoute({ children, role }) {
     // 4. If all checks pass, render the children components
     if (isAuthenticated === role && !status && !isLoading) return children;
     if (isAuthenticated === role && status === "accepted" && !isLoading) return children;
+    // return children
 }
 
 export default ProtectedRoute

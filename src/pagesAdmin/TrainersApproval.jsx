@@ -1,6 +1,6 @@
 import Title from "../ui/Title";
 import BreadCrumbs from "../ui/BreadCrumbs";
-import PendingTrainers from "../features/trainerApproval/PendingTrainers";
+import PendingTrainers from "../features/Admin/trainer approval/PendingTrainers";
 
 function TrainersApproval() {
   return <div className="space-y-4">

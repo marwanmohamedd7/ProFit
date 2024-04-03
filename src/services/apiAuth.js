@@ -14,9 +14,11 @@ export async function signUp(signUpData) {
   return data;
 }
 
-export async function getCurrentUser(token) {
+export async function getCurrentUser(token, userRole) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/trainer_Data",
+    userRole === "admin"
+      ? "https://profit-07pc.onrender.com/api/v1/admin/PersonalInfo"
+      : "https://profit-07pc.onrender.com/api/v1/trainers/trainer_Data",
     {
       method: "GET",
       headers: {
@@ -24,6 +26,7 @@ export async function getCurrentUser(token) {
       },
     }
   );
+
   if (!response.ok) throw new Error(response.status);
   const data = await response.json();
   return data;

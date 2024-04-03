@@ -1,6 +1,6 @@
-import PackagesTrainer from "../features/packages/PackagesTrainer"
-import BreadCrumbs from "../ui/BreadCrumbs"
 import Title from "../ui/Title"
+import BreadCrumbs from "../ui/BreadCrumbs"
+import PackagesTrainer from "../features/Trainer/packages/PackagesTrainer"
 
 function Packages() {
     return (

@@ -1,6 +1,6 @@
-import { useUser } from "../features/authentication/useUser";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import SpinnerMini from "./SpinnerMini";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { useUser } from "../features/common/authentication/useUser";
 function Header() {
   const { user, isLoading } = useUser();
   const { firstName, lastName, email, profilePhoto } = user ?? {};

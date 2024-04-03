@@ -1,10 +1,10 @@
-import LoginBackgroundCover from "../features/authentication/login/LoginBackgroundCover";
-import LoginLayout from "../features/authentication/login/LoginLayout";
+import BackgroundCoverAuth from "../features/common/authentication/BackgroundCoverAuth";
+import LoginLayout from "../features/common/authentication/login/LoginLayout";
 
 function Login() {
   return (
     <div className="grid grid-cols-2 h-dvh ">
-      <LoginBackgroundCover />
+      <BackgroundCoverAuth />
       <LoginLayout />
     </div >
   )
