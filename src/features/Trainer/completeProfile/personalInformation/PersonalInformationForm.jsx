@@ -7,8 +7,9 @@ function PersonalInformationForm(
     {
         watch,
         errors,
-        setValue,
         register,
+        setValue,
+        disabled,
         getValues,
         isLoadingImg,
         profilePhoto,
@@ -17,6 +18,7 @@ function PersonalInformationForm(
         setRequiredImgMessage,
     }) {
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
+    const isLoading = disabled || isLoadingSettingInfo
 
     function onCropComplete(croppedImgFile) {
         if (!croppedImgFile) return
@@ -48,14 +50,14 @@ function PersonalInformationForm(
                     dimensions="w-32 h-32"
                     error={requiredImgMessage}
                     onCropComplete={onCropComplete}
-                    disabled={isLoadingSettingInfo && isLoadingImg}
+                    disabled={isLoading && isLoadingImg}
                     src={profilePhoto || getValues()?.profilePhoto}
                 />
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
                 <InputFloatingLabel item={{ id: "country", label: "country*", value: watch("country") }}
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     error={errors?.country?.message}
                     register={
                         {
@@ -67,7 +69,7 @@ function PersonalInformationForm(
                 />
 
                 <InputFloatingLabel item={{ id: "state", label: "state*", value: watch("state") }}
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     error={errors?.state?.message}
                     register={
                         {
@@ -79,7 +81,7 @@ function PersonalInformationForm(
                 />
 
                 <InputFloatingLabel item={{ id: "city", label: "city*", value: watch("city") }}
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     error={errors?.city?.message}
                     register={
                         {
@@ -90,7 +92,7 @@ function PersonalInformationForm(
                     }
                 />
                 <InputFloatingLabel item={{ id: "phoneNumber", label: "phone number*", type: "number", value: watch("phoneNumber") }}
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     error={errors?.phoneNumber?.message}
                     register={
                         {
@@ -108,7 +110,7 @@ function PersonalInformationForm(
                     }
                 />
                 <InputFloatingLabel item={{ id: "birthDate", label: "birth date*", type: "date", value: watch("birthDate") }}
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     error={errors?.birthDate?.message}
                     register={
                         {
@@ -124,7 +126,7 @@ function PersonalInformationForm(
                 <label htmlFor="biography" className="block text-sm font-medium capitalize text-gray-700">biography*</label>
                 <textarea
                     id="biography"
-                    disabled={isLoadingSettingInfo}
+                    disabled={isLoading}
                     //  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
                     className="mt-1 disabled:bg-gray-50 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     {...register("biography", {
@@ -139,7 +141,7 @@ function PersonalInformationForm(
                 <label htmlFor="male" className="text-sm font-medium capitalize text-gray-700 flex items-center gap-2">
                     <input
                         id="male"
-                        disabled={isLoadingSettingInfo}
+                        disabled={isLoading}
                         {...register("gender", { required: 'This field is required' })}
                         type="radio"
                         value="Male"
@@ -150,7 +152,7 @@ function PersonalInformationForm(
                 <label htmlFor="female" className="text-sm font-medium capitalize text-gray-700 flex items-center gap-2">
                     <input
                         id="female"
-                        disabled={isLoadingSettingInfo}
+                        disabled={isLoading}
                         {...register("gender", { required: 'This field is required' })}
                         type="radio"
                         value="Female"

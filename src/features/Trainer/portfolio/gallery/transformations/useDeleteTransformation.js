@@ -12,6 +12,7 @@ export function useDeleteTransformation() {
       toast.success(message);
       queryClient.invalidateQueries(["transformations"]);
     },
+    onError: (err) => toast.error(err.message),
   });
   return { deleteTransformation, isDeleting };
 }

@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { useSignUp } from "./useSignUp"
 import { GoArrowRight } from "react-icons/go"
 import Button from "../../../../../ui/Button"
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 import SpinnerMini from "../../../../../ui/SpinnerMini";
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 // Email regex: /\S+@\S+\.\S+/
 
 function SignUpTrainerForm() {

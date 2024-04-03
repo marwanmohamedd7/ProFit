@@ -1,6 +1,6 @@
-import SignUpTrainerForm from "./signUpTrainerForm"
+import SignUpTrainerForm from "./SignUpTrainerForm"
 
-function signUp() {
+function SignUpTrainer() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full flex flex-col gap-6 p-10  rounded-md border bg-white shadow-md divide-y">
@@ -26,4 +26,4 @@ function signUp() {
     )
 }
 
-export default signUp
+export default SignUpTrainer

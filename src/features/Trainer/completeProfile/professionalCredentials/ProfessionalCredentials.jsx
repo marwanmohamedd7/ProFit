@@ -28,13 +28,16 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
             let newData = { ...data }
             let oldData = { ...values, ...socialMedia }
 
-            // 2- Convert the "specialization" array into a sorted string
+            // 2- Convert the "specialization" array into a sorted string 
             newData.specializations = newData.specializations.map(item => item.value).sort().join(",")
             oldData.specializations = oldData.specializations.map(item => item.value).sort().join(",")
-
+            
+            oldData.yearsOfExperience = String(oldData.yearsOfExperience);
+            newData.yearsOfExperience = String(newData.yearsOfExperience);
+           
             // 3- compare data with the server's one and make changes
-            newData = Object.values(newData)
-            oldData = Object.values(oldData)
+            newData = Object.values(newData).sort()
+            oldData = Object.values(oldData).sort()
             for (const [i, value] of newData.entries()) if (value !== oldData[i] && typeof value === "string") isMatching = false;
         }
         if (isMatching) navigate("/complete-profile/subscription-pricing", { replace: true })
