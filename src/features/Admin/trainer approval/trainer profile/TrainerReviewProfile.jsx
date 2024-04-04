@@ -1,10 +1,11 @@
 import CompoundTabs from "../../../../ui/CompoundTabs"
 import PendingTrainerBriefDataCard from "./PendingTrainerBriefDataCard"
-import PendingTrainerPersonalData from "./personal information/PendingTrainerPersonalData"
+import PendingTrainerPersonalInfo from "./personal information/PendingTrainerPersonalInfo"
 import PendingTrainerProfessionalData from "./professional credentials/PendingTrainerProfessionalData"
 import PendingTrainerPackages from "./subscrption pricing/PendingTrainerPackages"
 
 function TrainerReviewProfile() {
+   
     return (
         <>
             <PendingTrainerBriefDataCard />
@@ -15,7 +16,7 @@ function TrainerReviewProfile() {
                     <CompoundTabs.Open opens="subscription-pricing">subscription pricing</CompoundTabs.Open>
                 </CompoundTabs.Tabs>
                 <CompoundTabs.Window opens="PersonalInformation">
-                    <PendingTrainerPersonalData />
+                    <PendingTrainerPersonalInfo />
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="professional-credentials">
                     <PendingTrainerProfessionalData />

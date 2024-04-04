@@ -8,7 +8,7 @@ import Button from "../../../ui/Button"
 
 function PackagesTrainer() {
     const { packages = [], isLoading } = useGetPackages()
-    if (isLoading) return <div className="mt-24 flex justify-center items-center"><Spinner /></div>
+    if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
     return (
         <>
             <div className="space-y-4">

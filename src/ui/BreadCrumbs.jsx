@@ -1,11 +1,13 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import { useCurrentUser } from "../context/UserProvider"
 import { useGetPageLocation } from "../hooks/useGetPageLocation"
 import { HiChevronRight, HiOutlineHome } from "react-icons/hi"
 
 function BreadCrumbs() {
+    const { id } = useParams()
     const { userRole } = useCurrentUser()
-    const { pathNames } = useGetPageLocation()
+    let { pathNames } = useGetPageLocation()
+    pathNames = pathNames.filter(item => item !== id) // remove the current page ID from the list
     const active = `text-blue-700`
     return (
         <nav className="flex text-sm mb-4 rounded-lg justify-start items-center max-w-auto" aria-label="Breadcrumb">

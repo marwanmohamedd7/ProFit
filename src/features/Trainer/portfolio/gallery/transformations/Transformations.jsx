@@ -11,7 +11,7 @@ function Transformations() {
     return (
         <div className="space-y-4 my-4">
             {
-                !transformations.length || isLoading ?
+                (transformations.length < 1) || isLoading ?
                     <div className="lg:w-1/2 w-full">
                         {
                             isLoading ?
@@ -23,7 +23,7 @@ function Transformations() {
                     </div>
                     :
                     <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-                        {transformations.map((transformation, index) => <TransformationCard transformation={transformation} key={index} />)}
+                        {transformations.map((transformation) => <TransformationCard transformation={transformation} key={transformation._id} />)}
                     </div>
             }
             <Modal>

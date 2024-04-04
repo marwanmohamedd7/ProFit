@@ -50,7 +50,7 @@ function PersonalInformationForm(
                     dimensions="w-32 h-32"
                     error={requiredImgMessage}
                     onCropComplete={onCropComplete}
-                    disabled={isLoading && isLoadingImg}
+                    isLoading={isLoading && isLoadingImg}
                     src={profilePhoto || getValues()?.profilePhoto}
                 />
             </div>

@@ -1,17 +1,12 @@
-
-import PendingTrainerClientsTransformation from "./PendingTrainerClientsTransformation";
-import PendingTrainerProfessionalCredentials from "./PendingTrainerProfessionalCredentials";
-import PendingTrainerQualifications from "./PendingTrainerQualifications";
-import PendingTrainerSocialMedia from "./PendingTrainerSocialMedia";
+import PendingTrainerProfessionalCred from "./professionalCredentials/PendingTrainerProfessionalCred";
+import PendingTrainerQualifications from "./qualificationsAndAchievements/PendingTrainerQualifications";
+import PendingTrainerClientsTransformation from "./clientsTransformation/PendingTrainerClientsTransformation";
 
 function PendingTrainerProfessionalData() {
     return (
-        <div className="container max-w-7xl mx-autosm:p-6 space-y-4">
+        <div className="container space-y-4">
             {/* Professional Credentials */}
-            <PendingTrainerProfessionalCredentials />
-
-            {/* Social Media and Contact Links */}
-            <PendingTrainerSocialMedia />
+            <PendingTrainerProfessionalCred />
 
             {/* Qualifications and Achievements */}
             <PendingTrainerQualifications />

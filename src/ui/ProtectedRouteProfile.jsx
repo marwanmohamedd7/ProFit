@@ -8,8 +8,7 @@ function ProtectedRouteProfile({ children, role }) {
 
     // 1. Load the authenticated user
     const { isLoading, isAuthenticated, status } = useUser()
-    isLoading && console.log(isAuthenticated)
-    isLoading && console.log(isAuthenticated)
+    
     // 2. If there is No authenticated user, redirect to login page
     useEffect(function () {
         if (!isAuthenticated && !isLoading) navigate("/login", { replace: true });

@@ -4,7 +4,7 @@ import { useGetUserAboutData } from "./useGetUserAboutData"
 
 function AboutMe() {
     const { getUserAboutData, isLoading } = useGetUserAboutData()
-    if (isLoading) return <div className="mt-24 flex justify-center items-center"><Spinner /></div>
+    if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
     return <AboutMeForm getUserAboutData={getUserAboutData} />
 }
 

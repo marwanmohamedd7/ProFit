@@ -66,7 +66,7 @@ function App() {
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<DashboardAdmin />} />
             <Route path="trainer-approval" element={<TrainersApproval />} />
-            <Route path="trainer-approval/trainer-profile" element={<TrainerReview />} />
+            <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
             <Route path="nutrition" element={<Nutrition />} />
             <Route path="workout" element={<Workout />} />
             <Route path="system-users" element={<Users />} />

@@ -49,6 +49,7 @@ function ProfessionalCredentialsForm({ control, register, errors, watch, disable
                 <Controller
                     name="specializations"
                     control={control}
+                    disabled={disabled}
                     rules={{ required: 'specializations field cannot be empty.' }}
                     render={({ field }) => (
                         <Select

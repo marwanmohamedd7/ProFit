@@ -1,12 +1,12 @@
 import Empty from "../../../ui/Empty";
 import Spinner from "../../../ui/Spinner";
 import PendingTrainerCard from "./PendingTrainerCard";
-import useGetPendingTrainers from "./useGetPendingTrainers";
+import { useGetPendingTrainers } from "./useGetPendingTrainers";
 
 function PendingTrainers() {
     const { pendingTrainers = [], isLoading } = useGetPendingTrainers()
-    if (isLoading) return <Spinner />
-    if (!pendingTrainers.length) return <Empty resource={"trainers"}/>
+    if (isLoading) return <div className="h-[45dvh]"><Spinner /></div>
+    if (!pendingTrainers.length) return <Empty resource={"trainers"} />
     return (
         <div className="container mx-auto p-4 rounded-md">
             <h1 className='text-blue-900 font-semibold mb-4 capitalize'>Trainers profile ({pendingTrainers.length})</h1>

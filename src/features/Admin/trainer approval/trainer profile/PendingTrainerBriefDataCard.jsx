@@ -1,6 +1,6 @@
-import { IoCheckmarkOutline } from "react-icons/io5"
-import { RxCross1 } from "react-icons/rx"
 import Button from "../../../../ui/Button"
+import { RxCross1 } from "react-icons/rx"
+import { IoCheckmarkOutline } from "react-icons/io5"
 
 function PendingTrainerBriefDataCard() {
     return (

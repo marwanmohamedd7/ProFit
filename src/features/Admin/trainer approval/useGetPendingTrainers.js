@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getPendingTrainers } from "../../../services/apiAdmin";
 import { useCurrentUser } from "../../../context/UserProvider";
 
-function useGetPendingTrainers() {
+export function useGetPendingTrainers() {
   const { userToken } = useCurrentUser();
   const { data: pendingTrainers, isLoading } = useQuery({
     queryKey: ["pending_trainers"], // unique string to identify the request
@@ -10,5 +10,3 @@ function useGetPendingTrainers() {
   });
   return { pendingTrainers: pendingTrainers?.data, isLoading };
 }
-
-export default useGetPendingTrainers;
