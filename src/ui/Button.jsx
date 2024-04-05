@@ -12,7 +12,7 @@ function Button({ children, onClick, type, to, name: pageName, customeStyle, dis
     logout: `text-red-600 bg-red-50 hover:bg-red-600 hover:text-red-50`,
     login: `w-full`,
     accept: `bg-green-100 text-green-600`,
-    decline: `bg-red-100 text-red-600`,
+    reject: `bg-red-100 text-red-600`,
     remove: `text-gray-400 hover:text-gray-600`,
     iconUpdate: `text-blue-600 p-2 hover:text-blue-700 bg-blue-50 rounded-md`,
     iconDelete: `text-red-600 p-2 hover:text-red-700 bg-red-50 rounded-md`,
@@ -59,8 +59,8 @@ function Button({ children, onClick, type, to, name: pageName, customeStyle, dis
     </button>
   )
 
-  if (type === "decline") return (
-    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.decline} ${customeStyle}`}>
+  if (type === "reject") return (
+    <button disabled={disabled} onClick={onClick} className={`${styles.main} ${styles.reject} ${customeStyle}`}>
       {children}
     </button>
   )

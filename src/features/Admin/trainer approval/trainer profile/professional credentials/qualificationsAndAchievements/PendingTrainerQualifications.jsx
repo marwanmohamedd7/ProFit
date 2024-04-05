@@ -9,20 +9,22 @@ function PendingTrainerQualifications() {
             <h2 className="text-xl text-blue-900 font-bold">Qualifications and Achievements*</h2>
             {
                 !qualifications.length || isLoading ?
-                    <div className="lg:w-1/2 w-full">
-                        {
-                            isLoading ?
-                                <div className="bg-gray-100 text-center p-1 rounded-md shadow-sm flex justify-center items-center">
-                                    <p className="font-bold text-xl text-blue-900 my-4"><SpinnerMini /></p>
-                                </div>
-                                : <Empty resource={"certificates"} />
-                        }
-                    </div>
+                    // <div className="lg:w-1/2 w-full">
+                    //     {
+                    isLoading ?
+                        <div className="bg-gray-50 h-[10dvh] text-center p-1 rounded-md shadow-sm flex justify-center items-center">
+                            <div className="font-bold text-xl text-blue-900 my-4"><SpinnerMini /></div>
+                        </div>
+                        : <Empty resource={"certificates"} />
+                    //     }
+                    // </div>
                     :
                     <div className="flex flex-wrap gap-1">
-                        {qualifications.map((qual, index) => (
-                            <img key={index} src={qual.image} alt={qual.description} className="w-28 h-28 rounded-md" />
-                        ))}
+                        {
+                            qualifications.map((qualification, index) => (
+                                <img key={index} src={qualification.photo} alt="qualification" className="w-28 h-28 rounded-md" />
+                            ))
+                        }
                     </div>
             }
 

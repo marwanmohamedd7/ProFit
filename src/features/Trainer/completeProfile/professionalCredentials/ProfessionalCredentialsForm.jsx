@@ -54,7 +54,7 @@ function ProfessionalCredentialsForm({ control, register, errors, watch, disable
                     render={({ field }) => (
                         <Select
                             {...field}
-                            disabled={disabled}
+                            isDisabled={disabled}
                             options={options} // Make sure 'options' is defined somewhere in your component
                             isMulti
                             placeholder="specializations"

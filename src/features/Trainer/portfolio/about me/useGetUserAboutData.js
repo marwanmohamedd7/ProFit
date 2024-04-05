@@ -3,9 +3,9 @@ import { getUserAbout } from "../../../../services/apiTrainer";
 import { useCurrentUser } from "../../../../context/UserProvider";
 
 export function useGetUserAboutData() {
-  const { userToken } = useCurrentUser();
+  const { userId, userToken } = useCurrentUser();
   const { data: getUserAboutData, isLoading } = useQuery({
-    queryKey: ["userAboutData"], // unique cache key
+    queryKey: ["userAboutData", userId], // unique cache key
     queryFn: () => getUserAbout(userToken),
     retry: 2,
   });

@@ -1,14 +1,14 @@
 import CompoundTabs from "../../../../ui/CompoundTabs"
-import PendingTrainerBriefDataCard from "./PendingTrainerBriefDataCard"
+import PendingTrainerInfoBar from "./PendingTrainerInfoBar"
+import PendingTrainerPackages from "./subscrption pricing/PendingTrainerPackages"
 import PendingTrainerPersonalInfo from "./personal information/PendingTrainerPersonalInfo"
 import PendingTrainerProfessionalData from "./professional credentials/PendingTrainerProfessionalData"
-import PendingTrainerPackages from "./subscrption pricing/PendingTrainerPackages"
 
 function TrainerReviewProfile() {
-   
+
     return (
         <>
-            <PendingTrainerBriefDataCard />
+            <PendingTrainerInfoBar />
             <CompoundTabs defaultTab="PersonalInformation">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="PersonalInformation">personal information</CompoundTabs.Open>

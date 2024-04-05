@@ -58,7 +58,10 @@ export async function getPendingTrainerClientsTransformation(id, token) {
   return data;
 }
 
-export async function getPendingTrainerQualificationsAndAchievements(id, token) {
+export async function getPendingTrainerQualificationsAndAchievements(
+  id,
+  token
+) {
   const response = await fetch(
     `https://profit-07pc.onrender.com/api/v1/admin/trainers/QualificationsAndAchievements/${id}`,
     {
@@ -81,6 +84,38 @@ export async function getPendingTrainerPackages(id, token) {
       headers: {
         authorization: `Bearer ${token}`,
       },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getPendingTrainerInfoBar(id, token) {
+  const response = await fetch(
+    `https://profit-07pc.onrender.com/api/v1/admin/trainers/TrainerInfoBar/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function pendingTrainerAcceptOrReject(userData, id, token) {
+  const response = await fetch(
+    `https://profit-07pc.onrender.com/api/v1/admin/trainers/adminApprove/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(userData),
     }
   );
   if (!response.ok) throw new Error(response.status);

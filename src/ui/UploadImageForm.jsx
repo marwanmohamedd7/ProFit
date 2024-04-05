@@ -20,7 +20,7 @@ function UploadImageForm({
             <div className={`relative ${dimentions}`}>
                 <label
                     htmlFor={id}
-                    className={`cursor-pointer absolute right-[-7%] top-[-5%] text-blue-50 p-1 rounded-full bg-blue-700`}
+                    className={`cursor-pointer absolute right-[-5%] top-[-5%] text-blue-50 p-1 rounded-full bg-blue-700`}
                 >
                     <MdOutlineEdit />
                 </label>

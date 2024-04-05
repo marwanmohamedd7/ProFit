@@ -19,7 +19,7 @@ function SubmissionAndReview() {
             acceptPolicy: terms,
         }
         submitProfile(submitionData, {
-            onSuccess: () => {
+            onSuccess: (data) => {
                 // remove token to end session and redirect user to login page
                 setUserRole(null);
                 setUserToken(null);
