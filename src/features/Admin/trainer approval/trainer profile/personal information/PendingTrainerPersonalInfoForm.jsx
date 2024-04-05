@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form"
 import Image from "../../../../../ui/Image"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 function PendingTrainerPersonalInfoForm({ getPendingTrainerInfo = {} }) {
+    const navigate = useNavigate()
     const { _id, profilePhoto, ...personalInfo } = getPendingTrainerInfo ?? {};
     const isExist = Boolean(_id);
     const { register, formState: { errors }, watch, } = useForm({
         defaultValues: isExist ? personalInfo : {}
     })
-
+    useEffect(function () {
+        if (!isExist) navigate('/admin/trainer-approval')
+    }, [isExist, navigate])
     return (
         <div className="flex flex-col gap-4 shadow-sm bg-white py-1 rounded-md">
             <div className="flex flex-col gap-6">
