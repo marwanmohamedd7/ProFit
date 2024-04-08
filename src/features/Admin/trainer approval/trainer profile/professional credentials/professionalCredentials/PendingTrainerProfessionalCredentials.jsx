@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
 import ProfessionalCredentialsForm from "../../../../../Trainer/completeProfile/professionalCredentials/ProfessionalCredentialsForm"
 
-
-function PendingTrainerProfessionalCredentials({ values }) {
+function PendingTrainerProfessionalCredentials({ id, values }) {
+    const isExist = Boolean(id);
     const { register, formState: { errors }, control, watch } = useForm({
-        defaultValues: values || {},
+        defaultValues: isExist ? values : {},
     })
     return (
         <ProfessionalCredentialsForm

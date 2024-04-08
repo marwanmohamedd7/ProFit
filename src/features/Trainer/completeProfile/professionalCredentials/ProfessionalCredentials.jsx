@@ -14,9 +14,9 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
     const navigate = useNavigate()
     const { setProfessionalCred, isLoading: isLoadingSettingCred } = useSetProfileCredentials()
     const { _id, socialMedia, ...values } = getProfessionalCred || {};
-    const getSession = Boolean(_id)
+    const isExist = Boolean(_id)
     const { register, formState: { errors }, control, handleSubmit, watch, reset } = useForm({
-        defaultValues: getSession ? { ...values, ...socialMedia } : {}
+        defaultValues: isExist ? { ...values, ...socialMedia } : {}
     })
     const isLoading = isLoadingSettingCred;
 

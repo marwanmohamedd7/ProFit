@@ -14,9 +14,9 @@ function PersonalInformation({ getPersonalInfo = {} }) {
     const [requiredImgMessage, setRequiredImgMessage] = useState("")
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
     const { _id, profilePhoto, ...PersonalInfo } = getPersonalInfo || {};
-    const getSession = Boolean(_id)
+    const isExist = Boolean(_id)
     const { formState: { errors }, register, handleSubmit, reset, watch, setValue, getValues } = useForm({
-        defaultValues: getSession ? PersonalInfo : {},
+        defaultValues: isExist ? PersonalInfo : {},
     });
     function onSubmit(data) {
         if (!data || !profilePhoto) {

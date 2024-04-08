@@ -14,7 +14,7 @@ function PendingTrainerProfessionalCredForm({ getPendingTrainerProfessionalCred 
                             <div className="font-bold text-xl text-blue-900 my-4"><SpinnerMini /></div>
                         </div>
                         :
-                        <PendingTrainerProfessionalCredentials values={values} />
+                        <PendingTrainerProfessionalCredentials values={values} id={_id} />
                 }
             </section>
 
