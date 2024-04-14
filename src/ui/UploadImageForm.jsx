@@ -9,7 +9,7 @@ function UploadImageForm({
     rules,
     control,
     src = null,
-    dimentions = "h-24 w-24",
+    dimentions = "h-28 w-28",
     disabled = false,
     photo: photoType,
 },
@@ -32,14 +32,14 @@ function UploadImageForm({
                     <>
                         {image ?
                             <div
-                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} h-52 capitalize`}
+                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize`}
                             >
                                 <span className="text-blue-700 text-3xl"><HiMiniCheckCircle /></span>
                                 <span className="text-blue-700 text-lg font-bold capitalize">uploaded</span>
                             </div>
                             :
                             <div
-                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} h-52 capitalize`}
+                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize`}
                             >
                                 <span>upload</span>
                                 <span>{photoType} photo</span>

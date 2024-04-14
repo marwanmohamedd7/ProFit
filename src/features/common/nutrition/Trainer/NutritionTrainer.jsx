@@ -1,8 +1,10 @@
-import { CiApple, CiGrid41 } from "react-icons/ci"
 import CompoundTabs from "../../../../ui/CompoundTabs"
-import NutritionAppFood from "./ProFitFoods/NutritionAppFood"
+import { CiApple, CiGrid41 } from "react-icons/ci";
+import { LuUsers2 } from "react-icons/lu";
+import Foods from "../FoodsTableOperations"
+import NutritionFood from "./trainerFoods/NutritionFood";
 
-function NutritionAdmin() {
+function NutritionTrainer() {
     return (
         <>
             <CompoundTabs defaultTab="foods">
@@ -10,28 +12,34 @@ function NutritionAdmin() {
                     <CompoundTabs.Open opens="foods">
                         <p className="flex justify-center items-center gap-1">
                             <span className="text-lg"><CiApple /></span>
-                            <span>ProFIT Foods</span>
+                            <span>Foods</span>
                         </p>
                     </CompoundTabs.Open>
-                    <CompoundTabs.Open opens="attributes">
+                    <CompoundTabs.Open opens="meals_templates">
                         <p className="flex justify-center items-center gap-1">
                             <span className="text-lg"><CiGrid41 /></span>
-                            <span>ProFIT Foods Attributes</span>
+                            <span>Meals Templates</span>
                         </p>
                     </CompoundTabs.Open>
-                    <CompoundTabs.Open opens="meal_template">
+                    <CompoundTabs.Open opens="diet_templates">
                         <p className="flex justify-center items-center gap-1">
                             <span className="text-lg"><CiGrid41 /></span>
-                            <span>ProFIT Meals Template</span>
+                            <span>Diet Templates</span>
+                        </p>
+                    </CompoundTabs.Open>
+                    <CompoundTabs.Open opens="client_diet">
+                        <p className="flex justify-center items-center gap-1">
+                            <span className="text-lg"><LuUsers2 /></span>
+                            <span>Client’s Diet</span>
                         </p>
                     </CompoundTabs.Open>
                 </CompoundTabs.Tabs>
                 <CompoundTabs.Window opens="foods">
-                    <NutritionAppFood />
+                    <NutritionFood />
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>
     )
 }
 
-export default NutritionAdmin
+export default NutritionTrainer

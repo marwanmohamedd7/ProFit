@@ -60,7 +60,7 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
                     disabled={isLoading}
                     error={errors?.beforeImage?.message}
                     // src={bef}
-                    dimentions="w-52"
+                    dimentions="w-52 h-52"
                     src={transformationValues?.beforeImage ?? null}
                     rules={{ required: "before transformation photo is required" }}
                 />
@@ -71,7 +71,7 @@ function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
                     disabled={isLoading}
                     error={errors?.afterImage?.message}
                     // src={aft}
-                    dimentions="w-52"
+                    dimentions="w-52 h-52"
                     src={transformationValues?.afterImage ?? null}
                     rules={{ required: "after transformation photo is required" }}
                 />

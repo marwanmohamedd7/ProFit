@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import DashboardAdmin from "./pagesAdmin/DashboardAdmin";
 import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
-import Nutrition from "./pagesAdmin/Nutrition";
+import { Nutrition as NutritionAdmin } from "./pagesAdmin/Nutrition";
 import Workout from "./pagesAdmin/Workout";
 import Login from "./pagesAdmin/Login";
 import Users from "./pagesAdmin/Users";
@@ -19,7 +19,7 @@ import Trainer from "./ui/Trainer";
 import Portfolio from "./pagesTrainer/Portfolio";
 import Trainees from "./pagesTrainer/Trainees";
 import Messages from "./pagesTrainer/Messages";
-import NutritionTrainer from "./pagesTrainer/NutritionTrainer";
+import { Nutrition as NutritionTrainer } from "./pagesTrainer/Nutrition";
 import WorkoutTrainer from "./pagesTrainer/WorkoutTrainer";
 import Packages from "./pagesTrainer/Packages";
 import Transcations from "./pagesTrainer/Transcations";
@@ -67,7 +67,7 @@ function App() {
             <Route path="dashboard" element={<DashboardAdmin />} />
             <Route path="trainer-approval" element={<TrainersApproval />} />
             <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
-            <Route path="nutrition" element={<Nutrition />} />
+            <Route path="nutrition" element={<NutritionAdmin />} />
             <Route path="workout" element={<Workout />} />
             <Route path="system-users" element={<Users />} />
             <Route path="account" element={<Account />} />

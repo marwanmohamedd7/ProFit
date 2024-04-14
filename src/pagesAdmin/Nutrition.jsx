@@ -2,7 +2,7 @@ import BreadCrumbs from "../ui/BreadCrumbs";
 import Title from "../ui/Title";
 import NutritionAdmin from "../features/common/nutrition/Admin/NutritionAdmin";
 
-function Nutrition() {
+export function Nutrition() {
   return <div className="space-y-4">
     <div>
       <BreadCrumbs />
@@ -12,4 +12,3 @@ function Nutrition() {
   </div>
 }
 
-export default Nutrition;
