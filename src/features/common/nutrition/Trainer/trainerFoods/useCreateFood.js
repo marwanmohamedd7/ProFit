@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { useCurrentUser } from "../../../../../context/UserProvider";
-import { createTrainerFood } from "../../../../../services/apiTrainerFoods";
+import { createTrainerFood } from "../../../../../services/apiFoods";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useCreateFood() {
