@@ -6,8 +6,10 @@ import SpinnerMini from "../../../ui/SpinnerMini";
 import Modal from "../../../ui/Modal";
 import Button from "../../../ui/Button";
 import CreateFood from "./CreateFood";
+import { useCurrentUser } from "../../../context/UserProvider";
 
 function NutritionRow({ food }) {
+    const { userRole } = useCurrentUser()
     const { deleteFood, isDeleting } = useDeleteFood()
     function onDelete(id) {
         if (!id) return;
@@ -34,18 +36,7 @@ function NutritionRow({ food }) {
                 <td className="px-6 py-2 whitespace-nowrap">{food.category}</td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                     {
-                        !food.Trainer ?
-                            <div className='flex items-center justify-start gap-2'>
-                                <span
-                                    href="#"
-                                    className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
-                                >
-                                    <IoEyeOutline />
-                                </span>
-                            </div>
-                            :
-
-
+                        userRole === "admin" ?
                             <div className='flex items-center justify-start gap-2'>
                                 <Modal>
                                     <Modal.Open opens="update-food">
@@ -65,6 +56,41 @@ function NutritionRow({ food }) {
                                     {isDeleting ? <SpinnerMini /> : <HiTrash />}
                                 </Button>
                             </div>
+                            :
+                            <>
+                                {
+                                    food.admin ?
+                                        <div className='flex items-center justify-start gap-2'>
+                                            <span
+                                                href="#"
+                                                className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
+                                            >
+                                                <IoEyeOutline />
+                                            </span>
+                                        </div>
+                                        :
+                                        <div className='flex items-center justify-start gap-2'>
+                                            <Modal>
+                                                <Modal.Open opens="update-food">
+                                                    <Button type="icon-update">
+                                                        <HiPencil />
+                                                    </Button>
+                                                </Modal.Open>
+                                                <Modal.Window opens="update-food" >
+                                                    <CreateFood foodToUpdate={food} />
+                                                </Modal.Window>
+                                            </Modal>
+
+                                            <Button type="icon-delete"
+                                                onClick={() => onDelete(food._id)}
+                                                disabled={isDeleting}
+                                            >
+                                                {isDeleting ? <SpinnerMini /> : <HiTrash />}
+                                            </Button>
+                                        </div>
+                                }
+                            </>
+
                     }
                 </td>
             </tr>
