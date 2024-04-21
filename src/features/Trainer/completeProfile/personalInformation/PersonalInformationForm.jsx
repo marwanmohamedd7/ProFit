@@ -102,6 +102,10 @@ function PersonalInformationForm(
                                     value: 11,
                                     message: "Phone number must contains at least 11 characters."
                                 }, // phone number must be
+                                maxLength:{
+                                    value: 11,
+                                    message: "Phone number must not exceeds 11 characters."
+                                },
                                 validate: (value) =>
                                     (value).startsWith("010") || (value).startsWith("011") || (value).startsWith("012") || (value).startsWith("015") ||
                                     "phone number should start with (010, 011, 012, 015)"
@@ -130,11 +134,11 @@ function PersonalInformationForm(
                     //  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
                     className="mt-1 disabled:bg-gray-50 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     {...register("biography", {
-                        required: false,
-                        // required: "This field is required",
+                        // required: false,
+                        required: "This field is required",
                     })}
                 />
-                {errors?.biography?.message && <span className="text-xs text-red-700">{errors?.description?.message}</span>}
+                {errors?.biography?.message && <span className="text-xs text-red-700">{errors?.biography?.message}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
