@@ -1,9 +1,18 @@
-import { HiPencil, HiTrash } from "react-icons/hi"
 import Table from "../../../ui/Table"
 import { IoEyeOutline } from "react-icons/io5";
+import { HiPencil, HiTrash } from "react-icons/hi"
+import { useDeleteFood } from "./Trainer/trainerFoods/useDeleteFood";
+import SpinnerMini from "../../../ui/SpinnerMini";
+import Modal from "../../../ui/Modal";
+import Button from "../../../ui/Button";
+import CreateFood from "./CreateFood";
 
 function NutritionRow({ food }) {
-    console.log(food);
+    const { deleteFood, isDeleting } = useDeleteFood()
+    function onDelete(id) {
+        if (!id) return;
+        deleteFood(id)
+    }
     return (
         <Table.Row>
             <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
@@ -38,22 +47,25 @@ function NutritionRow({ food }) {
 
 
                             <div className='flex items-center justify-start gap-2'>
-                                <span
-                                    href="#"
-                                    className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
-                                >
-                                    <HiPencil />
-                                </span>
+                                <Modal>
+                                    <Modal.Open opens="update-food">
+                                        <Button type="icon-update">
+                                            <HiPencil />
+                                        </Button>
+                                    </Modal.Open>
+                                    <Modal.Window opens="update-food" >
+                                        <CreateFood foodToUpdate={food} />
+                                    </Modal.Window>
+                                </Modal>
 
-                                <span
-                                    href="#"
-                                    className="text-red-600 p-2 hover:text-red-900 bg-red-100 rounded-md"
+                                <Button type="icon-delete"
+                                    onClick={() => onDelete(food._id)}
+                                    disabled={isDeleting}
                                 >
-                                    <HiTrash />
-                                </span>
+                                    {isDeleting ? <SpinnerMini /> : <HiTrash />}
+                                </Button>
                             </div>
                     }
-
                 </td>
             </tr>
         </Table.Row>

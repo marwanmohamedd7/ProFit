@@ -1,6 +1,6 @@
 function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", type = "text", paddingStyle = "" }, onChange, disabled = false, error, register }) {
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 grow">
             <div className="relative">
                 <input
                     id={id}

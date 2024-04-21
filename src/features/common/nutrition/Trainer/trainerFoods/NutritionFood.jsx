@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import NutritionTable from "../../NutritionTable";
 import FoodsTableOperations from "../../FoodsTableOperations";
-import { useGetTrainerFoods } from "../useGetTrainerFoods";
+import { useGetTrainerFoods } from "./useGetTrainerFoods";
 import { useGetAppFoods } from "../../useGetAppFoods";
 import Spinner from "../../../../../ui/Spinner";
 

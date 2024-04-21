@@ -22,8 +22,8 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
         let isMatching = true;
         const packageData = { ...data, active: isActive };
         if (isUpdateSession) {
-            const newData = Object.values(packageData)
-            const oldData = Object.values(packageValues)
+            const newData = Object.values(packageData).sort()
+            const oldData = Object.values(packageValues).sort()
             for (const [i, value] of newData.entries()) if (value !== oldData[i]) isMatching = false
             !isMatching ?
                 // update the existing session with new data
@@ -69,7 +69,6 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                                 <option value="Nutrition Plan">Nutrition Plan</option>
                                 <option value="Workout Plan">Workout Plan</option>
                                 <option value="Nutrition & Workout Plan">Nutrition & Workout Plan</option>
-
                             </select>
                         </div>
                         {errors?.packageType?.message && <span className="text-xs text-red-700">{errors?.packageType?.message}</span>}

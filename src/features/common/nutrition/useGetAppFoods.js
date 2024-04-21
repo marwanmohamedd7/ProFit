@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCurrentUser } from "../../../context/UserProvider";
-import { getAppFoods } from "../../../services/apiTrainer";
+import { getAppFoods } from "../../../services/apiTrainerFoods";
 
 export function useGetAppFoods() {
   const { userId, userToken } = useCurrentUser();

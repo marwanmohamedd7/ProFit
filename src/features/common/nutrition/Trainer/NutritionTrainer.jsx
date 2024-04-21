@@ -1,7 +1,6 @@
 import CompoundTabs from "../../../../ui/CompoundTabs"
 import { CiApple, CiGrid41 } from "react-icons/ci";
 import { LuUsers2 } from "react-icons/lu";
-import Foods from "../FoodsTableOperations"
 import NutritionFood from "./trainerFoods/NutritionFood";
 
 function NutritionTrainer() {

@@ -95,7 +95,8 @@ function SignUpTrainerForm() {
                         error={errors?.password?.message}
                         register={{
                             ...register("password", {
-                                required: "This field is required", minLength: {
+                                required: "This field is required",
+                                minLength: {
                                     value: 8,
                                     message: "Password needs a minimum of characters",
                                 }

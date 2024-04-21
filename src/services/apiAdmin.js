@@ -1,6 +1,6 @@
 export async function getPendingTrainers(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/admin/trainers/PendingTrainers",
+    "https://profit-qjbo.onrender.com/api/v1/admin/trainers/PendingTrainers",
     {
       method: "GET",
       headers: {
@@ -15,7 +15,7 @@ export async function getPendingTrainers(token) {
 
 export async function getPendingTrainerInfo(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/personalinfo/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/personalinfo/${id}`,
     {
       method: "GET",
       headers: {
@@ -30,7 +30,7 @@ export async function getPendingTrainerInfo(id, token) {
 
 export async function getPendingTrainerProfessionalCred(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/ProfessionalCredentials/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/ProfessionalCredentials/${id}`,
     {
       method: "GET",
       headers: {
@@ -45,7 +45,7 @@ export async function getPendingTrainerProfessionalCred(id, token) {
 
 export async function getPendingTrainerClientsTransformation(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/ClientTransformations/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/ClientTransformations/${id}`,
     {
       method: "GET",
       headers: {
@@ -63,7 +63,7 @@ export async function getPendingTrainerQualificationsAndAchievements(
   token
 ) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/QualificationsAndAchievements/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/QualificationsAndAchievements/${id}`,
     {
       method: "GET",
       headers: {
@@ -78,7 +78,7 @@ export async function getPendingTrainerQualificationsAndAchievements(
 
 export async function getPendingTrainerPackages(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/packages/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/packages/${id}`,
     {
       method: "GET",
       headers: {
@@ -93,7 +93,7 @@ export async function getPendingTrainerPackages(id, token) {
 
 export async function getPendingTrainerInfoBar(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/TrainerInfoBar/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/TrainerInfoBar/${id}`,
     {
       method: "GET",
       headers: {
@@ -108,7 +108,7 @@ export async function getPendingTrainerInfoBar(id, token) {
 
 export async function pendingTrainerAcceptOrReject(userData, id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/admin/trainers/adminApprove/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/adminApprove/${id}`,
     {
       method: "PATCH",
       headers: {

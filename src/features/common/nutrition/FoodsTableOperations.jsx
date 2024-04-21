@@ -15,25 +15,25 @@ const filterAttr = [
         options: []
         // options: ["select Food Diet Type"]
     },
+    // {
+    //     label: "Religion Restriction",
+    //     options: []
+    //     // options: ["Select Food Religion Restriction"]
+    // },
+    // {
+    //     label: "Disease",
+    //     options: []
+    //     // options: ["Select Food Disease"]
+    // },
     {
-        label: "Religion Restriction",
+        label: "Meal Type",
         options: []
-        // options: ["Select Food Religion Restriction"]
+        // options: ["Select Food Meal Type"]
     },
     {
         label: "Category",
         options: []
         // options: ["Select Food Category"]
-    },
-    {
-        label: "Disease",
-        options: []
-        // options: ["Select Food Disease"]
-    },
-    {
-        label: "Meal Type",
-        options: []
-        // options: ["Select Food Meal Type"]
     },
 ]
 

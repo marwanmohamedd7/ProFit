@@ -1,6 +1,6 @@
 export async function setPersonalInfo(formData, token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/profile_1",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/profile_1",
     {
       method: "PATCH",
       headers: {
@@ -16,7 +16,7 @@ export async function setPersonalInfo(formData, token) {
 
 export async function getPersonalInfo(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/TrainerInfo",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/TrainerInfo",
     {
       method: "GET",
       headers: {
@@ -31,7 +31,7 @@ export async function getPersonalInfo(token) {
 
 export async function getProfileCredentials(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/ProfessionalCredentials",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/ProfessionalCredentials",
     {
       method: "GET",
       headers: {
@@ -46,7 +46,7 @@ export async function getProfileCredentials(token) {
 
 export async function setProfileCredentials(credData, token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/profile_2",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/profile_2",
     {
       method: "PATCH",
       headers: {
@@ -63,7 +63,7 @@ export async function setProfileCredentials(credData, token) {
 
 export async function getQualifications(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/qualificationAndAchievement/",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/qualificationAndAchievement/",
     {
       method: "GET",
       headers: {
@@ -78,7 +78,7 @@ export async function getQualifications(token) {
 
 export async function addQualification(formData, token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/qualificationAndAchievement/",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/qualificationAndAchievement/",
     {
       method: "POST",
       headers: {
@@ -94,7 +94,7 @@ export async function addQualification(formData, token) {
 
 export async function deleteQualification(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/qualificationAndAchievement/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/qualificationAndAchievement/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -109,7 +109,7 @@ export async function deleteQualification(id, token) {
 
 export async function getTransformations(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/ClientTransformations",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/ClientTransformations",
     {
       method: "GET",
       headers: {
@@ -125,7 +125,7 @@ export async function getTransformations(token) {
 
 export async function createTransformation(formData, token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/ClientTransformations",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/ClientTransformations",
     {
       method: "POST",
       headers: {
@@ -142,7 +142,7 @@ export async function createTransformation(formData, token) {
 
 export async function deleteTransformation(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/ClientTransformations/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/ClientTransformations/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -158,7 +158,7 @@ export async function deleteTransformation(id, token) {
 
 export async function updateTransformation(formData, id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/ClientTransformations/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/ClientTransformations/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -175,7 +175,7 @@ export async function updateTransformation(formData, id, token) {
 
 export async function getPackages(token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/packages",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/packages",
     {
       method: "GET",
       headers: {
@@ -190,7 +190,7 @@ export async function getPackages(token) {
 
 export async function createPackage(packageData, token) {
   const response = await fetch(
-    "https://profit-07pc.onrender.com/api/v1/trainers/packages",
+    "https://profit-qjbo.onrender.com/api/v1/trainers/packages",
     {
       method: "POST",
       headers: {
@@ -207,7 +207,7 @@ export async function createPackage(packageData, token) {
 
 export async function deletePackage(id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/packages/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/packages/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -222,7 +222,7 @@ export async function deletePackage(id, token) {
 
 export async function updatePackage(updatedPackageData, id, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/packages/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/packages/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -239,7 +239,7 @@ export async function updatePackage(updatedPackageData, id, token) {
 
 export async function submitProfile(submitionData, token) {
   const response = await fetch(
-    `https://profit-07pc.onrender.com/api/v1/trainers/submitionrequests`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/submitionrequests`,
     {
       method: "PATCH",
       headers: {

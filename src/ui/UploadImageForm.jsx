@@ -16,7 +16,7 @@ function UploadImageForm({
 ) {
     const [image, setImage] = useState(src); // Default image path
     return (
-        <div>
+        <div className="space-y-1">
             <div className={`relative ${dimentions}`}>
                 <label
                     htmlFor={id}
@@ -66,7 +66,7 @@ function UploadImageForm({
                     )}
                 />
             </div>
-            {error && <span className="text-red-700 text-xs">{error}</span>}
+            {error && <div className="text-red-700 text-xs">{error}</div>}
         </div>
     );
 }
