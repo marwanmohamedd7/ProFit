@@ -4,8 +4,8 @@ import AddPackage from "./AddPackage"
 import Modal from "../../../ui/Modal"
 import Table from "../../../ui/Table"
 import Button from "../../../ui/Button"
-import SpinnerMini from "../../../ui/SpinnerMini"
 import ActiveButton from "../../../ui/ActiveButton"
+import ConfirmDelete from "../../../ui/ConfirmDelete"
 
 function ProfilePackagesTableRow({ packagee }) {
     const { deletePackage, isDeleting } = useDeletePackage()
@@ -36,12 +36,17 @@ function ProfilePackagesTableRow({ packagee }) {
                             </Modal.Window>
                         </Modal>
 
-                        <Button type="icon-delete"
-                            onClick={() => onDelete(packagee._id)}
-                            disabled={isDeleting}
-                        >
-                            {isDeleting ? <SpinnerMini /> : <HiTrash />}
-                        </Button>
+                        <Modal>
+                            <Modal.Open opens="delete-food">
+                                <Button type="icon-delete"
+                                >
+                                    <HiTrash />
+                                </Button>
+                            </Modal.Open>
+                            <Modal.Window opens="delete-food">
+                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(packagee._id)} resourceName="package" />
+                            </Modal.Window>
+                        </Modal>   
                     </div>
                 </td>
             </tr>

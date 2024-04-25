@@ -1,9 +1,9 @@
+import { HiPencil, HiTrash } from "react-icons/hi2"
+import { useDeleteTransformation } from "./useDeleteTransformation"
 import Modal from "../../../../../ui/Modal"
 import Button from "../../../../../ui/Button"
 import AddTransformation from "./AddTransformation"
-import SpinnerMini from "../../../../../ui/SpinnerMini"
-import { HiPencil, HiTrash } from "react-icons/hi2"
-import { useDeleteTransformation } from "./useDeleteTransformation"
+import ConfirmDelete from "../../../../../ui/ConfirmDelete"
 
 function TransformationCard({ transformation }) {
     const { deleteTransformation, isDeleting } = useDeleteTransformation()
@@ -45,12 +45,18 @@ function TransformationCard({ transformation }) {
                             <AddTransformation transformationToUpdate={transformation} />
                         </Modal.Window>
                     </Modal>
-                    <Button type="icon-delete"
-                        onClick={(e) => onDelete(e, transformation._id)}
-                        disabled={isDeleting}
-                    >
-                        {isDeleting ? <SpinnerMini /> : <HiTrash />}
-                    </Button>
+
+                    <Modal>
+                        <Modal.Open opens="delete-food">
+                            <Button type="icon-delete"
+                            >
+                                <HiTrash />
+                            </Button>
+                        </Modal.Open>
+                        <Modal.Window opens="delete-food">
+                            <ConfirmDelete isLoading={isDeleting} onConfirm={(e) => onDelete(e, transformation._id)} resourceName="transformation" />
+                        </Modal.Window>
+                    </Modal>
                 </div>
             </div>
         </div>

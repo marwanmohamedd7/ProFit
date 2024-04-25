@@ -1,43 +1,23 @@
-import styled from "styled-components";
-import Button from "./Button";
-import Heading from "./Heading";
+import { BsExclamationCircleFill } from "react-icons/bs";
+import SpinnerMini from "./SpinnerMini";
 
-const StyledConfirmDelete = styled.div`
-  width: 40rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & p {
-    color: var(--color-grey-500);
-    margin-bottom: 1.2rem;
-  }
-
-  & div {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
-`;
-
-function ConfirmDelete({ resourceName, onConfirm, disabled }) {
+function ConfirmDelete({ resourceName, onConfirm, onCloseModal, isLoading }) {
   return (
-    <StyledConfirmDelete>
-      <Heading as="h3">Delete {resourceName}</Heading>
-      <p>
-        Are you sure you want to delete this {resourceName} permanently? This
-        action cannot be undone.
-      </p>
-
-      <div>
-        <Button variation="secondary" disabled={disabled}>
-          Cancel
-        </Button>
-        <Button variation="danger" disabled={disabled}>
-          Delete
-        </Button>
+    <div className="py-4">
+      <div className="flex flex-col justify-center items-center gap-4">
+        <span className="text-4xl text-gray-400"><BsExclamationCircleFill /></span>
+        <p className="flex flex-col justify-center items-center gap-1 text-gray-600 font-semibold tracking-wide">
+          <span>
+            Are you sure you want to delete this <strong>{resourceName}</strong> permanently?
+          </span>
+          <span>This action cannot be undone.</span>
+        </p>
+        <div className="flex justify-center items-center gap-4 mt-1">
+          <button disabled={isLoading} onClick={onConfirm} className="px-4 py-2 font-bold bg-red-700 rounded-lg text-gray-50 hover:bg-red-600">{isLoading ? <SpinnerMini /> : `Yes, I'm sure`}</button>
+          <button disabled={isLoading} onClick={onCloseModal} className="px-4 py-2 font-bold bg-white border border-red-700 rounded-lg text-red-700 hover:bg-gray-50">No, cancel</button>
+        </div>
       </div>
-    </StyledConfirmDelete>
+    </div>
   );
 }
 

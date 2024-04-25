@@ -3,6 +3,8 @@ import { BiTrash } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useMealProvider } from "../../../../context/MealProvider";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
+import Modal from "../../../../ui/Modal";
+import ConfirmDelete from "../../../../ui/ConfirmDelete";
 
 function MealFood({ food }) {
     const { _id: id, macros, foodname, foodImage, per } = food;
@@ -87,7 +89,14 @@ function MealFood({ food }) {
                             onBlur={handleUpdateMacros}
                         // disabled={isLoading}
                         />
-                        <button onClick={handleDeleteFood} className="bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
+                        <Modal>
+                            <Modal.Open opens="delete-food">
+                                <button className="bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
+                            </Modal.Open>
+                            <Modal.Window opens="delete-food">
+                                <ConfirmDelete onConfirm={handleDeleteFood} resourceName="food" />
+                            </Modal.Window>
+                        </Modal>
                     </div>
                 </div>
             </div>

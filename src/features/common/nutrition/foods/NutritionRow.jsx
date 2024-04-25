@@ -9,7 +9,7 @@ import CreateFood from "./CreateFood";
 import Table from "../../../../ui/Table"
 import Modal from "../../../../ui/Modal";
 import Button from "../../../../ui/Button";
-import SpinnerMini from "../../../../ui/SpinnerMini";
+import ConfirmDelete from "../../../../ui/ConfirmDelete";
 
 function NutritionRow({ food, section, onCloseModal }) {
     // const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food
@@ -20,6 +20,7 @@ function NutritionRow({ food, section, onCloseModal }) {
         if (!id) return;
         deleteFood(id)
     }
+    
     function handleAddFood() {
         // 1- check if there's already a food with the same id
         const isExist = foods.find(item => item._id === food._id);
@@ -72,12 +73,17 @@ function NutritionRow({ food, section, onCloseModal }) {
                                             </Modal.Window>
                                         </Modal>
 
-                                        <Button type="icon-delete"
-                                            onClick={() => onDelete(food._id)}
-                                            disabled={isDeleting}
-                                        >
-                                            {isDeleting ? <SpinnerMini /> : <HiTrash />}
-                                        </Button>
+                                        <Modal>
+                                            <Modal.Open opens="delete-food">
+                                                <Button type="icon-delete"
+                                                >
+                                                    <HiTrash />
+                                                </Button>
+                                            </Modal.Open>
+                                            <Modal.Window opens="delete-food">
+                                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
+                                            </Modal.Window>
+                                        </Modal>
                                     </div>
                                     :
                                     <>
@@ -104,16 +110,20 @@ function NutritionRow({ food, section, onCloseModal }) {
                                                         </Modal.Window>
                                                     </Modal>
 
-                                                    <Button type="icon-delete"
-                                                        onClick={() => onDelete(food._id)}
-                                                        disabled={isDeleting}
-                                                    >
-                                                        {isDeleting ? <SpinnerMini /> : <HiTrash />}
-                                                    </Button>
+                                                    <Modal>
+                                                        <Modal.Open opens="delete-food">
+                                                            <Button type="icon-delete"
+                                                            >
+                                                                <HiTrash />
+                                                            </Button>
+                                                        </Modal.Open>
+                                                        <Modal.Window opens="delete-food">
+                                                            <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
+                                                        </Modal.Window>
+                                                    </Modal>
                                                 </div>
                                         }
                                     </>
-
                             }
                         </td>
                     </tr>
@@ -153,7 +163,6 @@ function NutritionRow({ food, section, onCloseModal }) {
                         </td>
                     </tr>
             }
-
         </Table.Row>
     )
 }
