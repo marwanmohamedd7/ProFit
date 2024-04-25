@@ -1,3 +1,4 @@
+import Pagination from "../../../../ui/Pagination";
 import Table from "../../../../ui/Table"
 import NutritionRow from "./NutritionRow";
 
@@ -34,7 +35,9 @@ function NutritionTable({ foods, section = "food", onCloseModal }) {
 
             </Table.Header>
             <Table.Body data={foods} render={(food) => <NutritionRow food={food} key={food._id} section={section} onCloseModal={onCloseModal} />} />
-            <Table.Footer cols={5} />
+            <Table.Footer>
+                <Pagination count={foods.length} />
+            </Table.Footer>
         </Table>
     )
 }

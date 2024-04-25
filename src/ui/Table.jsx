@@ -1,4 +1,3 @@
-
 import React, { createContext } from 'react';
 
 // Sample data with image URLs
@@ -36,30 +35,8 @@ function Row({ children }) {
   return children
 }
 
-function Footer({ total, cols }) {
-  if (total <= 10) return null
-  return (
-    <tfoot className='text-gray-600 bg-gray-50 border'>
-      <tr>
-        <td colSpan={cols} className="text-xs text-left font-lighter px-6 py-2">
-          <span>Showing 1-5 of 5</span>
-        </td>
-        <td colSpan={cols} className="text-xs px-6 py-2 font-semibold">
-          <div className='flex justify-end cursor-pointer items-center'>
-            <p className='border-2 px-3 py-2 rounded-l-md font-bold'>
-              <span>&lt;</span>
-            </p>
-            <p className='px-3 py-2 border-t-2 border-b-2'>
-              <span>1</span>
-            </p>
-            <p className='border-2 px-3 py-2 rounded-r-md font-bold'>
-              <span>&gt;</span>
-            </p>
-          </div>
-        </td>
-      </tr>
-    </tfoot>
-  )
+function Footer({ children }) {
+  return children
 }
 
 Table.Header = Header;
