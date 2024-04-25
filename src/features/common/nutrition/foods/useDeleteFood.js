@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCurrentUser } from "../../../../../context/UserProvider";
-import { deleteTrainerFood } from "../../../../../services/apiFoods";
+import { useCurrentUser } from "../../../../context/UserProvider";
+import { deleteTrainerFood } from "../../../../services/apiFoods";
 import toast from "react-hot-toast";
 
 export function useDeleteFood() {

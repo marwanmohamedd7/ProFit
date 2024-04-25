@@ -1,23 +1,40 @@
-import Table from "../../../ui/Table"
+import Table from "../../../../ui/Table"
 import NutritionRow from "./NutritionRow";
 
-function NutritionTable({ foods }) {
+function NutritionTable({ foods, section = "food", onCloseModal }) {
     return (
         <Table>
             <Table.Header>
-                <tr className="capitalize text-left">
-                    <th className="px-6 py-2">Food Details</th>
-                    <th className="px-6 py-2">Quantity</th>
-                    <th className="px-6 py-2">Calories</th>
-                    <th className="px-6 py-2">Protein</th>
-                    <th className="px-6 py-2">Fats</th>
-                    <th className="px-6 py-2">Carbs</th>
-                    <th className="px-6 py-2">Category</th>
-                    <th className="px-6 py-2">Actions</th>
-                </tr>
+                {
+                    section === "food"
+                        ?
+                        <tr className="capitalize text-left">
+                            <th className="px-6 py-2">Food Details</th>
+                            <th className="px-4 py-2">Serving</th>
+                            <th className="px-4 py-2">Amount/Serving</th>
+                            <th className="px-4 py-2">Protein</th>
+                            <th className="px-4 py-2">Fats</th>
+                            <th className="px-4 py-2">Carbs</th>
+                            <th className="px-4 py-2">Calories</th>
+                            <th className="px-4 py-2">Category</th>
+                            <th className="px-4 py-2">Actions</th>
+                        </tr>
+                        :
+                        <tr className="capitalize text-left">
+                            <th className="px-6 py-2">Food Details</th>
+                            <th className="px-4 py-2">Serving</th>
+                            <th className="px-4 py-2">Protein</th>
+                            <th className="px-4 py-2">Fats</th>
+                            <th className="px-4 py-2">Carbs</th>
+                            <th className="px-4 py-2">Calories</th>
+                            <th className="px-4 py-2">Category</th>
+                            <th className="px-4 py-2">Add food</th>
+                        </tr>
+                }
+
             </Table.Header>
-            <Table.Body data={foods} render={(food) => <NutritionRow food={food} key={food._id} />} />
-            <Table.Footer />
+            <Table.Body data={foods} render={(food) => <NutritionRow food={food} key={food._id} section={section} onCloseModal={onCloseModal} />} />
+            <Table.Footer cols={5} />
         </Table>
     )
 }

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useCurrentUser } from "../../../../../context/UserProvider";
-import { updateTrainerFood } from "../../../../../services/apiFoods";
+import { useCurrentUser } from "../../../../context/UserProvider";
+import { updateTrainerFood } from "../../../../services/apiFoods";
 
 export function useUpdateFood() {
   const queryClient = useQueryClient();

@@ -1,13 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 
-function FilterTabs() {
+function FilterTabs({ filterTabs: { filterField, options } }) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentFilter = searchParams.get("food") || "all";
+    const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
     // Function to handle tab click
     function handleTabClick(value) {
         // Update search params with new filter
-        searchParams.set('food', value);
+        searchParams.set(filterField, value);
         setSearchParams(searchParams);
     };
 
@@ -17,24 +17,15 @@ function FilterTabs() {
 
     return (
         <div className="flex rounded-md grow overflow-hidden">
-            <button
-                onClick={() => handleTabClick('all')}
-                className={`flex-1 p-3 text-sm ${currentFilter === 'all' ? activeTabStyle : inactiveTabStyle}`}
-            >
-                All Foods
-            </button>
-            <button
-                onClick={() => handleTabClick('private')}
-                className={`flex-1 p-3 text-sm ${currentFilter === 'private' ? activeTabStyle : inactiveTabStyle}`}
-            >
-                My Private Foods
-            </button>
-            <button
-                onClick={() => handleTabClick('proFit')}
-                className={`flex-1 p-3 text-sm ${currentFilter === 'proFit' ? activeTabStyle : inactiveTabStyle}`}
-            >
-                ProFIT Foods
-            </button>
+            {options.map((filter) =>
+                <button
+                    key={filter.value}
+                    onClick={() => handleTabClick(filter.value)}
+                    className={`flex-1 p-3 text-sm ${currentFilter === filter.value ? activeTabStyle : inactiveTabStyle} capitalize`}
+                >
+                    {filter.label}
+                </button>
+            )}
         </div>
     );
 }

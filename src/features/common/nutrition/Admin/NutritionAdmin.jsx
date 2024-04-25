@@ -1,6 +1,8 @@
 import { CiApple, CiGrid41 } from "react-icons/ci"
 import CompoundTabs from "../../../../ui/CompoundTabs"
 import NutritionAppFood from "./ProFitFoods/NutritionAppFood"
+import NutritionMeals from "../Trainer/trainerMeals/NutritionMeals"
+import NutritionAppMeals from "./ProFitMealTemplate/NutritionAppMeals"
 
 function NutritionAdmin() {
     return (
@@ -28,6 +30,9 @@ function NutritionAdmin() {
                 </CompoundTabs.Tabs>
                 <CompoundTabs.Window opens="foods">
                     <NutritionAppFood />
+                </CompoundTabs.Window>
+                <CompoundTabs.Window opens="meal_template">
+                    <NutritionAppMeals />
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>

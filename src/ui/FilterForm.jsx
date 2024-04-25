@@ -2,12 +2,11 @@ import { useState } from "react"
 import { CiFilter } from "react-icons/ci";
 // import { FaDeleteLeft } from "react-icons/fa6";
 import { HiMiniChevronDown } from "react-icons/hi2";
-import Button from "./Button";
-import InputDropdown from "./InputDropdown";
-import FilterTabs from "./FilterTabs";
 import { useCurrentUser } from "../context/UserProvider";
+import Button from "./Button";
+import FilterTabs from "./FilterTabs";
 
-function FilterForm({ filterAttr }) {
+function FilterForm({ children, filterTabs = {} }) {
     const { userRole } = useCurrentUser();
     const [isOpen, setIsOpen] = useState(true);
     return !isOpen ? (
@@ -19,17 +18,14 @@ function FilterForm({ filterAttr }) {
     ) : (
         <div className="w-full mx-auto my-4 px-4 sm:px-6 lg:px-8 py-5 bg-white rounded-md border">
             <form className="flex flex-col gap-4 capitalize" onSubmit={(e) => e.preventDefault()}>
-
                 {
                     userRole === 'trainer' &&
                     <div className="flex justify-center">
-                        <FilterTabs />
+                        <FilterTabs filterTabs={filterTabs} />
                     </div>
                 }
 
-                <div className="flex flex-wrap justify-center gap-2">
-                    {filterAttr.map((item, index) => <InputDropdown key={index} item={item} />)}
-                </div>
+                {children}
 
                 <div className="flex gap-2">
                     <Button type="primary">

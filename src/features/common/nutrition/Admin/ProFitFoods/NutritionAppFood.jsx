@@ -1,16 +1,39 @@
-import NutritionTable from "../../NutritionTable";
-import { useGetAppFoods } from "../../useGetAppFoods";
-import FoodsTableOperations from "../../FoodsTableOperations"
+import { HiPlusSm } from "react-icons/hi";
+import { useGetAppFoods } from "../../foods/useGetAppFoods";
 import Spinner from "../../../../../ui/Spinner";
+import CreateFood from "../../foods/CreateFood";
+import NutritionTable from "../../foods/NutritionTable";
+import NutritionOperations from "../../NutritionOperations";
+import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
+import Modal from "../../../../../ui/Modal";
+import Button from "../../../../../ui/Button";
 
 function NutritionAppFood() {
-    const { appFoods, isLoading } = useGetAppFoods();
+    const { appFoods = [], isLoading } = useGetAppFoods();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
-        <>
-            <FoodsTableOperations />
-            <NutritionTable foods={appFoods}/>
-        </>
+        <div>
+            <NutritionOperations
+                filterForm={<NutritionFoodFilterForm />}
+                modalForm={< CreateFood />}
+                modalName="food"
+                search="Search Food Name...">
+                <Modal>
+                    <Modal.Open opens={`create-new-food`}>
+                        <Button>
+                            <p className="capitalize flex justify-center items-center gap-1">
+                                <span>create new food</span>
+                                <span className="text-lg"><HiPlusSm /></span>
+                            </p>
+                        </Button>
+                    </Modal.Open>
+                    <Modal.Window opens={`create-new-food`}>
+                        <CreateFood />
+                    </Modal.Window>
+                </Modal>
+            </NutritionOperations>
+            <NutritionTable foods={appFoods} />
+        </div>
     )
 }
 

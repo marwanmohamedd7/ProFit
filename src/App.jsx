@@ -31,6 +31,7 @@ import { useCurrentUser } from "./context/UserProvider";
 import checkTokenValidity from "./utils/checkTokenValidity";
 import { useEffect } from "react";
 import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
+import Meals from './pagesCommon/Meals';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,6 +69,7 @@ function App() {
             <Route path="trainer-approval" element={<TrainersApproval />} />
             <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
             <Route path="nutrition" element={<NutritionAdmin />} />
+            <Route path="nutrition/meals" element={<Meals />} />
             <Route path="workout" element={<Workout />} />
             <Route path="system-users" element={<Users />} />
             <Route path="account" element={<Account />} />
@@ -86,6 +88,7 @@ function App() {
             <Route path="trainees" element={<Trainees />} />
             <Route path="messages" element={<Messages />} />
             <Route path="nutrition" element={<NutritionTrainer />} />
+            <Route path="nutrition/meals" element={<Meals />} />
             <Route path="workout" element={<WorkoutTrainer />} />
             <Route path="packages" element={<Packages />} />
             <Route path="transcations" element={<Transcations />} />
@@ -112,7 +115,7 @@ function App() {
             duration: 3000,
           },
           error: {
-            duration: 5000,
+            duration: 3000,
           },
           style: {
             fontSize: "16px",

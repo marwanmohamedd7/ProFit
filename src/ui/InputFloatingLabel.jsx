@@ -1,4 +1,4 @@
-function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", type = "text", paddingStyle = "" }, onChange, disabled = false, error, register }) {
+function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", type = "text", paddingStyle = "" }, onChange,onBlur, disabled = false, error, register }) {
     return (
         <div className="flex flex-col gap-1 grow">
             <div className="relative">
@@ -9,6 +9,7 @@ function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", t
                     value={value || value === 0 ? value : ""}
                     placeholder={placeholder}
                     onChange={onChange}
+                    onBlur={onBlur}
                     {...register}
                     className={`flex ${type === "date" && ` justify-between`} text-xs sm:text-sm items-center w-full ${paddingStyle ? paddingStyle : "py-2.5 px-2"} text-gray-500 bg-transparent rounded-lg bg-white border
                 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-700 peer`}

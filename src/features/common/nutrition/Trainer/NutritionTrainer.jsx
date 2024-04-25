@@ -1,7 +1,8 @@
-import CompoundTabs from "../../../../ui/CompoundTabs"
-import { CiApple, CiGrid41 } from "react-icons/ci";
 import { LuUsers2 } from "react-icons/lu";
-import NutritionFood from "./trainerFoods/NutritionFood";
+import { CiApple, CiGrid41 } from "react-icons/ci";
+import CompoundTabs from "../../../../ui/CompoundTabs"
+import NutritionFood from "./trainerFoods/NutritionFoods";
+import NutritionMeals from "./trainerMeals/NutritionMeals";
 
 function NutritionTrainer() {
     return (
@@ -35,6 +36,9 @@ function NutritionTrainer() {
                 </CompoundTabs.Tabs>
                 <CompoundTabs.Window opens="foods">
                     <NutritionFood />
+                </CompoundTabs.Window>
+                <CompoundTabs.Window opens="meals_templates">
+                    <NutritionMeals />
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>

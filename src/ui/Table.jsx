@@ -2,8 +2,6 @@
 import React, { createContext } from 'react';
 
 // Sample data with image URLs
-
-
 const TableContext = createContext();
 
 function Table({ children }) {
@@ -20,7 +18,7 @@ function Table({ children }) {
 
 function Header({ children }) {
   return (
-    <thead className="bg-blue-900 text-sm text-white text-start">
+    <thead className="bg-blue-900 text-sm text-white">
       {children}
     </thead>
   )
@@ -38,15 +36,15 @@ function Row({ children }) {
   return children
 }
 
-function Footer({ total }) {
+function Footer({ total, cols }) {
   if (total <= 10) return null
   return (
     <tfoot className='text-gray-600 bg-gray-50 border'>
       <tr>
-        <td colSpan="4" className="text-xs text-left font-lighter px-6 py-2">
+        <td colSpan={cols} className="text-xs text-left font-lighter px-6 py-2">
           <span>Showing 1-5 of 5</span>
         </td>
-        <td colSpan="4" className="text-xs px-6 py-2 font-semibold">
+        <td colSpan={cols} className="text-xs px-6 py-2 font-semibold">
           <div className='flex justify-end cursor-pointer items-center'>
             <p className='border-2 px-3 py-2 rounded-l-md font-bold'>
               <span>&lt;</span>

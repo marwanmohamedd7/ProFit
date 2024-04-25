@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { useCreateFood } from "./Trainer/trainerFoods/useCreateFood";
-import { useUpdateFood } from "./Trainer/trainerFoods/useUpdateFood";
-import Button from "../../../ui/Button"
-import SpinnerMini from "../../../ui/SpinnerMini";
-import InputDropdown from "../../../ui/InputDropdown";
-import UploadImageForm from "../../../ui/UploadImageForm";
-import InputFloatingLabel from "../../../ui/InputFloatingLabel";
+import { useCreateFood } from "./useCreateFood";
+import { useUpdateFood } from "./useUpdateFood";
+import Button from "../../../../ui/Button"
+import SpinnerMini from "../../../../ui/SpinnerMini";
+import InputDropdown from "../../../../ui/InputDropdown";
+import UploadImageForm from "../../../../ui/UploadImageForm";
+import InputFloatingLabel from "../../../../ui/InputFloatingLabel";
 
 
 function CreateFood({ onCloseModal, foodToUpdate }) {
