@@ -28,7 +28,7 @@ export async function getTrainerFoods(token) {
   return data;
 }
 
-export async function createTrainerFood(token, foodData) {
+export async function createFood(token, foodData) {
   const response = await fetch(
     "https://profit-qjbo.onrender.com/api/v1/Food",
     {
@@ -44,7 +44,7 @@ export async function createTrainerFood(token, foodData) {
   return data;
 }
 
-export async function updateTrainerFood(id, token, foodData) {
+export async function updateFood(id, token, foodData) {
   const response = await fetch(
     `https://profit-qjbo.onrender.com/api/v1/Food/${id}`,
     {
@@ -60,7 +60,7 @@ export async function updateTrainerFood(id, token, foodData) {
   return data;
 }
 
-export async function deleteTrainerFood(id, token) {
+export async function deleteFood(id, token) {
   const response = await fetch(
     `https://profit-qjbo.onrender.com/api/v1/Food/${id}`,
     {

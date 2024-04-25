@@ -1,17 +1,26 @@
+import { HiPlusSm } from "react-icons/hi"
+import { useGetAppMeals } from "../../meals/useGetAppMeals"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import { useGetTrainerMeals } from "../../meals/useGetTrainerMeals"
 import Button from "../../../../../ui/Button"
-import CreateFood from "../../foods/CreateFood"
-import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
+import Spinner from "../../../../../ui/Spinner"
 import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
-import { useNavigate } from "react-router-dom"
-import { HiPlusSm } from "react-icons/hi"
-import { useGetMeals } from "../../meals/useGetMeals"
-import Spinner from "../../../../../ui/Spinner"
+import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 
 function NutritionMeals() {
+    let filteredMeals;
     const navigate = useNavigate()
-    const { trainerMeals = [], isLoading } = useGetMeals();
+    const [searchParams] = useSearchParams()
+    const filterValue = searchParams.get('meal') || 'all';
+    const { appMeals = [], isLoading: loadAppMeals } = useGetAppMeals()
+    const { trainerMeals = [], isLoading: loadTrainerMeals } = useGetTrainerMeals();
+    const isLoading = loadAppMeals || loadTrainerMeals;
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    if (filterValue === 'proFit-meals') filteredMeals = appMeals;
+    if (filterValue === 'private-meals') filteredMeals = trainerMeals;
+    if (filterValue === 'all') filteredMeals = [...appMeals, ...trainerMeals];
+
     return (
         <>
             <NutritionOperations
@@ -24,9 +33,8 @@ function NutritionMeals() {
                     ]
                 }}
                 filterForm={<NutritionFoodFilterForm />}
-                modalForm={< CreateFood />}
-                modalName="meal"
-                search="Search Meal Name...">
+                search="Search Meal Name..."
+            >
                 <Button onClick={() => navigate("meals")}>
                     <p className="capitalize flex justify-center items-center gap-1">
                         <span>create new meal</span>
@@ -34,7 +42,7 @@ function NutritionMeals() {
                     </p>
                 </Button>
             </NutritionOperations>
-            <NutritionMealsTable meals={trainerMeals} />
+            <NutritionMealsTable meals={filteredMeals} />
         </>
     )
 }

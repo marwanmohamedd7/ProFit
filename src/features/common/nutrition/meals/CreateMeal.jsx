@@ -10,7 +10,7 @@ import Modal from "../../../../ui/Modal";
 import { HiPlusSm } from "react-icons/hi";
 import MealFood from "./MealFood";
 import { useMealProvider } from "../../../../context/MealProvider";
-import useCreateMeal from "./useCreateMeal";
+import { useCreateMeal } from "./useCreateMeal";
 
 function CreateMeal() {
     const {

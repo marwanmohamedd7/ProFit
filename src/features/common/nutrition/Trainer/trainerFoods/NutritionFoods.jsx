@@ -1,26 +1,26 @@
+import { HiPlusSm } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom"
-import NutritionTable from "../../foods/NutritionTable";
-import { useGetTrainerFoods } from "../../foods/useGetTrainerFoods";
 import { useGetAppFoods } from "../../foods/useGetAppFoods";
-import Spinner from "../../../../../ui/Spinner";
-import CreateFood from "../../foods/CreateFood";
-import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
-import NutritionOperations from "../../NutritionOperations";
+import { useGetTrainerFoods } from "../../foods/useGetTrainerFoods";
 import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
-import { HiPlusSm } from "react-icons/hi";
+import CreateFood from "../../foods/CreateFood";
+import Spinner from "../../../../../ui/Spinner";
+import NutritionTable from "../../foods/NutritionTable";
+import NutritionOperations from "../../NutritionOperations";
+import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
 
 function NutritionFoods({ section = "food", onCloseModal }) {
+    let filteredFoods;
     const [searchParams] = useSearchParams();
+    const filterValue = searchParams.get('food') || 'all';
     const { appFoods = [], isLoading: loadAppFoods } = useGetAppFoods();
     const { trainerFoods = [], isLoading: loadTrainerFoods } = useGetTrainerFoods();
     const isLoading = loadAppFoods || loadTrainerFoods;
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
-    const filterValue = searchParams.get('food') || 'all';
-    let filteredFoods;
-    if (filterValue === 'all') filteredFoods = [...appFoods, ...trainerFoods];
-    if (filterValue === 'private-foods') filteredFoods = trainerFoods;
     if (filterValue === 'proFit-foods') filteredFoods = appFoods;
+    if (filterValue === 'private-foods') filteredFoods = trainerFoods;
+    if (filterValue === 'all') filteredFoods = [...appFoods, ...trainerFoods];
     return (
         <div>
             <NutritionOperations

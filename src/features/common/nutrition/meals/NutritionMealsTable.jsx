@@ -112,7 +112,7 @@ function NutritionMealsTable({ meals }) {
                     <th className="lg:w-[10%] w-[10%] pr-6 py-2 text-right">Actions</th>
                 </tr>
             </Table.Header>
-            <Table.Body data={meals} render={(meal, index) => <NutritionMealsTableRow meal={meal} key={index} />} />
+            {/* <Table.Body data={meals} render={(meal, index) => <NutritionMealsTableRow meal={meal} key={index} />} /> */}
             <Table.Footer cols={3} />
         </Table>
     )
