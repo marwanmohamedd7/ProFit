@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { BiPlus } from "react-icons/bi"
-import { FiMinus } from "react-icons/fi";
-import { IoIosClose } from "react-icons/io";
+// import { FiMinus } from "react-icons/fi";
+// import { IoIosClose } from "react-icons/io";
 import { useSearchParams } from "react-router-dom";
 import Day from "./Day";
 
