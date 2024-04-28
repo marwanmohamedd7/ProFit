@@ -5,9 +5,12 @@ import Table from "../../../../ui/Table"
 import Modal from "../../../../ui/Modal"
 import Button from "../../../../ui/Button"
 import ConfirmDelete from "../../../../ui/ConfirmDelete"
+import { useCurrentUser } from "../../../../context/UserProvider"
+import { IoEyeOutline } from "react-icons/io5"
 
-function NutritionMealsTableRow({ meal, onCloseModal }) {
+function NutritionMealsTableRow({ meal }) {
     const navigate = useNavigate()
+    const { userRole } = useCurrentUser()
     const { _id, mealname, mealtype, mealmacros, ingredients, } = meal
     const { deleteMeal, isDeleting } = useDeleteMeal()
     function onDelete(id) {
@@ -64,23 +67,54 @@ function NutritionMealsTableRow({ meal, onCloseModal }) {
                 </td>
 
                 <td className="px-2 py-4 whitespace-nowrap text-sm text-right font-medium">
-                    <div className='flex items-center justify-end gap-1'>
-                        <Button onClick={() => navigate(`meal/${_id}`)} type="icon-update">
-                            <HiPencil />
-                        </Button>
+                    {userRole === "admin" ?
+                        <div className='flex items-center justify-end gap-1'>
+                            <Button onClick={() => navigate(`meal/${_id}`)} type="icon-update">
+                                <HiPencil />
+                            </Button>
 
-                        <Modal>
-                            <Modal.Open opens="delete-food">
-                                <Button type="icon-delete"
+                            <Modal>
+                                <Modal.Open opens="delete-food">
+                                    <Button type="icon-delete"
+                                    >
+                                        <HiTrash />
+                                    </Button>
+                                </Modal.Open>
+                                <Modal.Window opens="delete-food">
+                                    <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="meal" />
+                                </Modal.Window>
+                            </Modal>
+                        </div>
+                        :
+                        meal?.admin ?
+                            <div className='flex items-center justify-center ml-6 gap-1'>
+                                <span
+                                    href="#"
+                                    className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
                                 >
-                                    <HiTrash />
+                                    <IoEyeOutline />
+                                </span>
+                            </div>
+                            :
+                            <div className='flex items-center justify-end gap-1'>
+                                <Button onClick={() => navigate(`meal/${_id}`)} type="icon-update">
+                                    <HiPencil />
                                 </Button>
-                            </Modal.Open>
-                            <Modal.Window opens="delete-food">
-                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="meal" />
-                            </Modal.Window>
-                        </Modal>
-                    </div>
+
+                                <Modal>
+                                    <Modal.Open opens="delete-food">
+                                        <Button type="icon-delete"
+                                        >
+                                            <HiTrash />
+                                        </Button>
+                                    </Modal.Open>
+                                    <Modal.Window opens="delete-food">
+                                        <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="meal" />
+                                    </Modal.Window>
+                                </Modal>
+                            </div>
+                    }
+
                 </td>
             </tr>
         </Table.Row>
