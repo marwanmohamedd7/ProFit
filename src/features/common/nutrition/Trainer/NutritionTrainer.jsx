@@ -3,11 +3,12 @@ import { CiApple, CiGrid41 } from "react-icons/ci";
 import CompoundTabs from "../../../../ui/CompoundTabs"
 import NutritionFood from "./trainerFoods/NutritionFoods";
 import NutritionMeals from "./trainerMeals/NutritionMeals";
+import NutritionDiets from "./trainerDiets/NutritionDiets";
 
 function NutritionTrainer() {
     return (
         <>
-            <CompoundTabs defaultTab="foods">
+            <CompoundTabs tabsFeild="nutrition" defaultTab="foods">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="foods">
                         <p className="flex justify-center items-center gap-1">
@@ -39,6 +40,9 @@ function NutritionTrainer() {
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="meals_templates">
                     <NutritionMeals />
+                </CompoundTabs.Window>
+                <CompoundTabs.Window opens="diet_templates">
+                    <NutritionDiets />
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>

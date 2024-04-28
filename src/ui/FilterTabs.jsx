@@ -7,6 +7,7 @@ function FilterTabs({ filterTabs: { filterField, options } }) {
     // Function to handle tab click
     function handleTabClick(value) {
         // Update search params with new filter
+        if (searchParams.get("page")) searchParams.set("page", 1)
         searchParams.set(filterField, value);
         setSearchParams(searchParams);
     };

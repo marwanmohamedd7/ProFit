@@ -83,7 +83,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
     return (
         // <form className="grid grid-rows-[1fr_auto_auto_auto_auto_auto] divide-y" onSubmit={(e) => e.preventDefault()}>
         <form className="flex flex-col capitalize divide-y" onSubmit={handleSubmit(onSubmit)}>
-            <div className="py-4 space-y-2">
+            <section className="py-4 space-y-2">
                 <UploadImageForm
                     id="foodImage"
                     photo="food"
@@ -94,7 +94,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                     rules={{ required: !currentFoodImg ? "food photo is required" : false }}
                 />
                 {/* <currentFoodImg className="w-24 h-auto rounded-md" src="/uifaces-popular-image (1).jpg" alt="" /> */}
-                <div className="flex justify-center gap-2 pt-4">
+                <div className="grid grid-cols-3 gap-2 pt-4">
                     <InputFloatingLabel
                         item={{ id: "foodname", label: "Food Name", value: watch("foodname") }}
                         disabled={isLoading}
@@ -161,9 +161,10 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                     />
                     {errors?.description?.message && <span className="text-xs text-red-700">{errors?.description?.message}</span>}
                 </div>
-            </div>
-            <div className="capitalize py-4">
-                <div className="flex justify-center gap-2">
+            </section>
+
+            <section className="capitalize py-4">
+                <div className="grid grid-cols-4 gap-2">
                     {/* {formAttributes_2.map((item, index) => <InputDropdown key={index} item={item} />)} */}
                     <InputDropdown item={{
                         id: "foodAllergens",
@@ -196,6 +197,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             "Rye",
                         ],
                     }}
+                        disabled={isLoading}
                         error={errors?.foodAllergens?.message}
                         register={{
                             ...register("foodAllergens", {
@@ -224,6 +226,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             "Sauces",
                         ],
                     }}
+                        disabled={isLoading}
                         error={errors?.category?.message}
                         register={{
                             ...register("category", {
@@ -255,6 +258,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             "Salmonella infection",
                         ],
                     }}
+                        disabled={isLoading}
                         error={errors?.diseaseCompatibility?.message}
                         register={{
                             ...register("diseaseCompatibility", {
@@ -268,6 +272,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         label: "Meal Type",
                         options: ["Breackfast", "Lunch", "Snack", "Dinner"],
                     }}
+                        disabled={isLoading}
                         error={errors?.mealtype?.message}
                         register={{
                             ...register("mealtype", {
@@ -276,9 +281,10 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         }}
                     />
                 </div>
-            </div>
-            <div className="capitalize py-3">
-                <div className="flex justify-center gap-2">
+            </section>
+
+            <section className="capitalize py-3">
+                <div className="grid grid-cols-3 gap-2">
                     <InputDropdown
                         item={{
                             id: "servingUnit",
@@ -327,9 +333,10 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         }}
                     />
                 </div>
-            </div>
-            <div className="capitalize py-4">
-                <div className="flex justify-center gap-2">
+            </section>
+
+            <section className="capitalize py-4">
+                <div className="grid grid-cols-4 gap-2">
                     {/* {formAttributes_4.map((item, index) => <InputDropdown key={index} item={item} />)} */}
                     <InputFloatingLabel
                         item={{ id: "proteins", label: "Proteins", type: "number", value: watch("proteins") }}
@@ -393,9 +400,9 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         }
                     />
                 </div>
-            </div>
+            </section>
 
-            <div className="flex justify-start gap-2 pt-6">
+            <section className="flex justify-start gap-2 pt-6">
                 <Button disabled={isLoading} type="primary" >
                     {
                         isLoading ?
@@ -407,9 +414,8 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                 <Button disabled={isLoading} onClick={onCloseModal} type="secondary">
                     <span>cancel</span>
                 </Button>
-            </div>
+            </section>
         </form>
-
     )
 }
 export default CreateFood

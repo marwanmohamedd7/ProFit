@@ -8,15 +8,13 @@ import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
 import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
 
-function NutritionAppFood() {
-    const { appFoods = [], isLoading } = useGetAppFoods();
+function NutritionAppFood({ section = {}, onCloseModal }) {
+    const { appFoods = [], count, isLoading } = useGetAppFoods();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
         <div>
             <NutritionOperations
                 filterForm={<NutritionFoodFilterForm />}
-                modalForm={< CreateFood />}
-                modalName="food"
                 search="Search Food Name...">
                 <Modal>
                     <Modal.Open opens={`create-new-food`}>
@@ -32,7 +30,7 @@ function NutritionAppFood() {
                     </Modal.Window>
                 </Modal>
             </NutritionOperations>
-            <NutritionTable foods={appFoods} />
+            <NutritionTable foods={appFoods} count={count} section={section} onCloseModal={onCloseModal} />
         </div>
     )
 }

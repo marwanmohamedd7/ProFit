@@ -5,7 +5,7 @@ import Trainers from "./trainers/Trainers"
 function SystemUsers() {
     return (
         <>
-            <CompoundTabs defaultTab="trainers">
+            <CompoundTabs tabsFeild="users" defaultTab="trainers">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="trainers">trainers</CompoundTabs.Open>
                     <CompoundTabs.Open opens="trainees">trainees</CompoundTabs.Open>

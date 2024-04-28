@@ -1,41 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react"
 
 const intialState = {
-    foods: [
-        // {
-        //     foodImage: "public/chicken-breast.jpg",
-        //     foodname: "beed",
-        //     amount: 100,
-        //     proteins: 2,
-        //     calories: 223,
-        //     fats: 3,
-        //     carbs: 4,
-        //     category: "chicken",
-        //     servingUnit: "gram",
-        // },
-        // {
-        //     foodImage: "public/chicken-breast.jpg",
-        //     foodname: "fish",
-        //     amount: 100,
-        //     proteins: 2,
-        //     calories: 223,
-        //     fats: 5,
-        //     carbs: 4,
-        //     category: "chicken",
-        //     servingUnit: "gram",
-        // },
-        // {
-        //     foodImage: "public/chicken-breast.jpg",
-        //     amount: 100,
-        //     foodname: "chicken",
-        //     proteins: 2,
-        //     calories: 223,
-        //     fats: 2,
-        //     carbs: 4,
-        //     category: "chicken",
-        //     servingUnit: "gram",
-        // },
-    ],
+    foods: [],
     totalMacros: {
         fats: 0,
         calories: 0,
@@ -49,8 +15,8 @@ const intialState = {
 function reducer(state, action) {
     function updateFoodMacros() {
         const foods = state.foods.map(food => {
-            if (food._id === action.payload.id) {
-                food.per = action.payload.per
+            if (food.food === action.payload.id) {
+                food.amount = action.payload.per
                 food.macros = action.payload.macros
             }
             return food;
@@ -58,16 +24,18 @@ function reducer(state, action) {
         return foods
     }
     switch (action.type) {
-        case 'loading':
-            return { ...state, isLoading: true }
+        case 'food/start':
+            return { ...state, isLoading: false, foods: [], error: "" }
         case 'food/calcMacros':
             return { ...state, isLoading: false, totalMacros: action.payload }
+        case 'food/updateMacros':
+            return { ...state, isLoading: false, foods: updateFoodMacros() }
         case 'food/added':
             return { ...state, isLoading: false, foods: [...state.foods, action.payload] }
         case 'food/update':
-            return { ...state, isLoading: false, foods: updateFoodMacros() }
+            return { ...state, isLoading: false, foods: action.payload }
         case 'food/deleted':
-            return { ...state, isLoading: false, foods: state.foods.filter(food => food._id !== action.payload) }
+            return { ...state, isLoading: false, foods: state.foods.filter(food => food.food !== action.payload) }
         case 'rejected':
             return { ...state, isLoading: false, error: action.payload }
         default:

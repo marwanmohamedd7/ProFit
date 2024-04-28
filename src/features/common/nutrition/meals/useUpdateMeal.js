@@ -7,8 +7,7 @@ export function useUpdateMeal() {
   const queryClient = useQueryClient();
   const { userRole, userToken } = useCurrentUser();
   const { mutate: updateMeal, isPending: isUpdating } = useMutation({
-    mutationFn: ({ mealId, mealData }) =>
-      apiUpdateMeal(mealId, userToken, mealData),
+    mutationFn: ({ _id, mealData }) => apiUpdateMeal(_id, userToken, mealData),
     onSuccess: ({ message }) => {
       toast.success(message);
       queryClient.invalidateQueries([

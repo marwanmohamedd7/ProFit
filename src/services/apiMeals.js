@@ -1,6 +1,8 @@
-export async function getAppMeals(token) {
+import { PAGE_SIZE } from "../utils/constants";
+
+export async function getAppMeals(token, page) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/Food/",
+    `https://profit-qjbo.onrender.com/api/v1/Meal/?page=${page}&limit=${PAGE_SIZE}`,
     {
       method: "GET",
       headers: {
@@ -13,9 +15,39 @@ export async function getAppMeals(token) {
   return data;
 }
 
-export async function getTrainerMeals(token) {
+export async function getTrainerMeals(token, page) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/Meal/",
+    `https://profit-qjbo.onrender.com/api/v1/Meal/TrainerMeals/?page=${page}&limit=${PAGE_SIZE}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getAllMeals(token, page) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/Meal/AllMeals/?page=${page}&limit=${PAGE_SIZE}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getSpecificMeals(token, id) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/Meal/${id}`,
     {
       method: "GET",
       headers: {

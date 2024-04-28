@@ -19,7 +19,7 @@ function TrainerPortfolio() {
                     </ul>
                 </div>
             </div>
-            <CompoundTabs defaultTab="free-plan">
+            <CompoundTabs tabsFeild="profile" defaultTab="free-plan">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="free-plan">free plan</CompoundTabs.Open>
                     <CompoundTabs.Open opens="gallery">gallery</CompoundTabs.Open>

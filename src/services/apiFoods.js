@@ -1,6 +1,8 @@
+import { PAGE_SIZE } from "../utils/constants";
+
 export async function getAppFoods(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}&limit=${PAGE_SIZE}`,
     {
       method: "GET",
       headers: {
@@ -10,13 +12,12 @@ export async function getAppFoods(token, page) {
   );
   if (!response.ok) throw new Error(response.status);
   const data = await response.json();
-  // console.log(data, "getAppFoods");
   return data;
 }
 
 export async function getTrainerFoods(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/TrainerFood/?page=${page}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/TrainerFood/?page=${page}&limit=${PAGE_SIZE}`,
     {
       method: "GET",
       headers: {
@@ -26,7 +27,21 @@ export async function getTrainerFoods(token, page) {
   );
   if (!response.ok) throw new Error(response.status);
   const data = await response.json();
-  // console.log(data, "getTrainerFoods");
+  return data;
+}
+
+export async function getAllFoods(token, page) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/Food/AllFoods/?page=${page}&limit=${PAGE_SIZE}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
   return data;
 }
 

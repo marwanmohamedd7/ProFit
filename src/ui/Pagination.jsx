@@ -16,11 +16,11 @@ function Pagination({ count }) {
     searchParams.set("page", prev);
     setSearchParams(searchParams);
   }
-  // if (pageCount <= 1) return null;
+  if (pageCount <= 1) return null;
   return (
     <tfoot className='text-gray-600 bg-gray-50 border'>
       <tr>
-        <td colSpan="4" className="text-xs text-left font-lighter px-6 py-2">
+        <td colSpan="3" className="text-xs text-left font-lighter px-6 py-2">
           <p>
             Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span> of <span>{count}</span> results
           </p>
@@ -30,8 +30,10 @@ function Pagination({ count }) {
             <button disabled={currentPage === 1} onClick={handlePrevPage} className='cursor-pointer border-2 px-3 py-2 rounded-l-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300'>
               <span>&lt;</span>
             </button>
-            <p className='px-3 py-2 border-t-2 border-b-2'>
-              <span>{`${currentPage} - ${pageCount}`}</span>
+            <p className='flex justify-center items-center gap-1 px-3 py-2 border-t-2 border-b-2'>
+              <span>{`${currentPage}`}</span>
+              <span>{`-`}</span>
+              <span>{`${pageCount}`}</span>
             </p>
             <button disabled={currentPage === pageCount} onClick={handleNextPage} className='cursor-pointer border-2 px-3 py-2 rounded-r-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300'>
               <span>&gt;</span>

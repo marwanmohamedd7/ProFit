@@ -10,31 +10,38 @@ import Table from "../../../../ui/Table"
 import Modal from "../../../../ui/Modal";
 import Button from "../../../../ui/Button";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
+import { useParams } from "react-router-dom";
 
 function NutritionRow({ food, section, onCloseModal }) {
-    // const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food
-    const { dispatch, foods } = useMealProvider()
-    const { userRole } = useCurrentUser()
-    const { deleteFood, isDeleting } = useDeleteFood()
+    const { id: mealId } = useParams();
+    const { userRole } = useCurrentUser();
+    const { dispatch, foods } = useMealProvider();
+    const { deleteFood, isDeleting } = useDeleteFood();
+    const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food;
+
     function onDelete(id) {
         if (!id) return;
         deleteFood(id)
     }
-    
+
     function handleAddFood() {
         // 1- check if there's already a food with the same id
-        const isExist = foods.find(item => item._id === food._id);
+        let isExist;
+        if (!mealId) isExist = foods.find(item => item.food === food._id)
+        else isExist = foods.find(item => (item.food._id === food._id) || (item.food === food._id))
+
         if (isExist) {
             toast.error("This food has been added before.")
             return
         }
 
         // 2- add the new food to the meals if it doesn't exist
-        dispatch({ type: "food/added", payload: food })
-        // dispatch({ type: "food/added", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+        // dispatch({ type: "food/added", payload: food })
+        dispatch({ type: "food/added", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
         toast.success("Added a new food item!")
         onCloseModal()
     }
+
     return (
         <Table.Row>
             {
@@ -146,20 +153,7 @@ function NutritionRow({ food, section, onCloseModal }) {
                         <td className="px-4 py-2 whitespace-nowrap">{food.macros.calories}</td>
                         <td className="px-4 py-2 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
                         <td className="px-4 py-2 whitespace-nowrap text-center">
-                            {/* <div className="flex items-center justify-start gap-2"> */}
-
-                            {/* <input
-                                    id={food.servingUnit}
-                                    type="number"
-                                    // disabled={disabled}
-                                    // value={!amount ? "" : amount}
-                                    placeholder={`Enter Amount`}
-                                    // onChange={onChange}
-                                    // {...register}
-                                    className={`text-sm text-gray-600 p-2 rounded-md border border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 `}
-                                /> */}
                             <button onClick={handleAddFood} className="bg-blue-700 text-white p-3.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button>
-                            {/* </div> */}
                         </td>
                     </tr>
             }

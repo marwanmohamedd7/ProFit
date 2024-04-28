@@ -2,12 +2,10 @@ import { useState } from "react"
 import { CiFilter } from "react-icons/ci";
 // import { FaDeleteLeft } from "react-icons/fa6";
 import { HiMiniChevronDown } from "react-icons/hi2";
-import { useCurrentUser } from "../context/UserProvider";
 import Button from "./Button";
 import FilterTabs from "./FilterTabs";
 
 function FilterForm({ children, filterTabs = {} }) {
-    const { userRole } = useCurrentUser();
     const [isOpen, setIsOpen] = useState(true);
     return !isOpen ? (
         <Button onClick={() => setIsOpen(true)}>
@@ -19,7 +17,7 @@ function FilterForm({ children, filterTabs = {} }) {
         <div className="w-full mx-auto my-4 px-4 sm:px-6 lg:px-8 py-5 bg-white rounded-md border">
             <form className="flex flex-col gap-4 capitalize" onSubmit={(e) => e.preventDefault()}>
                 {
-                    userRole === 'trainer' &&
+                    Object.keys(filterTabs).length > 0 &&
                     <div className="flex justify-center">
                         <FilterTabs filterTabs={filterTabs} />
                     </div>

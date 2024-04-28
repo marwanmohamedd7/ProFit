@@ -3,8 +3,8 @@ import { useCreateTransformation } from "./useCreateTransformation"
 import { useUpdateTransformation } from "./useUpdateTransformation"
 import Button from "../../../../../ui/Button"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 import UploadImageForm from "../../../../../ui/UploadImageForm"
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 
 function AddTransformation({ transformationToUpdate = {}, onCloseModal }) {
     const { createTransformation, isCreating } = useCreateTransformation()

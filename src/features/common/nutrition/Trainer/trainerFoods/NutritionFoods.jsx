@@ -1,7 +1,7 @@
 import { HiPlusSm } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom"
 import { useGetAppFoods } from "../../foods/useGetAppFoods";
-import { useGetTrainerFoods } from "../../foods/useGetTrainerFoods";
+import { useGetTrainerFoods } from "./useGetTrainerFoods";
 import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
 import CreateFood from "../../foods/CreateFood";
@@ -9,18 +9,35 @@ import Spinner from "../../../../../ui/Spinner";
 import NutritionTable from "../../foods/NutritionTable";
 import NutritionOperations from "../../NutritionOperations";
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
+import { useGetAllFoods } from "./useGetAllFoods";
 
 function NutritionFoods({ section = "food", onCloseModal }) {
-    let filteredFoods;
+    let filteredFoods, count;
     const [searchParams] = useSearchParams();
     const filterValue = searchParams.get('food') || 'all';
-    const { appFoods = [], isLoading: loadAppFoods } = useGetAppFoods();
-    const { trainerFoods = [], isLoading: loadTrainerFoods } = useGetTrainerFoods();
-    const isLoading = loadAppFoods || loadTrainerFoods;
-    if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
-    if (filterValue === 'proFit-foods') filteredFoods = appFoods;
-    if (filterValue === 'private-foods') filteredFoods = trainerFoods;
-    if (filterValue === 'all') filteredFoods = [...appFoods, ...trainerFoods];
+    const { allFoods = [], count: countAllFoods, isLoading: loadAllFoods } = useGetAllFoods();
+    const { appFoods = [], count: countAppFoods, isLoading: loadAppFoods } = useGetAppFoods();
+    const { trainerFoods = [], count: countTrainerFoods, isLoading: loadTrainerFoods } = useGetTrainerFoods();
+    // const isLoading = loadAppFoods || loadTrainerFoods || loadAllFoods;
+    // if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    if (filterValue === 'all' && loadAllFoods) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    else if (filterValue === 'all') {
+        count = countAllFoods
+        filteredFoods = allFoods
+    }
+
+    if (filterValue === 'proFit-foods' && loadAppFoods) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    else if (filterValue === 'proFit-foods') {
+        count = countAppFoods
+        filteredFoods = appFoods
+    }
+   
+    if (filterValue === 'private-foods' && loadTrainerFoods) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    else if (filterValue === 'private-foods') {
+        count = countTrainerFoods
+        filteredFoods = trainerFoods
+    }
+
     return (
         <div>
             <NutritionOperations
@@ -48,7 +65,7 @@ function NutritionFoods({ section = "food", onCloseModal }) {
                     </Modal.Window>
                 </Modal>
             </NutritionOperations>
-            <NutritionTable foods={filteredFoods} section={section} onCloseModal={onCloseModal} />
+            <NutritionTable foods={filteredFoods} count={count} section={section} onCloseModal={onCloseModal} />
         </div>
     )
 }

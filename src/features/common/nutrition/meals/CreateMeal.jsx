@@ -11,18 +11,49 @@ import { HiPlusSm } from "react-icons/hi";
 import MealFood from "./MealFood";
 import { useMealProvider } from "../../../../context/MealProvider";
 import { useCreateMeal } from "./useCreateMeal";
+import SpinnerMini from "../../../../ui/SpinnerMini";
+import { useUpdateMeal } from "./useUpdateMeal";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUser } from "../../../../context/UserProvider";
+import NutritionAppFood from "../Admin/ProFitFoods/NutritionAppFood";
 
-function CreateMeal() {
+function CreateMeal({ mealToUpdate = {} }) {
+    const { _id } = mealToUpdate
+    const isExist = Boolean(_id)
+    const navigate = useNavigate()
+    const { userRole } = useCurrentUser()
+    const { createMeal, isCreating } = useCreateMeal()
+    const { updateMeal, isUpdating } = useUpdateMeal()
+    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
+        defaultValues: isExist ? mealToUpdate : {},
+    })
     const {
         foods,
+        dispatch,
         totalMacros,
     } = useMealProvider()
-    const { createMeal, isCreating } = useCreateMeal()
-    const { handleSubmit, formState: { errors }, register, watch } = useForm()
+    const isLoading = isCreating || isUpdating;
     function onSubmit(data) {
         if (!data || !foods.length) return
-        console.log({ ...data, ingredients: foods, mealmacros: totalMacros })
-        // createMeal()
+        const mealData = { ...data, ingredients: foods, mealmacros: totalMacros };
+        if (isExist) {
+            updateMeal({ _id, mealData }, {
+                onSuccess: () => {
+                    reset()
+                    dispatch({ type: "food/start" })
+                    navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
+                },
+            })
+        }
+        else {
+            createMeal(mealData, {
+                onSuccess: () => {
+                    reset()
+                    dispatch({ type: "food/start" })
+                    navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
+                },
+            })
+        }
     }
     return (
         <>
@@ -118,7 +149,7 @@ function CreateMeal() {
                                 foods.length > 0 && foods.map((food) =>
                                     <MealFood
                                         food={food}
-                                        key={food._id}
+                                        key={isExist ? food.food._id ? food.food._id : food.food : food.food}
                                     />
                                 )
                             }
@@ -127,13 +158,13 @@ function CreateMeal() {
                                     <Modal.Open opens={`choose-meal-recipes`}>
                                         <Button customeStyle="w-full">
                                             <p className="capitalize flex justify-center items-center gap-1">
-                                                <span>add meal food</span>
+                                                <span>add meal recipe</span>
                                                 <span className="text-lg"><HiPlusSm /></span>
                                             </p>
                                         </Button>
                                     </Modal.Open>
                                     <Modal.Window opens={`choose-meal-recipes`}>
-                                        <NutritionFoods section="meal" />
+                                        {userRole === "admin" ? <NutritionAppFood section="meal" /> : <NutritionFoods section="meal" />}
                                     </Modal.Window>
                                 </Modal>
                             </div>
@@ -143,10 +174,13 @@ function CreateMeal() {
                 <div className="flex items-center gap-2">
                     <Button onClick={handleSubmit(onSubmit)}>
                         <p className="capitalize">
-                            save new meal
+                            {isLoading ? <SpinnerMini /> : isExist ? "update meal" : "save new meal"}
                         </p>
                     </Button>
-                    <Button type="secondary">
+                    <Button onClick={() => {
+                        dispatch({ type: "food/start" })
+                        navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
+                    }} type="secondary">
                         <p className="capitalize">
                             cancel
                         </p>

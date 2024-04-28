@@ -32,6 +32,7 @@ import checkTokenValidity from "./utils/checkTokenValidity";
 import { useEffect } from "react";
 import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
 import Meals from './pagesCommon/Meals';
+import Diets from './pagesTrainer/Diets';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,15 +43,16 @@ const queryClient = new QueryClient({
 })
 
 function App() {
-  const { setUserToken, setUserRole } = useCurrentUser();
+  const { setUserId, setUserToken, setUserRole } = useCurrentUser();
   const token = localStorage.getItem("userToken"); // Retrieve the token from local storage
   const isValid = token ? checkTokenValidity(token) : "";
   useEffect(function () {
     if (isValid && token) {
       setUserToken(token)
-      setUserRole(isValid.payload.role)
+      setUserId(isValid?.payload?.id);
+      setUserRole(isValid?.payload?.role)
     };
-  }, [setUserToken, setUserRole, token, isValid])
+  }, [setUserToken, setUserRole, setUserId, token, isValid])
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -70,6 +72,7 @@ function App() {
             <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
             <Route path="nutrition" element={<NutritionAdmin />} />
             <Route path="nutrition/meals" element={<Meals />} />
+            <Route path="nutrition/meal/:id" element={<Meals />} />
             <Route path="workout" element={<Workout />} />
             <Route path="system-users" element={<Users />} />
             <Route path="account" element={<Account />} />
@@ -89,6 +92,9 @@ function App() {
             <Route path="messages" element={<Messages />} />
             <Route path="nutrition" element={<NutritionTrainer />} />
             <Route path="nutrition/meals" element={<Meals />} />
+            <Route path="nutrition/meal/:id" element={<Meals />} />
+            <Route path="nutrition/diets" element={<Diets />} />
+            <Route path="nutrition/diet/:id" element={<Diets />} />
             <Route path="workout" element={<WorkoutTrainer />} />
             <Route path="packages" element={<Packages />} />
             <Route path="transcations" element={<Transcations />} />

@@ -9,7 +9,7 @@ function TrainerReviewProfile() {
     return (
         <>
             <PendingTrainerInfoBar />
-            <CompoundTabs defaultTab="PersonalInformation">
+            <CompoundTabs tabsFeild="trainerProfile" defaultTab="PersonalInformation">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="PersonalInformation">personal information</CompoundTabs.Open>
                     <CompoundTabs.Open opens="professional-credentials">professional credentials</CompoundTabs.Open>
