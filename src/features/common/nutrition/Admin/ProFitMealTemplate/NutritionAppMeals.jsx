@@ -9,7 +9,7 @@ import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 
 function NutritionAppMeals() {
     const navigate = useNavigate()
-    const { appMeals = [], isLoading } = useGetAppMeals();
+    const { appMeals = [], count, isLoading } = useGetAppMeals();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
         <>
@@ -24,7 +24,7 @@ function NutritionAppMeals() {
                     </p>
                 </Button>
             </NutritionOperations>
-            <NutritionMealsTable meals={appMeals} />
+            <NutritionMealsTable meals={appMeals} count={count}/>
         </>
     )
 }

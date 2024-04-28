@@ -1,8 +1,8 @@
-import Pagination from "../../../../ui/Pagination"
 import Table from "../../../../ui/Table"
+import Pagination from "../../../../ui/Pagination"
 import NutritionMealsTableRow from "./NutritionMealsTableRow"
 
-function NutritionMealsTable({ meals, count, onCloseModal }) {
+function NutritionMealsTable({ meals, count }) {
     return (
         <Table>
             <Table.Header>
@@ -13,7 +13,7 @@ function NutritionMealsTable({ meals, count, onCloseModal }) {
                     <th className="lg:w-[10%] w-[10%] pr-6 py-2 text-right">Actions</th>
                 </tr>
             </Table.Header>
-            <Table.Body data={meals} render={(meal) => <NutritionMealsTableRow meal={meal} key={meal._id} onCloseModal={onCloseModal} />} />
+            <Table.Body data={meals} render={(meal) => <NutritionMealsTableRow meal={meal} key={meal._id} />} />
             <Table.Footer>
                 <Pagination count={count} />
             </Table.Footer>

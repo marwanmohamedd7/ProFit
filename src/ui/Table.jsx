@@ -6,7 +6,7 @@ const TableContext = createContext();
 function Table({ children }) {
   return (
     <TableContext.Provider value={null}>
-      <div className="overflow-x-auto rounded-md">
+      <div className="overflow-x-auto rounded-md bg-red-500">
         <table className="min-w-full text-center bg-gray-50">
           {children}
         </table>

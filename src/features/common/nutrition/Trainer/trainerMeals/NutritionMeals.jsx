@@ -1,15 +1,15 @@
 import { HiPlusSm } from "react-icons/hi"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useGetAllMeals } from "./useGetAllMeals"
+import { useGetTrainerMeals } from "./useGetTrainerMeals"
 import { useGetAppMeals } from "../../meals/useGetAppMeals"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import Button from "../../../../../ui/Button"
 import Spinner from "../../../../../ui/Spinner"
 import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
-import { useGetTrainerMeals } from "./useGetTrainerMeals"
-import { useGetAllMeals } from "./useGetAllMeals"
 
-function NutritionMeals({ onCloseModal }) {
+function NutritionMeals() {
     let filteredMeals, count;
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
@@ -57,7 +57,7 @@ function NutritionMeals({ onCloseModal }) {
                     </p>
                 </Button>
             </NutritionOperations>
-            <NutritionMealsTable meals={filteredMeals} count={count} onCloseModal={onCloseModal} />
+            <NutritionMealsTable meals={filteredMeals} count={count} />
         </>
     )
 }
