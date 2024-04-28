@@ -6,7 +6,7 @@ import Button from "./Button";
 import FilterTabs from "./FilterTabs";
 
 function FilterForm({ children, filterTabs = {} }) {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return !isOpen ? (
         <Button onClick={() => setIsOpen(true)}>
             <span><CiFilter /></span>
