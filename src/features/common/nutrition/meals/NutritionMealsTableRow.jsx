@@ -87,7 +87,7 @@ function NutritionMealsTableRow({ meal }) {
                         </div>
                         :
                         meal?.admin ?
-                            <div className='flex items-center justify-center ml-6 gap-1'>
+                            <div className='flex items-center justify-end mr-8 gap-1'>
                                 <span
                                     href="#"
                                     className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
