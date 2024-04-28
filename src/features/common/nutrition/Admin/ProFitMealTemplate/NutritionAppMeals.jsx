@@ -1,11 +1,11 @@
 import { HiPlusSm } from "react-icons/hi"
 import { useNavigate } from "react-router-dom"
-import NutritionOperations from "../../NutritionOperations"
-import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
-import NutritionMealsTable from "../../meals/NutritionMealsTable"
+import { useGetAppMeals } from "../../meals/useGetAppMeals"
 import Button from "../../../../../ui/Button"
 import Spinner from "../../../../../ui/Spinner"
-import { useGetAppMeals } from "../../meals/useGetAppMeals"
+import NutritionOperations from "../../NutritionOperations"
+import NutritionMealsTable from "../../meals/NutritionMealsTable"
+import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 
 function NutritionAppMeals() {
     const navigate = useNavigate()

@@ -1,12 +1,12 @@
 import { HiPlusSm } from "react-icons/hi";
 import { useGetAppFoods } from "../../foods/useGetAppFoods";
-import Spinner from "../../../../../ui/Spinner";
+import Modal from "../../../../../ui/Modal";
+import Button from "../../../../../ui/Button";
 import CreateFood from "../../foods/CreateFood";
+import Spinner from "../../../../../ui/Spinner";
 import NutritionTable from "../../foods/NutritionTable";
 import NutritionOperations from "../../NutritionOperations";
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
-import Modal from "../../../../../ui/Modal";
-import Button from "../../../../../ui/Button";
 
 function NutritionAppFood({ section = {}, onCloseModal }) {
     const { appFoods = [], count, isLoading } = useGetAppFoods();
