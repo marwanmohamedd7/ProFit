@@ -3,7 +3,7 @@ import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 import DayTab from "../../../../../ui/DayTab"
 
 function CreateDietTemplate() {
-    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm()
+    const { formState: { errors }, register, watch } = useForm()
     return (
         <div className="flex flex-col gap-4 divide-y">
             <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-6">
