@@ -1,12 +1,12 @@
-import BreadCrumbs from "../ui/BreadCrumbs"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { HiMiniChevronLeft } from "react-icons/hi2"
-import CreateMeal from "../features/common/nutrition/meals/CreateMeal"
+import { useCurrentUser } from "../context/UserProvider"
+import { useMealProvider } from "../context/MealProvider"
 import { useGetSpecificMeal } from "../features/common/nutrition/meals/useGetSpecificMeal"
 import Spinner from "../ui/Spinner"
-import { useEffect } from "react"
-import { useMealProvider } from "../context/MealProvider"
-import { useCurrentUser } from "../context/UserProvider"
+import BreadCrumbs from "../ui/BreadCrumbs"
+import CreateMeal from "../features/common/nutrition/meals/CreateMeal"
 
 function Meals() {
     const navigate = useNavigate()
@@ -16,7 +16,7 @@ function Meals() {
 
     useEffect(function () {
         if (isLoading) return; // Do nothing while loading
-        if (!getMeal?.ingredients) dispatch({ type: "meal/start" });
+        if (!getMeal?.ingredients) dispatch({ type: "meal/startSession" });
         else dispatch({ type: "meal/updateMeal", payload: getMeal?.ingredients });
     }, [getMeal?.ingredients, isLoading, dispatch])
 
@@ -29,7 +29,7 @@ function Meals() {
                     <div className="flex justify-between items-center mb-4">
                         <p className="flex items-center justify-center gap-4">
                             <button onClick={() => {
-                                dispatch({ type: "meal/start" })
+                                dispatch({ type: `meal/${getMeal?._id ? "endSession" : "startSession"}` })
                                 navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
                             }} className="text-blue-600 bg-blue-200 cursor-pointer p-0.5 rounded-md font-semibold text-lg"><HiMiniChevronLeft /></button>
                             <span className="font-bold text-blue-900 text-2xl capitalize">{getMeal?._id ? "update meal" : "Create New Meal"}</span>

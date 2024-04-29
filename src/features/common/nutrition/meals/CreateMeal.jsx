@@ -12,17 +12,24 @@ import { useCurrentUser } from "../../../../context/UserProvider";
 import MealMacros from "./MealMacros";
 import MealDetailsForm from "./MealDetailsForm";
 import MealIngredients from "./MealIngredients";
+import { useEffect } from "react";
 
 function CreateMeal({ mealToUpdate = {} }) {
+    let storedData
     const { _id } = mealToUpdate
     const isExist = Boolean(_id)
     const navigate = useNavigate()
     const { userRole } = useCurrentUser()
     const { createMeal, isCreating } = useCreateMeal()
     const { updateMeal, isUpdating } = useUpdateMeal()
-    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
-        defaultValues: isExist ? mealToUpdate : {},
+    if (isExist) storedData = mealToUpdate
+    else localStorage.getItem("trainerMeal") ? storedData = JSON.parse(localStorage.getItem("trainerMeal")) : storedData = {}
+    const { handleSubmit, formState: { errors }, register, watch, getValues, reset } = useForm({
+        defaultValues: storedData,
     })
+    const mealName = getValues().mealname
+    const mealType = getValues().mealtype
+    const mealNote = getValues().mealnote
     const {
         foods,
         dispatch,
@@ -36,7 +43,7 @@ function CreateMeal({ mealToUpdate = {} }) {
             updateMeal({ _id, mealData }, {
                 onSuccess: () => {
                     reset()
-                    dispatch({ type: "meal/start" })
+                    dispatch({ type: "meal/endSession" })
                     navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
                 },
             })
@@ -45,12 +52,18 @@ function CreateMeal({ mealToUpdate = {} }) {
             createMeal(mealData, {
                 onSuccess: () => {
                     reset()
-                    dispatch({ type: "meal/start" })
+                    dispatch({ type: "meal/endSession" })
                     navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
                 },
             })
         }
     }
+    useEffect(function () {
+        dispatch({
+            type: 'meal/mealInfo',
+            payload: { mealName: mealName ? mealName : "", mealType: mealType ? mealType : "", mealNote: mealNote ? mealNote : "", }
+        })
+    }, [mealName, mealType, mealNote, dispatch])
     return (
         <>
             <div className="space-y-4">
@@ -84,7 +97,7 @@ function CreateMeal({ mealToUpdate = {} }) {
                         </p>
                     </Button>
                     <Button onClick={() => {
-                        dispatch({ type: "meal/start" })
+                        dispatch({ type: "meal/endSession" })
                         navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
                     }} type="secondary">
                         <p className="capitalize">

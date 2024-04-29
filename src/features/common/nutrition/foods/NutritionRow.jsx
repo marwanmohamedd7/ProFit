@@ -27,8 +27,8 @@ function NutritionRow({ food, section, onCloseModal }) {
     function handleAddFood() {
         // 1- check if there's already a food with the same id
         let isExist;
-        if (!mealId) isExist = foods.find(item => item.food === food._id)
-        else isExist = foods.find(item => (item.food._id === food._id) || (item.food === food._id))
+        if (!mealId) isExist = foods.find(food => food.food === food._id)
+        else isExist = foods.find(food => (food.food._id === food._id) || (food.food === food._id))
 
         if (isExist) {
             toast.error("This food has been added before.")

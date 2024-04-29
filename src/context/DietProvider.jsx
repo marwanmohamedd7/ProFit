@@ -4,16 +4,29 @@ const intialState = {
     days: [
         {
             day: 1,
-            foods: [],
-            mealMacros: {
+            meals: [
+                {
+                    mealId: "1",
+                    mealName: 'a7a',
+                    mealType: 'breakfast',
+                    mealNote: "lazem takoll",
+                    foods: [],
+                    mealMacros: {
+                        fats: 0,
+                        calories: 0,
+                        proteins: 0,
+                        carbs: 0,
+                    },
+                }
+            ],
+            dietMacros: {
                 fats: 0,
-                calories: 0,
-                proteins: 0,
                 carbs: 0,
-            },
+                proteins: 0,
+                calories: 0,
+            }
         },
     ],
-    isLoading: false,
     error: "",
 }
 

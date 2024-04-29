@@ -46,7 +46,7 @@ function MealIngredients({ foods = [], isExist = false }) {
                         <MealFood
                             food={food}
                             isExist={isExist}
-                            key={isExist ? food?.food?._id ? food?.food?._id : food.food : food.food}
+                            key={isExist ? food.food?._id ? food.food?._id : food.food : food.food}
                         />
                     )
                 }

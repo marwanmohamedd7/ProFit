@@ -7,8 +7,9 @@ import Modal from "../../../../ui/Modal";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 
 function MealFood({ food, isExist = false }) {
-    // const { _id: id, macros, foodname, foodImage, per } = food;
-    const id = isExist ? food?.food?._id ? food?.food?._id : food.food : food.food;
+    // 1- food.food: the default id that comes with the food object when we add a new one
+    // 2- food.food._id: the food object id that comes from already existing meal in database (when updating)
+    const id = isExist ? food.food?._id ? food.food?._id : food.food : food.food;
     const { macros, foodname, foodImage, amount: per } = food;
 
     const { dispatch } = useMealProvider();

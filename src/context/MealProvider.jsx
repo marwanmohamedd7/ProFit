@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useReducer } from "react"
 
 const intialState = {
+    mealname: "",
+    mealtype: "",
+    mealnote: "",
     foods: [],
     mealMacros: {
         fats: 0,
@@ -8,11 +11,11 @@ const intialState = {
         proteins: 0,
         carbs: 0,
     },
-    isLoading: false,
     error: "",
 }
 
 function reducer(state, action) {
+    const storedData = localStorage.getItem("trainerMeal")
     function updateFoodMacros() {
         const foods = state.foods.map(food => {
             if (food.food === action.payload.id || food.food._id === action.payload.id) {
@@ -23,21 +26,35 @@ function reducer(state, action) {
         })
         return foods
     }
+    function saveSessionData(data) {
+        localStorage.setItem("trainerMeal", JSON.stringify({ ...JSON.parse(storedData), ...data }))
+        return data
+    }
+    console.log({ ...JSON.parse(storedData) })
     switch (action.type) {
-        case 'meal/start':
-            return { ...state, isLoading: false, foods: [], error: "" }
+        case 'meal/startSession':
+            return storedData ? { ...state, ...JSON.parse(storedData) } : saveSessionData({ ...intialState })
         case 'meal/calcMealMacros':
-            return { ...state, isLoading: false, mealMacros: action.payload }
+            saveSessionData({ mealMacros: action.payload })
+            return { ...state, mealMacros: action.payload }
         case 'meal/updateFoodMacros':
-            return { ...state, isLoading: false, foods: updateFoodMacros() }
+            return { ...state, foods: updateFoodMacros() }
+        case 'meal/mealInfo':
+            saveSessionData({ mealname: action.payload.mealName, mealtype: action.payload.mealType, mealnote: action.payload.mealNote, })
+            return { ...state, mealname: action.payload.mealName, mealtype: action.payload.mealType, mealnote: action.payload.mealNote, }
         case 'meal/addFood':
-            return { ...state, isLoading: false, foods: [...state.foods, action.payload] }
+            saveSessionData({ foods: [...state.foods, action.payload] })
+            return { ...state, foods: [...state.foods, action.payload] }
         case 'meal/updateMeal':
-            return { ...state, isLoading: false, foods: action.payload }
+            saveSessionData({ foods: action.payload })
+            return { ...state, foods: action.payload }
         case 'meal/deletedFood':
-            return { ...state, isLoading: false, foods: state.foods.filter(food => food.food._id ? food.food._id !== action.payload : food.food !== action.payload) }
+            return { ...state, foods: state.foods.filter(food => food.food._id ? food.food._id !== action.payload : food.food !== action.payload) }
+        case 'meal/endSession':
+            localStorage.removeItem("trainerMeal")
+            return { ...intialState }
         case 'rejected':
-            return { ...state, isLoading: false, error: action.payload }
+            return { ...state, error: action.payload }
         default:
             throw new Error('Invalid Action Type');
     }
@@ -46,7 +63,7 @@ function reducer(state, action) {
 const MealContext = createContext()
 
 function MealProvider({ children }) {
-    const [{ foods, mealMacros, isLoading, error }, dispatch] = useReducer(reducer, intialState);
+    const [{ foods, mealMacros, error }, dispatch] = useReducer(reducer, intialState);
 
     useEffect(function () {
         function calcMealMacros() {
@@ -63,7 +80,6 @@ function MealProvider({ children }) {
         <MealContext.Provider value={{
             foods,
             mealMacros,
-            isLoading,
             error,
             dispatch
         }}>
