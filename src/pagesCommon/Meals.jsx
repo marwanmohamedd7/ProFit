@@ -6,7 +6,6 @@ import { useGetSpecificMeal } from "../features/common/nutrition/meals/useGetSpe
 import Spinner from "../ui/Spinner"
 import { useEffect } from "react"
 import { useMealProvider } from "../context/MealProvider"
-import { useMoveBack } from "../hooks/useMoveBack"
 import { useCurrentUser } from "../context/UserProvider"
 
 function Meals() {
@@ -17,8 +16,8 @@ function Meals() {
 
     useEffect(function () {
         if (isLoading) return; // Do nothing while loading
-        if (!getMeal?.ingredients) dispatch({ type: "food/start" });
-        else dispatch({ type: "food/update", payload: getMeal?.ingredients });
+        if (!getMeal?.ingredients) dispatch({ type: "meal/start" });
+        else dispatch({ type: "meal/updateMeal", payload: getMeal?.ingredients });
     }, [getMeal?.ingredients, isLoading, dispatch])
 
     if (isLoading) return <div className="flex items-center justify-center h-[80dvh]"><Spinner /></div>
@@ -30,7 +29,7 @@ function Meals() {
                     <div className="flex justify-between items-center mb-4">
                         <p className="flex items-center justify-center gap-4">
                             <button onClick={() => {
-                                dispatch({ type: "food/start" })
+                                dispatch({ type: "meal/start" })
                                 navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
                             }} className="text-blue-600 bg-blue-200 cursor-pointer p-0.5 rounded-md font-semibold text-lg"><HiMiniChevronLeft /></button>
                             <span className="font-bold text-blue-900 text-2xl capitalize">{getMeal?._id ? "update meal" : "Create New Meal"}</span>

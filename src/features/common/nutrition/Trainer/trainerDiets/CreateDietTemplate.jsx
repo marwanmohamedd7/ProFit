@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import DayTab from "../../../../../ui/DayTab"
+import DaysTabsItems from "../../../../../ui/DaysTabsItems"
+import DietMacros from "./DietMacros"
+import DietMeals from "./DietMeals"
 
 function CreateDietTemplate() {
     const { formState: { errors }, register, watch } = useForm()
@@ -37,8 +39,14 @@ function CreateDietTemplate() {
                     />
                 </div>
             </div>
+
             <div className="py-4">
-                <DayTab />
+                <DaysTabsItems>
+                    <div className="px-2 py-4 space-y-4">
+                        <DietMacros />
+                        <DietMeals />
+                    </div>
+                </DaysTabsItems>
             </div>
         </div>
     )

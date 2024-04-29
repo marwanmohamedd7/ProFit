@@ -36,8 +36,8 @@ function NutritionRow({ food, section, onCloseModal }) {
         }
 
         // 2- add the new food to the meals if it doesn't exist
-        // dispatch({ type: "food/added", payload: food })
-        dispatch({ type: "food/added", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+        // dispatch({ type: "meal/addFood", payload: food })
+        dispatch({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
         toast.success("Added a new food item!")
         onCloseModal()
     }

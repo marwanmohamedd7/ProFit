@@ -1,15 +1,16 @@
-import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { useMealProvider } from "../../../../context/MealProvider";
-import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
-import Modal from "../../../../ui/Modal";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
+import { useMealProvider } from "../../../../context/MealProvider";
+import toast from "react-hot-toast";
+import Modal from "../../../../ui/Modal";
+import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 
-function MealFood({ food }) {
+function MealFood({ food, isExist = false }) {
     // const { _id: id, macros, foodname, foodImage, per } = food;
-    const { food: id, macros, foodname, foodImage, amount: per } = food;
-    
+    const id = isExist ? food?.food?._id ? food?.food?._id : food.food : food.food;
+    const { macros, foodname, foodImage, amount: per } = food;
+
     const { dispatch } = useMealProvider();
     const [amount, setAmount] = useState(Number(per));
     const [fats, setFats] = useState(Number(macros.fats));
@@ -35,12 +36,12 @@ function MealFood({ food }) {
         }
         if (Number(e.target.value) === per) return
         // console.log({ macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) })
-        dispatch({ type: "food/updateMacros", payload: { id, macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) } })
+        dispatch({ type: "meal/updateFoodMacros", payload: { id, macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) } })
         toast.success("Food information updated!")
     }
 
     function handleDeleteFood() {
-        dispatch({ type: "food/deleted", payload: id })
+        dispatch({ type: "meal/deletedFood", payload: id })
         toast.success("Food has been removed!")
     }
 

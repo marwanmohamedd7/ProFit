@@ -27,7 +27,7 @@ function Pagination({ count }) {
         </td>
         <td colSpan="100%" className="text-xs px-6 py-2 font-semibold">
           <div className='flex justify-end cursor-pointer items-center'>
-            <button disabled={currentPage === 1} onClick={handlePrevPage} className='cursor-pointer border-2 px-3 py-2 rounded-l-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300'>
+            <button disabled={currentPage === 1} onClick={handlePrevPage} className={`cursor-pointer border-2 px-3 py-2 rounded-l-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300 disabled:hover:text-gray-600 disabled:hover:bg-gray-50 disabled:hover:border-gray-200 disabled:hover:cursor-not-allowed`}>
               <span>&lt;</span>
             </button>
             <p className='flex justify-center items-center gap-1 px-3 py-2 border-t-2 border-b-2'>
@@ -35,7 +35,7 @@ function Pagination({ count }) {
               <span>{`-`}</span>
               <span>{`${pageCount}`}</span>
             </p>
-            <button disabled={currentPage === pageCount} onClick={handleNextPage} className='cursor-pointer border-2 px-3 py-2 rounded-r-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300'>
+            <button disabled={currentPage === pageCount} onClick={handleNextPage} className={`cursor-pointer border-2 px-3 py-2 rounded-r-md font-bold hover:text-gray-50 hover:bg-blue-700 hover:border-blue-700 transition-all duration-300 disabled:hover:text-gray-600 disabled:hover:bg-gray-50 disabled:hover:border-gray-200 disabled:hover:cursor-not-allowed`}>
               <span>&gt;</span>
             </button>
           </div>

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react"
 
 const intialState = {
     foods: [],
-    totalMacros: {
+    mealMacros: {
         fats: 0,
         calories: 0,
         proteins: 0,
@@ -15,7 +15,7 @@ const intialState = {
 function reducer(state, action) {
     function updateFoodMacros() {
         const foods = state.foods.map(food => {
-            if (food.food === action.payload.id) {
+            if (food.food === action.payload.id || food.food._id === action.payload.id) {
                 food.amount = action.payload.per
                 food.macros = action.payload.macros
             }
@@ -24,18 +24,18 @@ function reducer(state, action) {
         return foods
     }
     switch (action.type) {
-        case 'food/start':
+        case 'meal/start':
             return { ...state, isLoading: false, foods: [], error: "" }
-        case 'food/calcMacros':
-            return { ...state, isLoading: false, totalMacros: action.payload }
-        case 'food/updateMacros':
+        case 'meal/calcMealMacros':
+            return { ...state, isLoading: false, mealMacros: action.payload }
+        case 'meal/updateFoodMacros':
             return { ...state, isLoading: false, foods: updateFoodMacros() }
-        case 'food/added':
+        case 'meal/addFood':
             return { ...state, isLoading: false, foods: [...state.foods, action.payload] }
-        case 'food/update':
+        case 'meal/updateMeal':
             return { ...state, isLoading: false, foods: action.payload }
-        case 'food/deleted':
-            return { ...state, isLoading: false, foods: state.foods.filter(food => food.food !== action.payload) }
+        case 'meal/deletedFood':
+            return { ...state, isLoading: false, foods: state.foods.filter(food => food.food._id ? food.food._id !== action.payload : food.food !== action.payload) }
         case 'rejected':
             return { ...state, isLoading: false, error: action.payload }
         default:
@@ -46,24 +46,23 @@ function reducer(state, action) {
 const MealContext = createContext()
 
 function MealProvider({ children }) {
-    // const [state, dispatch] = useReducer(reducer, intialState);
-    const [{ foods, totalMacros, isLoading, error }, dispatch] = useReducer(reducer, intialState);
+    const [{ foods, mealMacros, isLoading, error }, dispatch] = useReducer(reducer, intialState);
 
     useEffect(function () {
-        function calctotalMacros() {
+        function calcMealMacros() {
             const calcFats = foods.reduce((acc, cur) => acc + cur.macros.fats, 0) ?? 0;
             const calcCarbs = foods.reduce((acc, cur) => acc + cur.macros.carbs, 0) ?? 0;
             const calcProteins = foods.reduce((acc, cur) => acc + cur.macros.proteins, 0) ?? 0;
             const calcCalories = foods.reduce((acc, cur) => acc + cur.macros.calories, 0) ?? 0;
             return { fats: calcFats, carbs: calcCarbs, proteins: calcProteins, calories: calcCalories }
         }
-        dispatch({ type: "food/calcMacros", payload: calctotalMacros() })
+        dispatch({ type: "meal/calcMealMacros", payload: calcMealMacros() })
     }, [foods])
 
     return (
         <MealContext.Provider value={{
             foods,
-            totalMacros,
+            mealMacros,
             isLoading,
             error,
             dispatch
