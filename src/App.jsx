@@ -72,7 +72,7 @@ function App() {
             <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
             <Route path="nutrition" element={<NutritionAdmin />} />
             <Route path="nutrition/meals" element={<Meals />} />
-            <Route path="nutrition/meal/:id" element={<Meals />} />
+            <Route path="nutrition/meals/:id" element={<Meals />} />
             <Route path="workout" element={<Workout />} />
             <Route path="system-users" element={<Users />} />
             <Route path="account" element={<Account />} />
@@ -92,9 +92,9 @@ function App() {
             <Route path="messages" element={<Messages />} />
             <Route path="nutrition" element={<NutritionTrainer />} />
             <Route path="nutrition/meals" element={<Meals />} />
-            <Route path="nutrition/meal/:id" element={<Meals />} />
+            <Route path="nutrition/meals/:id" element={<Meals />} />
             <Route path="nutrition/diets" element={<Diets />} />
-            <Route path="nutrition/diet/:id" element={<Diets />} />
+            <Route path="nutrition/diets/:id" element={<Diets />} />
             <Route path="workout" element={<WorkoutTrainer />} />
             <Route path="packages" element={<Packages />} />
             <Route path="transcations" element={<Transcations />} />

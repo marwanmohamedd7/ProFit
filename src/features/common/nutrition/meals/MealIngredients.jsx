@@ -6,37 +6,7 @@ import Button from "../../../../ui/Button"
 import NutritionFoods from "../Trainer/trainerFoods/NutritionFoods"
 import NutritionAppFood from "../Admin/ProFitFoods/NutritionAppFood"
 
-// let foods = [
-//     {
-//         "macros": {
-//             "calories": 1400,
-//             "proteins": 200,
-//             "fats": 40,
-//             "carbs": 60
-//         },
-//         "foodImage": "https://res.cloudinary.com/dbpvx37nc/image/upload/v1713694041/Admin/MAOMEN%20RAAFAT/FoodImages/foodImage-1713694038042-a6a8f6d3-882d-40f7-96c7-01e90e27a519.jpg",
-//         "foodname": "chicken",
-//         "servingUnit": "Gram",
-//         "amount": 150,
-//         "food": "6624e559b6538092744ebbe1"
-//     },
-//     {
-//         "macros": {
-//             "calories": 130,
-//             "proteins": 25,
-//             "fats": 2,
-//             "carbs": 3
-//         },
-//         "foodImage": "https://res.cloudinary.com/dbpvx37nc/image/upload/v1713766951/Trainer/marwan%20youssef/FoodImages/foodImage-1713766950765-fb65aac5-1eab-4eda-998d-091650efc99f.png",
-//         "foodname": "whey protein",
-//         "servingUnit": "Scoop",
-//         "amount": 1,
-//         "food": "66260227eceaff0d305e91a4"
-//     }
-// ]
-
-// function MealIngredients({ foods = [], isExist = false }) {
-function MealIngredients({ foods = [], isExist = false }) {
+function MealIngredients({ foods = [], isExist = false, section = "food" }) {
     const { userRole } = useCurrentUser()
     return (
         <div className="bg-gray-100 border-2 border-dotted border-blue-700 p-4 rounded-md w-full">
@@ -46,6 +16,7 @@ function MealIngredients({ foods = [], isExist = false }) {
                         <MealFood
                             food={food}
                             isExist={isExist}
+                            section={section}
                             key={isExist ? food.food?._id ? food.food?._id : food.food : food.food}
                         />
                     )
@@ -61,7 +32,7 @@ function MealIngredients({ foods = [], isExist = false }) {
                             </Button>
                         </Modal.Open>
                         <Modal.Window opens={`choose-meal-recipes`}>
-                            {userRole === "admin" ? <NutritionAppFood section="meal" /> : <NutritionFoods section="meal" />}
+                            {userRole === "admin" ? <NutritionAppFood section={section} /> : <NutritionFoods section={section} />}
                         </Modal.Window>
                     </Modal>
                 </div>

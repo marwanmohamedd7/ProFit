@@ -1,8 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getAppFoods } from "../../../../services/apiFoods";
-import { useCurrentUser } from "../../../../context/UserProvider";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../../../utils/constants";
+import { getAppFoods } from "../../../../services/apiFoods";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCurrentUser } from "../../../../context/UserProvider";
 
 export function useGetAppFoods() {
   const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ export function useGetAppFoods() {
   });
 
   //PRE-FETCHING
-  const pageCount = Math.ceil(appFoods?.count / PAGE_SIZE);
+  const pageCount = Math.ceil(appFoods?.totalDocuments / PAGE_SIZE);
   if (page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: ["appFoods", userId, page + 1], // unique string to identify the request

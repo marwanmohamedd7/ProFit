@@ -5,19 +5,21 @@ import { useMealProvider } from "../../../../context/MealProvider";
 import toast from "react-hot-toast";
 import Modal from "../../../../ui/Modal";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
+import { useDietProvider } from "../../../../context/DietProvider";
 
-function MealFood({ food, isExist = false }) {
+function MealFood({ food, section, isExist = false }) {
     // 1- food.food: the default id that comes with the food object when we add a new one
     // 2- food.food._id: the food object id that comes from already existing meal in database (when updating)
     const id = isExist ? food.food?._id ? food.food?._id : food.food : food.food;
     const { macros, foodname, foodImage, amount: per } = food;
 
-    const { dispatch } = useMealProvider();
+    const { dispatch: dispatchMeal } = useMealProvider();
+    const { dispatch: dispatchDiet } = useDietProvider();
     const [amount, setAmount] = useState(Number(per));
     const [fats, setFats] = useState(Number(macros.fats));
     const [carbs, setCarbs] = useState(Number(macros.carbs));
-    const [calories, setCalories] = useState(Number(macros.calories));
     const [proteins, setProteins] = useState(Number(macros.proteins));
+    const [calories, setCalories] = useState(Number(macros.calories));
 
     useEffect(function () {
         function calFoodMacros() {
@@ -36,13 +38,23 @@ function MealFood({ food, isExist = false }) {
             return
         }
         if (Number(e.target.value) === per) return
-        // console.log({ macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) })
-        dispatch({ type: "meal/updateFoodMacros", payload: { id, macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) } })
+        if (section === "meal") dispatchMeal({ type: "meal/updateFoodMacros", payload: { foodId: id, macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) } })
+        else {
+            dispatchDiet({ type: "diet/updateFoodMacros", payload: { day: section.day, mealId: section.mealId, foodId: id, macros: { fats: Number(fats), carbs: Number(carbs), proteins: Number(proteins), calories: Number(calories) }, per: Number(amount) } })
+            dispatchDiet({ type: "diet/calcMealMacros", payload: { day: section.day, mealId: section.mealId } })
+            dispatchDiet({ type: "diet/calcDayMacros", payload: section.day })
+        }
         toast.success("Food information updated!")
     }
 
     function handleDeleteFood() {
-        dispatch({ type: "meal/deletedFood", payload: id })
+        if (section === "meal") dispatchMeal({ type: "meal/deleteFood", payload: id })
+        else {
+            dispatchDiet({ type: "diet/deleteFood", payload: { day: section.day, mealId: section.mealId, foodId: id } })
+            dispatchDiet({ type: "diet/calcMealMacros", payload: { day: section.day, mealId: section.mealId } })
+            dispatchDiet({ type: "diet/calcDayMacros", payload: section.day })
+
+        }
         toast.success("Food has been removed!")
     }
 

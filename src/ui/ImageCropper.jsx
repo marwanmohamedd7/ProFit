@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
-import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop } from "react-image-crop";
 import Button from "./Button";
+import { useRef, useState } from "react";
 import setCanvasPreview from "../utils/setCanvasPreview";
+import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop } from "react-image-crop";
 
 function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
     const ASPECT_RATIO = 1;

@@ -16,7 +16,7 @@ export function useGetAppMeals() {
   });
 
   //PRE-FETCHING
-  const pageCount = Math.ceil(appMeals?.count / PAGE_SIZE);
+  const pageCount = Math.ceil(appMeals?.totalDocuments / PAGE_SIZE);
   if (page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: ["appMeals", userId, page + 1], // unique string to identify the request

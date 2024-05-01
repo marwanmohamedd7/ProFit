@@ -27,7 +27,7 @@ function MealDetailsForm({ register, watch, errors }) {
                 error={errors?.mealtype?.message}
                 register={{
                     ...register("mealtype", {
-                        required: "Select serving unit."
+                        required: "Select meal type."
                     })
                 }}
             />

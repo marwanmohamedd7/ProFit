@@ -15,24 +15,9 @@ export async function getAppMeals(token, page) {
   return data;
 }
 
-export async function getTrainerMeals(token, page) {
+export async function getTrainerMeals(token, page, QueryParams) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/TrainerMeals/?page=${page}&limit=${PAGE_SIZE}`,
-    {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  if (!response.ok) throw new Error(response.status);
-  const data = await response.json();
-  return data;
-}
-
-export async function getAllMeals(token, page) {
-  const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/AllMeals/?page=${page}&limit=${PAGE_SIZE}`,
+    `https://profit-qjbo.onrender.com/api/v1/Meal/AllMeals/?page=${page}&limit=${PAGE_SIZE}&${QueryParams}`,
     {
       method: "GET",
       headers: {

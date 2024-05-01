@@ -1,7 +1,7 @@
-import { MdOutlineEdit } from "react-icons/md"
 import Modal from "./Modal"
 import SpinnerMini from "./SpinnerMini"
 import ImageCropper from "./ImageCropper"
+import { MdOutlineEdit } from "react-icons/md"
 
 function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24 h-24", minDimension = 150, photoType, disabled = false, onCropComplete }) {
     return (
@@ -31,7 +31,7 @@ function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24
                         :
                         <>
                             <Modal.Open opens="upload image">
-                                <button disabled={disabled}
+                                <button disabled={disabled || isLoading}
                                     className="cursor-pointer absolute right-[-6%] top-[-6%] text-blue-50 p-1 rounded-full bg-blue-700"
                                 >
                                     <MdOutlineEdit />

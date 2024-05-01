@@ -11,11 +11,13 @@ import Modal from "../../../../ui/Modal";
 import Button from "../../../../ui/Button";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
 import { useParams } from "react-router-dom";
+import { useDietProvider } from "../../../../context/DietProvider";
 
 function NutritionRow({ food, section, onCloseModal }) {
     const { id: mealId } = useParams();
     const { userRole } = useCurrentUser();
-    const { dispatch, foods } = useMealProvider();
+    const { dispatch: dispatchDiet } = useDietProvider();
+    const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
     const { deleteFood, isDeleting } = useDeleteFood();
     const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food;
 
@@ -27,17 +29,24 @@ function NutritionRow({ food, section, onCloseModal }) {
     function handleAddFood() {
         // 1- check if there's already a food with the same id
         let isExist;
-        if (!mealId) isExist = foods.find(food => food.food === food._id)
-        else isExist = foods.find(food => (food.food._id === food._id) || (food.food === food._id))
-
-        if (isExist) {
-            toast.error("This food has been added before.")
-            return
-        }
 
         // 2- add the new food to the meals if it doesn't exist
-        // dispatch({ type: "meal/addFood", payload: food })
-        dispatch({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+        if (section === "meal") {
+            if (!mealId) isExist = mealFoods.find(food => food.food === food._id)
+            else isExist = mealFoods.find(food => (food.food._id === food._id) || (food.food === food._id))
+
+            if (isExist) {
+                toast.error("This food has been added before.")
+                return
+            }
+            dispatchMeal({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+        }
+        else {
+            dispatchDiet({ type: "diet/addFood", payload: { day: section.day, mealId: section.mealId, food: { macros, foodImage, foodname, servingUnit, amount, food: _id } } })
+            dispatchDiet({ type: 'diet/calcMealMacros', payload: { day: section.day, mealId: section.mealId } })
+            dispatchDiet({ type: "diet/calcDayMacros", payload: section.day })
+        }
+
         toast.success("Added a new food item!")
         onCloseModal()
     }

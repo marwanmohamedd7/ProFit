@@ -78,17 +78,17 @@ function CreateMeal({ mealToUpdate = {} }) {
                         meal macros
                     </div>
                     <MealMacros
-                        fats={mealMacros?.fats?.toFixed(2) ?? 1}
-                        carbs={mealMacros?.carbs?.toFixed(2) ?? 1}
-                        proteins={mealMacros?.proteins?.toFixed(2) ?? 1}
-                        calories={mealMacros?.calories?.toFixed(2) ?? 1}
+                        fats={mealMacros?.fats ?? 0}
+                        carbs={mealMacros?.carbs ?? 0}
+                        proteins={mealMacros?.proteins ?? 0}
+                        calories={mealMacros?.calories ?? 0}
                     />
                 </div>
                 <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-4">
                     <div className="text-blue-700 font-bold capitalize">
                         meal ingredients
                     </div>
-                    <MealIngredients foods={foods} isExist={isExist} />
+                    <MealIngredients foods={foods} isExist={isExist} section="meal"/>
                 </div>
                 <div className="flex items-center gap-2">
                     <Button onClick={handleSubmit(onSubmit)}>

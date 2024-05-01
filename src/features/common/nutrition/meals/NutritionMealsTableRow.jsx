@@ -97,7 +97,7 @@ function NutritionMealsTableRow({ meal }) {
                             </div>
                             :
                             <div className='flex items-center justify-end gap-1'>
-                                <Button onClick={() => navigate(`meal/${_id}`)} type="icon-update">
+                                <Button onClick={() => navigate(`meals/${_id}`)} type="icon-update">
                                     <HiPencil />
                                 </Button>
 

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react"
 
-const intialState = {
+const initialState = {
     mealname: "",
     mealtype: "",
     mealnote: "",
@@ -18,7 +18,7 @@ function reducer(state, action) {
     const storedData = localStorage.getItem("trainerMeal")
     function updateFoodMacros() {
         const foods = state.foods.map(food => {
-            if (food.food === action.payload.id || food.food._id === action.payload.id) {
+            if (food.food === action.payload.foodId || food.food._id === action.payload.foodId) {
                 food.amount = action.payload.per
                 food.macros = action.payload.macros
             }
@@ -30,10 +30,9 @@ function reducer(state, action) {
         localStorage.setItem("trainerMeal", JSON.stringify({ ...JSON.parse(storedData), ...data }))
         return data
     }
-    console.log({ ...JSON.parse(storedData) })
     switch (action.type) {
         case 'meal/startSession':
-            return storedData ? { ...state, ...JSON.parse(storedData) } : saveSessionData({ ...intialState })
+            return storedData ? { ...state, ...JSON.parse(storedData) } : saveSessionData({ ...initialState })
         case 'meal/calcMealMacros':
             saveSessionData({ mealMacros: action.payload })
             return { ...state, mealMacros: action.payload }
@@ -48,11 +47,11 @@ function reducer(state, action) {
         case 'meal/updateMeal':
             saveSessionData({ foods: action.payload })
             return { ...state, foods: action.payload }
-        case 'meal/deletedFood':
+        case 'meal/deleteFood':
             return { ...state, foods: state.foods.filter(food => food.food._id ? food.food._id !== action.payload : food.food !== action.payload) }
         case 'meal/endSession':
             localStorage.removeItem("trainerMeal")
-            return { ...intialState }
+            return { ...initialState }
         case 'rejected':
             return { ...state, error: action.payload }
         default:
@@ -63,7 +62,8 @@ function reducer(state, action) {
 const MealContext = createContext()
 
 function MealProvider({ children }) {
-    const [{ foods, mealMacros, error }, dispatch] = useReducer(reducer, intialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { foods } = state;
 
     useEffect(function () {
         function calcMealMacros() {
@@ -77,12 +77,7 @@ function MealProvider({ children }) {
     }, [foods])
 
     return (
-        <MealContext.Provider value={{
-            foods,
-            mealMacros,
-            error,
-            dispatch
-        }}>
+        <MealContext.Provider value={{ ...state, dispatch }}>
             {children}
         </MealContext.Provider>
     )

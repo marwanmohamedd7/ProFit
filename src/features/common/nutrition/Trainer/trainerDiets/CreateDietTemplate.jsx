@@ -1,11 +1,16 @@
-import { useForm } from "react-hook-form"
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
-import DaysTabsItems from "../../../../../ui/DaysTabsItems"
-import DietMacros from "./DietMacros"
+import { useSearchParams } from "react-router-dom"
+import { useDietProvider } from "../../../../../context/DietProvider"
 import DietMeals from "./DietMeals"
+import DietMacros from "./DietMacros"
+import DaysTabsItems from "../../../../../ui/DaysTabsItems"
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+// import InputDropdown from "../../../../../ui/InputDropdown"
 
-function CreateDietTemplate() {
-    const { formState: { errors }, register, watch } = useForm()
+function CreateDietTemplate({ register, watch, errors }) {
+    const { days } = useDietProvider()
+    const [searchParams] = useSearchParams()
+    const activeDay = searchParams.get("day") ?? "1";
+    const activeDayDietMacros = days.find(day => day.day === activeDay)?.daymacros ?? {};
     return (
         <div className="flex flex-col gap-4 divide-y">
             <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-6">
@@ -14,24 +19,39 @@ function CreateDietTemplate() {
                 </h4>
                 <div className="flex items-center justify-center gap-2">
                     <InputFloatingLabel
-                        item={{ id: "dietName", label: "diet template name", value: watch("dietName") }}
+                        item={{ id: "planName", label: "diet template name", value: watch("planName") }}
                         // disabled={isLoading}
-                        error={errors?.dietName?.message}
+                        error={errors?.planName?.message}
                         register={
                             {
-                                ...register("dietName", {
+                                ...register("planName", {
                                     required: 'This field is required',
                                 })
                             }
                         }
                     />
+                    {/* <InputDropdown item={
+                        {
+                            id: "plantype",
+                            label: "Plan Type",
+                            options: ["My plan", "Free Plan", "Customized Plan"]
+                        }
+                    }
+                        //    disabled={isLoading}
+                        error={errors?.plantype?.message}
+                        register={{
+                            ...register("plantype", {
+                                required: "Select plan type."
+                            })
+                        }}
+                    /> */}
                     <InputFloatingLabel
-                        item={{ id: "dietNote", label: "diet template note", value: watch("dietNote") }}
+                        item={{ id: "description", label: "diet template note", value: watch("description") }}
                         // disabled={isLoading}
-                        error={errors?.dietNote?.message}
+                        error={errors?.description?.message}
                         register={
                             {
-                                ...register("dietNote", {
+                                ...register("description", {
                                     required: 'This field is required',
                                 })
                             }
@@ -43,7 +63,7 @@ function CreateDietTemplate() {
             <div className="py-4">
                 <DaysTabsItems>
                     <div className="px-2 py-4 space-y-4">
-                        <DietMacros />
+                        <DietMacros dietMacros={activeDayDietMacros} />
                         <DietMeals />
                     </div>
                 </DaysTabsItems>

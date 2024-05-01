@@ -8,7 +8,7 @@ import { useDietProvider } from "../context/DietProvider";
 
 const DayContext = createContext()
 
-function DaysTabs({ children, setDays }) {
+function DaysTabs({ children }) {
     const { dispatch } = useDietProvider()
     const [searchParams, setSearchParams] = useSearchParams();
     const currentActiveDay = !searchParams.get("day") ? "1" : searchParams.get("day");
@@ -24,7 +24,7 @@ function DaysTabs({ children, setDays }) {
         // setDays(value => value > 6 ? 7 : value + 1);
     }
     function handleRemoveDay(id) {
-        dispatch({ type: "diet/deleteDay", payload: Number(id) })
+        dispatch({ type: "diet/deleteDay", payload: id })
         // setDays(value => value < 2 ? 1 : value - 1);
     }
     return (
@@ -40,7 +40,13 @@ function Tabs({ children }) {
         <div className="flex items-center">
             {children}
             <div className="flex gap-1 ml-2">
-                <button onClick={handleAddingDays} className="bg-transparent hover:bg-gray-200 p-3 transition-all duration-300 text-gray-600 border border-gray-600 rounded-md"><BiPlus /></button>
+                <button onClick={handleAddingDays} className="bg-transparent hover:bg-gray-200 p-3 transition-all duration-300 text-gray-600 border border-gray-600 rounded-md">
+                    {/* <p className="flex items-center justify-center gap-2 capitalize font-semibold">
+                        <span>add day</span>
+                        <span><BiPlus /></span>
+                    </p> */}
+                    <span><BiPlus /></span>
+                </button>
                 {/* <button onClick={handleRemovingDays} className="bg-transparent hover:bg-blue-100 p-3 text-blue-700 border border-blue-700 rounded-md text-base"><FiMinus /></button> */}
             </div>
         </div>
