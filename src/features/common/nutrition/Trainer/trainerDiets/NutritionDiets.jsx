@@ -1,17 +1,17 @@
-import { useNavigate } from "react-router-dom";
-// import Spinner from "../../../../../ui/Spinner";
-import NutritionOperations from "../../NutritionOperations";
-import Button from "../../../../../ui/Button";
 import { HiPlusSm } from "react-icons/hi";
-import NutritionDietsTable from "./NutritionDietsTable";
+import { useNavigate } from "react-router-dom";
+import { useGetDietTemplates } from "./useGetDietTemplates";
 import { useDietProvider } from "../../../../../context/DietProvider";
-
-const diets = []
+import Button from "../../../../../ui/Button";
+import Spinner from "../../../../../ui/Spinner";
+import NutritionDietsTable from "./NutritionDietsTable";
+import NutritionOperations from "../../NutritionOperations";
 
 function NutritionDiets() {
     const navigate = useNavigate()
     const { dispatch } = useDietProvider()
-    // if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    const { getDietTemplates, count, isLoading } = useGetDietTemplates()
+    if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
         <>
             <NutritionOperations
@@ -20,7 +20,7 @@ function NutritionDiets() {
             >
                 <Button onClick={() => {
                     navigate("diets")
-                    dispatch({ type: "diet/startPrivatePlan" })
+                    dispatch({ type: "diet/startMyDietPlan" })
                 }
                 }>
                     <p className="capitalize flex justify-center items-center gap-1">
@@ -30,7 +30,7 @@ function NutritionDiets() {
                 </Button>
 
             </NutritionOperations>
-            <NutritionDietsTable diets={diets} />
+            <NutritionDietsTable diets={getDietTemplates} count={count} />
         </>
     )
 }

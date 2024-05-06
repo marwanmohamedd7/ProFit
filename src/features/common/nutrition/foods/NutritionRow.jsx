@@ -10,13 +10,15 @@ import Table from "../../../../ui/Table"
 import Modal from "../../../../ui/Modal";
 import Button from "../../../../ui/Button";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useDietProvider } from "../../../../context/DietProvider";
+import { useSearchParams } from "react-router-dom";
 
 function NutritionRow({ food, section, onCloseModal }) {
-    const { id: mealId } = useParams();
+    // const { id: mealId } = useParams();
     const { userRole } = useCurrentUser();
-    const { dispatch: dispatchDiet } = useDietProvider();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const { dispatch: dispatchDiet, days: dietDays } = useDietProvider();
     const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
     const { deleteFood, isDeleting } = useDeleteFood();
     const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food;
@@ -27,27 +29,33 @@ function NutritionRow({ food, section, onCloseModal }) {
     }
 
     function handleAddFood() {
+        let foodItem;
         // 1- check if there's already a food with the same id
-        let isExist;
-
         // 2- add the new food to the meals if it doesn't exist
         if (section === "meal") {
-            if (!mealId) isExist = mealFoods.find(food => food.food === food._id)
-            else isExist = mealFoods.find(food => (food.food._id === food._id) || (food.food === food._id))
-
-            if (isExist) {
-                toast.error("This food has been added before.")
-                return
-            }
-            dispatchMeal({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+            foodItem = mealFoods.find(food => (food.food._id === _id) || (food.food === _id))
+            !foodItem && dispatchMeal({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
         }
         else {
-            dispatchDiet({ type: "diet/addFood", payload: { day: section.day, mealId: section.mealId, food: { macros, foodImage, foodname, servingUnit, amount, food: _id } } })
-            dispatchDiet({ type: 'diet/calcMealMacros', payload: { day: section.day, mealId: section.mealId } })
-            dispatchDiet({ type: "diet/calcDayMacros", payload: section.day })
-        }
+            const { day, mealId } = section;  // Destructuring to make it clearer
+            foodItem = dietDays
+                .find(dayItem => dayItem.day === day)?.meals  // Find the day and access meals safely
+                .find(meal => meal.mealId === mealId)?.foods  // Find the meal and access foods safely
+                .find(food => food.food._id === _id || food.food === _id);  // Find the food by _id
 
+            if (!foodItem) {
+                dispatchDiet({ type: "diet/addFood", payload: { day: day, mealId: mealId, food: { macros, foodImage, foodname, servingUnit, amount, food: _id } } })
+                dispatchDiet({ type: 'diet/calcMealMacros', payload: { day: day, mealId: mealId } })
+                dispatchDiet({ type: "diet/calcDayMacros", payload: day })
+            }
+        }
+        if (foodItem) {
+            toast.error("This food has been added before.")
+            return
+        }
         toast.success("Added a new food item!")
+        searchParams.set("page", 1);
+        setSearchParams(searchParams);
         onCloseModal()
     }
 
@@ -162,7 +170,13 @@ function NutritionRow({ food, section, onCloseModal }) {
                         <td className="px-4 py-2 whitespace-nowrap">{food.macros.calories}</td>
                         <td className="px-4 py-2 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
                         <td className="px-4 py-2 whitespace-nowrap text-center">
-                            <button onClick={handleAddFood} className="bg-blue-700 text-white p-3.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button>
+                            <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
+                                <p className="flex items-center justify-center gap-2 capitalize">
+                                    <span>add</span>
+                                    <span className="font-light"><FaPlus /></span>
+                                </p>
+                            </Button>
+                            {/* <button onClick={handleAddFood} className="bg-blue-700 text-white p-3.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button> */}
                         </td>
                     </tr>
             }

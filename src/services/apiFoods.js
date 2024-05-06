@@ -1,8 +1,8 @@
-import { PAGE_SIZE } from "../utils/constants";
+import { PAGE_SIZE_DEFAULT } from "../utils/constants";
 
 export async function getAppFoods(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}&limit=${PAGE_SIZE}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export async function getAppFoods(token, page) {
 
 export async function getTrainerFoods(token, page, QueryParams) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/AllFoods/?page=${page}&limit=${PAGE_SIZE}&${QueryParams}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/AllFoods/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&${QueryParams}`,
     {
       method: "GET",
       headers: {

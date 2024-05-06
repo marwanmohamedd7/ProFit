@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../../../../utils/constants";
 import { getAppFoods } from "../../../../services/apiFoods";
+import { PAGE_SIZE_DEFAULT } from "../../../../utils/constants";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCurrentUser } from "../../../../context/UserProvider";
 
@@ -12,16 +12,16 @@ export function useGetAppFoods() {
   const { data: appFoods, isLoading } = useQuery({
     queryKey: ["appFoods", userId, page], // unique string to identify the request
     queryFn: () => getAppFoods(userToken, page),
-    retry: 2,
+    retry: 1,
   });
 
   //PRE-FETCHING
-  const pageCount = Math.ceil(appFoods?.totalDocuments / PAGE_SIZE);
+  const pageCount = Math.ceil(appFoods?.totalDocuments / PAGE_SIZE_DEFAULT);
   if (page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: ["appFoods", userId, page + 1], // unique string to identify the request
       queryFn: () => getAppFoods(userToken, page + 1),
-      retry: 2,
+      retry: 1,
     });
   }
 
@@ -29,7 +29,7 @@ export function useGetAppFoods() {
     queryClient.prefetchQuery({
       queryKey: ["appFoods", userId, page - 1], // unique string to identify the request
       queryFn: () => getAppFoods(userToken, page - 1),
-      retry: 2,
+      retry: 1,
     });
   }
 

@@ -9,7 +9,7 @@ export function useGetPendingTrainerProfessionalCred() {
   const { data: getPendingTrainerProfessionalCred, isLoading } = useQuery({
     queryKey: ["pendingTrainerProfessionalCredentials", id], // unique string to identify the request
     queryFn: () => apiGetPendingTrainerProfessionalCred(id, userToken),
-    retry: 2,
+    retry: 1,
   });
   return {
     getPendingTrainerProfessionalCred: getPendingTrainerProfessionalCred?.data,

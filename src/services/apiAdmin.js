@@ -1,3 +1,5 @@
+import { PAGE_SIZE_DEFAULT } from "../utils/constants";
+
 export async function getPendingTrainers(token) {
   const response = await fetch(
     "https://profit-qjbo.onrender.com/api/v1/admin/trainers/PendingTrainers",
@@ -116,6 +118,21 @@ export async function pendingTrainerAcceptOrReject(userData, id, token) {
         authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getSystemUsers(token, page, QueryParams) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/admin/SystemUsers/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&users=${QueryParams}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }
   );
   if (!response.ok) throw new Error(response.status);

@@ -26,7 +26,7 @@ function Header({ children }) {
 function Body({ data, render }) {
   return (
     <tbody>
-      {data.map(render)}
+      {data?.map(render) ?? []}
     </tbody>
   )
 }

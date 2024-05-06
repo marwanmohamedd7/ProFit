@@ -7,25 +7,28 @@ import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 
-function NutritionAppMeals() {
+function NutritionAppMeals({ section = "meal" }) {
     const navigate = useNavigate()
     const { appMeals = [], count, isLoading } = useGetAppMeals();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
-        <>
+        <div>
             <NutritionOperations
                 filterForm={<NutritionFoodFilterForm />}
                 search="Search Meal Name..."
             >
-                <Button onClick={() => navigate("meals")}>
-                    <p className="capitalize flex justify-center items-center gap-1">
-                        <span>create new meal</span>
-                        <span className="text-lg"><HiPlusSm /></span>
-                    </p>
-                </Button>
+                {
+                    section === "meal" &&
+                    <Button onClick={() => navigate("meals")}>
+                        <p className="capitalize flex justify-center items-center gap-1">
+                            <span>create new meal</span>
+                            <span className="text-lg"><HiPlusSm /></span>
+                        </p>
+                    </Button>
+                }
             </NutritionOperations>
-            <NutritionMealsTable meals={appMeals} count={count}/>
-        </>
+            <NutritionMealsTable meals={appMeals} count={count} section={section} />
+        </div>
     )
 }
 

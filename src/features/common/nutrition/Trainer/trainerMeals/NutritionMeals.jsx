@@ -7,13 +7,13 @@ import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 
-function NutritionMeals() {
+function NutritionMeals({ section = "meal", onCloseModal }) {
     const navigate = useNavigate()
     const { trainerMeals = [], count, isLoading } = useGetTrainerMeals();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
 
     return (
-        <>
+        <div>
             <NutritionOperations
                 filterTabs={{
                     filterField: "meal",
@@ -26,15 +26,18 @@ function NutritionMeals() {
                 filterForm={<NutritionFoodFilterForm />}
                 search="Search Meal Name..."
             >
-                <Button onClick={() => navigate("meals")}>
-                    <p className="capitalize flex justify-center items-center gap-1">
-                        <span>create new meal</span>
-                        <span className="text-lg"><HiPlusSm /></span>
-                    </p>
-                </Button>
+                {
+                    section === "meal" &&
+                    <Button onClick={() => navigate("meals")}>
+                        <p className="capitalize flex justify-center items-center gap-1">
+                            <span>create new meal</span>
+                            <span className="text-lg"><HiPlusSm /></span>
+                        </p>
+                    </Button>
+                }
             </NutritionOperations>
-            <NutritionMealsTable meals={trainerMeals} count={count} />
-        </>
+            <NutritionMealsTable meals={trainerMeals} section={section} count={count} onCloseModal={onCloseModal} />
+        </div>
     )
 }
 

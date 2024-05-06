@@ -13,7 +13,6 @@ function useOutSideClick(handler, listenCapturing = true) {
     },
     [handler, listenCapturing]
   );
-
   return ref;
 }
 

@@ -1,33 +1,52 @@
-import { useState } from "react";
 import { BiTrash } from "react-icons/bi";
+import { useForm } from "react-hook-form";
 import { RiSaveLine } from "react-icons/ri";
+import { useEffect, useState } from "react";
 import { FaChevronUp } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
-import Modal from "../../../../../ui/Modal"
-import Button from "../../../../../ui/Button"
-import MealMacros from "../../meals/MealMacros"
-import MealDetailsForm from "../../meals/MealDetailsForm"
-import MealIngredients from "../../meals/MealIngredients"
-import ConfirmDelete from "../../../../../ui/ConfirmDelete"
-import { useForm } from "react-hook-form";
-import { useDietProvider } from "../../../../../context/DietProvider";
 import { useCreateMeal } from "../../meals/useCreateMeal";
+import { useDietProvider } from "../../../../../context/DietProvider";
+import Modal from "../../../../../ui/Modal";
+import Button from "../../../../../ui/Button";
+import MealMacros from "../../meals/MealMacros";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
+import MealIngredients from "../../meals/MealIngredients";
+import MealDetailsForm from "../../meals/MealDetailsForm";
+import ConfirmDelete from "../../../../../ui/ConfirmDelete";
+import NutritionMeals from "../trainerMeals/NutritionMeals";
 
-function DietMeal({ meal, handleDeleteMealSection }) {
-    const [mealToggle, setMealToggle] = useState(false)
-    const { createMeal, isCreating } = useCreateMeal()
+function DietMeal({ meal }) {
     const { dispatch } = useDietProvider()
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
-    const { handleSubmit, formState: { errors }, register, watch } = useForm();
-    function onSubmit(data) {
-        if (!data || !meal.foods.length) return
-        dispatch({ type: "diet/mealInfo", payload: { day: activeDay, mealId: meal.mealId, ...data } })
-        const mealData = { ...data, ingredients: meal.foods, mealmacros: meal.mealmacros };
+    const { createMeal, isCreating } = useCreateMeal()
+    const [mealToggle, setMealToggle] = useState(false)
+    const { foods, mealId, mealmacros, ...mealInfo } = meal
+    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
+        defaultValues: mealInfo ? mealInfo : {}
+    });
+    // Watch all form values
+    const { mealname, mealnote, mealtype } = watch() // This will re-render the component on every input change
+
+    function onSave(data) {
+        if (!data || !foods.length) return
+        const mealData = { ...data, ingredients: foods, mealmacros };
         createMeal(mealData)
     }
+    
+    function handleDeleteMealSection() {
+        dispatch({ type: "diet/deleteMeal", payload: { day: activeDay, mealId } })
+        dispatch({ type: "diet/calcDayMacros", payload: activeDay })
+    }
+
+    useEffect(function () {
+        reset(meal)
+    }, [meal, reset])
+
+    useEffect(function () {
+        dispatch({ type: "diet/mealInfo", payload: { day: activeDay, mealId, mealname, mealnote, mealtype } })
+    }, [mealname, mealnote, mealtype, mealId, activeDay, dispatch])
     return (
         <div className={`space-y-4 p-2 bg-gray-50 border rounded-md ${mealToggle && "border-t-4 border-t-blue-700"}`}>
             <div className="flex items-center gap-2">
@@ -40,7 +59,7 @@ function DietMeal({ meal, handleDeleteMealSection }) {
                             <button disabled={false} className="disabled:cursor-not-allowed bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
                         </Modal.Open>
                         <Modal.Window opens="delete-food">
-                            <ConfirmDelete onConfirm={() => handleDeleteMealSection(meal.mealId)} resourceName="section" />
+                            <ConfirmDelete onConfirm={handleDeleteMealSection} resourceName="section" />
                         </Modal.Window>
                     </Modal>
                     <button onClick={() => setMealToggle(value => !value)} className="bg-gray-100 border text-gray-600 xl:p-3 p-2.5 rounded-lg text-lg">{mealToggle ? <FaChevronUp /> : <FaChevronDown />}</button>
@@ -57,8 +76,15 @@ function DietMeal({ meal, handleDeleteMealSection }) {
                     />
                     <MealIngredients foods={meal.foods} section={{ section: "diet", day: activeDay, mealId: meal.mealId }} />
                     <div className="flex items-center gap-2">
-                        <Button type="secondary" customeStyle="capitalize py-2">load meal recipe</Button>
-                        <Button onClick={handleSubmit(onSubmit)} type="secondary" customeStyle="capitalize py-2"><span className="text-xl">{isCreating ? <SpinnerMini /> : <RiSaveLine />}</span></Button>
+                        <Modal>
+                            <Modal.Open opens="add-meal">
+                                <Button type="secondary" customeStyle="capitalize py-2">load meal recipe</Button>
+                            </Modal.Open>
+                            <Modal.Window opens="add-meal">
+                                <NutritionMeals section={{ section: "diet", day: activeDay, mealId: meal.mealId }} />
+                            </Modal.Window>
+                        </Modal>
+                        <Button onClick={handleSubmit(onSave)} type="secondary" customeStyle="capitalize py-2"><span className="text-xl">{isCreating ? <SpinnerMini /> : <RiSaveLine />}</span></Button>
                     </div>
                 </>
             }

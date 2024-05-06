@@ -1,6 +1,7 @@
 // Circular Progress Component
 function CircularProgress({ percentage }) {
     // Calculate the circumference of the circle
+    if (isNaN(percentage)) percentage = 0;
     const radius = 16;
     const circumference = 2 * Math.PI * radius;
 
@@ -30,7 +31,7 @@ function CircularProgress({ percentage }) {
             {/* Percentage Text */}
             {percentage != null && (
                 <div className="absolute top-1/2 start-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                    <p className="text-center text-lg font-bold text-gray-50 flex justify-center items-center">
+                    <p className="text-center text-lg font-bold text-gray-50 flex justify-center items-center gap-1">
                         <span>{percentage}</span>
                         <span>%</span>
                     </p>

@@ -4,18 +4,16 @@ import { useCurrentUser } from "../../../../../../context/UserProvider";
 import { getPendingTrainerQualificationsAndAchievements } from "../../../../../../services/apiAdmin";
 
 export function useGetPendingTrainerQualifications() {
-    const { id } = useParams();
-    const { userToken } = useCurrentUser();
-    const { data: getPendingTrainerQualifications, isLoading } = useQuery({
-      queryKey: ["PendingTrainerQualificationsAndAchievements", id], // unique string to identify the request
-      queryFn: () =>
-        getPendingTrainerQualificationsAndAchievements(id, userToken),
-      retry: 2,
-    });
-    return {
-      getPendingTrainerQualifications:
-        getPendingTrainerQualifications?.data,
-      isLoading,
-    };
+  const { id } = useParams();
+  const { userToken } = useCurrentUser();
+  const { data: getPendingTrainerQualifications, isLoading } = useQuery({
+    queryKey: ["PendingTrainerQualificationsAndAchievements", id], // unique string to identify the request
+    queryFn: () =>
+      getPendingTrainerQualificationsAndAchievements(id, userToken),
+    retry: 1,
+  });
+  return {
+    getPendingTrainerQualifications: getPendingTrainerQualifications?.data,
+    isLoading,
+  };
 }
-

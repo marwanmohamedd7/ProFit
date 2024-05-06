@@ -1,17 +1,18 @@
-import Button from "../../../../ui/Button"
-import { RxCross1 } from "react-icons/rx"
-import SpinnerMini from "../../../../ui/SpinnerMini";
+import { RxCross1 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 import { IoCheckmarkOutline } from "react-icons/io5"
-import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar"
-import { usePendingTrainerAccept } from "./usePendingTrainerAccept";
 import { usePendingTrainerReject } from "./usePendingTrainerReject";
+import { usePendingTrainerAccept } from "./usePendingTrainerAccept";
+import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar"
+import Button from "../../../../ui/Button"
+import SpinnerMini from "../../../../ui/SpinnerMini";
 
 function PendingTrainerInfoBar() {
-    const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept()
-    const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject()
+    const navigate = useNavigate();
+    const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
+    const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { getPendingTrainerInfoBar, isLoading: isGettingInfo } = useGetPendingTrainerInfoBar();
-    const { firstName, lastName, email, phoneNumber, profilePhoto } = getPendingTrainerInfoBar || {}
-
+    const { firstName, lastName, email, phoneNumber, profilePhoto } = getPendingTrainerInfoBar || {};
     return (
         <div className="flex flex-wrap gap-4 items-center justify-between p-4 bg-white shadow rounded-lg max-w-full">
             {
@@ -40,7 +41,12 @@ function PendingTrainerInfoBar() {
                         </div>
 
                         <div className="flex items-center justify-center gap-2 text-sm">
-                            <Button onClick={() => acceptPendingTrainer()} type="accept">
+                            <Button
+                                type="accept"
+                                onClick={() => acceptPendingTrainer({
+                                    onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
+                                })}
+                            >
                                 <p className="flex justify-center items-center gap-2 tracking-wide">
                                     {
                                         isAccepting ?
@@ -55,7 +61,12 @@ function PendingTrainerInfoBar() {
                                     }
                                 </p>
                             </Button>
-                            <Button onClick={() => rejectPendingTrainer()} type="reject">
+                            <Button
+                                type="reject"
+                                onClick={() => rejectPendingTrainer({
+                                    onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
+                                })}
+                            >
                                 <p className="flex justify-center items-center gap-2 tracking-wide">
                                     {
                                         isRejecting ?
@@ -73,7 +84,6 @@ function PendingTrainerInfoBar() {
                         </div>
                     </>
             }
-
         </div>
     )
 }

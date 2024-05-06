@@ -7,7 +7,7 @@ export function useGetPendingTrainers() {
   const { data: pendingTrainers, isLoading } = useQuery({
     queryKey: ["pendingTrainers"], // unique string to identify the request
     queryFn: () => getPendingTrainers(userToken),
-    retry: 2,
+    retry: 1,
   });
   return { pendingTrainers: pendingTrainers?.data, isLoading };
 }

@@ -6,8 +6,8 @@ function InputDropdown({ item: { id, label, options }, register, error, disabled
             {/* <label className="block grow text-xs sm:text-sm font-medium text-gray-700">{label}</label> */}
             <select disabled={disabled} id={id} {...register} className="capitalize block w-full text-xs sm:text-sm p-1.5 border text-gray-500 border-gray-300 bg-white rounded-md shadow-sm
              focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                <option value="">{label}</option>
-                {options.map((option, index) => <option className="text-gray-600 font-semibold" key={index} value={option}>{option}</option>)}
+                <option className="text-gray-500 font-semibold" value="">{label}...</option>
+                {options.map((option, index) => <option className="text-gray-700 font-bold" key={index} value={option}>{option}</option>)}
                 {/* Add options here */}
             </select>
             {error && <span className="text-red-700 text-xs">{error}</span>}

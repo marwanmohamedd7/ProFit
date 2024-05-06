@@ -7,7 +7,7 @@ export function useGetUserAboutData() {
   const { data: getUserAboutData, isLoading } = useQuery({
     queryKey: ["userAboutData", userId], // unique cache key
     queryFn: () => getUserAbout(userToken),
-    retry: 2,
+    retry: 1,
   });
   return { getUserAboutData: getUserAboutData?.data, isLoading };
 }

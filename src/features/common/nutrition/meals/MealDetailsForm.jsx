@@ -20,7 +20,7 @@ function MealDetailsForm({ register, watch, errors }) {
                 {
                     id: "mealtype",
                     label: "Meal Type",
-                    options: ["Breackfast", "Lunch", "Snack", "Dinner"]
+                    options: ["Breakfast", "Lunch", "Snack", "Dinner"]
                 }
             }
                 //    disabled={isLoading}

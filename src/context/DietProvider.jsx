@@ -2,9 +2,10 @@ import { createContext, useContext, useEffect, useReducer } from "react"
 
 const dietDayObj = {
     day: "",
+    mealsCount: 2,
     meals: [
         {
-            mealId: "1",
+            mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36),
             mealname: "",
             mealtype: "",
             mealnote: "",
@@ -15,9 +16,21 @@ const dietDayObj = {
                 proteins: 0,
                 carbs: 0,
             },
-        }
+        },
+        {
+            mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36),
+            mealname: "",
+            mealtype: "",
+            mealnote: "",
+            foods: [],
+            mealmacros: {
+                fats: 0,
+                calories: 0,
+                proteins: 0,
+                carbs: 0,
+            },
+        },
     ],
-    plantype: "My plan",
     daymacros: {
         fats: 0,
         carbs: 0,
@@ -44,6 +57,7 @@ const intialState = {
     planName: "",
     plantype: "My plan",
     description: "",
+    daysCount: 0,
     planmacros: {
         fats: 0,
         calories: 0,
@@ -53,9 +67,23 @@ const intialState = {
     days: [
         {
             day: "1",
+            mealsCount: 2,
             meals: [
                 {
-                    mealId: "1",
+                    mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36),
+                    mealname: "",
+                    mealtype: "",
+                    mealnote: "",
+                    foods: [],
+                    mealmacros: {
+                        fats: 0,
+                        calories: 0,
+                        proteins: 0,
+                        carbs: 0,
+                    },
+                },
+                {
+                    mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36),
                     mealname: "",
                     mealtype: "",
                     mealnote: "",
@@ -76,12 +104,15 @@ const intialState = {
             },
         }
     ],
+    error: "",
 }
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'diet/startPrivatePlan':
+        case 'diet/startMyDietPlan':
             return { ...intialState }
+        case 'diet/updateMyDietPlan':
+            return { ...state, ...action.payload, days: action.payload.days.map(day => ({ ...day, meals: day.meals.map(meal => ({ ...meal, mealId: meal._id })) })) }
         case 'diet/planInfo':
             return { ...state, ...action.payload }
         case 'diet/calcPlanMacros':
@@ -99,9 +130,40 @@ function reducer(state, action) {
             if (state.days.length <= 1) return { ...state, error: "Cannot delete the only remaining day." };
             return {
                 ...state,
-                error: "",
                 days: state.days.length < 2 ? [...state.days] : state.days.filter(day => day.day !== action.payload).map((day, index) => ({ ...day, day: (index + 1).toString() })),
             }
+        case 'diet/duplicateDay':
+            if (state.days.length >= 7) return { ...state, error: "Cannot add more than 7 days." };
+            const newDuplicateDayNumber = [...Array(8).keys()].slice(1).find(n => !state.days.find(d => parseInt(d.day) === n)) || 8;
+            if (newDuplicateDayNumber <= 7)
+                return {
+                    ...state,
+                    days: [...state.days, { ...state.days.find(day => day.day === action.payload), day: newDuplicateDayNumber.toString() }],
+                };
+            return state;
+        case 'diet/resetDay':
+            return {
+                ...state,
+                days: state.days.map(day => {
+                    if (day.day === action.payload) {
+                        // Reset each meal but keep the mealId
+                        return {
+                            ...day,
+                            meals: day.meals.map(meal => ({
+                                ...dietMealObj, // This will reset all meal fields to default values
+                                mealId: meal.mealId // Keep the original mealId
+                            })),
+                            daymacros: { // Reset the day macros
+                                fats: 0,
+                                carbs: 0,
+                                proteins: 0,
+                                calories: 0
+                            }
+                        };
+                    }
+                    return day;
+                })
+            };
         case 'diet/calcDayMacros':
             return {
                 ...state,
@@ -128,15 +190,31 @@ function reducer(state, action) {
         case 'diet/addMeal':
             return {
                 ...state,
-                days: state.days.map(day => day.day === action.payload ? { ...day, meals: [...day.meals, { ...dietMealObj, mealId: `${day.meals.length + 1}` }] } : day),
+                days: state.days.map(day => day.day === action.payload ? { ...day, mealsCount: day.meals.length + 1, meals: [...day.meals, { ...dietMealObj, mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36) }] } : day),
             }
+        case 'diet/loadMeal':
+            return {
+                ...state,
+                days: state.days.map(day => {
+                    if (day.day === action.payload.day) {
+                        // Create a new array with updated meal and return the updated day object
+                        return {
+                            ...day,
+                            meals: day.meals.map(meal =>
+                                meal.mealId === action.payload.mealId ? { ...meal, ...action.payload.meal } : meal
+                            )
+                        };
+                    }
+                    return day;
+                }),
+            };
         case 'diet/deleteMeal':
             return {
                 ...state,
                 days: state.days.map(day =>
                     day.day === action.payload.day ?
-                        day.meals.length > 1 ?
-                            { ...day, meals: day.meals.filter(meal => meal.mealId !== action.payload.mealId) } : { ...day, error: "Each day must have at least one meal." }
+                        day.meals.length > 2 ?
+                            { ...day, mealsCount: day.meals.length - 1, meals: day.meals.filter(meal => meal.mealId !== action.payload.mealId) } : { ...day, error: "Each day must have at least one meal." }
                         : day
                 ),
             };
@@ -234,6 +312,34 @@ function reducer(state, action) {
                     } : day
                 ),
             };
+        case 'diet/submit':
+            if (state.days.length < 1) {
+                return { ...state, error: "Please add at least one day to your diet plan." };
+            }
+
+            const isDataComplete = state.days.every(day =>
+                day.meals.length >= 2 && day.meals.every(meal =>
+                    meal.mealname && meal.mealtype && meal.foods.length > 0
+                )
+            );
+
+            if (!isDataComplete) {
+                return { ...state, error: "Please complete all required fields for each meal." };
+            }
+            const submissionData = {
+                ...state,
+                daysCount: state.days.length,
+                days: state.days.map(day => ({
+                    ...day,
+                    meals: day.meals.map(({ mealId, ...meal }) => meal)
+                }))
+            };
+
+            // Normally, here you would dispatch this data to a server or another state management area
+            // console.log("Data ready for submission:", submissionData);
+            return { ...state, submittedData: submissionData, error: "" };
+        case 'diet/endSession':
+            return { ...intialState }
         default:
             throw new Error('Invalid Action Type');
     }
@@ -243,7 +349,7 @@ const DietContext = createContext()
 
 function DietProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, intialState);
-    const { days } = state
+    const { days } = state;
 
     useEffect(function () {
         function calcPlanMacros() {

@@ -1,8 +1,8 @@
 import { PAGE_SIZE_MEALS } from "../utils/constants";
 
-export async function getAppMeals(token, page) {
+export async function getDietTemplates(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/?page=${page}&limit=${PAGE_SIZE_MEALS}`,
+    `https://profit-qjbo.onrender.com/api/v1/Nutrition/Myplans/?page=${page}&limit=${PAGE_SIZE_MEALS}`,
     {
       method: "GET",
       headers: {
@@ -15,9 +15,9 @@ export async function getAppMeals(token, page) {
   return data;
 }
 
-export async function getTrainerMeals(token, page, QueryParams) {
+export async function getSpecificDietTemplate(token, id) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/AllMeals/?page=${page}&limit=${PAGE_SIZE_MEALS}&${QueryParams}`,
+    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "GET",
       headers: {
@@ -30,31 +30,16 @@ export async function getTrainerMeals(token, page, QueryParams) {
   return data;
 }
 
-export async function getSpecificMeal(token, id) {
+export async function createDietTemplate(token, dietData) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/${id}`,
-    {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  if (!response.ok) throw new Error(response.status);
-  const data = await response.json();
-  return data;
-}
-
-export async function createMeal(token, mealData) {
-  const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/Meal/",
+    "https://profit-qjbo.onrender.com/api/v1/Nutrition/",
     {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(mealData),
+      body: JSON.stringify(dietData),
     }
   );
   if (!response.ok) throw new Error(response.status);
@@ -62,16 +47,16 @@ export async function createMeal(token, mealData) {
   return data;
 }
 
-export async function updateMeal(id, token, mealData) {
+export async function updateDietTemplate(id, token, dietData) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(mealData),
+      body: JSON.stringify(dietData),
     }
   );
   if (!response.ok) throw new Error(response.status);
@@ -79,9 +64,9 @@ export async function updateMeal(id, token, mealData) {
   return data;
 }
 
-export async function deleteMeal(id, token) {
+export async function deleteDietTemplate(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Meal/${id}`,
+    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "DELETE",
       headers: {

@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../../../../utils/constants";
 import { getAppMeals } from "../../../../services/apiMeals";
+import { PAGE_SIZE_MEALS } from "../../../../utils/constants";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCurrentUser } from "../../../../context/UserProvider";
 
@@ -16,7 +16,7 @@ export function useGetAppMeals() {
   });
 
   //PRE-FETCHING
-  const pageCount = Math.ceil(appMeals?.totalDocuments / PAGE_SIZE);
+  const pageCount = Math.ceil(appMeals?.totalDocuments / PAGE_SIZE_MEALS);
   if (page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: ["appMeals", userId, page + 1], // unique string to identify the request

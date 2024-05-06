@@ -1,8 +1,10 @@
+import Empty from "../../../../ui/Empty";
 import Pagination from "../../../../ui/Pagination";
 import Table from "../../../../ui/Table"
 import NutritionRow from "./NutritionRow";
 
-function NutritionTable({ foods, count, section = "food", onCloseModal }) {
+function NutritionTable({ foods, count, section, onCloseModal }) {
+    if (!count) return <Empty resource="foods" />
     return (
         <Table>
             <Table.Header>

@@ -14,7 +14,7 @@ export function useDeleteMeal() {
         userRole === "admin" ? "appMeals" : "trainerMeals",
       ]);
     },
-    onError: (err) => toast.success(err.message),
+    onError: (err) => toast.error(err.message),
   });
   return { deleteMeal, isDeleting };
 }

@@ -7,7 +7,7 @@ export function useUser() {
   const { data: user, isLoading } = useQuery({
     queryKey: ["user", userId], // unique cache key
     queryFn: () => getCurrentUser(userToken, userRole),
-    retry: 2, // Retry on failures?
+    retry: 1, // Retry on failures?
     // retry: false, // Retry on failures?
   });
   return {

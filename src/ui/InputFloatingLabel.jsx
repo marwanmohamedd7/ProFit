@@ -11,7 +11,7 @@ function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", t
                     onChange={onChange}
                     onBlur={onBlur}
                     {...register}
-                    className={`flex ${type === "date" && ` justify-between`} text-xs sm:text-sm items-center w-full ${paddingStyle ? paddingStyle : "py-2.5 px-2"} text-gray-500 bg-transparent rounded-lg bg-white border
+                    className={`flex ${type === "date" && ` justify-between`} text-xs sm:text-sm items-center w-full ${paddingStyle ? paddingStyle : "py-2.5 px-2"} text-gray-700 font-bold bg-transparent rounded-lg bg-white border
                 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-700 peer`}
                 />
                 <label htmlFor={id} className="absolute text-sm block font-medium bg-white disabled:bg-gray-50 text-gray-500 duration-300 transform -translate-y-4 scale-75

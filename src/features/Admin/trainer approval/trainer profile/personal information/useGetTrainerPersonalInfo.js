@@ -9,7 +9,7 @@ export function useGetTrainerPersonalInfo() {
   const { data: getPendingTrainerInfo, isLoading } = useQuery({
     queryKey: ["pendingTrainerInfo", id], // unique string to identify the request
     queryFn: () => apiGetPendingTrainerInfo(id, userToken),
-    retry: 2,
+    retry: 1,
   });
   return { getPendingTrainerInfo: getPendingTrainerInfo?.data, isLoading };
 }
