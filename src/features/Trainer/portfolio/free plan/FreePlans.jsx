@@ -1,4 +1,4 @@
-import { CiApple, CiGrid41 } from "react-icons/ci";
+import { CiApple, CiDumbbell } from "react-icons/ci";
 import DietsFreePlan from "./diets/DietsFreePlan"
 import VerticualTabs from "../../../../ui/VerticualTabs"
 
@@ -9,7 +9,7 @@ function FreePlans() {
                 <VerticualTabs.Open opens="diet" icon={<CiApple />}>
                     diet
                 </VerticualTabs.Open>
-                <VerticualTabs.Open opens="workout" icon={<CiGrid41 />}>
+                <VerticualTabs.Open opens="workout" icon={<CiDumbbell />}>
                     workout
                 </VerticualTabs.Open>
             </VerticualTabs.Tabs>
