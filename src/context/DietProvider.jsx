@@ -390,7 +390,7 @@ function DietProvider({ children }) {
 
 function useDietProvider() {
     const context = useContext(DietContext);
-    if (context === undefined) throw new Error("Current Diet provider has been used outside the context")
+    if (context === undefined) throw new Error("useDietProvider must be used within a DietProvider")
     return context
 }
 

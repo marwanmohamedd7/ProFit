@@ -15,21 +15,16 @@ import MealIngredients from "./MealIngredients";
 import { useEffect } from "react";
 
 function CreateMeal({ mealToUpdate = {} }) {
-    let storedData
     const { _id } = mealToUpdate
     const isExist = Boolean(_id)
     const navigate = useNavigate()
     const { userRole } = useCurrentUser()
     const { createMeal, isCreating } = useCreateMeal()
     const { updateMeal, isUpdating } = useUpdateMeal()
-    if (isExist) storedData = mealToUpdate
-    else localStorage.getItem("trainerMeal") ? storedData = JSON.parse(localStorage.getItem("trainerMeal")) : storedData = {}
-    const { handleSubmit, formState: { errors }, register, watch, getValues, reset } = useForm({
-        defaultValues: storedData,
+    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
+        defaultValues: mealToUpdate,
     })
-    const mealName = getValues().mealname
-    const mealType = getValues().mealtype
-    const mealNote = getValues().mealnote
+    const { mealname, mealtype, mealnote } = watch()
     const {
         foods,
         dispatch,
@@ -61,9 +56,9 @@ function CreateMeal({ mealToUpdate = {} }) {
     useEffect(function () {
         dispatch({
             type: 'meal/mealInfo',
-            payload: { mealName: mealName ? mealName : "", mealType: mealType ? mealType : "", mealNote: mealNote ? mealNote : "", }
+            payload: { mealname, mealtype, mealnote }
         })
-    }, [mealName, mealType, mealNote, dispatch])
+    }, [mealname, mealtype, mealnote, dispatch])
     return (
         <>
             <div className="space-y-4">
@@ -88,7 +83,7 @@ function CreateMeal({ mealToUpdate = {} }) {
                     <div className="text-blue-700 font-bold capitalize">
                         meal ingredients
                     </div>
-                    <MealIngredients foods={foods} isExist={isExist} section="meal"/>
+                    <MealIngredients foods={foods} isExist={isExist} section="meal" />
                 </div>
                 <div className="flex items-center gap-2">
                     <Button onClick={handleSubmit(onSubmit)}>

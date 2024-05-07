@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import Modal from "../../../../ui/Modal";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 import { useDietProvider } from "../../../../context/DietProvider";
+import FoodMacros from "./FoodMacros";
 
 function MealFood({ food, section, isExist = false }) {
     // 1- food.food: the default id that comes with the food object when we add a new one
@@ -69,41 +70,13 @@ function MealFood({ food, section, isExist = false }) {
                         <div className="xl:text-lg text-xl font-bold">{foodname}</div>
                     </div>
                 </div>
-                <h3 className="flex flex-col gap-1 xl:w-24 2xl:w-36">
-                    <p className="flex items-center gap-1">
-                        <span>{proteins.toFixed(2)}</span>
-                        <span className="font-normal">g</span>
-                    </p>
-                    <span className="text-xs text-blue-900 font-normal capitalize">proteins</span>
-                </h3>
-                <h3 className="flex flex-col gap-1 xl:w-24 2xl:w-36">
-                    <p className="flex items-center gap-1">
-                        <span>{fats.toFixed(2)}</span>
-                        <span className="font-normal">g</span>
-                    </p>
-                    <span className="text-xs text-blue-900 font-normal capitalize">fats</span>
-                </h3>
-                <h3 className="flex flex-col gap-1 xl:w-24 2xl:w-36">
-                    <p className="flex items-center gap-1">
-                        <span>{carbs.toFixed(2)}</span>
-                        <span className="font-normal">g</span>
-                    </p>
-                    <span className="text-xs text-blue-900 font-normal capitalize">carbs</span>
-                </h3>
-                <h3 className="flex flex-col gap-1 xl:w-24 2xl:w-36">
-                    <p className="flex items-center gap-1">
-                        <span>{calories.toFixed(2)}</span>
-                        <span className="font-normal">Kcal</span>
-                    </p>
-                    <span className="text-xs text-blue-900 font-normal capitalize">calories</span>
-                </h3>
+                <FoodMacros calories={calories} proteins={proteins} carbs={carbs} fats={fats} />
                 <div className="flex flex-wrap items-center justify-end xl:grow-0 grow xl:mt-0 mt-1">
                     <div className="flex items-center gap-2 xl:grow-0 grow">
                         <InputFloatingLabel
                             item={{ id: (food.servingUnit).replaceAll(" ", "").toLowerCase(), label: food.servingUnit, value: !amount ? "" : amount }}
                             onChange={(e) => setAmount(!e.target.value ? 0 : e.target.value)}
                             onBlur={handleUpdateMacros}
-                        // disabled={isLoading}
                         />
                         <Modal>
                             <Modal.Open opens="delete-food">
