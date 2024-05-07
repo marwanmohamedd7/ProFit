@@ -2,6 +2,7 @@ import CompoundTabs from "../../../ui/CompoundTabs"
 import { HiInformationCircle } from "react-icons/hi2";
 import Gallery from "./gallery/Gallery";
 import AboutMe from "./about me/AboutMe";
+import FreePlans from "./free plan/FreePlans";
 
 function TrainerPortfolio() {
     return (
@@ -31,6 +32,9 @@ function TrainerPortfolio() {
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="about">
                     <AboutMe />
+                </CompoundTabs.Window>
+                <CompoundTabs.Window opens="free-plan">
+                    <FreePlans />
                 </CompoundTabs.Window>
             </CompoundTabs>
 

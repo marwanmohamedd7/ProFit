@@ -33,7 +33,7 @@ function Open({ children, opens: opensTab }) {
     return <button
         onClick={() => open(opensTab)}
         className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b-2 capitalize
-         ${opensTab === currentActive ? 'text-blue-600 border-blue-500' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
+         ${opensTab === currentActive ? 'text-blue-600 border-blue-500 font-semibold' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
             }`}
     >
         {children}

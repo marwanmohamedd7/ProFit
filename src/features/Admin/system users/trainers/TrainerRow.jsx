@@ -8,13 +8,13 @@ function TrainerRow({ trainer }) {
     let statusStyle;
     const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
     const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
-    const { firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, subscriptions, status, paidAmount } = trainer ?? {};
+    const { _id, firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, subscriptions, status, paidAmount } = trainer ?? {};
     if (status === "rejected") statusStyle = `text-red-500 bg-red-100`;
     if (status === "pending") statusStyle = `text-gray-500 bg-gray-100`;
     if (status === "incomplete") statusStyle = `text-blue-500 bg-blue-100`;
     if (status === "accepted") statusStyle = `text-green-500 bg-green-100`;
     return (
-        <tr key={trainer.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
+        <tr key={trainer.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
             <td className="px-6 py-2 whitespace-nowrap mx-auto">
                 <div className="flex items-center gap-3">
                     <div className="flex-shrink-0 h-14 w-14">
@@ -45,7 +45,7 @@ function TrainerRow({ trainer }) {
                     </button>
 
                     <button
-                        onClick={() => acceptPendingTrainer()}
+                        onClick={() => acceptPendingTrainer(_id)}
                         className="text-green-600 p-2 hover:text-green-900 bg-green-100 rounded-md"
                     >
                         {isAccepting ? <SpinnerMini /> : <IoCheckmarkOutline />}
@@ -53,7 +53,7 @@ function TrainerRow({ trainer }) {
 
 
                     <button
-                        onClick={() => rejectPendingTrainer()}
+                        onClick={() => rejectPendingTrainer(_id)}
                         className="text-red-600 p-2 hover:text-red-900 bg-red-100 rounded-md"
                     >
                         {isRejecting ? <SpinnerMini /> : <MdOutlineBlock />}

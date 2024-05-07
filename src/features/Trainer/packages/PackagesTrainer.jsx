@@ -13,7 +13,7 @@ function PackagesTrainer() {
         <>
             <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                    <SearchInput placeholder="search..." />
+                    <SearchInput placeholder="search package..." />
                     <Modal>
                         <Modal.Open opens="add-new-package">
                             <Button>

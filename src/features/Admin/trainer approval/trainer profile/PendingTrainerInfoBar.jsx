@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IoCheckmarkOutline } from "react-icons/io5"
 import { usePendingTrainerReject } from "./usePendingTrainerReject";
 import { usePendingTrainerAccept } from "./usePendingTrainerAccept";
-import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar"
+import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar";
 import Button from "../../../../ui/Button"
 import SpinnerMini from "../../../../ui/SpinnerMini";
 
@@ -12,7 +12,7 @@ function PendingTrainerInfoBar() {
     const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
     const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { getPendingTrainerInfoBar, isLoading: isGettingInfo } = useGetPendingTrainerInfoBar();
-    const { firstName, lastName, email, phoneNumber, profilePhoto } = getPendingTrainerInfoBar || {};
+    const { _id, firstName, lastName, email, phoneNumber, profilePhoto } = getPendingTrainerInfoBar ?? {};
     return (
         <div className="flex flex-wrap gap-4 items-center justify-between p-4 bg-white shadow rounded-lg max-w-full">
             {
@@ -43,7 +43,7 @@ function PendingTrainerInfoBar() {
                         <div className="flex items-center justify-center gap-2 text-sm">
                             <Button
                                 type="accept"
-                                onClick={() => acceptPendingTrainer({
+                                onClick={() => acceptPendingTrainer(_id, {
                                     onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
                                 })}
                             >
@@ -63,7 +63,7 @@ function PendingTrainerInfoBar() {
                             </Button>
                             <Button
                                 type="reject"
-                                onClick={() => rejectPendingTrainer({
+                                onClick={() => rejectPendingTrainer(_id, {
                                     onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
                                 })}
                             >

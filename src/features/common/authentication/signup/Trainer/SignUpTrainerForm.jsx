@@ -24,7 +24,7 @@ function SignUpTrainerForm() {
         <form className="space-y-10" onSubmit={handleSubmit(onsubmit)}>
             <div className="space-y-6">
                 <div className="rounded-md shadow-sm space-y-4">
-                    <div className="flex justify-between items-center gap-4">
+                    <div className="flex justify-between items-center gap-2">
                         <div className="w-full">
                             <InputFloatingLabel item={{ label: "first name", id: "firstName", value: watch("firstName") }}
                                 disabled={isSignningUp}

@@ -1,15 +1,13 @@
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../../../context/UserProvider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { pendingTrainerAcceptOrReject } from "../../../../services/apiAdmin";
 
 export function usePendingTrainerAccept() {
-  const { id } = useParams();
   const queryClient = useQueryClient();
   const { userToken } = useCurrentUser();
   const { mutate: acceptPendingTrainer, isPending: isAccepting } = useMutation({
-    mutationFn: () =>
+    mutationFn: (id) =>
       pendingTrainerAcceptOrReject({ status: "accepted" }, id, userToken),
     onSuccess: ({ message }) => {
       toast.success(message);

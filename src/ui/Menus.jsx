@@ -1,20 +1,20 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import useOutSideClick from "../hooks/useOutSideClick";
-import { HiEllipsisVertical } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
+import { HiEllipsisVertical } from "react-icons/hi2";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import useOutSideClick from "../hooks/useOutSideClick";
 
 const MenusContext = createContext();
 
 function Menus({ children }) {
     const [openId, setOpenId] = useState("");
+    const open = setOpenId;
+    const close = () => setOpenId("");
     const [searchParams] = useSearchParams();
     const [position, setPosition] = useState(null);
     const activeTab = !searchParams.get("day") ? "1" : searchParams.get("day");
-    const close = () => setOpenId("");
-    const open = setOpenId;
     return (
-        <MenusContext.Provider value={{ openId, activeTab, open, close, position, setPosition }}>
+        <MenusContext.Provider value={{ openId, activeTab, position, open, close, setPosition }}>
             {children}
         </MenusContext.Provider>
     );
@@ -23,7 +23,6 @@ function Menus({ children }) {
 function Toggle({ id }) {
     const buttonRef = useRef(null);
     const { activeTab, openId, open, close, setPosition } = useContext(MenusContext);
-
     const updatePosition = useCallback(
         () => {
             if (buttonRef.current) {
@@ -35,17 +34,15 @@ function Toggle({ id }) {
             }
         }, [setPosition]
     )
-
     function handleClick(e) {
         e.stopPropagation();
-        updatePosition(e); // Update position on click
+        updatePosition(); // Update position on click
         openId === id ? close() : open(id);
     }
     useEffect(() => {
         if (openId === id) {
             window.addEventListener('scroll', updatePosition, true);
         }
-
         return () => window.removeEventListener('scroll', updatePosition, true);
     }, [openId, id, updatePosition]);
     return (
@@ -82,7 +79,6 @@ function Button({ icon, children, onClick }) {
         onClick?.();
         close();
     }
-
     return (
         <li>
             <button
@@ -95,14 +91,13 @@ function Button({ icon, children, onClick }) {
         </li>
     );
 }
-
 function Menu({ children }) {
     return <div className="flex items-center justify-end">{children}</div>;
 }
 
 Menus.Menu = Menu;
-Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
+Menus.Toggle = Toggle;
 
 export default Menus;

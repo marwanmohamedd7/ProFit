@@ -1,6 +1,6 @@
 function BackgroundCoverAuth() {
     return (
-        <div className="relative bg-cover bg-top bg-no-repeat" style={{ "backgroundImage": " url(/trainerBackground.jpeg)" }}>
+        <div className="relative bg-cover bg-top bg-no-repeat md:block hidden" style={{ "backgroundImage": " url(/trainerBackground.jpeg)" }}>
             <div className="p-4 flex flex-col justify-end items-start absolute left-0 right-0 bottom-0 top-0 bg-gradient-to-t from-[rgb(29,78,216,0.9)] from-5% via-[rgb(29,78,216,0.7)] via-15% to-[rgba(0,0,0,0.5)] to-90%">
                 <div className="p-4 space-y-2">
                     <svg className="p-1 rounded-md bg-white w-10 h-10" viewBox="0 0 44 29" fill="none" xmlns="http://www.w3.org/2000/svg">

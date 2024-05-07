@@ -3,7 +3,7 @@ import SignUpTrainer from "../features/common/authentication/signup/Trainer/Sign
 
 function SignUp() {
     return (
-        <div className="grid grid-cols-2 h-dvh ">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-dvh">
             <BackgroundCoverAuth />
             <SignUpTrainer/>
         </div >

@@ -3,7 +3,7 @@ import LoginLayout from "../features/common/authentication/login/LoginLayout";
 
 function Login() {
   return (
-    <div className="grid grid-cols-2 h-dvh ">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-dvh">
       <BackgroundCoverAuth />
       <LoginLayout />
     </div >

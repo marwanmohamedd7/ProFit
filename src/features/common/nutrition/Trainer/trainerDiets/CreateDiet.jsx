@@ -6,7 +6,7 @@ import DaysTabsItems from "../../../../../ui/DaysTabsItems"
 import DietForm from "./DietForm"
 // import InputDropdown from "../../../../../ui/InputDropdown"
 
-function CreateDietTemplate({ register, watch, errors }) {
+function CreateDiet({ register, watch, errors }) {
     const { days } = useDietProvider()
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
@@ -32,4 +32,4 @@ function CreateDietTemplate({ register, watch, errors }) {
     )
 }
 
-export default CreateDietTemplate
+export default CreateDiet

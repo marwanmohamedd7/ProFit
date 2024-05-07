@@ -13,7 +13,7 @@ import Menus from "./Menus";
 const DayContext = createContext()
 
 function DaysTabs({ children }) {
-    const { dispatch } = useDietProvider()
+    const { dispatch } = useDietProvider();
     const [searchParams, setSearchParams] = useSearchParams();
     const currentActiveDay = !searchParams.get("day") ? "1" : searchParams.get("day");
 
@@ -52,7 +52,7 @@ function DaysTabs({ children }) {
 }
 
 function Tabs({ children }) {
-    const { handleAddingDays } = useContext(DayContext)
+    const { handleAddingDays } = useContext(DayContext);
     return (
         <div className="flex items-center">
             <div className="grow flex items-center justify-center lg:flex-nowrap flex-wrap xl:gap-0 gap-y-2">
@@ -98,7 +98,7 @@ function Open({ children, opens: openDayTab }) {
                     </Menus.List>
                 </Menus.Menu>
             </div>
-        </div>
+        </div >
     )
 }
 function Window({ children, opens: openDayTab }) {

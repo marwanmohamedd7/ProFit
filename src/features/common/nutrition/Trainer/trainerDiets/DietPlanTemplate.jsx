@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import Spinner from "../../../../../ui/Spinner";
-import DietTemplateOperations from "./DietTemplateOperations"
+import DietOperations from "./DietOperations"
 import { useGetSpecificDietTemplate } from "./useGetSpecificDietTemplate";
 import { useDietProvider } from "../../../../../context/DietProvider";
 
-function DietTemplate() {
+function DietPlanTemplate() {
     let fetchedData;
     const { dispatch } = useDietProvider()
     const { getDietTemplate, isLoading } = useGetSpecificDietTemplate();
@@ -15,7 +15,7 @@ function DietTemplate() {
         else dispatch({ type: "diet/updateMyDietPlan", payload: fetchedData });
     }, [fetchedData, isLoading, dispatch])
     if (isLoading) return <div className="flex items-center justify-center h-[80dvh]"><Spinner /></div>
-    return <DietTemplateOperations dietToUpdate={getDietTemplate} />
+    return <DietOperations dietToUpdate={getDietTemplate} />
 }
 
-export default DietTemplate
+export default DietPlanTemplate

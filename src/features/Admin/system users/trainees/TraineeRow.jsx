@@ -11,7 +11,7 @@ function TraineeRow({ trainee }) {
     if (status === "subscriber") statusStyle = `text-teal-500 bg-teal-100`;
     else statusStyle = `text-rose-500 bg-rose-100`;
     return (
-        <tr key={trainee.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
+        <tr key={trainee.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
             <td className="px-6 py-2 whitespace-nowrap mx-auto">
                 <div className="flex items-center gap-3">
                     <div className="flex-shrink-0 h-14 w-14">

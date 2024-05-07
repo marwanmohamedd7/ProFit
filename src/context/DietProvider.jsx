@@ -40,7 +40,7 @@ const dietDayObj = {
 }
 
 const dietMealObj = {
-    mealId: "",
+    mealId: 'id_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36),
     mealname: "",
     mealtype: "",
     mealnote: "",
@@ -55,7 +55,7 @@ const dietMealObj = {
 
 const intialState = {
     planName: "",
-    plantype: "My plan",
+    plantype: "",
     description: "",
     daysCount: 0,
     planmacros: {
@@ -108,11 +108,21 @@ const intialState = {
 }
 
 function reducer(state, action) {
+    let planType;
+    if (action.type === 'diet/startMyDietPlan' || action.type === 'diet/updateMyDietPlan') planType = "My plan"
+    if (action.type === 'diet/startFreeDietPlan' || action.type === 'diet/updateFreeDietPlan') planType = "Free plan"
+    if (action.type === 'diet/startCustomizedDietPlan' || action.type === 'diet/updateCustomizedDietPlan') planType = "Customized plan"
     switch (action.type) {
+        case 'diet/start':
+            return { ...state }
         case 'diet/startMyDietPlan':
-            return { ...intialState }
+        case 'diet/startFreeDietPlan':
+        case 'diet/startCustomizedDietPlan':
+            return { ...intialState, plantype: planType }
         case 'diet/updateMyDietPlan':
-            return { ...state, ...action.payload, days: action.payload.days.map(day => ({ ...day, meals: day.meals.map(meal => ({ ...meal, mealId: meal._id })) })) }
+        case 'diet/updateFreeDietPlan':
+        case 'diet/updateCustomizedDietPlan':
+            return { ...state, ...action.payload, plantype: planType, days: action.payload.days.map(day => ({ ...day, meals: day.meals.map(meal => ({ ...meal, mealId: meal._id })) })) }
         case 'diet/planInfo':
             return { ...state, ...action.payload }
         case 'diet/calcPlanMacros':
@@ -313,6 +323,11 @@ function reducer(state, action) {
                 ),
             };
         case 'diet/submit':
+            // Check if the plantype is not "My plan" and there are not exactly 7 days
+            if (state.plantype !== "My plan" && state.days.length !== 7) {
+                return { ...state, error: "Submission requires exactly 7 days." };
+            }
+
             if (state.days.length < 1) {
                 return { ...state, error: "Please add at least one day to your diet plan." };
             }
@@ -328,6 +343,7 @@ function reducer(state, action) {
             }
             const submissionData = {
                 ...state,
+                plantype: state.plantype,
                 daysCount: state.days.length,
                 days: state.days.map(day => ({
                     ...day,

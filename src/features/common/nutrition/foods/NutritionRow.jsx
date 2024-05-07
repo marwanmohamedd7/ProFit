@@ -56,7 +56,7 @@ function NutritionRow({ food, section, onCloseModal }) {
         toast.success("Added a new food item!")
         searchParams.set("page", 1);
         setSearchParams(searchParams);
-        onCloseModal()
+        onCloseModal();
     }
 
     return (
@@ -64,7 +64,7 @@ function NutritionRow({ food, section, onCloseModal }) {
             {
                 section === "food"
                     ?
-                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
+                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
                         <td className="pl-6 pr-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
                                 <div className="flex-shrink-0 h-10 w-10">

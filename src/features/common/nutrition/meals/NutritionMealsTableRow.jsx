@@ -36,7 +36,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
         <Table.Row>
             {
                 section === "meal" ?
-                    <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
+                    <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
                         <td className="px-4 py-4 whitespace-nowrap text-left">
                             <p className="flex flex-col gap-1">
                                 <span className="font-bold text-lg text-blue-700">{mealname}</span>

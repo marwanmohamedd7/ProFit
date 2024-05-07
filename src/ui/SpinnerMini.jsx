@@ -1,8 +1,8 @@
 import { BiLoaderAlt } from "react-icons/bi";
 
-function SpinnerMini() {
+function SpinnerMini({ size = "text-lg" }) {
   return (
-    <BiLoaderAlt className="text-lg animate-rotate" />
+    <BiLoaderAlt className={`${size} animate-rotate`} />
   )
 }
 

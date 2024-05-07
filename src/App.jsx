@@ -12,7 +12,6 @@ import Trainer from "./ui/Trainer";
 import Login from "./pagesAdmin/Login";
 import Users from "./pagesAdmin/Users";
 import Meals from './pagesCommon/Meals';
-import Diets from './pagesTrainer/Diets';
 import SignUp from "./pagesTrainer/SignUp";
 import Workout from "./pagesAdmin/Workout";
 import Account from "./pagesAdmin/Account";
@@ -33,6 +32,8 @@ import CompleteProfile from "./pagesTrainer/CompleteProfile";
 import TrainersApproval from "./pagesAdmin/TrainersApproval";
 import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
 import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
+import DietPlanTrainer from './pagesTrainer/DietPlanTrainer';
+import DietPlanFree from './pagesTrainer/DietPlanFree';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,13 +89,15 @@ function App() {
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<DashboardTrainer />} />
             <Route path="portfolio" element={<Portfolio />} />
+            <Route path="portfolio/diets" element={<DietPlanFree />} />
+            <Route path="portfolio/diets/:id" element={<DietPlanFree />} />
             <Route path="trainees" element={<Trainees />} />
             <Route path="messages" element={<Messages />} />
             <Route path="nutrition" element={<NutritionTrainer />} />
             <Route path="nutrition/meals" element={<Meals />} />
             <Route path="nutrition/meals/:id" element={<Meals />} />
-            <Route path="nutrition/diets" element={<Diets />} />
-            <Route path="nutrition/diets/:id" element={<Diets />} />
+            <Route path="nutrition/diets" element={<DietPlanTrainer />} />
+            <Route path="nutrition/diets/:id" element={<DietPlanTrainer />} />
             <Route path="workout" element={<WorkoutTrainer />} />
             <Route path="packages" element={<Packages />} />
             <Route path="transcations" element={<Transcations />} />

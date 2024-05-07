@@ -6,23 +6,31 @@ import Table from "../../../ui/Table"
 import Button from "../../../ui/Button"
 import ActiveButton from "../../../ui/ActiveButton"
 import ConfirmDelete from "../../../ui/ConfirmDelete"
+import { useEffect, useState } from "react"
+import { useUpdatePackage } from "./useUpdatePackage"
 
 function ProfilePackagesTableRow({ packagee }) {
+    const { _id, packageName, packageType, price, duration, subscribersLimit, active } = packagee
     const { deletePackage, isDeleting } = useDeletePackage()
+    const { updatePackage, isUpdating } = useUpdatePackage()
+    const [isActive, setIsActive] = useState(active ?? true)
     function onDelete(id) {
         if (!id) return
         deletePackage(id)
     }
-
+    useEffect(function () {
+        if (active === isActive) return
+        updatePackage({ id: _id, updatedPackageData: { active: isActive } })
+    }, [isActive, active, _id, setIsActive, updatePackage])
     return (
         <Table.Row>
-            <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 capitalize">
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.packageName}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.packageType}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.price} EGP</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.duration} Months</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.subscribersLimit}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{<ActiveButton isActive={packagee.active} disabled={true} />}</td>
+            <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border capitalize">
+                <td className="px-6 py-2 whitespace-nowrap">{packageName}</td>
+                <td className="px-6 py-2 whitespace-nowrap">{packageType}</td>
+                <td className="px-6 py-2 whitespace-nowrap">{price} EGP</td>
+                <td className="px-6 py-2 whitespace-nowrap">{duration} Months</td>
+                <td className="px-6 py-2 whitespace-nowrap">{subscribersLimit}</td>
+                <td className="px-6 py-2 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <Modal>
@@ -44,9 +52,9 @@ function ProfilePackagesTableRow({ packagee }) {
                                 </Button>
                             </Modal.Open>
                             <Modal.Window opens="delete-food">
-                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(packagee._id)} resourceName="package" />
+                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="package" />
                             </Modal.Window>
-                        </Modal>   
+                        </Modal>
                     </div>
                 </td>
             </tr>

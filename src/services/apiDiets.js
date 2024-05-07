@@ -15,6 +15,21 @@ export async function getDietTemplates(token, page) {
   return data;
 }
 
+export async function getDietFreePlans(token, page) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/Nutrition/FreePlans?page=${page}&limit=${PAGE_SIZE_MEALS}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
 export async function getSpecificDietTemplate(token, id) {
   const response = await fetch(
     `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
