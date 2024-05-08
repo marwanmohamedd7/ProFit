@@ -139,3 +139,18 @@ export async function getSystemUsers(token, page, QueryParams) {
   const data = await response.json();
   return data;
 }
+
+export async function getAdminFinancials(token, page) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/admin/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}

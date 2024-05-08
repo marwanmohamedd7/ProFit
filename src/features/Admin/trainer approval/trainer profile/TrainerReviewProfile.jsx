@@ -5,7 +5,6 @@ import PendingTrainerPersonalInfo from "./personal information/PendingTrainerPer
 import PendingTrainerProfessionalData from "./professional credentials/PendingTrainerProfessionalData"
 
 function TrainerReviewProfile() {
-
     return (
         <>
             <PendingTrainerInfoBar />

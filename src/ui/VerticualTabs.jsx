@@ -13,7 +13,7 @@ function VerticualTabs({ children, tabsFeild, defaultTab }) {
     }
     return (
         <TabsContext.Provider value={{ currentActive, open }}>
-            <div className="flex gap-4 my-4 p-4 rounded-md">
+            <div className="flex gap-4 py-4 rounded-md">
                 {children}
             </div>
         </TabsContext.Provider>

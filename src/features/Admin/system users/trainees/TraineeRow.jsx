@@ -1,5 +1,5 @@
 import { MdOutlineBlock } from "react-icons/md";
-import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
+// import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
 
 function TraineeRow({ trainee }) {
     let statusStyle;
@@ -41,21 +41,21 @@ function TraineeRow({ trainee }) {
             <td className="px-6 py-2 whitespace-nowrap">{Registration_Date}</td>
             <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
-                    <span
+                    {/* <span
                         href="#"
                         className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
                     >
                         <IoEyeOutline />
 
-                    </span>
+                    </span> */}
 
-                    <span
+                    {/* <span
                         href="#"
                         className="text-green-600 p-2 hover:text-green-900 bg-green-100 rounded-md"
                     >
                         <IoCheckmarkOutline />
 
-                    </span>
+                    </span> */}
 
                     <span
                         href="#"

@@ -9,7 +9,7 @@ export function useGetPendingTrainerClientsTransformation() {
   const { data: getPendingTrainerClientsTransformation, isLoading } = useQuery({
     queryKey: ["pendingTrainerClientsTransformation", id], // unique string to identify the request
     queryFn: () => apiGetPendingTrainerClientsTransformation(id, userToken),
-    retry: 1,
+    retry: 2,
   });
   return {
     getPendingTrainerClientsTransformation:

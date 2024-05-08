@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { MdOutlineBlock } from "react-icons/md";
 import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
 import { usePendingTrainerAccept } from "../../trainer approval/trainer profile/usePendingTrainerAccept";
@@ -6,6 +7,7 @@ import SpinnerMini from "../../../../ui/SpinnerMini";
 
 function TrainerRow({ trainer }) {
     let statusStyle;
+    const navigate = useNavigate();
     const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
     const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, subscriptions, status, paidAmount } = trainer ?? {};
@@ -35,10 +37,10 @@ function TrainerRow({ trainer }) {
             <td className="px-6 py-2 whitespace-nowrap">{subscriptions}</td>
             <td className="px-6 py-2 whitespace-nowrap">{paidAmount}</td>
             <td className="px-6 py-2 whitespace-nowrap">{Registration_Date}</td>
-            <td className="px-6 py-2 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status}</span></td>
+            <td className="px-6 py-2 whitespace-nowrap"><span className={`px-2 py-0.5 rounded-md capitalize text-xs font-semibold ${statusStyle}`}>{status}</span></td>
             <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
-                    <button
+                    <button onClick={() => navigate(`trainer-profile/${_id}`)}
                         className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
                     >
                         <IoEyeOutline />

@@ -28,13 +28,13 @@ function DietsFreePlanTableRow({ diet }) {
     return (
         <Table.Row>
             <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
-                <td className="px-4 py-4 whitespace-nowrap text-left">{planName}</td>
+                <td className="p-4 whitespace-nowrap text-left">{planName}</td>
 
-                <td className="px-4 py-4 whitespace-nowrap text-left">subscribers</td>
+                <td className="p-4 whitespace-nowrap text-left">subscribers</td>
 
-                <td className="px-4 py-4 whitespace-nowrap text-left">rating</td>
+                <td className="p-4 whitespace-nowrap text-left">rating</td>
 
-                <td className="px-4 py-4 whitespace-nowrap text-left">
+                <td className="p-4 whitespace-nowrap text-left">
                     <DietTableRowMacros
                         fats={planmacros.fats}
                         carbs={planmacros.carbs}
@@ -43,9 +43,9 @@ function DietsFreePlanTableRow({ diet }) {
                     />
                 </td>
 
-                <td className="px-4 py-4 whitespace-nowrap text-left">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
+                <td className="p-4 whitespace-nowrap text-left">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
 
-                <td className="py-4 whitespace-nowrap text-sm text-left font-medium">
+                <td className="p-4 whitespace-nowrap text-sm text-left font-medium">
                     <div className='flex items-center gap-1'>
                         <Button onClick={() => navigate(`diets/${_id}`)} type="icon-update">
                             <HiPencil />

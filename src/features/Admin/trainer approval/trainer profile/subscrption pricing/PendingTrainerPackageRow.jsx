@@ -5,14 +5,14 @@ import ActiveButton from "../../../../../ui/ActiveButton"
 function PendingTrainerPackageRow({ packagee }) {
     return (
         <Table.Row>
-            <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 capitalize">
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.packageName}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.packageType}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.price} EGP</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.duration} Months</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packagee.subscribersLimit}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{<ActiveButton isActive={packagee.active} disabled={true} />}</td>
-                <td className="px-6 py-2 whitespace-nowrap text-right text-md font-medium">
+            <tr className="border text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 capitalize">
+                <td className="px-6 py-4 whitespace-nowrap">{packagee.packageName}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{packagee.packageType}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{packagee.price} EGP</td>
+                <td className="px-6 py-4 whitespace-nowrap">{packagee.duration} Months</td>
+                <td className="px-6 py-4 whitespace-nowrap">{packagee.subscribersLimit}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{<ActiveButton isActive={packagee.active} disabled={true} />}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-md font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <span
                             href="#"

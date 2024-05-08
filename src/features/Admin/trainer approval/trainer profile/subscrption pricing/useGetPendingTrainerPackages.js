@@ -9,7 +9,7 @@ export function useGetPendingTrainerPackages() {
   const { data: getPendingTrainerPackages, isLoading } = useQuery({
     queryKey: ["PendingTrainerPackages", id], // unique string to identify the request
     queryFn: () => apiGetPendingTrainerPackages(id, userToken),
-    retry: 1,
+    retry: 2,
   });
   return {
     getPendingTrainerPackages: getPendingTrainerPackages?.data,

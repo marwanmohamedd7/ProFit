@@ -7,7 +7,7 @@ export function useGetQualification() {
   const { data: getQualifications, isLoading } = useQuery({
     queryKey: ["qualifications", userId],
     queryFn: () => apiGetQualifications(userToken),
-    retry: 1, // If the request fails, retry once more
+    retry: 2, // If the request fails, retry once more
   });
   return { getQualifications: getQualifications?.data, isLoading };
 }

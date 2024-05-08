@@ -17,16 +17,15 @@ function DietOperations({ dietToUpdate = {} }) {
     const isExist = Boolean(_id);
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const path = pathname.split("/").filter(item => item !== "" && item !== _id).slice(0, -1).join("/");
+    const [submitCount, setSubmitCount] = useState(0); // Track the number of submit attempts
     const { dispatch, error, submittedData } = useDietProvider();
     const { createDietTemplate, isCreating } = useCreateDietTemplate();
     const { updateDietTemplate, isUpdating } = useUpdateDietTemplate();
     const isLoading = isCreating || isUpdating;
-    const [submitCount, setSubmitCount] = useState(0); // Track the number of submit attempts
+    const path = pathname.split("/").filter(item => item !== "" && item !== _id).slice(0, -1).join("/");
     const { handleSubmit, formState: { errors }, register, watch } = useForm({
         defaultValues: isExist ? dietToUpdate : {},
     });
-
     function onSubmit(data) {
         if (!data) return;
         const { planName, description } = data

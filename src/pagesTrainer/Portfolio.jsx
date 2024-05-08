@@ -1,13 +1,17 @@
-import TrainerPortfolio from "../features/Trainer/portfolio/TrainerPortfolio"
+import Title from "../ui/Title"
 import BreadCrumbs from "../ui/BreadCrumbs"
-// import Title from "../ui/Title"
+import TrainerPortfolio from "../features/Trainer/portfolio/TrainerPortfolio"
 
 function Portfolio() {
     return (
-        <div>
-            <BreadCrumbs />
-            {/* <Title /> */}
-            <TrainerPortfolio />
+        <div className="divide-y">
+            <div className="pb-4 capitalize">
+                <BreadCrumbs />
+                <Title />
+            </div>
+            <div>
+                <TrainerPortfolio />
+            </div>
         </div>
     )
 }

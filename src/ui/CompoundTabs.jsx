@@ -21,7 +21,7 @@ function CompoundTabs({ children, tabsFeild, defaultTab }) {
 function Tabs({ children }) {
     return (
         <div>
-            <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 capitalize">
+            <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 pb-4 capitalize">
                 {children}
             </ul>
         </div>

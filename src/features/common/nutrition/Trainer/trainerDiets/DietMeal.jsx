@@ -17,9 +17,11 @@ import ConfirmDelete from "../../../../../ui/ConfirmDelete";
 import NutritionMeals from "../trainerMeals/NutritionMeals";
 
 function DietMeal({ meal }) {
-    const { dispatch } = useDietProvider()
+    const { dispatch, days } = useDietProvider()
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
+    const activeDayMeals = days.find(day => day.day === activeDay)?.mealsCount ?? {};
+
     const { createMeal, isCreating } = useCreateMeal()
     const [mealToggle, setMealToggle] = useState(false)
     const { foods, mealId, mealmacros, ...mealInfo } = meal
@@ -34,7 +36,7 @@ function DietMeal({ meal }) {
         const mealData = { ...data, ingredients: foods, mealmacros };
         createMeal(mealData)
     }
-    
+
     function handleDeleteMealSection() {
         dispatch({ type: "diet/deleteMeal", payload: { day: activeDay, mealId } })
         dispatch({ type: "diet/calcDayMacros", payload: activeDay })
@@ -56,7 +58,7 @@ function DietMeal({ meal }) {
                 <div className="flex items-center gap-2">
                     <Modal>
                         <Modal.Open opens="delete-food">
-                            <button disabled={false} className="disabled:cursor-not-allowed bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
+                            <button disabled={activeDayMeals <= 2 ? true : false} className="disabled:cursor-not-allowed bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
                         </Modal.Open>
                         <Modal.Window opens="delete-food">
                             <ConfirmDelete onConfirm={handleDeleteMealSection} resourceName="section" />

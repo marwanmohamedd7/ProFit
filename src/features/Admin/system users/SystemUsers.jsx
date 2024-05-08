@@ -8,7 +8,7 @@ function SystemUsers() {
     const { getSystemUsers, isLoading, count } = useGetSystemUsers();
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
-        <>
+        <div>
             <CompoundTabs tabsFeild="users" defaultTab="trainers">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="trainers">trainers</CompoundTabs.Open>
@@ -21,7 +21,7 @@ function SystemUsers() {
                     <Trainees users={getSystemUsers} count={count} />
                 </CompoundTabs.Window>
             </CompoundTabs>
-        </>
+        </div>
     )
 }
 

@@ -10,7 +10,7 @@ export function useGetPendingTrainerQualifications() {
     queryKey: ["PendingTrainerQualificationsAndAchievements", id], // unique string to identify the request
     queryFn: () =>
       getPendingTrainerQualificationsAndAchievements(id, userToken),
-    retry: 1,
+    retry: 2,
   });
   return {
     getPendingTrainerQualifications: getPendingTrainerQualifications?.data,

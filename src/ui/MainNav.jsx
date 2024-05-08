@@ -62,15 +62,15 @@ const sidebarBtnsDataAdmin = [
       icon: <CiWallet />
     }]
   },
-  {
-    title: "support and help",
-    btns: [{
-      name: "support",
-      type: "sideBtn",
-      to: "support",
-      icon: <PiHeadphones />
-    }]
-  },
+  // {
+  //   title: "support and help",
+  //   btns: [{
+  //     name: "support",
+  //     type: "sideBtn",
+  //     to: "support",
+  //     icon: <PiHeadphones />
+  //   }]
+  // },
 ]
 const sidebarBtnsDataTrainer = [
   {
@@ -126,9 +126,9 @@ const sidebarBtnsDataTrainer = [
         icon: <CiPercent />
       },
       {
-        name: "transcations",
+        name: "subscriptions",
         type: "sideBtn",
-        to: "transcations",
+        to: "subscriptions",
         icon: <PiCurrencyCircleDollar />
       }
     ],

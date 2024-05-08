@@ -14,12 +14,12 @@ function NutritionAdmin() {
                             <span>ProFIT Foods</span>
                         </p>
                     </CompoundTabs.Open>
-                    <CompoundTabs.Open opens="attributes">
+                    {/* <CompoundTabs.Open opens="attributes">
                         <p className="flex justify-center items-center gap-1">
                             <span className="text-lg"><CiGrid41 /></span>
                             <span>ProFIT Foods Attributes</span>
                         </p>
-                    </CompoundTabs.Open>
+                    </CompoundTabs.Open> */}
                     <CompoundTabs.Open opens="meals_templates">
                         <p className="flex justify-center items-center gap-1">
                             <span className="text-lg"><CiGrid41 /></span>

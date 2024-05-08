@@ -13,7 +13,7 @@ export function useGetFreeDietPlans() {
   const { data: getDietFreePlans, isLoading } = useQuery({
     queryKey: ["DietFreePlans", userId, page], // unique string to identify the request
     queryFn: () => apiGetDietFreePlans(userToken, page),
-    retry: 1,
+    retry: 2,
     staleTime: 0,
   });
 
@@ -25,7 +25,7 @@ export function useGetFreeDietPlans() {
     queryClient.prefetchQuery({
       queryKey: ["DietFreePlans", userId, page + 1], // unique string to identify the request
       queryFn: () => apiGetDietFreePlans(userToken, page + 1),
-      retry: 1,
+      retry: 2,
       staleTime: 0,
     });
   }
@@ -34,7 +34,7 @@ export function useGetFreeDietPlans() {
     queryClient.prefetchQuery({
       queryKey: ["DietFreePlans", userId, page - 1], // unique string to identify the request
       queryFn: () => apiGetDietFreePlans(userToken, page - 1),
-      retry: 1,
+      retry: 2,
       staleTime: 0,
     });
   }

@@ -25,13 +25,13 @@ function ProfilePackagesTableRow({ packagee }) {
     return (
         <Table.Row>
             <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border capitalize">
-                <td className="px-6 py-2 whitespace-nowrap">{packageName}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{packageType}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{price} EGP</td>
-                <td className="px-6 py-2 whitespace-nowrap">{duration} Months</td>
-                <td className="px-6 py-2 whitespace-nowrap">{subscribersLimit}</td>
-                <td className="px-6 py-2 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
-                <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-6 py-4 whitespace-nowrap">{packageName}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{packageType}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{price} EGP</td>
+                <td className="px-6 py-4 whitespace-nowrap">{duration} Months</td>
+                <td className="px-6 py-4 whitespace-nowrap">{subscribersLimit}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <Modal>
                             <Modal.Open opens="update-package">

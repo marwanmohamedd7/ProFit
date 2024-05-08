@@ -71,6 +71,7 @@ function App() {
             <Route path="dashboard" element={<DashboardAdmin />} />
             <Route path="trainer-approval" element={<TrainersApproval />} />
             <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
+            <Route path="system-users/trainer-profile/:id" element={<TrainerReview />} />
             <Route path="nutrition" element={<NutritionAdmin />} />
             <Route path="nutrition/meals" element={<Meals />} />
             <Route path="nutrition/meals/:id" element={<Meals />} />
@@ -100,7 +101,7 @@ function App() {
             <Route path="nutrition/diets/:id" element={<DietPlanTrainer />} />
             <Route path="workout" element={<WorkoutTrainer />} />
             <Route path="packages" element={<Packages />} />
-            <Route path="transcations" element={<Transcations />} />
+            <Route path="subscriptions" element={<Transcations />} />
           </Route>
 
           <Route path="complete-profile" element={<Navigate replace to="personal-information" />} />

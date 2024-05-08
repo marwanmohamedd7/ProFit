@@ -1,14 +1,13 @@
 import { BiPlus } from "react-icons/bi"
 import { IoClose } from "react-icons/io5";
+import { GrPowerReset } from "react-icons/gr";
 import { createContext, useContext } from "react"
 import { useSearchParams } from "react-router-dom";
-import { useDietProvider } from "../context/DietProvider";
-import { GrPowerReset } from "react-icons/gr";
 import { HiOutlineDuplicate } from "react-icons/hi";
+import { useDietProvider } from "../context/DietProvider";
 import Menus from "./Menus";
 // import Menus from "./Menus";
 // import { FiMinus } from "react-icons/fi";
-// import { IoIosClose } from "react-icons/io";
 
 const DayContext = createContext()
 
