@@ -10,7 +10,9 @@ function Users() {
         <BreadCrumbs />
         <Title />
       </div>
-      <SystemUsers />
+      <div className="space-y-4">
+        <SystemUsers />
+      </div>
     </div>
   );
 }
