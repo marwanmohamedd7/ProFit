@@ -8,8 +8,8 @@ function Header() {
   const { isOpen, setIsOpen } = useMainNav();
   const { firstName, lastName, email, profilePhoto } = user ?? {};
   return (
-    <nav className="flex items-center justify-between border-solid border-b border-grey-100 px-3 py-0.5">
-      <button onClick={() => setIsOpen(value => !value)} className="ml-[-1.55rem] text-sm bg-gray-50 border border-gray-300 rounded-full p-1 text-gray-500 z-10">{isOpen ? <TbArrowBarToLeft /> : <TbArrowBarToRight />}</button>
+    <nav className="flex items-center justify-between border-solid border-b border-grey-100 px-3">
+      <button onClick={() => setIsOpen(value => !value)} className="text-lg bg-gray-50 border border-gray-300 rounded-md p-1 text-gray-500 z-10">{isOpen ? <TbArrowBarToLeft /> : <TbArrowBarToRight />}</button>
       <div className="flex justify-end gap-4 divide-x divide-gray-200 items-center p-2.5 row-span-1">
         <div className="bg-blue-50 p-2 text-2xl rounded-md cursor-pointer text-blue-700">
           <IoMdNotificationsOutline />
