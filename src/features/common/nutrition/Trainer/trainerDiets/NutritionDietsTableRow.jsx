@@ -19,16 +19,16 @@ function NutritionDietsTableRow({ diet }) {
     return (
         <Table.Row>
             <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
-                <td className="px-4 py-4 whitespace-nowrap text-left">
+                <td className="p-4 whitespace-nowrap text-left">
                     <p className="flex flex-col gap-1">
                         <span className="font-bold text-lg text-blue-700">{planName}</span>
                         <span className="font-normal text-xs text-gray-500">{plantype}</span>
                     </p>
                 </td>
 
-                <td className="px-4 py-4">{daysCount}</td>
+                <td className="p-4">{daysCount}</td>
 
-                <td className="px-4 py-4 whitespace-nowrap text-left">
+                <td className="p-4 whitespace-nowrap text-left">
                     <DietTableRowMacros
                         fats={planmacros.fats}
                         carbs={planmacros.carbs}
@@ -37,7 +37,7 @@ function NutritionDietsTableRow({ diet }) {
                     />
                 </td>
 
-                <td className="px-2 py-4 whitespace-nowrap text-sm text-right font-medium">
+                <td className="p-4 whitespace-nowrap text-sm font-medium">
                     <div className='flex items-center justify-end gap-1'>
                         <Button onClick={() => navigate(`diets/${_id}`)} type="icon-update">
                             <HiPencil />

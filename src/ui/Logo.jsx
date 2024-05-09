@@ -1,12 +1,15 @@
+import { useMainNav } from "../context/MainNavProvider";
 import { useCurrentUser } from "../context/UserProvider";
 
 function Logo() {
   const { userRole } = useCurrentUser()
+  const { isOpen } = useMainNav();
+
 
   return (
-    <div className="flex justify-center text-center py-[0.22rem] sm:py-[0.42rem]  border-solid border-b border-grey-100">
-      <div className="rounded-md w-36 p-1 sm:p-0 flex items-center justify-center gap-3 capitalize">
-        <div className="bg-blue-900 rounded-lg px-1 py-2">
+    <div className="flex justify-center text-center py-[0.08rem] sm:py-[0.45rem] border-solid border-b border-grey-100">
+      <div className="rounded-md w-32 p-0.5 sm:p-0 flex items-center justify-center gap-3 capitalize">
+        <div className="bg-blue-900 rounded-lg px-1 py-2.5">
           <svg
             width="40"
             height="30"
@@ -38,20 +41,20 @@ function Logo() {
           </svg>
         </div>
 
-        <div className="flex flex-col items-start gap-1">
-          <h1 className="font-extrabold text-2xl capitalize sm:text-3xl text-blue-900 leading-6 sm:leading-7">
-            pro
-            <span className="uppercase">
-              Fit
+        {isOpen &&
+          <div className="flex flex-col items-start gap-1">
+            <h1 className="font-extrabold text-2xl capitalize sm:text-3xl text-blue-900 leading-6 sm:leading-7">
+              pro
+              <span className="uppercase">
+                Fit
+              </span>
+            </h1>
+            <span className="text-xs text-gray-500 font-normal p-0 m-0">
+              {userRole} panel
             </span>
-          </h1>
-          <span className="text-xs text-gray-500 font-normal p-0 m-0">
-            {userRole} panel
-          </span>
-        </div>
-
+          </div>
+        }
       </div>
-
     </div>
   );
 }

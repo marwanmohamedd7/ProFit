@@ -15,7 +15,7 @@ function NutritionMealsTable({ meals, section, count, onCloseModal }) {
                             <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">meal deatails</th>
                             <th className="lg:w-[45%] w-[50%] px-4 py-2 text-left whitespace-nowrap">meal ingredients</th>
                             <th className="lg:w-[25%] w-[10%] px-4 py-2 text-left whitespace-nowrap">meal macros</th>
-                            <th className="lg:w-[10%] w-[10%] pr-6 py-2 text-right">Actions</th>
+                            <th className="lg:w-[10%] w-[10%] px-8 py-2 text-right whitespace-nowrap">Actions</th>
                         </tr>
                         :
                         <tr className="capitalize">

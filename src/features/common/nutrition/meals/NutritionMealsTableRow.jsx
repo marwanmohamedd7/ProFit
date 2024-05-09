@@ -83,7 +83,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
                             </div>
                         </td>
 
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-right font-medium">
+                        <td className="p-4 whitespace-nowrap text-sm text-right font-medium">
                             {userRole === "admin" ?
                                 <div className='flex items-center justify-end gap-1'>
                                     <Button onClick={() => navigate(`meals/${_id}`)} type="icon-update">

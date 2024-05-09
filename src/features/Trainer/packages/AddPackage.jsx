@@ -6,6 +6,7 @@ import Button from "../../../ui/Button";
 import SpinnerMini from "../../../ui/SpinnerMini";
 import ActiveButton from "../../../ui/ActiveButton";
 import InputFloatingLabel from "../../../ui/InputFloatingLabel";
+import InputDropdown from "../../../ui/InputDropdown";
 
 function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     const { createPackage, isCreating } = useCreatePackage()
@@ -57,29 +58,33 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                             }
                         }
                     />
-                    <div>
-                        <div className=" text-gray-600 text-sm space-x-1 border-2 rounded-lg">
-                            <select id="packageType" className="capitalize block w-full text-xs sm:text-sm p-1.5 text-gray-500 rounded-md
-                         focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                {...register("packageType", {
-                                    required: "This field is required",
-                                })}
-                            >
-                                <option value="">package type</option>
-                                <option value="Nutrition Plan">Nutrition Plan</option>
-                                <option value="Workout Plan">Workout Plan</option>
-                                <option value="Nutrition & Workout Plan">Nutrition & Workout Plan</option>
-                            </select>
-                        </div>
-                        {errors?.packageType?.message && <span className="text-xs text-red-700">{errors?.packageType?.message}</span>}
-                    </div>
+                    <InputDropdown
+                        item={{
+                            id: "packageType",
+                            label: "package type",
+                            options: [
+                                "Nutrition Plan",
+                                "Workout Plan",
+                                "Nutrition & Workout Plan",
+                            ],
+                        }}
+                        disabled={isLoading}
+                        error={errors?.packageType?.message}
+                        register={
+                            {
+                                ...register("packageType", {
+                                    required: "Select package type."
+                                })
+                            }
+                        }
+                    />
                 </div>
                 <div className="space-y-1">
                     <label htmlFor="description" className="block text-sm font-medium capitalize text-gray-700">description</label>
                     <textarea
                         id="description"
-                        placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
-                        className="mt-1 block w-full py-2 h-28 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        placeholder="package description...."
+                        className="mt-1 block w-full py-2 h-28 px-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm"
                         {...register("description", {
                             required: false,
                             // required: "This field is required",
@@ -93,13 +98,13 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                 <div className="grid grid-cols-3 gap-x-2">
 
                     <div>
-                        <div className="flex items-center text-gray-600 text-sm space-x-1 border-2 rounded-lg">
+                        <div className="flex items-center text-gray-700 text-sm space-x-1 border border-gray-300 rounded-lg">
                             <span className="border-r p-2.5 h-full flex items-center bg-gray-100">EGP</span>
                             <input
                                 type="number"
                                 id="price"
                                 placeholder="Amount"
-                                className="outline-none w-full px-2"
+                                className="outline-none w-full px-2 text-gray-700 placeholder:text-gray-700"
                                 {...register("price", {
                                     required: "This field is required",
                                     valueAsNumber: true, // convert the input to number type
@@ -110,20 +115,20 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                     </div>
 
                     <div>
-                        <div className="flex items-center text-gray-600 text-sm space-x-1 border-2 rounded-lg">
+                        <div className="flex items-center text-gray-600 text-sm space-x-1 border border-gray-300 rounded-lg">
                             <span className="border-r p-2.5 h-full flex items-center bg-gray-100">Months</span>
-                            <select id="duration" className="capitalize block w-full text-xs sm:text-sm px-2 text-gray-500 rounded-md
+                            <select id="duration" className="capitalize block w-full text-xs sm:text-sm px-2 text-gray-700 rounded-md
                          focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 {...register("duration", {
                                     required: "This field is required",
                                     valueAsNumber: true, // convert the input to number type
                                 })}
                             >
-                                <option value="">duration</option>
-                                <option value="3">3 months</option>
-                                <option value="6">6 months</option>
-                                <option value="9">9 months</option>
-                                <option value="12">1 year</option>
+                                <option className="text-gray-400" value="">duration</option>
+                                <option className="text-gray-700 text-sm" value="3">3 months</option>
+                                <option className="text-gray-700 text-sm" value="6">6 months</option>
+                                <option className="text-gray-700 text-sm" value="9">9 months</option>
+                                <option className="text-gray-700 text-sm" value="12">1 year</option>
                                 {/* Add other options here */}
                             </select>
                         </div>

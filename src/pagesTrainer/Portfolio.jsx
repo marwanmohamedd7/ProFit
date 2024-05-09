@@ -4,15 +4,13 @@ import TrainerPortfolio from "../features/Trainer/portfolio/TrainerPortfolio"
 
 function Portfolio() {
     return (
-        <div className="divide-y">
-            <div className="pb-4 capitalize">
+        <>
+            <div className="pb-2">
                 <BreadCrumbs />
                 <Title />
             </div>
-            <div>
-                <TrainerPortfolio />
-            </div>
-        </div>
+            <TrainerPortfolio />
+        </>
     )
 }
 

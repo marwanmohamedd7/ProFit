@@ -15,7 +15,7 @@ function UserProvider({ children }) {
 
 function useCurrentUser() {
     const context = useContext(UserContext);
-    if (context === undefined) throw new Error("useCurrentUser must be used within a UserProvider")
+    if (context === undefined) throw new Error("useCurrentUser must be used within a DietProvider")
     return context;
 }
 
