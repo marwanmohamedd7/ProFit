@@ -8,7 +8,7 @@ function AppLayout({ children }) {
       <Header />
       <Sidebar />
       {/* <main className="bg-gray-50 pt-[4rem] pb-[6.4rem] px-[4.8rem] overflow-scroll"> */}
-      <main className="bg-gray-50 p-2 overflow-scroll">
+      <main className="bg-white p-2 overflow-scroll">
         <div className="container mx-auto p-2">
           {children}
         </div>

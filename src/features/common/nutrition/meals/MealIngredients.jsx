@@ -24,7 +24,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                 <div className="col-span-full">
                     <Modal>
                         <Modal.Open opens={`choose-meal-recipes`}>
-                            <Button customeStyle="mx-auto py-2.5 w-full">
+                            <Button type="primary" customeStyle="mx-auto py-2.5 w-full">
                                 <p className="capitalize flex justify-center items-center gap-1">
                                     <span>add meal recipe</span>
                                     <span className="text-lg"><HiPlusSm /></span>

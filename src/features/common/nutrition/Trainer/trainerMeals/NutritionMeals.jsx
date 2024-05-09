@@ -28,7 +28,7 @@ function NutritionMeals({ section = "meal", onCloseModal }) {
             >
                 {
                     section === "meal" &&
-                    <Button onClick={() => navigate("meals")}>
+                    <Button type="primary" onClick={() => navigate("meals")}>
                         <p className="capitalize flex justify-center items-center gap-1">
                             <span>create new meal</span>
                             <span className="text-lg"><HiPlusSm /></span>

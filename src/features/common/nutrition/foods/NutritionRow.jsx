@@ -67,22 +67,22 @@ function NutritionRow({ food, section, onCloseModal }) {
                     <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
                         <td className="pl-6 pr-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                                <div className="flex-shrink-0 h-10 w-10">
-                                    <img className="h-10 w-10 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
+                                <div className="flex-shrink-0 h-14 w-14">
+                                    <img className="h-14 w-14 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
                                 </div>
                                 <div className="">
                                     <div className="text-sm font-bold">{food.foodname}</div>
                                 </div>
                             </div>
                         </td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.servingUnit}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.per + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.calories}</td>
-                        <td className="px-4 py-2 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
-                        <td className="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
+                        <td className="p-4 whitespace-nowrap">{food.servingUnit}</td>
+                        <td className="p-4 whitespace-nowrap">{food.per + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.calories}</td>
+                        <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
+                        <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                             {
                                 userRole === "admin" ?
                                     <div className='flex items-center justify-start gap-2'>
@@ -155,28 +155,28 @@ function NutritionRow({ food, section, onCloseModal }) {
                     <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
                         <td className="pl-6 pr-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                                <div className="flex-shrink-0 h-10 w-10">
-                                    <img className="h-10 w-10 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
+                                <div className="flex-shrink-0 h-h-14 w-14">
+                                    <img className="h-h-14 w-14 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
                                 </div>
                                 <div className="">
                                     <div className="text-sm font-bold">{food.foodname}</div>
                                 </div>
                             </div>
                         </td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.servingUnit}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">{food.macros.calories}</td>
-                        <td className="px-4 py-2 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
-                        <td className="px-4 py-2 whitespace-nowrap text-center">
+                        <td className="p-4 whitespace-nowrap">{food.servingUnit}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.calories}</td>
+                        <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
+                        <td className="p-4 whitespace-nowrap text-center">
                             <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
                                 <p className="flex items-center justify-center gap-2 capitalize">
                                     <span>add</span>
                                     <span className="font-light"><FaPlus /></span>
                                 </p>
                             </Button>
-                            {/* <button onClick={handleAddFood} className="bg-blue-700 text-white p-3.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button> */}
+                            {/* <button onClick={handleAddFood} className="bg-blue-700 text-white p-4.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button> */}
                         </td>
                     </tr>
             }

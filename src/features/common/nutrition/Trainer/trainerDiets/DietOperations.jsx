@@ -65,7 +65,7 @@ function DietOperations({ dietToUpdate = {} }) {
                         className="text-blue-600 bg-blue-200 cursor-pointer p-0.5 rounded-md font-semibold text-lg"><HiMiniChevronLeft /></button>
                     <span className="font-bold text-blue-900 text-2xl capitalize">{"diet builder"}</span>
                 </div>
-                <Button onClick={handleSubmit(onSubmit)}>
+                <Button type="primary" onClick={handleSubmit(onSubmit)}>
                     <p className="capitalize">
                         {isLoading ? <SpinnerMini /> : isExist ? "update diet template" : "save diet template"}
                     </p>

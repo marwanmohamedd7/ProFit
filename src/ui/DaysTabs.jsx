@@ -54,7 +54,7 @@ function Tabs({ children }) {
     const { handleAddingDays } = useContext(DayContext);
     return (
         <div className="flex items-center">
-            <div className="grow flex items-center justify-center lg:flex-nowrap flex-wrap xl:gap-0 gap-y-2">
+            <div className="grow flex items-center justify-center gap-2 lg:flex-nowrap flex-wrap">
                 {children}
             </div>
             <div className="flex gap-1 ml-2">
@@ -67,11 +67,11 @@ function Tabs({ children }) {
 }
 function Open({ children, opens: openDayTab }) {
     openDayTab = openDayTab.slice(-1)
-    const inActiveTabStyle = "bg-gray-300 text-gray-600"
-    const activeTabStyle = "bg-gray-600 text-gray-50 font-bold tracking-wide"
+    const inActiveTabStyle = "bg-gray-200 text-gray-600"
+    const activeTabStyle = "bg-gray-500 text-gray-50 font-bold tracking-wide"
     const { handleTabClick, handleRemoveDay, handleDuplicateDay, handleResetDay, currentActiveDay } = useContext(DayContext)
     return (
-        <div className="cursor-pointer grow ml-2">
+        <div className="cursor-pointer grow">
             <div onClick={() => handleTabClick(openDayTab)} className={`flex justify-between items-center px-3.5 py-2 grow text-center capitalize transition-all duration-300 ${openDayTab === currentActiveDay ? activeTabStyle : `${inActiveTabStyle} hover:bg-gray-400 hover:text-gray-50`} rounded-md`}>
                 <span className="whitespace-nowrap">{children}</span>
                 {/* <p className="flex items-center justify-center gap-[1px]">

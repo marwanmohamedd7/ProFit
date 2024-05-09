@@ -10,10 +10,10 @@ function DietMeals() {
     const activeDay = searchParams.get("day") ?? "1";
     const activeDayMeals = days.find(day => day.day === activeDay)?.meals ?? [];
     return (
-        <div className="bg-white border space-y-4 p-2 rounded">
+        <div className="bg-white border space-y-4 p-4 rounded-md">
             <h3 className="text-blue-800 font-bold capitalize">diet meals</h3>
-            {activeDayMeals.map(meal =>
-                <DietMeal key={meal?._id || meal?.mealId} meal={meal} />
+            {activeDayMeals.map((meal, index) =>
+                <DietMeal index={index} key={meal?._id || meal?.mealId} meal={meal} />
             )}
             {/* <Button type="secondary" onClick={() => setMealCount(value => value + 1)} customeStyle="ml-auto py-2.5"> */}
             <Button type="secondary" onClick={() => dispatch({ type: "diet/addMeal", payload: activeDay })} customeStyle="ml-auto py-2.5">

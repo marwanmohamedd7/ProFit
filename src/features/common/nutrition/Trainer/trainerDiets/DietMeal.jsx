@@ -16,14 +16,14 @@ import MealDetailsForm from "../../meals/MealDetailsForm";
 import ConfirmDelete from "../../../../../ui/ConfirmDelete";
 import NutritionMeals from "../trainerMeals/NutritionMeals";
 
-function DietMeal({ meal }) {
+function DietMeal({ meal, index }) {
     const { dispatch, days } = useDietProvider()
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
     const activeDayMeals = days.find(day => day.day === activeDay)?.mealsCount ?? {};
 
     const { createMeal, isCreating } = useCreateMeal()
-    const [mealToggle, setMealToggle] = useState(false)
+    const [mealToggle, setMealToggle] = useState(index ? false : true)
     const { foods, mealId, mealmacros, ...mealInfo } = meal
     const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
         defaultValues: mealInfo ? mealInfo : {}

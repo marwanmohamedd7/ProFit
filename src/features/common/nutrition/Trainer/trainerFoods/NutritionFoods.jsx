@@ -28,7 +28,7 @@ function NutritionFoods({ section = "food", onCloseModal }) {
                     section === "food" &&
                     <Modal>
                         <Modal.Open opens={`create-new-food`}>
-                            <Button>
+                            <Button type="primary">
                                 <p className="capitalize flex justify-center items-center gap-1">
                                     <span>create new food</span>
                                     <span className="text-lg"><HiPlusSm /></span>

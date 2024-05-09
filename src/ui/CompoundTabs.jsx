@@ -21,7 +21,7 @@ function CompoundTabs({ children, tabsFeild, defaultTab }) {
 function Tabs({ children }) {
     return (
         <div>
-            <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500  capitalize">
+            <ul className="flex flex-wrap -mb-px text-sm font-medium text-center border-b text-gray-500 capitalize">
                 {children}
             </ul>
         </div>
@@ -32,7 +32,7 @@ function Open({ children, opens: opensTab }) {
     const { currentActive, open } = useContext(TabsContext);
     return <button
         onClick={() => open(opensTab)}
-        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b-2 capitalize
+        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b capitalize
          ${opensTab === currentActive ? 'text-blue-600 border-blue-500 font-semibold' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
             }`}
     >

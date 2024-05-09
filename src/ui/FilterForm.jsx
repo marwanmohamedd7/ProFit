@@ -14,7 +14,7 @@ function FilterForm({ children, filterTabs = {} }) {
             <span><HiMiniChevronDown /></span>
         </Button>
     ) : (
-        <div className="w-full mx-auto my-4 px-4 sm:px-6 lg:px-8 py-5 bg-white rounded-md border">
+        <div className="w-full mx-auto my-4 p-4 bg-white rounded-md border">
             <form className="flex flex-col gap-4 capitalize" onSubmit={(e) => e.preventDefault()}>
                 {
                     Object.keys(filterTabs).length > 0 &&

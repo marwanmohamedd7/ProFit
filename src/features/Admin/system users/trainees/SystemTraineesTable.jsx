@@ -1,8 +1,8 @@
 import Pagination from "../../../../ui/Pagination";
 import Table from "../../../../ui/Table"
-import TraineeRow from "./TraineeRow";
+import TraineeRow from "./SystemTraineesRow";
 
-function TraineesTable({ users, count }) {
+function SystemTraineesTable({ users, count }) {
     return (
         <Table>
             <Table.Header>
@@ -25,4 +25,4 @@ function TraineesTable({ users, count }) {
     )
 }
 
-export default TraineesTable
+export default SystemTraineesTable

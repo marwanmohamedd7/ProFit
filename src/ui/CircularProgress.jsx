@@ -20,7 +20,7 @@ function CircularProgress({ percentage }) {
                         cy="18"
                         r="16"
                         fill="none"
-                        className="stroke-current text-green-600 transition-all duration-700"
+                        className="stroke-current text-blue-700 transition-all duration-700"
                         strokeWidth="3"
                         strokeDasharray={circumference}
                         strokeDashoffset={offset} // Set the dynamic offset here
@@ -31,7 +31,7 @@ function CircularProgress({ percentage }) {
             {/* Percentage Text */}
             {percentage != null && (
                 <div className="absolute top-1/2 start-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                    <p className="text-center text-lg font-bold text-gray-50 flex justify-center items-center gap-1">
+                    <p className="text-center text-lg font-bold text-blue-700 flex justify-center items-center gap-1">
                         <span>{percentage}</span>
                         <span>%</span>
                     </p>

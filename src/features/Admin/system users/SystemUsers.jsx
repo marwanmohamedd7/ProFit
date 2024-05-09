@@ -1,8 +1,8 @@
-import CompoundTabs from "../../../ui/CompoundTabs"
 import Spinner from "../../../ui/Spinner";
-import Trainees from "./trainees/Trainees"
-import Trainers from "./trainers/Trainers"
-import { useGetSystemUsers } from "./useGetSystemUsers"
+import CompoundTabs from "../../../ui/CompoundTabs"
+import SystemTrainees from "./trainees/SystemTrainees";
+import SystemTrainers from "./trainers/SystemTrainers";
+import { useGetSystemUsers } from "./useGetSystemUsers";
 
 function SystemUsers() {
     const { getSystemUsers, isLoading, count } = useGetSystemUsers();
@@ -15,10 +15,10 @@ function SystemUsers() {
                     <CompoundTabs.Open opens="trainee">trainees</CompoundTabs.Open>
                 </CompoundTabs.Tabs>
                 <CompoundTabs.Window opens="trainers">
-                    <Trainers users={getSystemUsers} count={count} />
+                    <SystemTrainers users={getSystemUsers} count={count} />
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="trainee">
-                    <Trainees users={getSystemUsers} count={count} />
+                    <SystemTrainees users={getSystemUsers} count={count} />
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>

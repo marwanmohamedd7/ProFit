@@ -12,7 +12,7 @@ function CreateDiet({ register, watch, errors }) {
     const activeDay = searchParams.get("day") ?? "1";
     const activeDayDietMacros = days.find(day => day.day === activeDay)?.daymacros ?? {};
     return (
-        <div className="flex flex-col gap-4 divide-y">
+        <div className="flex flex-col gap-4">
             <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-6">
                 <h4 className="text-blue-700 font-bold capitalize">
                     diet template details
@@ -22,7 +22,7 @@ function CreateDiet({ register, watch, errors }) {
 
             <div className="py-4">
                 <DaysTabsItems>
-                    <div className="px-2 py-4 space-y-4">
+                    <div className="py-4 space-y-4">
                         <DietMacros dietMacros={activeDayDietMacros} />
                         <DietMeals />
                     </div>

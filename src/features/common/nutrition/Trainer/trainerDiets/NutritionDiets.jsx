@@ -16,13 +16,12 @@ function NutritionDiets() {
                 // filterForm={<NutritionFoodFilterForm />}
                 search="Search Diet Template Name..."
             >
-                <Button onClick={() => navigate("diets")}>
+                <Button type="primary" onClick={() => navigate("diets")}>
                     <p className="capitalize flex justify-center items-center gap-1">
                         <span>create new diet template</span>
                         <span className="text-lg"><HiPlusSm /></span>
                     </p>
                 </Button>
-
             </NutritionOperations >
             <NutritionDietsTable diets={getDietTemplates} count={count} />
         </>

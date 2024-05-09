@@ -4,15 +4,13 @@ import Title from "../ui/Title"
 
 export function Nutrition() {
     return (
-        <div className="divide-y">
-            <div className="pb-4">
+        <>
+            <div className="pb-2">
                 <BreadCrumbs />
                 <Title />
             </div>
-            <div>
-                <NutritionTrainer />
-            </div>
-        </div>
+            <NutritionTrainer />
+        </>
     )
 }
 

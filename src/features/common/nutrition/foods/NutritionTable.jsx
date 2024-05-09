@@ -12,7 +12,7 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                     section === "food"
                         ?
                         <tr className="capitalize text-left">
-                            <th className="px-6 py-2">Food Details</th>
+                            <th className="px-4 py-2">Food Details</th>
                             <th className="px-4 py-2">Serving</th>
                             <th className="px-4 py-2">Amount/Serving</th>
                             <th className="px-4 py-2">Protein</th>
@@ -24,7 +24,7 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                         </tr>
                         :
                         <tr className="capitalize text-left">
-                            <th className="px-6 py-2">Food Details</th>
+                            <th className="px-4 py-2">Food Details</th>
                             <th className="px-4 py-2">Serving</th>
                             <th className="px-4 py-2">Protein</th>
                             <th className="px-4 py-2">Fats</th>

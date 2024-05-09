@@ -38,7 +38,7 @@ function Window({ opens: openWindow, children }) {
         <div ref={ref} className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] transition-all duration-1000 px-4 pb-4 border shadow-lg rounded-md bg-white divide-y">
           <div className="flex items-center justify-between">
             <h3 className="mr-8 text-lg leading-6 font-bold text-blue-900 px-2 py-4 capitalize">{openWindow.split("-").join(" ")}</h3>
-            <button onClick={close} className="ml-8 text-xl font-bold text-gray-400 hover:bg-red-700 hover:text-gray-50 hover:font-semibold px-2 py-1.5 rounded-md transition-all duration-300"><HiXMark /></button>
+            <button onClick={close} className="ml-8 text-lg font-bold text-gray-400 hover:bg-gray-300 hover:text-gray-600 hover:font-semibold p-1 rounded-md transition-all duration-300"><HiXMark /></button>
           </div>
             {cloneElement(children, { onCloseModal: close })}
         </div>

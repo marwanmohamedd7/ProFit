@@ -1,8 +1,8 @@
-import TrainerRow from "./TrainerRow";
+import TrainerRow from "./SystemTrainersRow";
 import Table from "../../../../ui/Table";
 import Pagination from "../../../../ui/Pagination";
 
-function TrainersTable({ users, count }) {
+function SystemTrainersTable({ users, count }) {
     return (
         <Table>
             <Table.Header>
@@ -23,4 +23,4 @@ function TrainersTable({ users, count }) {
     )
 }
 
-export default TrainersTable
+export default SystemTrainersTable

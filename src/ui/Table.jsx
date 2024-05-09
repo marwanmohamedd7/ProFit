@@ -17,7 +17,7 @@ function Table({ children }) {
 
 function Header({ children }) {
   return (
-    <thead className="bg-blue-900 text-sm text-white">
+    <thead className="bg-gray-100 text-sm text-gray-600 border font-normal">
       {children}
     </thead>
   )

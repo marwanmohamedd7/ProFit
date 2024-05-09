@@ -22,7 +22,7 @@ function DietsFreePlan() {
                                 <h2 className="font-bold text-blue-900 text-xl capitalize">free plans</h2>
                                 <p className="text-blue-900 text-sm capitalize">Boost Marketing and Engage more Trainees</p>
                             </div>
-                            <Button onClick={() => {
+                            <Button type="primary" onClick={() => {
                                 navigate("diets")
                                 dispatch({ type: "diet/startFreeDietPlan" })
                             }
