@@ -7,7 +7,7 @@ function AppLayout({ children }) {
   const { isOpen } = useMainNav();
 
   return (
-    <div className={`grid grid-rows-[auto_1fr] h-dvh ${isOpen ? "grid-cols-[10rem_1fr] sm:grid-cols-[12.5rem_1fr]" :"grid-cols-[3.55rem_1fr] sm:grid-cols-[4.8rem_1fr]"}`}>
+    <div className={`grid grid-rows-[auto_1fr] h-dvh ${isOpen ? "grid-cols-[10rem_1fr] sm:grid-cols-[12.5rem_1fr]" :"grid-cols-[5rem_1fr]"}`}>
       <Header />
       <Sidebar />
       {/* <main className="bg-gray-50 pt-[4rem] pb-[6.4rem] px-[4.8rem] overflow-scroll"> */}

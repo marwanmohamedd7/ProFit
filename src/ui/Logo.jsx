@@ -6,11 +6,11 @@ function Logo() {
   const { isOpen } = useMainNav();
 
   return (
-    <div className="flex justify-center text-center py-[0.2rem] sm:py-[0.34rem] border-solid border-b border-grey-100">
-      <div className="rounded-md w-32 p-0.5 sm:p-0 flex items-center justify-center gap-3 capitalize">
+    <div className="flex justify-center text-center p-[0.325rem] border-solid border-b border-grey-100">
+      <div className="rounded-md w-36 flex items-center justify-center gap-3 capitalize">
         <div className="bg-blue-900 rounded-lg px-1 py-2.5">
           <svg
-            width="40"
+            width="44"
             height="30"
             viewBox="0 0 44 29"
             fill="none"
