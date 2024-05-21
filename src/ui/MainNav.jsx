@@ -1,18 +1,23 @@
 // import styled from "styled-components";
 import Button from "./Button";
 import toast from "react-hot-toast";
-import { CiLogout } from "react-icons/ci";
-import { CiWallet } from "react-icons/ci";
 import MainNavLists from "./MainNavLists";
 import { useNavigate } from "react-router-dom";
-import { HiOutlineViewGrid } from "react-icons/hi";
-import { CiDumbbell, CiPercent } from "react-icons/ci";
 import { useMainNav } from "../context/MainNavProvider";
-import { BiMessageRoundedDetail } from "react-icons/bi";
 import { useCurrentUser } from "../context/UserProvider";
-import { HiOutlineCheckCircle, HiOutlineUsers } from "react-icons/hi2";
-import { IoGlobeOutline, IoNutritionOutline } from "react-icons/io5";
-import { PiCurrencyCircleDollar, PiUsersThreeLight } from "react-icons/pi";
+import GridIcon from "../Icons/GridIcon";
+import AppleIcon from "../Icons/AppleIcon";
+import GlobalIcon from "../Icons/GlobalIcon";
+import MessageIcon from "../Icons/MessageIcon";
+import UsersMoreIcon from "../Icons/UsersMoreIcon";
+import DumbbellIcon from "../Icons/DumbbellIcon";
+import PackageIcon from "../Icons/PackageIcon";
+import CoinIcon from "../Icons/CoinIcon";
+import WalletIcon from "../Icons/WalletIcon";
+import UsersIcon from "../Icons/UsersIcon";
+import PinPaperCheckIcon from "../Icons/PinPaperCheckIcon";
+import HeadphonesIcon from "../Icons/HeadphonesIcon";
+import LogoutIcon from "../Icons/LogoutIcon";
 // import { PiHeadphones } from "react-icons/pi";
 
 const sidebarBtnsDataAdmin = [
@@ -22,12 +27,12 @@ const sidebarBtnsDataAdmin = [
       name: "dashboard",
       type: "sideBtn",
       to: "dashboard",
-      icon: <HiOutlineViewGrid />
+      icon: <GridIcon />
     }, {
       name: "trainer-approval",
       type: "sideBtn",
       to: "trainer-approval",
-      icon: <HiOutlineCheckCircle />
+      icon: <PinPaperCheckIcon />
     }],
   },
   {
@@ -36,7 +41,7 @@ const sidebarBtnsDataAdmin = [
       name: "system-users",
       type: "sideBtn",
       to: "system-users",
-      icon: <HiOutlineUsers />
+      icon: <UsersIcon />
     }],
   },
   {
@@ -45,13 +50,13 @@ const sidebarBtnsDataAdmin = [
       name: "nutrition",
       type: "sideBtn",
       to: "nutrition",
-      icon: <IoNutritionOutline />
+      icon: <AppleIcon />
     },
     {
       name: "workout",
       type: "sideBtn",
       to: "workout",
-      icon: <CiDumbbell />
+      icon: <DumbbellIcon />
     }
     ],
   },
@@ -61,18 +66,18 @@ const sidebarBtnsDataAdmin = [
       name: "financial",
       type: "sideBtn",
       to: "Financial",
-      icon: <CiWallet />
+      icon: <WalletIcon />
     }]
   },
-  // {
-  //   title: "support and help",
-  //   btns: [{
-  //     name: "support",
-  //     type: "sideBtn",
-  //     to: "support",
-  //     icon: <PiHeadphones />
-  //   }]
-  // },
+  {
+    title: "support and help",
+    btns: [{
+      name: "support",
+      type: "sideBtn",
+      to: "support",
+      icon: <HeadphonesIcon />
+    }]
+  },
 ]
 const sidebarBtnsDataTrainer = [
   {
@@ -82,22 +87,23 @@ const sidebarBtnsDataTrainer = [
         name: "dashboard",
         type: "sideBtn",
         to: "dashboard",
-        icon: <HiOutlineViewGrid />
+        icon: <GridIcon />,
+        // icon: <HiOutlineViewGrid />,
       }, {
         name: "my-portfolio",
         type: "sideBtn",
         to: "portfolio",
-        icon: <IoGlobeOutline />
+        icon: <GlobalIcon />
       }, {
         name: "trainees",
         type: "sideBtn",
         to: "trainees",
-        icon: <PiUsersThreeLight />
+        icon: <UsersMoreIcon />
       }, {
         name: "messages",
         type: "sideBtn",
         to: "messages",
-        icon: <BiMessageRoundedDetail />
+        icon: <MessageIcon />
       }
     ],
   },
@@ -108,13 +114,13 @@ const sidebarBtnsDataTrainer = [
         name: "nutrition",
         type: "sideBtn",
         to: "nutrition",
-        icon: <IoNutritionOutline />
+        icon: <AppleIcon />
       },
       {
         name: "workout",
         type: "sideBtn",
         to: "workout",
-        icon: <CiDumbbell />
+        icon: <DumbbellIcon />
       }
     ],
   },
@@ -125,13 +131,13 @@ const sidebarBtnsDataTrainer = [
         name: "packages",
         type: "sideBtn",
         to: "packages",
-        icon: <CiPercent />
+        icon: <PackageIcon />
       },
       {
         name: "subscriptions",
         type: "sideBtn",
         to: "subscriptions",
-        icon: <PiCurrencyCircleDollar />
+        icon: <CoinIcon />
       }
     ],
   },
@@ -151,7 +157,7 @@ function MainNav() {
   const { isOpen } = useMainNav();
   return (
     <div
-      className="capitalize mx-2 my-4 sm:mx-3 flex flex-col
+      className="capitalize p-3 flex flex-col
      justify-between text-sm sm:text-base"
     >
       <ul className={`flex flex-col gap-1 ${!isOpen && "divide-y"}`}>
@@ -174,7 +180,7 @@ function MainNav() {
       </ul>
 
       <Button onClick={handleLogout} type="logout" name={isOpen ? "logout" : ""} to={"/login"}>
-        <CiLogout className="text-xl" />
+        <LogoutIcon className="text-xl" />
       </Button>
     </div>
   );

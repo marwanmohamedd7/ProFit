@@ -10,7 +10,7 @@ import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
 
 function NutritionAppFood({ section = "food", onCloseModal }) {
     const { appFoods = [], count, isLoading } = useGetAppFoods();
-    if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    if (isLoading) return <div className="flex items-center justify-center h-[50dvh]"><Spinner /></div>
     return (
         <div>
             <NutritionOperations

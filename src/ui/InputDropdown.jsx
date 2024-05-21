@@ -17,8 +17,8 @@ function InputDropdown({ item: { id, label, options }, register, error, disabled
 
         <div className="flex flex-col gap-1 grow">
             {/* <label className="block grow text-xs sm:text-sm font-medium text-gray-700">{label}</label> */}
-            <select disabled={disabled} id={id} {...register} className="capitalize block w-full text-xs sm:text-sm p-1.5 border text-gray-700 border-gray-300 bg-white rounded-md shadow-sm
-             focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            <select disabled={disabled} id={id} {...register} className="capitalize block w-full text-xs sm:text-sm p-1.5 border text-gray-700 border-gray-300 bg-white rounded-md
+             focus:outline-none focus:ring-blue-700 focus:border-blue-700">
                 <option className="text-gray-400" value="">{label}...</option>
                 {options.map((option, index) => <option className="text-gray-700 text-sm" key={index} value={option}>{option}</option>)}
                 {/* Add options here */}

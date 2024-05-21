@@ -1,3 +1,5 @@
+import { PAGE_SIZE_DEFAULT } from "../utils/constants";
+
 export async function setPersonalInfo(formData, token) {
   const response = await fetch(
     "https://profit-qjbo.onrender.com/api/v1/trainers/profile_1",
@@ -173,9 +175,9 @@ export async function updateTransformation(formData, id, token) {
   return data;
 }
 
-export async function getPackages(token) {
+export async function getPackages(token, page) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/packages",
+    `https://profit-qjbo.onrender.com/api/v1/trainers/packages/?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
     {
       method: "GET",
       headers: {
@@ -250,6 +252,21 @@ export async function submitProfile(submitionData, token) {
     }
   );
   if (!response.ok) throw new Error("Server error! Can't submit your profile.");
+  const data = await response.json();
+  return data;
+}
+
+export async function getReviews(token) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/trainers/AllReviews`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error("Server error! Can't retrieve packages.");
   const data = await response.json();
   return data;
 }

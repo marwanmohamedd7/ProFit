@@ -1,14 +1,18 @@
-import { NavLink } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useSignUp } from "./useSignUp"
-import { GoArrowRight } from "react-icons/go"
-import Button from "../../../../../ui/Button"
+import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { GoArrowRight } from "react-icons/go";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import Button from "../../../../../ui/Button";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
-import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+import InputFloatingLabel from "../../../../../ui/InputFloatingLabel";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignUpTrainerForm() {
     const { signup, isSignningUp } = useSignUp()
+    const [rememberMe, setRememberMe] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const { register, formState: { errors }, handleSubmit, getValues, watch, reset } = useForm()
 
     // Handle form submission
@@ -16,12 +20,19 @@ function SignUpTrainerForm() {
         if (!data) return null;
         const { confirm_password, ...signUpData } = data
         signup(signUpData, {
-            onSuccess: () => reset()
+            onSuccess: () => {
+                if (rememberMe) localStorage.setItem("userInfo", JSON.stringify({ email: getValues().email, password: getValues().password }))
+                else localStorage.removeItem("userInfo")
+                reset();
+            }
         })
     };
-
+    function handleRememberUserInfo(e) {
+        setRememberMe(e.target.checked);
+        if (!e.target.checked) localStorage.removeItem("userInfo");
+    }
     return (
-        <form className="space-y-10" onSubmit={handleSubmit(onsubmit)}>
+        <form className="space-y-6" onSubmit={handleSubmit(onsubmit)}>
             <div className="space-y-6">
                 <div className="rounded-md shadow-sm space-y-4">
                     <div className="flex justify-between items-center gap-2">
@@ -90,9 +101,11 @@ function SignUpTrainerForm() {
                             })
                         }}
                     />
-                    <InputFloatingLabel item={{ label: "password", id: "password", type: "password", value: watch("password") }}
+                    <InputFloatingLabel item={{ label: "password", id: "password", type: `${showPassword ? "text" : "password"}`, value: watch("password") }}
                         disabled={isSignningUp}
                         error={errors?.password?.message}
+                        setShowPassword={setShowPassword}
+                        icon={showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                         register={{
                             ...register("password", {
                                 required: "This field is required",
@@ -115,16 +128,29 @@ function SignUpTrainerForm() {
                             })
                         }}
                     />
+                    <div className="flex items-center gap-2 text-xs">
+                        <input
+                            onChange={handleRememberUserInfo}
+                            checked={rememberMe}
+                            id="remember-me"
+                            name="remember-me"
+                            type="checkbox"
+                            className="text-blue-700 focus:ring-blue-600 border-gray-300 rounded"
+                        />
+                        <label htmlFor="remember-me" className="text-blue-900">
+                            Remember me
+                        </label>
+                    </div>
                 </div>
             </div>
             <div className="flex flex-col justify-center gap-4">
                 <Button disabled={isSignningUp} type="submit">
                     {isSignningUp ? <SpinnerMini />
                         :
-                        <>
-                            <span className="capitalize">let's create new account</span>
-                            <span className="text-lg"><GoArrowRight /></span>
-                        </>
+                        <p className="flex justify-center items-center gap-2 font-bold">
+                            <span className="text-base">let's create new account</span>
+                            <span className="text-lg pt-0.5"><GoArrowRight /></span>
+                        </p>
                     }
                 </Button>
                 <p className="text-gray-400 text-xs tracking-wide flex items-center flex-wrap gap-1">

@@ -1,3 +1,4 @@
+import InputDropdown from "../../../../../ui/InputDropdown"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 
 function DietForm({ register, watch, errors }) {
@@ -15,21 +16,29 @@ function DietForm({ register, watch, errors }) {
                     }
                 }
             />
-            {/* <InputDropdown item={
-                        {
-                            id: "plantype",
-                            label: "Plan Type",
-                            options: ["My plan", "Free Plan", "Customized Plan"]
-                        }
+            <InputDropdown
+                item={{
+                    id: "dietType",
+                    label: "Diet Type",
+                    options: [
+                        "Vegetarian",
+                        "Vegan",
+                        "Ketogenic",
+                        "Paleo",
+                        "Mediterranean",
+                        "Standard",
+                        "Other...",
+                    ],
+                }}
+                error={errors?.dietType?.message}
+                register={
+                    {
+                        ...register("dietType", {
+                            required: "This field is required"
+                        })
                     }
-                        //    disabled={isLoading}
-                        error={errors?.plantype?.message}
-                        register={{
-                            ...register("plantype", {
-                                required: "Select plan type."
-                            })
-                        }}
-                    /> */}
+                }
+            />
             <InputFloatingLabel
                 item={{ id: "description", label: "diet template note", value: watch("description") }}
                 // disabled={isLoading}

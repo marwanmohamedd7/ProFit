@@ -1,7 +1,7 @@
-import DietFreePlan from "../features/Trainer/portfolio/free plan/diets/DietFreePlan"
+import CreateDietFreePlan from "../features/Trainer/portfolio/free plan/diets/CreateDietFreePlan"
 
 function DietPlanFree() {
-    return <DietFreePlan />
+    return <CreateDietFreePlan />
 }
 
 export default DietPlanFree

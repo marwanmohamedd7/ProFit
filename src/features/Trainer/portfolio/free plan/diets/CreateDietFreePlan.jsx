@@ -4,7 +4,7 @@ import { useGetSpecificDietTemplate } from "../../../../common/nutrition/Trainer
 import Spinner from "../../../../../ui/Spinner";
 import DietOperations from "../../../../common/nutrition/Trainer/trainerDiets/DietOperations"
 
-function DietFreePlan() {
+function CreateDietFreePlan() {
     let fetchedData;
     const { dispatch } = useDietProvider()
     const { getDietTemplate, isLoading } = useGetSpecificDietTemplate();
@@ -15,7 +15,7 @@ function DietFreePlan() {
         else dispatch({ type: "diet/updateFreeDietPlan", payload: fetchedData });
     }, [fetchedData, isLoading, dispatch])
     if (isLoading) return <div className="flex items-center justify-center h-[80dvh]"><Spinner /></div>
-    return <DietOperations dietToUpdate={getDietTemplate} />
+    return <DietOperations dietToUpdate={getDietTemplate} dietType="free plan" />
 }
 
-export default DietFreePlan
+export default CreateDietFreePlan

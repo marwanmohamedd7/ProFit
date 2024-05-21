@@ -1,16 +1,14 @@
-import TrainerSubscribedTrainees from "../features/Trainer/trainees/TrainerSubscribedTrainees"
-import BreadCrumbs from "../ui/BreadCrumbs"
 import Title from "../ui/Title"
+import BreadCrumbs from "../ui/BreadCrumbs"
+import TrainerTrainees from "../features/Trainer/trainees/TrainerTrainees"
 
 function Trainees() {
     return (
-        <div className="divide-y">
-            <div className="pb-4 capitalize">
-                <BreadCrumbs />
-                <Title />
-            </div>
-            <TrainerSubscribedTrainees />
-        </div>
+        <>
+            <BreadCrumbs />
+            <Title />
+            <TrainerTrainees />
+        </>
     )
 }
 

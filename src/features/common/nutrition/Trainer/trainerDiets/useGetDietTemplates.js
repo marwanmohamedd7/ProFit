@@ -13,8 +13,7 @@ export function useGetDietTemplates() {
   const { data: getDietTemplates, isLoading } = useQuery({
     queryKey: ["dietTemplates", userId, page], // unique string to identify the request
     queryFn: () => apiGetDietTemplates(userToken, page),
-    retry: 2,
-    staleTime: 0,
+    retry: false,
   });
 
   //PRE-FETCHING
@@ -25,8 +24,7 @@ export function useGetDietTemplates() {
     queryClient.prefetchQuery({
       queryKey: ["dietTemplates", userId, page + 1], // unique string to identify the request
       queryFn: () => apiGetDietTemplates(userToken, page + 1),
-      retry: 2,
-      staleTime: 0,
+      retry: false,
     });
   }
 
@@ -34,8 +32,7 @@ export function useGetDietTemplates() {
     queryClient.prefetchQuery({
       queryKey: ["dietTemplates", userId, page - 1], // unique string to identify the request
       queryFn: () => apiGetDietTemplates(userToken, page - 1),
-      retry: 2,
-      staleTime: 0,
+      retry: false,
     });
   }
 

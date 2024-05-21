@@ -32,7 +32,7 @@ function Open({ children, opens: opensTab }) {
     const { currentActive, open } = useContext(TabsContext);
     return <button
         onClick={() => open(opensTab)}
-        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b capitalize
+        className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b capitalize tracking-wide font-semibold
          ${opensTab === currentActive ? 'text-blue-600 border-blue-500 font-semibold' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
             }`}
     >

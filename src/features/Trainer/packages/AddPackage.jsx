@@ -128,7 +128,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                                 <option className="text-gray-700 text-sm" value="3">3 months</option>
                                 <option className="text-gray-700 text-sm" value="6">6 months</option>
                                 <option className="text-gray-700 text-sm" value="9">9 months</option>
-                                <option className="text-gray-700 text-sm" value="12">1 year</option>
+                                <option className="text-gray-700 text-sm" value="12">12 months</option>
                                 {/* Add other options here */}
                             </select>
                         </div>
@@ -164,7 +164,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                         {isLoading ? <span className="text-xs"><SpinnerMini /></span> :
                             <>
                                 <span>{isUpdateSession ? "update package" : "Add package"}</span>
-                                <span>&#43;</span>
+                                {!isUpdateSession && <span>&#43;</span>}
                             </>
                         }
                     </p>

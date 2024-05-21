@@ -13,7 +13,7 @@ function VerticualTabs({ children, tabsFeild, defaultTab }) {
     }
     return (
         <TabsContext.Provider value={{ currentActive, open }}>
-            <div className="flex gap-4 py-4 rounded-md">
+            <div className="flex gap-4 rounded-md">
                 {children}
             </div>
         </TabsContext.Provider>
@@ -35,7 +35,7 @@ function Open({ children, opens: opensTab, icon }) {
     return (
         <button
             onClick={() => open(opensTab)}
-            className={`flex flex-col items-center justify-center gap-2 text-base ${currentActive === opensTab ? "bg-blue-700 text-white" : "hover:bg-gray-400 hover:text-white text-gray-500"} text-center cursor-pointer transition-all duration-300 font-semibold tracking-wide capitalize rounded-lg px-5 py-3`}>
+            className={`flex flex-col items-center justify-center gap-2 text-base ${currentActive === opensTab ? "bg-blue-700 text-white" : "hover:bg-gray-400 hover:text-white text-gray-500"} text-center cursor-pointer transition-all duration-300 font-semibold tracking-wide capitalize rounded-lg px-5 py-4`}>
             <span className="text-2xl">{icon}</span>
             <span>{children}</span>
         </button>

@@ -12,7 +12,7 @@ function PendingTrainerInfoBar() {
     const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
     const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { getPendingTrainerInfoBar, isLoading: isGettingInfo } = useGetPendingTrainerInfoBar();
-    const { _id, firstName, lastName, email, phoneNumber, profilePhoto } = getPendingTrainerInfoBar ?? {};
+    const { _id, firstName, lastName, email, phoneNumber, profilePhoto, status } = getPendingTrainerInfoBar ?? {};
     return (
         <div className="flex flex-wrap gap-4 items-center justify-between p-4 bg-white shadow rounded-lg max-w-full">
             {
@@ -40,48 +40,51 @@ function PendingTrainerInfoBar() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center gap-2 text-sm">
-                            <Button
-                                type="accept"
-                                onClick={() => acceptPendingTrainer(_id, {
-                                    onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
-                                })}
-                            >
-                                <p className="flex justify-center items-center gap-2 tracking-wide">
-                                    {
-                                        isAccepting ?
-                                            <SpinnerMini />
-                                            :
-                                            <>
-                                                <span className="text-base">
-                                                    <IoCheckmarkOutline />
-                                                </span>
-                                                <span>Accept</span>
-                                            </>
-                                    }
-                                </p>
-                            </Button>
-                            <Button
-                                type="reject"
-                                onClick={() => rejectPendingTrainer(_id, {
-                                    onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
-                                })}
-                            >
-                                <p className="flex justify-center items-center gap-2 tracking-wide">
-                                    {
-                                        isRejecting ?
-                                            <SpinnerMini />
-                                            :
-                                            <>
-                                                <span className="text-base">
-                                                    <RxCross1 />
-                                                </span>
-                                                <span>reject</span>
-                                            </>
-                                    }
-                                </p>
-                            </Button>
-                        </div>
+                        {
+                            status !== "accepted" &&
+                            <div className="flex items-center justify-center gap-2 text-sm">
+                                <Button
+                                    type="accept"
+                                    onClick={() => acceptPendingTrainer(_id, {
+                                        onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
+                                    })}
+                                >
+                                    <p className="flex justify-center items-center gap-2 tracking-wide">
+                                        {
+                                            isAccepting ?
+                                                <SpinnerMini />
+                                                :
+                                                <>
+                                                    <span className="text-base">
+                                                        <IoCheckmarkOutline />
+                                                    </span>
+                                                    <span>Accept</span>
+                                                </>
+                                        }
+                                    </p>
+                                </Button>
+                                <Button
+                                    type="reject"
+                                    onClick={() => rejectPendingTrainer(_id, {
+                                        onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
+                                    })}
+                                >
+                                    <p className="flex justify-center items-center gap-2 tracking-wide">
+                                        {
+                                            isRejecting ?
+                                                <SpinnerMini />
+                                                :
+                                                <>
+                                                    <span className="text-base">
+                                                        <RxCross1 />
+                                                    </span>
+                                                    <span>reject</span>
+                                                </>
+                                        }
+                                    </p>
+                                </Button>
+                            </div>
+                        }
                     </>
             }
         </div>

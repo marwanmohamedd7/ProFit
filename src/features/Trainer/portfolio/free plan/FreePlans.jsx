@@ -4,23 +4,25 @@ import VerticualTabs from "../../../../ui/VerticualTabs"
 
 function FreePlans() {
     return (
-        <VerticualTabs tabsFeild="plan" defaultTab="diet">
-            <VerticualTabs.Tabs>
-                <VerticualTabs.Open opens="diet" icon={<CiApple />}>
-                    diet
-                </VerticualTabs.Open>
-                <VerticualTabs.Open opens="workout" icon={<CiDumbbell />}>
-                    workout
-                </VerticualTabs.Open>
-            </VerticualTabs.Tabs>
+        <div className="space-y-10 bg-white py-4 rounded-md">
+            <VerticualTabs tabsFeild="plan" defaultTab="diet">
+                <VerticualTabs.Tabs>
+                    <VerticualTabs.Open opens="diet" icon={<CiApple />}>
+                        diet
+                    </VerticualTabs.Open>
+                    <VerticualTabs.Open opens="workout" icon={<CiDumbbell />}>
+                        workout
+                    </VerticualTabs.Open>
+                </VerticualTabs.Tabs>
 
-            <VerticualTabs.Window opens="diet">
-                <DietsFreePlan />
-            </VerticualTabs.Window>
-            <VerticualTabs.Window opens="workout">
-                {/* <DietsFreePlan/> */}
-            </VerticualTabs.Window>
-        </VerticualTabs>
+                <VerticualTabs.Window opens="diet">
+                    <DietsFreePlan />
+                </VerticualTabs.Window>
+                <VerticualTabs.Window opens="workout">
+                    {/* <DietsFreePlan/> */}
+                </VerticualTabs.Window>
+            </VerticualTabs>
+        </div >
     )
 }
 

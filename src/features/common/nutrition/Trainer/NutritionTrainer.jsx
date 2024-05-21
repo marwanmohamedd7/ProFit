@@ -42,7 +42,7 @@ function NutritionTrainer() {
                     <NutritionMeals />
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="diet_templates">
-                    <NutritionDiets />
+                    <NutritionDiets dietType="my plan"/>
                 </CompoundTabs.Window>
             </CompoundTabs>
         </>

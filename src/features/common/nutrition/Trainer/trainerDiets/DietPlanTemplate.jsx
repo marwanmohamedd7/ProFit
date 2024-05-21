@@ -15,7 +15,7 @@ function DietPlanTemplate() {
         else dispatch({ type: "diet/updateMyDietPlan", payload: fetchedData });
     }, [fetchedData, isLoading, dispatch])
     if (isLoading) return <div className="flex items-center justify-center h-[80dvh]"><Spinner /></div>
-    return <DietOperations dietToUpdate={getDietTemplate} />
+    return <DietOperations dietToUpdate={getDietTemplate} dietType="my plan" />
 }
 
 export default DietPlanTemplate

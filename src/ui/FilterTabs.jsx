@@ -3,11 +3,10 @@ import { useSearchParams } from "react-router-dom";
 function FilterTabs({ filterTabs: { filterField, options } }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const currentFilter = searchParams.get(filterField) || options.at(0).value;
-
     // Function to handle tab click
     function handleTabClick(value) {
         // Update search params with new filter
-        if (searchParams.get("page")) searchParams.set("page", 1)
+        if (searchParams.get("page")) searchParams.set("page", 1);
         searchParams.set(filterField, value);
         setSearchParams(searchParams);
     };
@@ -18,13 +17,13 @@ function FilterTabs({ filterTabs: { filterField, options } }) {
 
     return (
         <div className="flex rounded-md grow overflow-hidden">
-            {options.map((filter) =>
+            {options.map(({ label, value }) =>
                 <button
-                    key={filter.value}
-                    onClick={() => handleTabClick(filter.value)}
-                    className={`flex-1 p-3 text-sm ${currentFilter === filter.value ? activeTabStyle : inactiveTabStyle} capitalize`}
+                    key={value}
+                    onClick={() => handleTabClick(value)}
+                    className={`flex-1 p-3 text-sm ${currentFilter === value ? activeTabStyle : inactiveTabStyle} capitalize`}
                 >
-                    {filter.label}
+                    {label}
                 </button>
             )}
         </div>

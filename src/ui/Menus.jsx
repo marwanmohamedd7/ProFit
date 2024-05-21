@@ -82,10 +82,10 @@ function Button({ icon, children, onClick }) {
     return (
         <li>
             <button
-                className="w-full text-left px-4 py-3 font-bold transition duration-200 flex items-center gap-4 hover:bg-gray-100 focus:outline-none text-gray-700"
+                className="w-full text-left pl-4 pr-12 py-3 font-normal transition duration-200 flex items-center gap-4 hover:bg-gray-100 focus:outline-none text-gray-700"
                 onClick={handleClick}
             >
-                <span className="text-lg">{icon}</span>
+                <span className="text-lg text-gray-500">{icon}</span>
                 <span>{children}</span>
             </button>
         </li>

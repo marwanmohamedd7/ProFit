@@ -9,7 +9,7 @@ export function useGetPendingTrainerInfoBar() {
   const { data: getPendingTrainerInfoBar, isLoading } = useQuery({
     queryKey: ["PendingTrainerInfoBar", id], // unique string to identify the request
     queryFn: () => apiGetPendingTrainerInfoBar(id, userToken),
-    retry: 2,
+    retry: false,
   });
   return {
     getPendingTrainerInfoBar: getPendingTrainerInfoBar?.data,

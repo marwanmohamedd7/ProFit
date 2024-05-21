@@ -7,6 +7,7 @@ export function useGetTransformations() {
   const { data: transformations, isLoading } = useQuery({
     queryKey: ["transformations", userId],
     queryFn: () => getTransformations(userToken),
+    retry: false,
   });
   return { transformations: transformations?.data, isLoading };
 }

@@ -15,7 +15,7 @@ export function useGetSpecificMeal() {
     },
     // If the data is successfully loaded, we can display it
     enabled: !!id, // This ensures the query does not run until an id is available
-    retry: 2,
+    retry: false,
   });
   return { getMeal: getMeal?.data ?? {}, isLoading };
 }

@@ -5,6 +5,7 @@ import AboutMe from "./about me/AboutMe";
 import FreePlans from "./free plan/FreePlans";
 import CompoundTabs from "../../../ui/CompoundTabs"
 import { IoClose } from "react-icons/io5";
+import TrainerReviews from "./reviews/TrainerReviews";
 
 function TrainerPortfolio() {
     const [floatedMessage, setFloatedMessage] = useState(true);
@@ -39,6 +40,9 @@ function TrainerPortfolio() {
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="gallery">
                     <Gallery />
+                </CompoundTabs.Window>
+                <CompoundTabs.Window opens="reviews">
+                    <TrainerReviews />
                 </CompoundTabs.Window>
                 <CompoundTabs.Window opens="about">
                     <AboutMe />

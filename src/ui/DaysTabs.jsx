@@ -12,9 +12,9 @@ import Menus from "./Menus";
 const DayContext = createContext()
 
 function DaysTabs({ children }) {
-    const { dispatch } = useDietProvider();
+    const { dispatch, days } = useDietProvider();
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentActiveDay = !searchParams.get("day") ? "1" : searchParams.get("day");
+    const currentActiveDay = !searchParams.get("day") || (days.length < Number(searchParams.get("day"))) ? "1" : searchParams.get("day");
 
     // Function to handle tab click
     function handleTabClick(value) {
@@ -24,15 +24,27 @@ function DaysTabs({ children }) {
         setSearchParams(searchParams);
     };
     function handleAddingDays() {
+        if (days.length < 7) {
+            searchParams.set("day", days.length + 1);
+            setSearchParams(searchParams);
+        }
         dispatch({ type: "diet/addDay" })
         // setDays(value => value > 6 ? 7 : value + 1);
     }
     function handleRemoveDay(id) {
+        if (days.length > 1) {
+            searchParams.set("day", Number(searchParams.get("day")) > 1 ? searchParams.get("day") >= id ? Number(searchParams.get("day")) - 1 : searchParams.get("day") : 1);
+            setSearchParams(searchParams);
+        }
         dispatch({ type: "diet/deleteDay", payload: id })
         // setDays(value => value < 2 ? 1 : value - 1);
     }
 
     function handleDuplicateDay(id) {
+        if (days.length < 7) {
+            searchParams.set("day", Number(id) + 1);
+            setSearchParams(searchParams);
+        }
         dispatch({ type: "diet/duplicateDay", payload: id })
         // setDays(value => value < 2 ? 1 : value - 1);
     }

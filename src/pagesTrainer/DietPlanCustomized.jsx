@@ -1,9 +1,7 @@
+import CreateTraineeDietPlan from "../features/Trainer/trainees/traineeDietPlans/CreateTraineeDietPlan"
+
 function DietPlanCustomized() {
-    return (
-        <div>
-            
-        </div>
-    )
+    return <CreateTraineeDietPlan />
 }
 
 export default DietPlanCustomized

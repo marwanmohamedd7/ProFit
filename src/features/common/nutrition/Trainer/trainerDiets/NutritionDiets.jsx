@@ -6,25 +6,28 @@ import Spinner from "../../../../../ui/Spinner";
 import NutritionDietsTable from "./NutritionDietsTable";
 import NutritionOperations from "../../NutritionOperations";
 
-function NutritionDiets() {
+function NutritionDiets({ dietType = "my plan", onCloseModal }) {
     const navigate = useNavigate()
     const { getDietTemplates, count, isLoading } = useGetDietTemplates()
-    if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    if (isLoading) return <div className="flex items-center justify-center h-[50dvh]"><Spinner /></div>
     return (
-        <>
+        <div>
             <NutritionOperations
                 // filterForm={<NutritionFoodFilterForm />}
                 search="Search Diet Template Name..."
             >
-                <Button type="primary" onClick={() => navigate("diets")}>
-                    <p className="capitalize flex justify-center items-center gap-1">
-                        <span>create new diet template</span>
-                        <span className="text-lg"><HiPlusSm /></span>
-                    </p>
-                </Button>
+                {
+                    dietType !== "customized plan" &&
+                    <Button type="primary" onClick={() => navigate("diets")}>
+                        <p className="capitalize flex justify-center items-center gap-1">
+                            <span>create new diet template</span>
+                            <span className="text-lg"><HiPlusSm /></span>
+                        </p>
+                    </Button>
+                }
             </NutritionOperations >
-            <NutritionDietsTable diets={getDietTemplates} count={count} />
-        </>
+            <NutritionDietsTable diets={getDietTemplates} count={count} dietType={dietType} onCloseModal={onCloseModal} />
+        </div>
     )
 }
 

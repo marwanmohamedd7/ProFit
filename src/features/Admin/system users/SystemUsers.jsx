@@ -9,7 +9,7 @@ function SystemUsers() {
     if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
         <>
-            <CompoundTabs tabsFeild="users" defaultTab="trainers">
+            <CompoundTabs tabsFeild="systemUsers" defaultTab="trainers">
                 <CompoundTabs.Tabs>
                     <CompoundTabs.Open opens="trainers">trainers</CompoundTabs.Open>
                     <CompoundTabs.Open opens="trainee">trainees</CompoundTabs.Open>

@@ -3,8 +3,8 @@ import SearchInput from "../../../../ui/SearchInput"
 import TrainerTranscationsTable from "./TrainerTranscationsTable"
 import { useGetTrainerTranscations } from "./useGetTrainerTranscations";
 function TrainerTranscations() {
-    const { getTrainerTranscations = [], count, isLoading } = useGetTrainerTranscations()
-    if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
+    const { getTrainerTranscations, count, isLoading } = useGetTrainerTranscations()
+    if (isLoading) return <div className="h-[50dvh]"><Spinner /></div>
     return (
         <>
             <div className="space-y-4">

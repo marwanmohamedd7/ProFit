@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react"
 import { HiPencil, HiTrash } from "react-icons/hi2"
 import { useDeletePackage } from "./useDeletePackage"
+import { useUpdatePackage } from "./useUpdatePackage"
 import AddPackage from "./AddPackage"
 import Modal from "../../../ui/Modal"
 import Table from "../../../ui/Table"
 import Button from "../../../ui/Button"
 import ActiveButton from "../../../ui/ActiveButton"
 import ConfirmDelete from "../../../ui/ConfirmDelete"
-import { useEffect, useState } from "react"
-import { useUpdatePackage } from "./useUpdatePackage"
 
-function ProfilePackagesTableRow({ packagee }) {
+function ProfilePackagesTableRow({ packagee, activePackages }) {
     const { _id, packageName, packageType, price, duration, subscribersLimit, active } = packagee
     const { deletePackage, isDeleting } = useDeletePackage()
     const { updatePackage, isUpdating } = useUpdatePackage()
@@ -21,17 +21,17 @@ function ProfilePackagesTableRow({ packagee }) {
     useEffect(function () {
         if (active === isActive) return
         updatePackage({ id: _id, updatedPackageData: { active: isActive } })
-    }, [isActive, active, _id, setIsActive, updatePackage])
+    }, [activePackages, isActive, active, _id, setIsActive, updatePackage])
     return (
         <Table.Row>
             <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border capitalize">
-                <td className="px-6 py-4 whitespace-nowrap">{packageName}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{packageType}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{price} EGP</td>
-                <td className="px-6 py-4 whitespace-nowrap">{duration} Months</td>
-                <td className="px-6 py-4 whitespace-nowrap">{subscribersLimit}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td className="p-4 whitespace-nowrap">{packageName}</td>
+                <td className="p-4 whitespace-nowrap">{packageType}</td>
+                <td className="p-4 whitespace-nowrap">{price} EGP</td>
+                <td className="p-4 whitespace-nowrap">{duration} Months</td>
+                <td className="p-4 whitespace-nowrap">{subscribersLimit}</td>
+                <td className="p-4 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={(activePackages >= 3 && !active) ?? isUpdating} />}</td>
+                <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <Modal>
                             <Modal.Open opens="update-package">

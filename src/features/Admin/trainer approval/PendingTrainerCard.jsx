@@ -1,7 +1,7 @@
-import { format } from "date-fns"
 import Button from "../../../ui/Button"
 import { IoEyeOutline } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
+import { formatDate } from "../../../utils/helpers"
 
 function PendingTrainerCard({ trainer }) {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ function PendingTrainerCard({ trainer }) {
             <Button type="primary" onClick={() => navigate(`trainer-profile/${trainer._id}`)}>
                 <span>Review Profile</span><IoEyeOutline />
             </Button>
-            <div className="text-blue-700 text-xs">{format(new Date(trainer.createdAt), 'dd MMMM, yyyy \'at\' HH:mm a')}</div>
+            <div className="text-blue-700 text-xs">{formatDate(trainer.createdAt)}</div>
             {/* <div className="text-blue-700 text-xs">07 Jan, 2024 at 09:28 PM</div> */}
         </div>
     )

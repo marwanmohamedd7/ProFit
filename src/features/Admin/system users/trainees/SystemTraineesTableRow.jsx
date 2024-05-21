@@ -2,7 +2,7 @@ import { MdOutlineBlock } from "react-icons/md";
 import Table from "../../../../ui/Table";
 // import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
 
-function SystemTraineesRow({ trainee }) {
+function SystemTraineesTableRow({ trainee }) {
     let statusStyle;
     const { firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, status, assignedTrainer, package: packageDetails } = trainee ?? {};
     if (status === "rejected") statusStyle = `text-red-500 bg-red-100`;
@@ -14,10 +14,10 @@ function SystemTraineesRow({ trainee }) {
     return (
         <Table.Row>
             <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
-                <td className="px-6 py-2 whitespace-nowrap mx-auto">
+                <td className="px-4 py-2 whitespace-nowrap mx-auto">
                     <div className="flex items-center gap-3">
                         <div className="flex-shrink-0 h-14 w-14">
-                            <img className="h-14 w-14 rounded-md ml-[-10px]" src={profilePhoto} alt={firstName} />
+                            <img className="h-14 w-14 rounded-md" src={profilePhoto} alt={firstName} />
                         </div>
                         <div className="flex flex-col justify-center gap-1 bg-">
                             <p className="flex items-center gap-1 capitalize">
@@ -31,17 +31,17 @@ function SystemTraineesRow({ trainee }) {
                         </div>
                     </div>
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap font-bold">
+                <td className="p-4 whitespace-nowrap font-bold">
                     <p className="flex items-center gap-1 capitalize">
                         <span className="text-sm font-bold">{assignedTrainer?.firstName}</span>
                         <span className="text-sm font-bold">{assignedTrainer?.lastName}</span>
                     </p></td>
-                <td className="px-6 py-2 whitespace-nowrap">{packageDetails?.packageName}</td>
-                {/* <td className="px-6 py-2 whitespace-nowrap">{trainee.startAt}</td>
-            <td className="px-6 py-2 whitespace-nowrap">{trainee.endAt}</td> */}
-                <td className="px-6 py-2 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
-                <td className="px-6 py-2 whitespace-nowrap">{Registration_Date}</td>
-                <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+                <td className="p-4 whitespace-nowrap">{packageDetails?.packageName}</td>
+                {/* <td className="p-4 whitespace-nowrap">{trainee.startAt}</td>
+            <td className="p-4 whitespace-nowrap">{trainee.endAt}</td> */}
+                <td className="p-4 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
+                <td className="p-4 whitespace-nowrap">{Registration_Date}</td>
+                <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         {/* <span
                         href="#"
@@ -72,4 +72,4 @@ function SystemTraineesRow({ trainee }) {
     )
 }
 
-export default SystemTraineesRow
+export default SystemTraineesTableRow

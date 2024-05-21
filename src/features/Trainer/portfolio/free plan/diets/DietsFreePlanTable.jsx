@@ -2,8 +2,10 @@ import Table from "../../../../../ui/Table"
 import Pagination from "../../../../../ui/Pagination"
 import DietsFreePlanTableRow from "./DietsFreePlanTableRow"
 import { PAGE_SIZE_MEALS } from "../../../../../utils/constants"
+import Empty from "../../../../../ui/Empty"
 
 function DietsFreePlanTable({ diets, count }) {
+    if (!count) return <Empty resource="free diet plans" />
     return (
         <Table>
             <Table.Header>

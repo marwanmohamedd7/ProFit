@@ -13,6 +13,7 @@ export function useGetAppMeals() {
   const { data: appMeals, isLoading } = useQuery({
     queryKey: ["appMeals", userId, page], // unique string to identify the request
     queryFn: () => getAppMeals(userToken, page),
+    retry: false,
   });
 
   //PRE-FETCHING
@@ -21,6 +22,7 @@ export function useGetAppMeals() {
     queryClient.prefetchQuery({
       queryKey: ["appMeals", userId, page + 1], // unique string to identify the request
       queryFn: () => getAppMeals(userToken, page + 1),
+      retry: false,
     });
   }
 
@@ -28,6 +30,7 @@ export function useGetAppMeals() {
     queryClient.prefetchQuery({
       queryKey: ["appMeals", userId, page - 1], // unique string to identify the request
       queryFn: () => getAppMeals(userToken, page - 1),
+      retry: false,
     });
   }
 

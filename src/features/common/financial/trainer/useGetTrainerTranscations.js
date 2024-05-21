@@ -13,8 +13,7 @@ export function useGetTrainerTranscations() {
   const { data: getTrainerTranscations, isLoading } = useQuery({
     queryKey: ["trainerTranscations", userId, page], // unique string to identify the request
     queryFn: () => apiGetTrainerTranscations(userToken, page),
-    retry: 2,
-    staleTime: 0,
+    retry: false,
   });
 
   //PRE-FETCHING
@@ -25,8 +24,7 @@ export function useGetTrainerTranscations() {
     queryClient.prefetchQuery({
       queryKey: ["trainerTranscations", userId, page + 1], // unique string to identify the request
       queryFn: () => apiGetTrainerTranscations(userToken, page + 1),
-      retry: 2,
-      staleTime: 0,
+      retry: false,
     });
   }
 
@@ -34,14 +32,13 @@ export function useGetTrainerTranscations() {
     queryClient.prefetchQuery({
       queryKey: ["trainerTranscations", userId, page - 1], // unique string to identify the request
       queryFn: () => apiGetTrainerTranscations(userToken, page - 1),
-      retry: 2,
-      staleTime: 0,
+      retry: false,
     });
   }
 
   return {
     isLoading,
-    getTrainerTranscations: getTrainerTranscations?.data,
+    getTrainerTranscations: getTrainerTranscations?.data ?? [],
     count: getTrainerTranscations?.totalDocuments,
   };
 }

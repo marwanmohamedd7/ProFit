@@ -23,17 +23,19 @@ import Packages from "./pagesTrainer/Packages";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Portfolio from "./pagesTrainer/Portfolio";
 import PageNotFound from "./pagesAdmin/PageNotFound";
+import TraineeInfo from './pagesTrainer/TraineeInfo';
+import DietPlanFree from './pagesTrainer/DietPlanFree';
+import TrainerReview from "./pagesAdmin/TrainerReview";
 import Transcations from "./pagesTrainer/Transcations";
 import DashboardAdmin from "./pagesAdmin/DashboardAdmin";
-import TrainerReview from "./pagesAdmin/TrainerReview";
-import checkTokenValidity from "./utils/checkTokenValidity";
 import WorkoutTrainer from "./pagesTrainer/WorkoutTrainer";
-import CompleteProfile from "./pagesTrainer/CompleteProfile";
+import checkTokenValidity from "./utils/checkTokenValidity";
 import TrainersApproval from "./pagesAdmin/TrainersApproval";
-import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
-import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
+import CompleteProfile from "./pagesTrainer/CompleteProfile";
 import DietPlanTrainer from './pagesTrainer/DietPlanTrainer';
-import DietPlanFree from './pagesTrainer/DietPlanFree';
+import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
+import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
+import DietPlanCustomized from './pagesTrainer/DietPlanCustomized';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -93,6 +95,9 @@ function App() {
             <Route path="portfolio/diets" element={<DietPlanFree />} />
             <Route path="portfolio/diets/:id" element={<DietPlanFree />} />
             <Route path="trainees" element={<Trainees />} />
+            <Route path="trainees/trainee/:id" element={<TraineeInfo />} />
+            <Route path="trainees/diets/:id" element={<DietPlanCustomized />} />
+            <Route path="trainees/trainee/diets/:id" element={<DietPlanCustomized />} />
             <Route path="messages" element={<Messages />} />
             <Route path="nutrition" element={<NutritionTrainer />} />
             <Route path="nutrition/meals" element={<Meals />} />

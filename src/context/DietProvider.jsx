@@ -56,6 +56,7 @@ const dietMealObj = {
 const intialState = {
     planName: "",
     plantype: "",
+    dietType: "",
     description: "",
     daysCount: 0,
     planmacros: {
@@ -119,10 +120,13 @@ function reducer(state, action) {
         case 'diet/startFreeDietPlan':
         case 'diet/startCustomizedDietPlan':
             return { ...intialState, plantype: planType }
+        case 'diet/loadDietPlan':
         case 'diet/updateMyDietPlan':
         case 'diet/updateFreeDietPlan':
         case 'diet/updateCustomizedDietPlan':
-            return { ...state, ...action.payload, plantype: planType, days: action.payload.days.map(day => ({ ...day, meals: day.meals.map(meal => ({ ...meal, mealId: meal._id })) })) }
+            return { ...state, ...action.payload, plantype: planType ?? action.payload.plantype, days: action.payload.days.map(day => ({ ...day, meals: day.meals.map(meal => ({ ...meal, mealId: meal._id })) })) }
+        case 'diet/setCustomizedDietPlanData':
+            return { ...intialState, ...action.payload }
         case 'diet/planInfo':
             return { ...state, ...action.payload }
         case 'diet/calcPlanMacros':
@@ -144,13 +148,18 @@ function reducer(state, action) {
             }
         case 'diet/duplicateDay':
             if (state.days.length >= 7) return { ...state, error: "Cannot add more than 7 days." };
-            const newDuplicateDayNumber = [...Array(8).keys()].slice(1).find(n => !state.days.find(d => parseInt(d.day) === n)) || 8;
-            if (newDuplicateDayNumber <= 7)
-                return {
-                    ...state,
-                    days: [...state.days, { ...state.days.find(day => day.day === action.payload), day: newDuplicateDayNumber.toString() }],
-                };
-            return state;
+            const originalDayIndex = state.days.findIndex(day => day.day === action.payload);
+            if (originalDayIndex === -1) return state;
+            const duplicatedDay = { ...state.days[originalDayIndex], day: (originalDayIndex + 2).toString() };
+            const updatedDays = [
+                ...state.days.slice(0, originalDayIndex + 1),
+                duplicatedDay,
+                ...state.days.slice(originalDayIndex + 1)
+            ].map((day, index) => ({ ...day, day: (index + 1).toString() }));
+            return {
+                ...state,
+                days: updatedDays,
+            };
         case 'diet/resetDay':
             return {
                 ...state,
@@ -369,7 +378,8 @@ function DietProvider({ children }) {
 
     useEffect(function () {
         function calcPlanMacros() {
-            return days.reduce((acc, day) => {
+            // Sum the macros for all days
+            const totalMacros = days.reduce((acc, day) => {
                 return {
                     fats: acc.fats + day.daymacros.fats,
                     carbs: acc.carbs + day.daymacros.carbs,
@@ -377,6 +387,15 @@ function DietProvider({ children }) {
                     calories: acc.calories + day.daymacros.calories
                 };
             }, { fats: 0, carbs: 0, proteins: 0, calories: 0 });
+
+            // Calculate the average by dividing the totals by the number of days
+            const numberOfDays = days.length;  // Make sure this is always 7 or handle cases where it might not be
+            return {
+                fats: totalMacros.fats / numberOfDays,
+                carbs: totalMacros.carbs / numberOfDays,
+                proteins: totalMacros.proteins / numberOfDays,
+                calories: totalMacros.calories / numberOfDays
+            };
         }
         dispatch({ type: "diet/calcPlanMacros", payload: calcPlanMacros() })
     }, [days])

@@ -2,12 +2,12 @@ import { useMainNav } from "../context/MainNavProvider";
 import { useCurrentUser } from "../context/UserProvider";
 
 function Logo() {
-  const { userRole } = useCurrentUser()
   const { isOpen } = useMainNav();
+  const { userRole } = useCurrentUser()
 
   return (
-    <div className="flex justify-center text-center py-[0.44rem] px-[0.325rem] border-solid border-b border-grey-100">
-      <div className="rounded-md w-36 flex items-center justify-center gap-3 capitalize">
+    <div className={`flex ${isOpen ? "justify-start" :"justify-center"} text-center py-1 px-2 border-solid border-b border-grey-100`}>
+      <div className="rounded-md flex items-center justify-center gap-3 capitalize p-1">
         <div className="bg-blue-900 rounded-lg px-1.5 py-2.5">
           <svg
             width="44"
@@ -41,8 +41,8 @@ function Logo() {
         </div>
 
         {isOpen &&
-          <div className="flex flex-col items-start gap-1">
-            <h1 className="font-extrabold text-2xl capitalize sm:text-3xl text-blue-900 leading-6 sm:leading-7">
+          <div className={`flex flex-col items-start gap-1`}>
+            <h1 className="font-extrabold text-2xl sm:text-3xl text-blue-900 leading-6 sm:leading-7">
               pro
               <span className="uppercase">
                 Fit

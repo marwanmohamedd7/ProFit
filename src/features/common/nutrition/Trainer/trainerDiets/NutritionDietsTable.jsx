@@ -4,20 +4,32 @@ import Pagination from "../../../../../ui/Pagination"
 import NutritionDietsTableRow from "./NutritionDietsTableRow"
 import Empty from "../../../../../ui/Empty"
 
-function NutritionDietsTable({ diets, count }) {
-    if (!count) return <Empty resource="templates" />
+function NutritionDietsTable({ diets, count, dietType, onCloseModal }) {
+    if (!count) return <Empty resource="diet templates" />
     return (
         <Table>
             <Table.Header>
-                <tr className="capitalize">
-                    <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left">diet template name</th>
-                    {/* <th className="lg:w-[20%] w-[50%] px-4 py-2 text-left">meals count</th> */}
-                    <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left">days count</th>
-                    <th className="lg:w-[30%] w-[10%] px-4 py-2 text-left">program macros</th>
-                    <th className="lg:w-[10%] w-[10%] px-8 py-2 text-right">Actions</th>
-                </tr>
+                {
+                    dietType !== "customized plan" ?
+                        <tr className="capitalize">
+                            <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">diet template name</th>
+                            {/* <th className="lg:w-[20%] w-[50%] px-4 py-2 text-left">meals count</th> */}
+                            <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">days count</th>
+                            <th className="lg:w-[30%] w-[10%] px-4 py-2 text-left whitespace-nowrap">program macros</th>
+                            <th className="lg:w-[10%] w-[10%] px-8 py-2 text-right whitespace-nowrap">Actions</th>
+                        </tr>
+                        :
+                        <tr className="capitalize">
+                            <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">diet template name</th>
+                            {/* <th className="lg:w-[20%] w-[50%] px-4 py-2 text-left">meals count</th> */}
+                            <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">days count</th>
+                            <th className="lg:w-[30%] w-[10%] px-4 py-2 text-left whitespace-nowrap">program macros</th>
+                            <th className="lg:w-[10%] w-[10%] pl-8 py-2 text-left whitespace-nowrap">Actions</th>
+                        </tr>
+                }
+
             </Table.Header>
-            <Table.Body data={diets} render={(diet, index) => <NutritionDietsTableRow diet={diet} key={index} />} />
+            <Table.Body data={diets} render={(diet, index) => <NutritionDietsTableRow diet={diet} key={index} dietType={dietType} onCloseModal={onCloseModal} />} />
             <Table.Footer>
                 <Pagination count={count} pages={PAGE_SIZE_MEALS} />
             </Table.Footer>

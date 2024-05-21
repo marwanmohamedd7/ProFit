@@ -13,7 +13,7 @@ export function useGetAdminFinancials() {
   const { data: getAdminFinancials, isLoading } = useQuery({
     queryKey: ["adminFinancial", userId, page], // unique string to identify the request
     queryFn: () => apiGetAdminFinancials(userToken, page),
-    retry: 2,
+    retry: false,
   });
 
   //PRE-FETCHING
@@ -24,7 +24,7 @@ export function useGetAdminFinancials() {
     queryClient.prefetchQuery({
       queryKey: ["adminFinancial", userId, page + 1], // unique string to identify the request
       queryFn: () => apiGetAdminFinancials(userToken, page + 1),
-      retry: 2,
+      retry: false,
     });
   }
 
@@ -32,7 +32,7 @@ export function useGetAdminFinancials() {
     queryClient.prefetchQuery({
       queryKey: ["adminFinancial", userId, page - 1], // unique string to identify the request
       queryFn: () => apiGetAdminFinancials(userToken, page - 1),
-      retry: 2,
+      retry: false,
     });
   }
 

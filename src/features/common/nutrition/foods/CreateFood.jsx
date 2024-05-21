@@ -153,7 +153,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         id="description"
                         disabled={isLoading}
                         placeholder="Description..."
-                        className="mt-1 block w-full py-2 h-20 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 h-20 px-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm placeholder:text-gray-700"
                         {...register("description", {
                             required: false,
                             // required: "This field is required",

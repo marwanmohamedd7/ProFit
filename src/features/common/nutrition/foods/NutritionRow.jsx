@@ -12,12 +12,10 @@ import Button from "../../../../ui/Button";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
 // import { useParams } from "react-router-dom";
 import { useDietProvider } from "../../../../context/DietProvider";
-import { useSearchParams } from "react-router-dom";
 
 function NutritionRow({ food, section, onCloseModal }) {
     // const { id: mealId } = useParams();
     const { userRole } = useCurrentUser();
-    const [searchParams, setSearchParams] = useSearchParams();
     const { dispatch: dispatchDiet, days: dietDays } = useDietProvider();
     const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
     const { deleteFood, isDeleting } = useDeleteFood();
@@ -54,8 +52,6 @@ function NutritionRow({ food, section, onCloseModal }) {
             return
         }
         toast.success("Added a new food item!")
-        searchParams.set("page", 1);
-        setSearchParams(searchParams);
         onCloseModal();
     }
 
@@ -65,10 +61,10 @@ function NutritionRow({ food, section, onCloseModal }) {
                 section === "food"
                     ?
                     <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
-                        <td className="pl-6 pr-4 py-2 whitespace-nowrap">
+                        <td className="px-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
                                 <div className="flex-shrink-0 h-14 w-14">
-                                    <img className="h-14 w-14 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
+                                    <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
                                 </div>
                                 <div className="">
                                     <div className="text-sm font-bold">{food.foodname}</div>
@@ -153,10 +149,10 @@ function NutritionRow({ food, section, onCloseModal }) {
                     </tr>
                     :
                     <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
-                        <td className="pl-6 pr-4 py-2 whitespace-nowrap">
+                        <td className="px-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
                                 <div className="flex-shrink-0 h-h-14 w-14">
-                                    <img className="h-h-14 w-14 rounded-md ml-[-10px]" src={food.foodImage} alt={food.foodname} />
+                                    <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
                                 </div>
                                 <div className="">
                                     <div className="text-sm font-bold">{food.foodname}</div>

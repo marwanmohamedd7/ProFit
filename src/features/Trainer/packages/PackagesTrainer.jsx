@@ -7,7 +7,7 @@ import Modal from "../../../ui/Modal"
 import Button from "../../../ui/Button"
 
 function PackagesTrainer() {
-    const { packages = [], isLoading } = useGetPackages()
+    const { packages = [], count, isLoading } = useGetPackages()
     if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
     return (
         <>
@@ -28,7 +28,7 @@ function PackagesTrainer() {
                         </Modal.Window>
                     </Modal>
                 </div>
-                <ProfilePackagesTable packages={packages} />
+                <ProfilePackagesTable packages={packages} count={count} />
             </div>
         </>
     )

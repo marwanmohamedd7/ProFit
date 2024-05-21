@@ -20,6 +20,7 @@ export function useLogin() {
         const decodeToken = checkTokenValidity(token);
         setUserId(decodeToken?.payload?.id);
         setUserRole(decodeToken?.payload?.role);
+        navigate("/trainer", { replace: true });
       }
       if (token && role === "admin") navigate("/admin", { replace: true });
       if (token && role !== "admin" && status === "accepted")

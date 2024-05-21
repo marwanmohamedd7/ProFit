@@ -1,7 +1,7 @@
 function DietTableRowMacros({ calories, proteins, carbs, fats }) {
     return (
         <div className="bg-gray-100 px-4 py-2 rounded-md border">
-            <div className="flex items-center justify-between text-lg font-bold text-blue-700">
+            <div className="flex items-center justify-between gap-8 text-lg font-bold text-blue-700">
                 <h3 className="flex flex-col gap-1">
                     <p className="flex items-center gap-1">
                         <span>{Math.round(calories)}</span>

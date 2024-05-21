@@ -9,9 +9,9 @@ export function useGetSystemUsers() {
   const [searchParams] = useSearchParams();
   const { userId, userToken } = useCurrentUser();
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
-  const users = !searchParams.get("users")
+  const users = !searchParams.get("systemUsers")
     ? "trainers"
-    : searchParams.get("users");
+    : searchParams.get("systemUsers");
   const { data: getSystemUsers, isLoading } = useQuery({
     queryKey: ["systemUsers", userId, page, users], // unique string to identify the request
     queryFn: () => apiGetSystemUsers(userToken, page, users),

@@ -1,6 +1,5 @@
 function Filter() {
     function handleClick(){
-        
     }
     return (
         <div>
