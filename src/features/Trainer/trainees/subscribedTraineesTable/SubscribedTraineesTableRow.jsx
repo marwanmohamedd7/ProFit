@@ -7,7 +7,6 @@ import CircularProgress from "../../../../ui/CircularProgress";
 function SubscribedTraineesTableRow({ trainee }) {
     let statusStyle;
     const navigate = useNavigate();
-    console.log()
     const {
         traineeId: { _id, firstName, lastName, email, profilePhoto, dietAssessmentStatus } = {},
         package: { packageName } = {},

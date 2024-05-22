@@ -38,7 +38,7 @@ export function useGetAdminFinancials() {
 
   return {
     isLoading,
-    getAdminFinancials: getAdminFinancials?.data,
+    getAdminFinancials: getAdminFinancials?.data ?? [],
     count: getAdminFinancials?.totalDocuments,
   };
 }

@@ -87,10 +87,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                     <div className="flex items-center gap-2">
                         <Button type="primary" onClick={handleSubmit(onSubmit)}>
                             <p className="capitalize">
-                                <>
-                                    {dietType === "my plan" && isLoading ? <SpinnerMini /> : isExist ? "update diet template" : "save diet template"}
-                                    {dietType === "free plan" && isLoading ? <SpinnerMini /> : isExist ? "update free diet plan" : "save free diet plan"}
-                                </>
+                                {dietType === "my plan" && <span>{isLoading ? <SpinnerMini /> : isExist ? "update diet template" : "save diet template"}</span>}
+                                {dietType === "free plan" && <span>{isLoading ? <SpinnerMini /> : isExist ? "update free diet plan" : "save free diet plan"}</span>}
                             </p>
                         </Button>
                         {
@@ -110,7 +108,6 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
             </>
             :
             <>
-                <BreadCrumbs />
                 <div className="space-y-4" >
                     <div className="flex items-center gap-3">
                         <BackBtn path={previousPath.split("/").slice(-1).join("") === "trainee" ? `${previousPath}/${dietToUpdate?.trainee?._id}` : previousPath} />

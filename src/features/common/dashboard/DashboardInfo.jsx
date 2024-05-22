@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import DashboardFilter from "./DashboardFilter"
 import { format } from "date-fns";
+import { useUser } from "../authentication/useUser";
 
 function DashboardInfo() {
     const [currentTime, setCurrentTime] = useState('');
+    const { user } = useUser();
+    const { firstName, lastName } = user ?? {};
 
     // Function to format the date
     const getFormattedTime = useCallback(() => {
@@ -28,7 +31,7 @@ function DashboardInfo() {
             </div> */}
             <div className="flex items-end justify-between flex-wrap md:flex-nowrap gap-2 rounded-md py-1 capitalize text-xl text-white">
                 <div className="space-y">
-                    <h3>hi, <strong>marwan mohamed</strong></h3>
+                    <h3>hi, <strong>{firstName} {lastName}</strong></h3>
                     <p className="text-base">{currentTime}</p>
                 </div>
                 <DashboardFilter />

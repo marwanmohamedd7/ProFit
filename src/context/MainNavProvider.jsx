@@ -13,7 +13,7 @@ function MainNavProvider({ children }) {
 
 function useMainNav() {
     const context = useContext(MainNavContext);
-    if (context === undefined) throw new Error("useMainNav must be used within a DietProvider")
+    if (context === undefined) throw new Error("useMainNav must be used within a MainNavProvider")
     return context
 }
 

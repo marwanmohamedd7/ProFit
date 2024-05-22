@@ -7,8 +7,8 @@ import Modal from "../../../ui/Modal"
 import Button from "../../../ui/Button"
 
 function PackagesTrainer() {
-    const { packages = [], count, isLoading } = useGetPackages()
-    if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
+    const { packages, count, isLoading } = useGetPackages()
+    if (isLoading) return <div className="h-[50dvh]"><Spinner /></div>
     return (
         <>
             <div className="space-y-4">

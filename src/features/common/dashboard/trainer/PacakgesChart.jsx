@@ -6,7 +6,7 @@ import PackageIcon from "../../../../Icons/PackageIcon";
 import { useNavigate } from "react-router-dom";
 
 const data = {
-    totalPackages: 100,
+    allSubscribers: 100,
     packages: [
         { name: 'Gold', Subscribers: 40, color: '#0088FE' },
         { name: 'Silver', Subscribers: 30, color: '#00C49F' },
@@ -70,7 +70,7 @@ function PacakgesChart() {
                                             <div className="bg-white p-3 border border-gray-200 shadow-sm rounded-md text-sm space-y-1">
                                                 <p className="font-bold text-gray-800">name: {payload[0].payload.payload.name}</p>
                                                 <p className="text-gray-600">Subscribers: {payload[0].payload.payload.Subscribers}</p>
-                                                <p className="text-gray-500">Percentage: {(payload[0].payload.payload.Subscribers / data.totalPackages * 100).toFixed(2)}%</p>
+                                                <p className="text-gray-500">Percentage: {(payload[0].payload.payload.Subscribers / data.allSubscribers * 100).toFixed(2)}%</p>
                                             </div>
                                         )
                                     }
@@ -94,7 +94,7 @@ function PacakgesChart() {
                             <tr className="text-sm text-left border bg-white" key={detail.name}>
                                 <td className="p-3">{detail.name}</td>
                                 <td className="p-3">{detail.Subscribers}</td>
-                                <td className="p-3">{((detail.Subscribers / data.totalPackages) * 100).toFixed(1)}%</td>
+                                <td className="p-3">{((detail.Subscribers / data.allSubscribers) * 100).toFixed(1)}%</td>
                                 <td className="p-3">
                                     <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: detail.color }}></span>
                                 </td>

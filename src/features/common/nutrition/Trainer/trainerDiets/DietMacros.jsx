@@ -15,7 +15,7 @@ function DietMacros({ dietMacros, targetDietMacros }) {
     const roundProteins = getPercentage(proteins, targetMacros ? targetDietMacros.proteins : proteins);
 
     return (
-        <div className="bg-white border space-y-4 p-4 rounded-md capitalize">
+        <div className="bg-white border space-y-4 p-4 rounded-md">
             <h3 className="text-blue-800 font-bold">Diet Macros</h3>
             <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-4">
                 <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">

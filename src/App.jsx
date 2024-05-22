@@ -56,14 +56,12 @@ function App() {
       setUserRole(isValid?.payload?.role)
     };
   }, [setUserToken, setUserRole, setUserId, token, isValid])
-
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route index element={<Navigate replace to="login" />} />
-
+          <Route index element={<Navigate replace to={isValid?.payload?.role === 'admin' ? 'admin/dashboard' : isValid?.payload?.role === 'trainer' ? 'trainer/dashboard' : 'login'} />} />
           <Route path="admin" element={
             <ProtectedRoute role="admin">
               <Admin />

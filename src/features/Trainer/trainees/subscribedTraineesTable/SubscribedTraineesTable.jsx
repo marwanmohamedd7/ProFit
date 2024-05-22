@@ -71,7 +71,7 @@ import SubscribedTraineesTableRow from "./SubscribedTraineesTableRow"
 
 
 function SubscribedTraineesTable({ trainees, count, section = "" }) {
-    if (!trainees.length) return <Empty resource={section ? section : "trainees"} />
+    if (!count) return <Empty resource={section ? section : "trainees"} />
     return (
         <Table>
             <Table.Header>

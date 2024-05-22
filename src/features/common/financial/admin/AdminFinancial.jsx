@@ -4,8 +4,8 @@ import AdminFinancialTable from "./AdminFinancialTable"
 import { useGetAdminFinancials } from "./useGetAdminFinancials"
 
 function AdminFinancial() {
-    const { getAdminFinancials = [], count, isLoading } = useGetAdminFinancials()
-    if (isLoading) return <div className="h-[40dvh]"><Spinner /></div>
+    const { getAdminFinancials, count, isLoading } = useGetAdminFinancials()
+    if (isLoading) return <div className="h-[50dvh]"><Spinner /></div>
     return (
         <>
             <div className="space-y-4">

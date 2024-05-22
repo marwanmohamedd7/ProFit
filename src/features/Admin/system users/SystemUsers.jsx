@@ -6,7 +6,7 @@ import { useGetSystemUsers } from "./useGetSystemUsers";
 
 function SystemUsers() {
     const { getSystemUsers, isLoading, count } = useGetSystemUsers();
-    if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    if (isLoading) return <div className="flex items-center justify-center h-[55dvh]"><Spinner /></div>
     return (
         <>
             <CompoundTabs tabsFeild="systemUsers" defaultTab="trainers">

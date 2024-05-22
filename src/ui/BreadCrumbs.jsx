@@ -7,6 +7,11 @@ function BreadCrumbs() {
     const { userRole } = useCurrentUser()
     let { pathName } = usePageLocation()
     const active = `text-blue-700`
+    const handleClick = (e, isLast) => {
+        if (isLast) {
+            e.preventDefault();
+        }
+    };
     return (
         <nav className="flex text-sm mb-4 rounded-lg justify-start items-center max-w-auto" aria-label="Breadcrumb">
             <ol className="inline-flex bg-white px-5 py-2.5 font-light text-gray-500 rounded-md border items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -36,7 +41,12 @@ function BreadCrumbs() {
                                         <li key={index}>
                                             <div className="flex items-center text-gray-600">
                                                 <span className="text-md"><HiChevronRight /></span>
-                                                <NavLink to={`/${userRole}${routeTo}`} className={`ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700 ${active}`}>
+                                                <NavLink
+                                                    to={`/${userRole}${routeTo}`}
+                                                    className={`ms-1 capitalize md:ms-2 font-semibold ${active} ${isLast ? 'text-gray-400 cursor-not-allowed' : 'hover:text-blue-700'}`}
+                                                    onClick={(e) => handleClick(e, isLast)}
+                                                    aria-disabled={isLast}
+                                                >
                                                     {item}
                                                 </NavLink>
                                             </div>
@@ -45,7 +55,7 @@ function BreadCrumbs() {
                                         <li key={index}>
                                             <div className={`flex items-center text-gray-600`}>
                                                 <span className="text-md"><HiChevronRight /></span>
-                                                <NavLink to={`/${userRole}${routeTo}`} className="ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700">
+                                                <NavLink aria-disabled={isLast} to={`/${userRole}${routeTo}`} className="ms-1 capitalize md:ms-2 font-semibold hover:text-blue-700">
                                                     {item}
                                                 </NavLink>
                                             </div>

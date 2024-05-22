@@ -1,7 +1,7 @@
 import { BiPlus } from "react-icons/bi"
 import { IoClose } from "react-icons/io5";
 import { GrPowerReset } from "react-icons/gr";
-import { createContext, useContext } from "react"
+import { createContext, useContext, useEffect } from "react"
 import { useSearchParams } from "react-router-dom";
 import { HiOutlineDuplicate } from "react-icons/hi";
 import { useDietProvider } from "../context/DietProvider";
@@ -15,6 +15,13 @@ function DaysTabs({ children }) {
     const { dispatch, days } = useDietProvider();
     const [searchParams, setSearchParams] = useSearchParams();
     const currentActiveDay = !searchParams.get("day") || (days.length < Number(searchParams.get("day"))) ? "1" : searchParams.get("day");
+    useEffect(function () {
+        if (days.length < Number(searchParams.get("day"))) {
+            searchParams.set("day", 1)
+            setSearchParams(searchParams);
+        }
+    }, [days.length, searchParams, setSearchParams])
+
 
     // Function to handle tab click
     function handleTabClick(value) {
@@ -84,7 +91,7 @@ function Open({ children, opens: openDayTab }) {
     const { handleTabClick, handleRemoveDay, handleDuplicateDay, handleResetDay, currentActiveDay } = useContext(DayContext)
     return (
         <div className="cursor-pointer grow">
-            <div onClick={() => handleTabClick(openDayTab)} className={`flex justify-between items-center px-3.5 py-2 grow text-center capitalize transition-all duration-300 ${openDayTab === currentActiveDay ? activeTabStyle : `${inActiveTabStyle} hover:bg-gray-400 hover:text-gray-50`} rounded-md`}>
+            <div onClick={() => handleTabClick(openDayTab)} className={`flex justify-between items-center px-3.5 py-2 grow text-center capitalize transition-all duration-500 ${openDayTab === currentActiveDay ? activeTabStyle : `${inActiveTabStyle} hover:bg-gray-400 hover:text-gray-50`} rounded-md`}>
                 <span className="whitespace-nowrap">{children}</span>
                 {/* <p className="flex items-center justify-center gap-[1px]">
                     <span onClick={(e) => {

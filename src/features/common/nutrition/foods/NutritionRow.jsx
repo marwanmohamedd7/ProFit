@@ -71,12 +71,12 @@ function NutritionRow({ food, section, onCloseModal }) {
                                 </div>
                             </div>
                         </td>
-                        <td className="p-4 whitespace-nowrap">{food.servingUnit}</td>
-                        <td className="p-4 whitespace-nowrap">{food.per + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.calories}</td>
+                        {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
+                        <td className="p-4 whitespace-nowrap">{food.per + " / " + food.servingUnit.toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.calories + " Kcal"}</td>
                         <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
                         <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                             {
@@ -159,11 +159,12 @@ function NutritionRow({ food, section, onCloseModal }) {
                                 </div>
                             </div>
                         </td>
-                        <td className="p-4 whitespace-nowrap">{food.servingUnit}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " " + food.servingUnit.at(0).toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.calories}</td>
+                        {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
+                        <td className="p-4 whitespace-nowrap">{food.per + " / " + food.servingUnit.toLowerCase()}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " g"}</td>
+                        <td className="p-4 whitespace-nowrap">{food.macros.calories + " Kcal"}</td>
                         <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
                         <td className="p-4 whitespace-nowrap text-center">
                             <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">

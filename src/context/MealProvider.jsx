@@ -77,7 +77,7 @@ function MealProvider({ children }) {
 
 function useMealProvider() {
     const context = useContext(MealContext);
-    if (context === undefined) throw new Error("useMealProvider must be used within a UserProvider")
+    if (context === undefined) throw new Error("useMealProvider must be used within a MealProvider")
     return context
 }
 

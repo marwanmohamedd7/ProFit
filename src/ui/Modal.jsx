@@ -34,7 +34,7 @@ function Window({ opens: openWindow, children }) {
   if (openName !== openWindow) return null
   return (
     createPortal(
-      <div className="fixed h-dvh w-full backdrop-blur-sm inset-0 bg-gray-500 bg-opacity-50 z-50 overflow-y-auto" id="my-modal">
+      <div className="fixed h-dvh w-full backdrop-blur-sm inset-0 bg-gray-900 bg-opacity-50 z-50 overflow-y-auto" id="my-modal">
         <div ref={ref} className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] transition-all duration-1000 px-4 pb-4 border shadow-lg rounded-md bg-white divide-y">
           <div className="flex items-center justify-between">
             <h3 className="mr-8 text-lg leading-6 font-bold text-blue-900 px-2 py-4 capitalize">{openWindow.split("-").join(" ")}</h3>
