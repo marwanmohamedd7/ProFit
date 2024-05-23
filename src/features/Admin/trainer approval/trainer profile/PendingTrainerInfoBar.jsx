@@ -14,7 +14,7 @@ function PendingTrainerInfoBar() {
     const { getPendingTrainerInfoBar, isLoading: isGettingInfo } = useGetPendingTrainerInfoBar();
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, status } = getPendingTrainerInfoBar ?? {};
     return (
-        <div className="flex flex-wrap gap-4 items-center justify-between p-4 bg-white shadow rounded-lg max-w-full">
+        <div className="flex flex-wrap gap-4 items-center justify-between p-4 bg-white rounded-md max-w-full border">
             {
                 isGettingInfo ?
                     <div className="bg-gray-50 w-full h-[10dvh] text-center p-1 rounded-md shadow-sm flex justify-center items-center">
@@ -35,7 +35,7 @@ function PendingTrainerInfoBar() {
                                 </h4>
                                 <p className="flex flex-col text-blue-900 text-xs">
                                     <span>{email}</span>
-                                    <span className="underline">{phoneNumber}</span>
+                                    <span>{phoneNumber}</span>
                                 </p>
                             </div>
                         </div>

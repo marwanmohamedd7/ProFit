@@ -46,7 +46,7 @@ function TrainerSubscribedTraineeInfo() {
                         </p>
                         <p className="text-xs flex flex-col text-blue-900">
                             <span>{email}</span>
-                            <span className="underline">{phoneNumber}</span>
+                            <span>{phoneNumber}</span>
                         </p>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ function SystemTraineesTableRow({ trainee }) {
                             </p>
                             <div className="text-xs flex flex-col text-gray-800">
                                 <span>{email}</span>
-                                <span className="underline">{phoneNumber}</span>
+                                <span>{phoneNumber}</span>
                             </div>
                         </div>
                     </div>

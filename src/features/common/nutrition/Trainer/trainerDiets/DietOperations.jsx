@@ -127,7 +127,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                                     </p>
                                     <p className="text-xs flex flex-col text-blue-900">
                                         <span>{traineeData?.email}</span>
-                                        <span className="underline">{traineeData?.phoneNumber}</span>
+                                        <span>{traineeData?.phoneNumber}</span>
                                     </p>
                                 </div>
                             </div>

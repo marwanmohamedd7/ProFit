@@ -1,44 +1,21 @@
 import { CiShare1 } from "react-icons/ci";
 import { format, parseISO } from "date-fns";
-import { useNavigate } from "react-router-dom";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import Button from "../../../../ui/Button";
-import CoinIcon from "../../../../Icons/CoinIcon";
+import { useNavigate } from "react-router-dom"
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import Button from "../../../ui/Button"
 
-const data = [
-    { date: '2024-05-01', subscribers: 4000 },
-    { date: '2024-05-02', subscribers: 3000 },
-    { date: '2024-05-03', subscribers: 2000 },
-    { date: '2024-05-04', subscribers: 2780 },
-    { date: '2024-05-05', subscribers: 1890 },
-    { date: '2024-05-06', subscribers: 2390 },
-    { date: '2024-05-07', subscribers: 3490 },
-    { date: '2024-05-08', subscribers: 3200 },
-    { date: '2024-05-09', subscribers: 2900 },
-    { date: '2024-05-10', subscribers: 3300 },
-    { date: '2024-05-11', subscribers: 3400 },
-    { date: '2024-05-12', subscribers: 3200 },
-    { date: '2024-05-13', subscribers: 3100 },
-    { date: '2024-05-14', subscribers: 3500 },
-    { date: '2024-05-15', subscribers: 3650 },
-    { date: '2024-05-16', subscribers: 3450 },
-    { date: '2024-05-17', subscribers: 3550 },
-    { date: '2024-05-18', subscribers: 3750 },
-    { date: '2024-05-19', subscribers: 3850 },
-    { date: '2024-05-20', subscribers: 3950 },
-];
-
-function ExtraChart() {
+function DashboardAreaChart({ areaChartData, areaChartDetails }) {
     const navigate = useNavigate();
-    const dataReady = data.map(({ date, subscribers }) => ({ date: format(parseISO(date), 'MMMM d'), subscribers }))
+    const { title, icon, url } = areaChartDetails;
+    const dataReady = areaChartData.map(({ date, value }) => ({ date: format(parseISO(date), 'MMMM d'), value }))
     return (
-        <div className="rounded-md p-4 capitalize border space-y-6 shadow-sm bg-white">
+        <div className="col-span-2 rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
             <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
                 <h2 className="flex items-center gap-2 text-blue-900 font-bold">
-                    <span><CoinIcon /></span>
-                    <span>subscriptions overview</span>
+                    <span>{icon}</span>
+                    <span>{title}</span>
                 </h2>
-                <Button onClick={() => navigate("/trainer/subscriptions")} type="viewLink">
+                <Button onClick={() => navigate(url)} type="viewLink">
                     <p className="flex items-center justify-center gap-1">
                         <span>View Details</span>
                         <span><CiShare1 /></span>
@@ -47,17 +24,16 @@ function ExtraChart() {
             </div>
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={dataReady}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <Bar
-                                dataKey="subscribers"
+                    <ResponsiveContainer width="100%" height={350}>
+                        <AreaChart data={dataReady}>
+                            <CartesianGrid strokeDasharray="4" />
+                            <Area
+                                dataKey="value"
+                                type="monotone"
                                 stroke="#1D4ED8"
                                 fill="#1D4ED8"
                                 strokeWidth={2}
-                                type="monotone"
                                 cursor="pointer"
-                            // barSize={50}
                             />
                             <Tooltip
                                 content={({ active, payload }) => {
@@ -65,7 +41,7 @@ function ExtraChart() {
                                         return (
                                             <div className="bg-white p-3 border border-gray-200 shadow-sm rounded-md text-sm space-y-1">
                                                 <p className="font-bold text-gray-800">date: {payload[0].payload.date}</p>
-                                                <p className="text-gray-600">total sales: {payload[0].payload.subscribers} EGP</p>
+                                                <p className="text-gray-600">total sales: {payload[0].payload.value} EGP</p>
                                             </div>
                                         )
                                     }
@@ -89,7 +65,7 @@ function ExtraChart() {
                                 tickCount={6}
                             />
                             {/* <Legend /> */}
-                        </BarChart>
+                        </AreaChart>
                     </ResponsiveContainer>
                 </div>
             </div>
@@ -97,4 +73,4 @@ function ExtraChart() {
     )
 }
 
-export default ExtraChart
+export default DashboardAreaChart

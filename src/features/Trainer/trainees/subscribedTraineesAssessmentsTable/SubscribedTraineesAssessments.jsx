@@ -23,7 +23,7 @@ function SubscribedTraineesAssessments() {
                     }}
                 />
             </div>
-            <TrainerSubscribedTraineesTable trainees={getSubscribedTraineesAssessment} count={count} section="assessments" />
+            <TrainerSubscribedTraineesTable trainees={getSubscribedTraineesAssessment} count={count} empty="assessments" />
         </>
     )
 }

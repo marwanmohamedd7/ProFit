@@ -4,7 +4,7 @@ import { CiApple, CiDumbbell } from "react-icons/ci";
 import { BiMessageRoundedDetail } from "react-icons/bi";
 import { differenceInDays, format, parseISO } from "date-fns";
 import CircularProgress from "../../../../ui/CircularProgress";
-function SubscribedTraineesTableRow({ trainee }) {
+function SubscribedTraineesTableRow({ trainee, section }) {
     let statusStyle;
     const navigate = useNavigate();
     const {
@@ -36,22 +36,27 @@ function SubscribedTraineesTableRow({ trainee }) {
                             </p>
                             <p className="text-xs flex flex-col text-blue-900">
                                 <span>{email}</span>
-                                {/* <span className="underline">{phoneNumber}</span> */}
+                                {/* <span>{phoneNumber}</span> */}
                             </p>
                         </div>
                     </div>
                 </td>
                 <td className="px-10 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
-                <td className="px-10 py-4 whitespace-nowrap">{packageName}</td>
-                <td className="px-10 py-4 whitespace-nowrap">{duration} months</td>
-                {/* <td className="px-10 py-4 whitespace-nowrap">{lastAssessment}</td> */}
-                <td className="px-9 py-2 whitespace-nowrap capitalize">
-                    <div className="flex items-center gap-2">
-                        <span><CircularProgress allDays={(differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100} days={differenceInDays(parseISO(endDate), new Date()) - 1} size="size-12" variations="daysCount" /></span>
-                        <span>days left</span>
-                    </div>
-                </td>
-                <td className="px-10 py-4 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
+                {
+                    section !== "dashboard" &&
+                    <>
+                        <td className="px-10 py-4 whitespace-nowrap">{packageName}</td>
+                        <td className="px-10 py-4 whitespace-nowrap">{duration} months</td>
+                        {/* <td className="px-10 py-4 whitespace-nowrap">{lastAssessment}</td> */}
+                        <td className="px-9 py-2 whitespace-nowrap capitalize">
+                            <div className="flex items-center gap-2">
+                                <span><CircularProgress allDays={(differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100} days={differenceInDays(parseISO(endDate), new Date()) - 1} size="size-12" variations="daysCount" /></span>
+                                <span>days left</span>
+                            </div>
+                        </td>
+                        <td className="px-10 py-4 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
+                    </>
+                }
                 <td className="px-10 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <button
@@ -60,7 +65,7 @@ function SubscribedTraineesTableRow({ trainee }) {
                                 e.stopPropagation();
                                 navigate(`diets/${_id}`);
                             }}
-                            className={`p-2 rounded-md text-lg ${dietAssessmentStatus === "Ready" ? "text-green-600 hover:text-green-700 bg-green-100 animate-bounce" :"text-blue-600 hover:text-blue-700 bg-blue-100"}`}
+                            className={`p-2 rounded-md text-lg ${dietAssessmentStatus === "Ready" ? "text-green-600 hover:text-green-700 bg-green-100 animate-bounce" : "text-blue-600 hover:text-blue-700 bg-blue-100"}`}
                         >
                             <CiApple />
                         </button>

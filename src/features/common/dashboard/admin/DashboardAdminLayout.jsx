@@ -2,34 +2,39 @@ import { formatCurrency } from "../../../../utils/helpers"
 import Stat from "../Stat"
 import Stats from "../Stats"
 import DashboardInfo from "../DashboardInfo"
-import AssessmentsChart from "./AssessmentsChart"
-import StarIcon from "../../../../Icons/StarIcon"
 import CoinIcon from "../../../../Icons/CoinIcon"
+import UsersIcon from "../../../../Icons/UsersIcon"
 import AppleIcon from "../../../../Icons/AppleIcon"
-import DashboardBarChart from "../DashboardBarChart"
 import DashboardPieChart from "../DashboardPieChart"
 import DashboardAreaChart from "../DashboardAreaChart"
-import PackageIcon from "../../../../Icons/PackageIcon"
 import DashboardDountChart from "../DashboardDountChart"
 import DumbbellIcon from "../../../../Icons/DumbbellIcon"
 import UsersMoreIcon from "../../../../Icons/UsersMoreIcon"
 
 const pieChartData = {
-    totalValues: 100,
+    totalValues: 96,
     data: [
-        { label: 'Gold', value: 40, color: '#0088FE' },
-        { label: 'Silver', value: 30, color: '#00C49F' },
-        { label: 'Bronze', value: 30, color: '#FFBB28' },
-        { label: 'Champion', value: 20, color: '#FF8042' },
+        { label: 'trainers', value: 41, color: '#0088FE' },
+        { label: 'trainees', value: 55, color: '#00C49F' },
     ]
 }
 const dountChartData = {
-    totalValues: 116,
+    totalValues: 55,
     data: [
-        { label: "Active", value: 21, color: '#00C49F' },
-        { label: "Expired", value: 13, color: '#0088FE' },
-        { label: "Cancelled", value: 16, color: '#FFBB28' },
-        { label: "Refunded", value: 66, color: '#FF8042' }
+        { label: "banned", value: 5, color: '#ADEF3B' },
+        { label: "blocked", value: 6, color: '#FF8042' },
+        { label: "subscriber", value: 19, color: '#FFBB28' },
+        { label: "non-subscriber", value: 25, color: '#2196F3' },
+    ]
+};
+const dountChartData1 = {
+    totalValues: 41,
+    data: [
+        { label: "Accepted", "value": 21, "color": "#F44336" },
+        { label: "Rejected", "value": 7, "color": "#2196F3" },
+        { label: "Pending", "value": 6, "color": "#FF8042" },
+        { label: "blocked", "value": 2, "color": "#FFBB28" },
+        { label: "incomplete", "value": 5, "color": "#ADEF3B" },
     ]
 };
 const areaChartData = [
@@ -55,24 +60,34 @@ const areaChartData = [
     { date: '2024-05-30', value: 4950 },
     { date: '2024-05-31', value: 5050 },
 ];
-function DashboardTrainerLayout() {
+function DashboardAdminLayout() {
     return (
         <div className="space-y-4">
             <DashboardInfo />
             <Stats>
                 <Stat icon={<CoinIcon />} color="bg-blue-100 text-blue-600" title="Total Earnings" value={`${formatCurrency(2900)}`} />
-                <Stat icon={<DumbbellIcon />} color="bg-red-100 text-red-600" title="Total Workout Plans" value="15" />
-                <Stat icon={<AppleIcon fill={true} />} color="bg-green-100 text-green-600" title="Total Diet Plans" value="35" />
-                <Stat icon={<StarIcon />} color="bg-amber-100" title="Profile Rating" value="4.3" />
+                <Stat icon={<DumbbellIcon />} color="bg-red-100 text-red-600" title="Total proFIT excerises" value="15" />
+                <Stat icon={<AppleIcon fill={true} />} color="bg-green-100 text-green-600" title="Total proFIT foods" value="35" />
+                <Stat icon={<UsersMoreIcon />} color="bg-indigo-100 text-indigo-600" title="total pending trainers" value="43" />
             </Stats>
             <div className="grid grid-cols-2 gap-4">
+                <DashboardDountChart
+                    dountChartData={dountChartData1}
+                    dountChartDetails={
+                        {
+                            title: "Trainers",
+                            icon: <UsersMoreIcon />,
+                            url: "/admin/system-users?systemUsers=trainers",
+                            headers: ["status", "Count", "Percentage"]
+                        }
+                    } />
                 <DashboardDountChart
                     dountChartData={dountChartData}
                     dountChartDetails={
                         {
                             title: "Trainees",
                             icon: <UsersMoreIcon />,
-                            url: "/trainer/trainees",
+                            url: "/admin/system-users?systemUsers=trainee",
                             headers: ["status", "Count", "Percentage"]
                         }
                     } />
@@ -80,25 +95,22 @@ function DashboardTrainerLayout() {
                     pieChartData={pieChartData}
                     pieChartDetails={
                         {
-                            title: "Packages Overview",
-                            icon: <PackageIcon />,
-                            url: "/trainer/packages",
-                            headers: ["name", "Subscribers", "Percentage"]
+                            title: "system users Overview",
+                            icon: <UsersIcon />,
+                            url: "/admin/system-users",
+                            headers: ["Role", "count", "Percentage"]
                         }
                     } />
-                <AssessmentsChart />
-                <DashboardBarChart />
                 <DashboardAreaChart areaChartData={areaChartData} areaChartDetails={
                     {
-                        title: "Subscriptions Overview",
+                        title: "financial Overview",
                         icon: <CoinIcon />,
-                        url: "/trainer/subscriptions",
+                        url: "/admin/Financial",
                     }
                 } />
             </div>
-
         </div>
     )
 }
 
-export default DashboardTrainerLayout
+export default DashboardAdminLayout

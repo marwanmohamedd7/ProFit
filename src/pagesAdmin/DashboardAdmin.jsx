@@ -1,12 +1,6 @@
-// import BreadCrumbs from "../ui/BreadCrumbs";
-import Title from "../ui/Title";
+import DashboardAdminLayout from "../features/common/dashboard/admin/DashboardAdminLayout";
 
 function DashboardAdmin() {
-  return <div className="space-y-4">
-    <div>
-      {/* <BreadCrumbs /> */}
-      <Title />
-    </div>
-  </div>
+  return <DashboardAdminLayout/>
 }
 export default DashboardAdmin;

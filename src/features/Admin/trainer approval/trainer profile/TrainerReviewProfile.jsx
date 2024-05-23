@@ -14,15 +14,17 @@ function TrainerReviewProfile() {
                     <CompoundTabs.Open opens="professional-credentials">professional credentials</CompoundTabs.Open>
                     <CompoundTabs.Open opens="subscription-pricing">subscription pricing</CompoundTabs.Open>
                 </CompoundTabs.Tabs>
-                <CompoundTabs.Window opens="PersonalInformation">
-                    <PendingTrainerPersonalInfo />
-                </CompoundTabs.Window>
-                <CompoundTabs.Window opens="professional-credentials">
-                    <PendingTrainerProfessionalData />
-                </CompoundTabs.Window>
-                <CompoundTabs.Window opens="subscription-pricing">
-                    <PendingTrainerPackages />
-                </CompoundTabs.Window>
+                <div className="pt-4">
+                    <CompoundTabs.Window opens="PersonalInformation">
+                        <PendingTrainerPersonalInfo />
+                    </CompoundTabs.Window>
+                    <CompoundTabs.Window opens="professional-credentials">
+                        <PendingTrainerProfessionalData />
+                    </CompoundTabs.Window>
+                    <CompoundTabs.Window opens="subscription-pricing">
+                        <PendingTrainerPackages />
+                    </CompoundTabs.Window>
+                </div>
             </CompoundTabs>
         </>
     )

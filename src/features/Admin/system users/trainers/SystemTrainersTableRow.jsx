@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { MdOutlineBlock } from "react-icons/md";
-import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
-import { usePendingTrainerAccept } from "../../trainer approval/trainer profile/usePendingTrainerAccept";
-import { usePendingTrainerReject } from "../../trainer approval/trainer profile/usePendingTrainerReject";
-import SpinnerMini from "../../../../ui/SpinnerMini";
+import { IoEyeOutline } from "react-icons/io5"
+// import { MdOutlineBlock } from "react-icons/md";
+// import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
+// import { usePendingTrainerAccept } from "../../trainer approval/trainer profile/usePendingTrainerAccept";
+// import { usePendingTrainerReject } from "../../trainer approval/trainer profile/usePendingTrainerReject";
+// import SpinnerMini from "../../../../ui/SpinnerMini";
 import Table from "../../../../ui/Table";
 
 function SystemTrainersTableRow({ trainer }) {
     let statusStyle;
     const navigate = useNavigate();
-    const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
-    const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
+    // const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
+    // const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, subscriptions, status, paidAmount } = trainer ?? {};
     if (status === "rejected") statusStyle = `text-red-500 bg-red-100`;
     if (status === "pending") statusStyle = `text-gray-500 bg-gray-100`;
@@ -31,7 +32,7 @@ function SystemTrainersTableRow({ trainer }) {
                             </p>
                             <div className="text-xs flex flex-col text-gray-800">
                                 <span>{email}</span>
-                                <span className="underline">{phoneNumber}</span>
+                                <span>{phoneNumber}</span>
                             </div>
                         </div>
                     </div>
@@ -48,7 +49,7 @@ function SystemTrainersTableRow({ trainer }) {
                             <IoEyeOutline />
                         </button>
 
-                        <button
+                        {/* <button
                             onClick={() => acceptPendingTrainer(_id)}
                             className="text-green-600 p-2 hover:text-green-900 bg-green-100 rounded-md"
                         >
@@ -61,7 +62,7 @@ function SystemTrainersTableRow({ trainer }) {
                             className="text-red-600 p-2 hover:text-red-900 bg-red-100 rounded-md"
                         >
                             {isRejecting ? <SpinnerMini /> : <MdOutlineBlock />}
-                        </button>
+                        </button> */}
                     </div>
                 </td>
             </tr>

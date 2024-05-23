@@ -1,45 +1,38 @@
 import { CiShare1 } from "react-icons/ci";
 import { format, parseISO } from "date-fns";
-import { useNavigate } from "react-router-dom"
-import CoinIcon from "../../../../Icons/CoinIcon"
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import Button from "../../../../ui/Button"
+import { useNavigate } from "react-router-dom";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import Button from "../../../ui/Button";
+import CoinIcon from "../../../Icons/CoinIcon";
 
 const data = [
     { date: '2024-05-01', subscribers: 4000 },
     { date: '2024-05-02', subscribers: 3000 },
+    { date: '2024-05-03', subscribers: 2000 },
     { date: '2024-05-04', subscribers: 2780 },
-
+    { date: '2024-05-05', subscribers: 1890 },
     { date: '2024-05-06', subscribers: 2390 },
     { date: '2024-05-07', subscribers: 3490 },
     { date: '2024-05-08', subscribers: 3200 },
-
+    { date: '2024-05-09', subscribers: 2900 },
     { date: '2024-05-10', subscribers: 3300 },
     { date: '2024-05-11', subscribers: 3400 },
     { date: '2024-05-12', subscribers: 3200 },
     { date: '2024-05-13', subscribers: 3100 },
-
+    { date: '2024-05-14', subscribers: 3500 },
     { date: '2024-05-15', subscribers: 3650 },
     { date: '2024-05-16', subscribers: 3450 },
-
+    { date: '2024-05-17', subscribers: 3550 },
     { date: '2024-05-18', subscribers: 3750 },
     { date: '2024-05-19', subscribers: 3850 },
     { date: '2024-05-20', subscribers: 3950 },
-
-    { date: '2024-05-22', subscribers: 4150 },
-    { date: '2024-05-24', subscribers: 4350 },
-    { date: '2024-05-25', subscribers: 4450 },
-
-    { date: '2024-05-28', subscribers: 4750 },
-    { date: '2024-05-30', subscribers: 4950 },
-    { date: '2024-05-31', subscribers: 5050 },
 ];
 
-function SubscriptionsChart() {
+function DashboardBarChart() {
     const navigate = useNavigate();
     const dataReady = data.map(({ date, subscribers }) => ({ date: format(parseISO(date), 'MMMM d'), subscribers }))
     return (
-        <div className="col-span-2 rounded-md p-4 capitalize border space-y-6 shadow-sm bg-white">
+        <div className="rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
             <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
                 <h2 className="flex items-center gap-2 text-blue-900 font-bold">
                     <span><CoinIcon /></span>
@@ -54,16 +47,17 @@ function SubscriptionsChart() {
             </div>
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <AreaChart data={dataReady}>
-                            <CartesianGrid strokeDasharray="4" />
-                            <Area
+                    <ResponsiveContainer width="100%" height={365}>
+                        <BarChart data={dataReady}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <Bar
                                 dataKey="subscribers"
-                                type="monotone"
                                 stroke="#1D4ED8"
                                 fill="#1D4ED8"
                                 strokeWidth={2}
+                                type="monotone"
                                 cursor="pointer"
+                            // barSize={50}
                             />
                             <Tooltip
                                 content={({ active, payload }) => {
@@ -95,7 +89,7 @@ function SubscriptionsChart() {
                                 tickCount={6}
                             />
                             {/* <Legend /> */}
-                        </AreaChart>
+                        </BarChart>
                     </ResponsiveContainer>
                 </div>
             </div>
@@ -103,4 +97,4 @@ function SubscriptionsChart() {
     )
 }
 
-export default SubscriptionsChart
+export default DashboardBarChart

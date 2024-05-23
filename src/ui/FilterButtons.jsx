@@ -13,7 +13,7 @@ function FilterButtons({ fiterBtns: { fiterFeild, options } }) {
   return (
     <div className="flex overflow-x-auto rounded-md text-xs font-semibold border">
       {options.map(({ label, value }) =>
-        <button key={label} onClick={() => handleBtnClick(value)} className={`px-4 py-2 hover:bg-gray-100 outline-none ${currentFilter === value ? `bg-gray-100 text-blue-600` : ` text-blue-900 bg-white`} transition-all duration-300`}>
+        <button key={label} onClick={() => handleBtnClick(value)} className={`px-4 py-2 capitalize hover:bg-gray-100 outline-none ${currentFilter === value ? `bg-gray-100 text-blue-600` : ` text-blue-900 bg-white`} transition-all duration-300`}>
           {label}
         </button>
       )}

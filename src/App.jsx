@@ -22,7 +22,6 @@ import Messages from "./pagesTrainer/Messages";
 import Packages from "./pagesTrainer/Packages";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Portfolio from "./pagesTrainer/Portfolio";
-import PageNotFound from "./pagesAdmin/PageNotFound";
 import TraineeInfo from './pagesTrainer/TraineeInfo';
 import DietPlanFree from './pagesTrainer/DietPlanFree';
 import TrainerReview from "./pagesAdmin/TrainerReview";
@@ -36,6 +35,7 @@ import DietPlanTrainer from './pagesTrainer/DietPlanTrainer';
 import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
 import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
 import DietPlanCustomized from './pagesTrainer/DietPlanCustomized';
+import PageNotFound from './ui/PageNotFound';
 
 const queryClient = new QueryClient({
   defaultOptions: {
