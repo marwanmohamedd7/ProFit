@@ -1,13 +1,7 @@
-import BreadCrumbs from "../ui/BreadCrumbs"
-import Title from "../ui/Title"
+import TrainerMessages from "../features/Trainer/chat/TrainerMessages"
 
 function Messages() {
-    return (
-        <div>
-            <BreadCrumbs />
-            <Title />
-        </div>
-    )
+    return <TrainerMessages />
 }
 
 export default Messages

@@ -1,7 +1,7 @@
 import InputDropdown from "../../../../ui/InputDropdown"
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 
-function MealDetailsForm({ register, watch, errors }) {
+function MealDetailsForm({ register, watch, errors, getValues }) {
     return (
         <div className="grid grid-cols-3 gap-2">
             <InputFloatingLabel
@@ -25,6 +25,7 @@ function MealDetailsForm({ register, watch, errors }) {
             }
                 //    disabled={isLoading}
                 error={errors?.mealtype?.message}
+                getValues={getValues}
                 register={{
                     ...register("mealtype", {
                         required: "Select meal type."

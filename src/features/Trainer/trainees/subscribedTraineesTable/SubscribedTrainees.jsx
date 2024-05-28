@@ -4,13 +4,11 @@ import SubscribedTraineesTable from "./SubscribedTraineesTable"
 import { useGetSubscribedTrainees } from "./useGetSubscribedTrainees"
 import Spinner from "../../../../ui/Spinner"
 
-function SubscribedTrainees({ section = "dashboard" }) {
+function SubscribedTrainees() {
     const { getSubscribedTrainees, isLoading, count } = useGetSubscribedTrainees()
     if (isLoading) return <div className="flex items-center justify-center h-[60dvh]"><Spinner /></div>
     return (
         <>
-            {
-                section !== "dashboard" &&
                 <div className="flex flex-wrap gap-2 lg:gap-0 justify-between py-4">
                     <SearchInput placeholder="Search Trainee Name..." />
                     <FilterButtons
@@ -25,8 +23,7 @@ function SubscribedTrainees({ section = "dashboard" }) {
                         }}
                     />
                 </div>
-            }
-            <SubscribedTraineesTable trainees={getSubscribedTrainees} count={count} section={section} />
+            <SubscribedTraineesTable trainees={getSubscribedTrainees} count={count} />
         </>
     )
 }

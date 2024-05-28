@@ -359,7 +359,6 @@ function reducer(state, action) {
                     meals: day.meals.map(({ mealId, ...meal }) => meal)
                 }))
             };
-
             // Normally, here you would dispatch this data to a server or another state management area
             // console.log("Data ready for submission:", submissionData);
             return { ...state, submittedData: submissionData, error: "" };
@@ -377,6 +376,7 @@ function DietProvider({ children }) {
     const { days } = state;
 
     useEffect(function () {
+        // console.log(state)
         function calcPlanMacros() {
             // Sum the macros for all days
             const totalMacros = days.reduce((acc, day) => {

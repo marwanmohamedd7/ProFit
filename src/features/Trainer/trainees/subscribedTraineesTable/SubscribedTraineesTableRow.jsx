@@ -4,7 +4,7 @@ import { CiApple, CiDumbbell } from "react-icons/ci";
 import { BiMessageRoundedDetail } from "react-icons/bi";
 import { differenceInDays, format, parseISO } from "date-fns";
 import CircularProgress from "../../../../ui/CircularProgress";
-function SubscribedTraineesTableRow({ trainee, section }) {
+function SubscribedTraineesTableRow({ trainee }) {
     let statusStyle;
     const navigate = useNavigate();
     const {
@@ -15,7 +15,7 @@ function SubscribedTraineesTableRow({ trainee, section }) {
         endDate,
         status,
     } = trainee ?? {};
-    if (status === "cancelled") statusStyle = `text-red-500 bg-red-100`;
+    if (status === "Cancelled") statusStyle = `text-red-500 bg-red-100`;
     if (status === "pending") statusStyle = `text-gray-500 bg-gray-100`;
     if (status === "expired") statusStyle = `text-blue-500 bg-blue-100`;
     if (status === "Active") statusStyle = `text-green-500 bg-green-100`;
@@ -42,30 +42,36 @@ function SubscribedTraineesTableRow({ trainee, section }) {
                     </div>
                 </td>
                 <td className="px-10 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
-                {
-                    section !== "dashboard" &&
-                    <>
-                        <td className="px-10 py-4 whitespace-nowrap">{packageName}</td>
-                        <td className="px-10 py-4 whitespace-nowrap">{duration} months</td>
-                        {/* <td className="px-10 py-4 whitespace-nowrap">{lastAssessment}</td> */}
-                        <td className="px-9 py-2 whitespace-nowrap capitalize">
-                            <div className="flex items-center gap-2">
-                                <span><CircularProgress allDays={(differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100} days={differenceInDays(parseISO(endDate), new Date()) - 1} size="size-12" variations="daysCount" /></span>
-                                <span>days left</span>
-                            </div>
-                        </td>
-                        <td className="px-10 py-4 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
-                    </>
-                }
+                <td className="px-10 py-4 whitespace-nowrap">{packageName}</td>
+                <td className="px-10 py-4 whitespace-nowrap">{duration} months</td>
+                {/* <td className="px-10 py-4 whitespace-nowrap">{lastAssessment}</td> */}
+                <td className="px-9 py-2 whitespace-nowrap capitalize">
+                    <div className="flex items-center gap-2">
+                        {
+                            status === "Active" ?
+                                <>
+                                    <span><CircularProgress allDays={(differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100} days={differenceInDays(parseISO(endDate), new Date()) - 1} size="size-12" variations="daysCount" /></span>
+                                    <span>days left</span>
+                                </>
+                                :
+                                <>
+                                    <span><CircularProgress allDays={100} days={0} size="size-12" variations="daysCount" /></span>
+                                    <span>days left</span>
+                                </>
+                        }
+
+                    </div>
+                </td>
+                <td className="px-10 py-4 whitespace-nowrap capitalize text-xs font-semibold"><span className={`px-2 py-0.5 rounded-md ${statusStyle}`}>{status.replaceAll("-", " ")}</span></td>
                 <td className="px-10 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className='flex items-center justify-start gap-2'>
                         <button
-                            disabled={dietAssessmentStatus === "In Preparation" || dietAssessmentStatus === "Pending"}
+                            disabled={(dietAssessmentStatus === "Ready" || dietAssessmentStatus === "Working") ? false : true}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 navigate(`diets/${_id}`);
                             }}
-                            className={`p-2 rounded-md text-lg ${dietAssessmentStatus === "Ready" ? "text-green-600 hover:text-green-700 bg-green-100 animate-bounce" : "text-blue-600 hover:text-blue-700 bg-blue-100"}`}
+                            className={`p-2 rounded-md text-lg cursor-pointer ${dietAssessmentStatus === "Ready" ? "text-green-600 hover:text-green-700 bg-green-100 animate-bounce" : "text-blue-600 hover:text-blue-700 bg-blue-100"}`}
                         >
                             <CiApple />
                         </button>

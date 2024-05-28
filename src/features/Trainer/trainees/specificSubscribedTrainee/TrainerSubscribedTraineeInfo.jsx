@@ -29,7 +29,6 @@ function TrainerSubscribedTraineeInfo() {
     if (dietAssessmentStatus === "Working" || dietAssessmentStatus === "Pending") assessmentStatus = "request assessment";
     if (dietAssessmentStatus === "Ready") assessmentStatus = "assessment ready";
     if (dietAssessmentStatus === "In Preparation") assessmentStatus = "in progress...";
-    console.log()
     return (
         <>
             <div className="space-y-2">

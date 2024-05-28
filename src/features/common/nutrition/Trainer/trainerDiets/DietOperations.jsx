@@ -17,8 +17,9 @@ import SpinnerMini from "../../../../../ui/SpinnerMini"
 import { useCreateCustomizedPlan } from "../../../../Trainer/trainees/traineeDietPlans/useCreateCustomizedPlan"
 
 function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
+    let searchParams = "";
     const { id } = useParams()
-    const { _id } = dietToUpdate;
+    const { _id, planName, dietType: diettype, description } = dietToUpdate;
     const isExist = Boolean(_id);
     const navigate = useNavigate();
     const { prevPath } = usePageLocation();
@@ -29,8 +30,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     const { updateDietTemplate, isUpdating } = useUpdateDietTemplate();
     const { createTraineeCustomizePlan, isCreating: isCreating1 } = useCreateCustomizedPlan();
     const isLoading = isCreating || isUpdating || isCreating1;
-    const { handleSubmit, formState: { errors }, register, watch } = useForm({
-        defaultValues: isExist ? dietToUpdate : {},
+    const { handleSubmit, formState: { errors }, getValues, register, watch } = useForm({
+        defaultValues: isExist ? { planName, dietType: diettype, description } : {},
     });
     function onSubmit(data) {
         if (!data) return;
@@ -57,22 +58,25 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                 createDietTemplate(dietData, {
                     onSuccess: () => {
                         dispatch({ type: "diet/endSession" });
-                        navigate(isExist || id ? previousPath : prevPath);
+                        navigate(isExist || id ? `${previousPath}${searchParams}` : `${prevPath}${searchParams}`);
                     }
                 })
             } else {
                 updateDietTemplate({ _id, dietData }, {
                     onSuccess: () => {
                         dispatch({ type: "diet/endSession" });
-                        navigate(isExist || id ? previousPath : prevPath);
+                        navigate(isExist || id ? `${previousPath}${searchParams}` : `${prevPath}${searchParams}`);
                     }
                 })
             }
         }
-    }, [_id, id, dietToUpdate?.trainee?._id, dispatch, error, isExist, submitCount, submittedData, prevPath, previousPath, dietType, navigate, createDietTemplate, updateDietTemplate, createTraineeCustomizePlan]);  // Depend on error and submit count
+    }, [_id, id, dispatch, error, isExist, submitCount, submittedData, prevPath, previousPath, dietToUpdate?.trainee?._id, searchParams, dietType, navigate, createDietTemplate, updateDietTemplate, createTraineeCustomizePlan]);  // Depend on error and submit count
     let sectionName;
     if (dietType === "free plan") sectionName = "free diet builder"
-    if (dietType === "my plan") sectionName = "diet template builder"
+    if (dietType === "my plan") {
+        sectionName = "diet template builder"
+        searchParams = "?nutrition=diet_templates"
+    }
     if (dietType === "customized plan") sectionName = "customized diet builder"
     return (
         dietType !== "customized plan" ?
@@ -80,7 +84,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                 <BreadCrumbs />
                 <div className="flex justify-between items-center gap-4 mb-4">
                     <div className="flex items-center justify-center gap-3">
-                        <BackBtn path={isExist || id ? previousPath : prevPath} />
+                        <BackBtn path={isExist || id ? `${previousPath}${searchParams}` : `${prevPath}${searchParams}`} />
                         <span className="font-bold text-blue-900 text-2xl capitalize">{sectionName}</span>
                     </div>
 
@@ -104,7 +108,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                         }
                     </div>
                 </div>
-                <CreateDiet register={register} watch={watch} errors={errors} dietType={dietType} />
+                <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} />
             </>
             :
             <>
@@ -151,7 +155,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                             </div>
                         </div>
                     </div>
-                    <CreateDiet register={register} watch={watch} errors={errors} dietType={dietType} />
+                    <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} />
                 </div>
             </>
     )

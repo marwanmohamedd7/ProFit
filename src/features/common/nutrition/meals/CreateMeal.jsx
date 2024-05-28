@@ -21,8 +21,8 @@ function CreateMeal({ mealToUpdate = {} }) {
     const { userRole } = useCurrentUser()
     const { createMeal, isCreating } = useCreateMeal()
     const { updateMeal, isUpdating } = useUpdateMeal()
-    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
-        defaultValues: mealToUpdate,
+    const { handleSubmit, formState: { errors }, getValues, register, watch, reset } = useForm({
+        defaultValues: isExist ? mealToUpdate : {},
     })
     const { mealname, mealtype, mealnote } = watch()
     const {
@@ -66,7 +66,7 @@ function CreateMeal({ mealToUpdate = {} }) {
                     <div className="text-blue-700 font-bold capitalize">
                         meal details
                     </div>
-                    <MealDetailsForm register={register} watch={watch} errors={errors} />
+                    <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
                 </div>
                 <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-4">
                     <div className="text-blue-700 font-bold capitalize">

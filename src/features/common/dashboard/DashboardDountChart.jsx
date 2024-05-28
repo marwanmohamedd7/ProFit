@@ -74,7 +74,7 @@ function DashboardDountChart({ dountChartData, dountChartDetails }) {
                     <Table>
                         <Table.Header>
                             <tr className="capitalize text-left">
-                                {headers.map(item => <th className="p-3">{item}</th>)}
+                                {headers.map(item => <th key={item} className="p-3">{item}</th>)}
                                 <th className="p-3"></th>
                             </tr>
                         </Table.Header>

@@ -1,7 +1,7 @@
 import Empty from "../../../../ui/Empty";
 import Pagination from "../../../../ui/Pagination";
 import Table from "../../../../ui/Table"
-import NutritionRow from "./NutritionRow";
+import NutritionTableRow from "./NutritionTableRow";
 
 function NutritionTable({ foods, count, section, onCloseModal }) {
     if (!count) return <Empty resource="foods" />
@@ -37,7 +37,7 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                 }
 
             </Table.Header>
-            <Table.Body data={foods} render={(food) => <NutritionRow food={food} key={food._id} section={section} onCloseModal={onCloseModal} />} />
+            <Table.Body data={foods} render={(food) => <NutritionTableRow food={food} key={food._id} section={section} onCloseModal={onCloseModal} />} />
             <Table.Footer>
                 <Pagination count={count} />
             </Table.Footer>

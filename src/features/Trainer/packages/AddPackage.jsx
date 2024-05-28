@@ -14,7 +14,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
     const { _id: packageId, ...packageValues } = packageToUpdate;
     const [isActive, setIsActive] = useState(packageValues?.active ?? true)
     const isUpdateSession = Boolean(packageId);
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm({
+    const { register, handleSubmit, formState: { errors }, getValues, reset, watch } = useForm({
         defaultValues: isUpdateSession ? packageValues : {},
     });
     let isLoading = isCreating || isUpdating;
@@ -70,6 +70,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal }) {
                         }}
                         disabled={isLoading}
                         error={errors?.packageType?.message}
+                        getValues={getValues()}
                         register={
                             {
                                 ...register("packageType", {

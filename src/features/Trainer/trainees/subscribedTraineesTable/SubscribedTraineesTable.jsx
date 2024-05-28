@@ -70,7 +70,7 @@ import SubscribedTraineesTableRow from "./SubscribedTraineesTableRow"
 // ]
 
 
-function SubscribedTraineesTable({ trainees, count, empty = "", section }) {
+function SubscribedTraineesTable({ trainees, count, empty = "" }) {
     if (!count) return <Empty resource={empty ? empty : "trainees"} />
     return (
         <Table>
@@ -79,19 +79,14 @@ function SubscribedTraineesTable({ trainees, count, empty = "", section }) {
                     <th className="pl-4 py-2 whitespace-nowrap">trainee details</th>
                     {/* <th className="px-4 py-2 whitespace-nowrap">Last Assessment</th> */}
                     <th className="px-10 py-2 whitespace-nowrap">subscription date</th>
-                    {
-                        section !== "dashboard" &&
-                        <>
-                            <th className="px-10 py-2 whitespace-nowrap">package name</th>
-                            <th className="px-10 py-2 whitespace-nowrap">duration</th>
-                            <th className="px-10 py-2 whitespace-nowrap">remaining days</th>
-                            <th className="px-10 py-2 whitespace-nowrap">status</th>
-                        </>
-                    }
+                    <th className="px-10 py-2 whitespace-nowrap">package name</th>
+                    <th className="px-10 py-2 whitespace-nowrap">duration</th>
+                    <th className="px-10 py-2 whitespace-nowrap">remaining days</th>
+                    <th className="px-10 py-2 whitespace-nowrap">status</th>
                     <th className="px-10 py-2 whitespace-nowrap">actions</th>
                 </tr>
             </Table.Header>
-            <Table.Body data={trainees} render={(trainee) => <SubscribedTraineesTableRow trainee={trainee} key={trainee._id} section={section} />} />
+            <Table.Body data={trainees} render={(trainee) => <SubscribedTraineesTableRow trainee={trainee} key={trainee._id} />} />
             <Table.Footer>
                 <Pagination count={count} />
             </Table.Footer>

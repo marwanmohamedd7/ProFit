@@ -29,7 +29,7 @@ function Button({ children, onClick, type, to, name: pageName, customeStyle, dis
       return isActive ?
         `${isOpen ? `${styles.sideBtn} bg-blue-100 text-blue-700 border-l-4 border-blue-700 font-semibold` : `${styles.sideBtn} ${styles.sideBtnIcon} bg-blue-100 text-blue-700 border-l-4 border-blue-700 font-semibold`}`
         :
-        `${isOpen ? `${styles.sideBtn} text-gray-600 hover:bg-blue-50` : `${styles.sideBtn} ${styles.sideBtnIcon} text-gray-600 hover:bg-blue-50`}`
+        `${isOpen ? `${styles.sideBtn} text-gray-500 hover:bg-gray-100` : `${styles.sideBtn} ${styles.sideBtnIcon} text-gray-500 hover:bg-gray-100`}`
     }
     }
     >

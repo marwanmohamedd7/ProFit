@@ -83,7 +83,7 @@ function DietSettingsForm() {
                             }
                         }
                     />
-                    <InputDropdown item={{
+                    <InputDropdown getValues={getValues()} item={{
                         id: "goal",
                         label: "Goal",
                         options: [
@@ -97,7 +97,7 @@ function DietSettingsForm() {
                             })
                         }}
                     />
-                    <InputDropdown
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "dietType",
                             label: "Diet Type",
@@ -124,7 +124,7 @@ function DietSettingsForm() {
 
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                    <InputDropdown
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "religionrestriction",
                             label: "Religion Restriction",
@@ -138,7 +138,7 @@ function DietSettingsForm() {
                             })
                         }}
                     />
-                    <InputDropdown item={{
+                    <InputDropdown getValues={getValues()} item={{
                         id: "foodAllergens",
                         label: "Food Allergies",
                         options: [
@@ -177,7 +177,7 @@ function DietSettingsForm() {
                             })
                         }}
                     />
-                    <InputDropdown item={{
+                    <InputDropdown getValues={getValues()} item={{
                         id: "diseaseCompatibility",
                         label: "Disease",
                         options: [

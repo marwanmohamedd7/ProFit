@@ -38,9 +38,9 @@ function AssessmentsChart() {
                     </p>
                     <p className="text-3xl">5</p>
                 </div>
-                <div className="col-span-2">
-                    <SubscribedTrainees section="dashboard" />
-                </div>
+                {/* <div className="col-span-2">
+                    <SubscribedTrainees />
+                </div> */}
             </div>
             {/* <CircularProgress plan="diet plan" percentage="54" icon={<AppleIcon />} size="size-56" variations="assessmentsChart" />
                 <CircularProgress plan="workout plan" percentage="74" icon={<DumbbellIcon />} size="size-56" variations="assessmentsChart" /> */}

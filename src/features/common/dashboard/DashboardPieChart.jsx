@@ -18,9 +18,9 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 function DashboardPieChart({ pieChartData, pieChartDetails }) {
+    const navigate = useNavigate();
     const { totalValues, data } = pieChartData;
     const { title, icon, url, headers } = pieChartDetails;
-    const navigate = useNavigate();
     return (
         <div className="rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
             <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
@@ -75,7 +75,7 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                     <Table>
                         <Table.Header>
                             <tr className="capitalize text-left">
-                                {headers.map(item => <th className="p-3">{item}</th>)}
+                                {headers.map(item => <th key={item} className="p-3">{item}</th>)}
                                 <th className="p-3"></th>
                             </tr>
                         </Table.Header>

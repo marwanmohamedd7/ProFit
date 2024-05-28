@@ -21,11 +21,10 @@ function DietMeal({ meal, index }) {
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
     const activeDayMeals = days.find(day => day.day === activeDay)?.mealsCount ?? {};
-
     const { createMeal, isCreating } = useCreateMeal()
     const [mealToggle, setMealToggle] = useState(index ? false : true)
     const { foods, mealId, mealmacros, ...mealInfo } = meal
-    const { handleSubmit, formState: { errors }, register, watch, reset } = useForm({
+    const { handleSubmit, formState: { errors }, getValues, register, watch, reset } = useForm({
         defaultValues: mealInfo ? mealInfo : {}
     });
     // Watch all form values
@@ -53,7 +52,7 @@ function DietMeal({ meal, index }) {
         <div className={`space-y-4 p-2 bg-gray-50 border rounded-md ${mealToggle && "border-t-4 border-t-blue-700"}`}>
             <div className="flex items-center gap-2">
                 <div className="grow">
-                    <MealDetailsForm register={register} watch={watch} errors={errors} />
+                    <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
                 </div>
                 <div className="flex items-center gap-2">
                     <Modal>

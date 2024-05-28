@@ -13,26 +13,38 @@ import ConfirmDelete from "../../../../ui/ConfirmDelete";
 // import { useParams } from "react-router-dom";
 import { useDietProvider } from "../../../../context/DietProvider";
 
-function NutritionRow({ food, section, onCloseModal }) {
+function NutritionTableRow({ food, section, onCloseModal }) {
     // const { id: mealId } = useParams();
+    let inadvisableFood = false;
     const { userRole } = useCurrentUser();
-    const { dispatch: dispatchDiet, days: dietDays } = useDietProvider();
-    const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
     const { deleteFood, isDeleting } = useDeleteFood();
-    const { macros, foodImage, foodname, servingUnit, per: amount, _id } = food;
+    const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
+    const { per: amount, diseaseCompatibility, foodAllergens } = food;
+    const { dispatch: dispatchDiet, days: dietDays, plantype, disease: planDiseases, foodAllergens: planFoodAllergens } = useDietProvider();
+
+    if (planDiseases?.length && plantype === "Customized plan") planDiseases.map(disease => {
+        if (diseaseCompatibility?.includes(disease)) inadvisableFood = true;
+        return disease;
+    })
+
+    if (planFoodAllergens?.length && plantype === "Customized plan") planFoodAllergens.map(allergy => {
+        if (foodAllergens?.includes(allergy)) inadvisableFood = true;
+        return allergy;
+    })
 
     function onDelete(id) {
         if (!id) return;
         deleteFood(id)
     }
-
     function handleAddFood() {
         let foodItem;
+        const { _id, per, ...values } = food;
         // 1- check if there's already a food with the same id
         // 2- add the new food to the meals if it doesn't exist
         if (section === "meal") {
             foodItem = mealFoods.find(food => (food.food._id === _id) || (food.food === _id))
-            !foodItem && dispatchMeal({ type: "meal/addFood", payload: { macros, foodImage, foodname, servingUnit, amount, food: _id } })
+            // console.log({ ...values, amount, food: _id })
+            !foodItem && dispatchMeal({ type: "meal/addFood", payload: { ...values, amount, food: _id } })
         }
         else {
             const { day, mealId } = section;  // Destructuring to make it clearer
@@ -42,7 +54,7 @@ function NutritionRow({ food, section, onCloseModal }) {
                 .find(food => food.food._id === _id || food.food === _id);  // Find the food by _id
 
             if (!foodItem) {
-                dispatchDiet({ type: "diet/addFood", payload: { day: day, mealId: mealId, food: { macros, foodImage, foodname, servingUnit, amount, food: _id } } })
+                dispatchDiet({ type: "diet/addFood", payload: { day: day, mealId: mealId, food: { ...values, food: _id, amount } } })
                 dispatchDiet({ type: 'diet/calcMealMacros', payload: { day: day, mealId: mealId } })
                 dispatchDiet({ type: "diet/calcDayMacros", payload: day })
             }
@@ -60,7 +72,7 @@ function NutritionRow({ food, section, onCloseModal }) {
             {
                 section === "food"
                     ?
-                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
+                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white hover:bg-gray-50 cursor-pointer border">
                         <td className="px-4 py-2 whitespace-nowrap">
                             <div className="flex items-center gap-3">
                                 <div className="flex-shrink-0 h-14 w-14">
@@ -77,7 +89,9 @@ function NutritionRow({ food, section, onCloseModal }) {
                         <td className="p-4 whitespace-nowrap">{food.macros.fats + " g"}</td>
                         <td className="p-4 whitespace-nowrap">{food.macros.carbs + " g"}</td>
                         <td className="p-4 whitespace-nowrap">{food.macros.calories + " Kcal"}</td>
-                        <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
+                        <td className="p-4 whitespace-nowrap">
+                            <span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span>
+                        </td>
                         <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                             {
                                 userRole === "admin" ?
@@ -148,8 +162,8 @@ function NutritionRow({ food, section, onCloseModal }) {
                         </td>
                     </tr>
                     :
-                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50">
-                        <td className="px-4 py-2 whitespace-nowrap">
+                    <tr key={food.id} className={`border-b text-sm text-left text-blue-800 border cursor-pointer ${inadvisableFood ? "bg-red-100" : "bg-white hover:bg-gray-50"}`}>
+                        <td className={`px-4 py-2 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
                             <div className="flex items-center gap-3">
                                 <div className="flex-shrink-0 h-h-14 w-14">
                                     <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
@@ -160,13 +174,15 @@ function NutritionRow({ food, section, onCloseModal }) {
                             </div>
                         </td>
                         {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
-                        <td className="p-4 whitespace-nowrap">{food.per + " / " + food.servingUnit.toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.calories + " Kcal"}</td>
-                        <td className="p-4 whitespace-nowrap"><span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span></td>
-                        <td className="p-4 whitespace-nowrap text-center">
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.per + " / " + food.servingUnit.toLowerCase()}</td>
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.proteins + " g"}</td>
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.fats + " g"}</td>
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.carbs + " g"}</td>
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.calories + " Kcal"}</td>
+                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
+                            <span className={`px-2 py-1 rounded-md text-xs font-semibold ${inadvisableFood ? "bg-red-300 text-red-700" : "bg-green-100 text-green-600"}`}>{food.category}</span>
+                        </td>
+                        <td className={`p-4 whitespace-nowrap text-center ${inadvisableFood && "border border-red-100"}`}>
                             <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
                                 <p className="flex items-center justify-center gap-2 capitalize">
                                     <span>add</span>
@@ -181,4 +197,4 @@ function NutritionRow({ food, section, onCloseModal }) {
     )
 }
 
-export default NutritionRow
+export default NutritionTableRow

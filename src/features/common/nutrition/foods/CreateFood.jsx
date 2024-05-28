@@ -107,8 +107,8 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             }
                         }
                     />
-                    {/* {formAttributes_1.map((item, index) => <InputDropdown key={index} item={item} register={register} />)} */}
-                    <InputDropdown
+                    {/* {formAttributes_1.map((item, index) => <InputDropdown getValues={getValues()} key={index} item={item} register={register} />)} */}
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "dietType",
                             label: "Diet Type",
@@ -133,7 +133,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         }
                     />
 
-                    <InputDropdown
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "religionrestriction",
                             label: "Religion Restriction",
@@ -153,7 +153,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                         id="description"
                         disabled={isLoading}
                         placeholder="Description..."
-                        className="mt-1 block w-full py-2 h-20 px-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm placeholder:text-gray-700"
+                        className="mt-1 block w-full py-2 h-20 px-3 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm text-gray-700 disabled:text-gray-500 placeholder:text-gray-700"
                         {...register("description", {
                             required: false,
                             // required: "This field is required",
@@ -165,8 +165,8 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
 
             <section className="capitalize py-4">
                 <div className="grid grid-cols-4 gap-2">
-                    {/* {formAttributes_2.map((item, index) => <InputDropdown key={index} item={item} />)} */}
-                    <InputDropdown item={{
+                    {/* {formAttributes_2.map((item, index) => <InputDropdown getValues={getValues()} key={index} item={item} />)} */}
+                    <InputDropdown getValues={getValues()} item={{
                         id: "foodAllergens",
                         label: "Food Allergies",
                         options: [
@@ -205,69 +205,72 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             })
                         }}
                     />
-                    <InputDropdown item={{
-                        id: "category",
-                        label: "Category",
-                        options: [
-                            "Desserts",
-                            "Vegetables",
-                            "Fruits",
-                            "Bakeries",
-                            "Spices",
-                            "Seafood",
-                            "Juices",
-                            "Meat",
-                            "Oils",
-                            "Nuts",
-                            "Chicken",
-                            "Supplements",
-                            "Egg",
-                            "Milk Product",
-                            "Sauces",
-                        ],
-                    }}
+                    <InputDropdown
+                        item={{
+                            id: "category",
+                            label: "Category",
+                            options: [
+                                "Desserts",
+                                "Vegetables",
+                                "Fruits",
+                                "Bakeries",
+                                "Spices",
+                                "Seafood",
+                                "Juices",
+                                "Meat",
+                                "Oils",
+                                "Nuts",
+                                "Chicken",
+                                "Supplements",
+                                "Egg",
+                                "Milk Product",
+                                "Sauces",
+                            ],
+                        }}
                         disabled={isLoading}
                         error={errors?.category?.message}
+                        getValues={getValues()}
                         register={{
                             ...register("category", {
                                 required: "Select category."
                             })
                         }}
                     />
-                    <InputDropdown item={{
-                        id: "diseaseCompatibility",
-                        label: "Disease",
-                        options: [
-                            "Diabetes",
-                            "Hypertension",
-                            "Pregnancy",
-                            "Insulin Resistance",
-                            "Autoimmune Disease And Inflammation",
-                            "Pcos",
-                            "Familial Mediterranean Fever",
-                            "Gastric Sleeve",
-                            "Kidney Disease",
-                            "Hepatic Patient",
-                            "High Cholesterol",
-                            "Gout",
-                            "Lactose Intolerance",
-                            "Favism",
-                            "Hypothyroidism",
-                            "Hyperthyroidism",
-                            "Celiac Disease",
-                            "Salmonella infection",
-                        ],
-                    }}
+                    <InputDropdown
+                        item={{
+                            id: "diseaseCompatibility",
+                            label: "Disease",
+                            options: [
+                                "Diabetes",
+                                "Hypertension",
+                                "Pregnancy",
+                                "Insulin Resistance",
+                                "Autoimmune Disease And Inflammation",
+                                "Pcos",
+                                "Familial Mediterranean Fever",
+                                "Gastric Sleeve",
+                                "Kidney Disease",
+                                "Hepatic Patient",
+                                "High Cholesterol",
+                                "Gout",
+                                "Lactose Intolerance",
+                                "Favism",
+                                "Hypothyroidism",
+                                "Hyperthyroidism",
+                                "Celiac Disease",
+                                "Salmonella infection",
+                            ],
+                        }}
                         disabled={isLoading}
                         error={errors?.diseaseCompatibility?.message}
+                        getValues={getValues()}
                         register={{
                             ...register("diseaseCompatibility", {
-                                // required: false
                                 required: "Select disease."
                             })
                         }}
                     />
-                    <InputDropdown item={{
+                    <InputDropdown getValues={getValues()} item={{
                         id: "mealtype",
                         label: "Meal Type",
                         options: ["Breackfast", "Lunch", "Snack", "Dinner"],
@@ -285,7 +288,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
 
             <section className="capitalize py-3">
                 <div className="grid grid-cols-3 gap-2">
-                    <InputDropdown
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "servingUnit",
                             label: "Serving Unit",
@@ -311,7 +314,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             }
                         }
                     />
-                    <InputDropdown
+                    <InputDropdown getValues={getValues()}
                         item={{
                             id: "baseMacro",
                             label: "Base Macro",
@@ -337,7 +340,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
 
             <section className="capitalize py-4">
                 <div className="grid grid-cols-4 gap-2">
-                    {/* {formAttributes_4.map((item, index) => <InputDropdown key={index} item={item} />)} */}
+                    {/* {formAttributes_4.map((item, index) => <InputDropdown getValues={getValues()} key={index} item={item} />)} */}
                     <InputFloatingLabel
                         item={{ id: "proteins", label: "Proteins", type: "number", value: watch("proteins") }}
                         disabled={isLoading}

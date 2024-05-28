@@ -1,15 +1,13 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { HiMiniChevronLeft } from "react-icons/hi2";
 import { useGetSpecificMeal } from "./useGetSpecificMeal";
 import { useCurrentUser } from "../../../../context/UserProvider";
 import { useMealProvider } from "../../../../context/MealProvider";
 import CreateMeal from "./CreateMeal";
 import Spinner from "../../../../ui/Spinner";
 import BreadCrumbs from "../../../../ui/BreadCrumbs";
+import BackBtn from "../../../../ui/BackBtn";
 
 function MealOperationsPage() {
-    const navigate = useNavigate()
     const { userRole } = useCurrentUser()
     const { dispatch } = useMealProvider()
     const { getMeal, isLoading } = useGetSpecificMeal();
@@ -28,10 +26,7 @@ function MealOperationsPage() {
                 <div className="">
                     <div className="flex justify-between items-center mb-4">
                         <p className="flex items-center justify-center gap-4">
-                            <button onClick={() => {
-                                dispatch({ type: `meal/${getMeal?._id ? "endSession" : "startSession"}` })
-                                navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
-                            }} className="text-blue-600 bg-blue-200 cursor-pointer p-0.5 rounded-md font-semibold text-lg"><HiMiniChevronLeft /></button>
+                            <BackBtn path={`/${userRole}/nutrition?nutrition=meals_templates`} />
                             <span className="font-bold text-blue-900 text-2xl capitalize">{getMeal?._id ? "update meal" : "Create New Meal"}</span>
                         </p>
                     </div>

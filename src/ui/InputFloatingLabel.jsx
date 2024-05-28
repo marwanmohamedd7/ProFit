@@ -2,12 +2,14 @@ function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", t
     return (
         <div className="flex flex-col gap-1 grow">
             <div className="relative">
-                {icon && <button onMouseDown={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setShowPassword(value => !value)
-                }}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer">{icon}</button>}
+                {
+                    icon && <button onMouseDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowPassword(value => !value)
+                    }}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer">{icon}</button>
+                }
                 <input
                     id={id}
                     type={type}
@@ -17,7 +19,7 @@ function InputFloatingLabel({ item: { label, id, value = "", placeholder = "", t
                     onChange={onChange}
                     onBlur={onBlur}
                     {...register}
-                    className={`flex ${type === "date" && ` justify-between`} text-xs sm:text-sm items-center w-full ${paddingStyle ? paddingStyle : "py-2.5 px-2"} text-gray-700 font-semibold bg-transparent rounded-md bg-white border
+                    className={`flex ${type === "date" && ` justify-between`} disabled:text-gray-500 text-xs sm:text-sm items-center w-full ${paddingStyle ? paddingStyle : "py-2.5 px-2"} text-gray-700 bg-transparent rounded-md bg-white border
                 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-700 peer`}
                 />
                 <label htmlFor={id} className="absolute text-sm block font-medium bg-white disabled:bg-gray-50 text-gray-700 duration-300 transform -translate-y-4 scale-75
