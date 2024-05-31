@@ -1,13 +1,16 @@
-import React, { createContext } from 'react';
-
+import React, { createContext, useContext } from 'react';
+import { useDarkMode } from '../context/DarkModeProvider';
+import styles from '../styles/styles';
 // Sample data with image URLs
 const TableContext = createContext();
 
 function Table({ children }) {
+  const colors = styles();
+  const { isDarkMode } = useDarkMode();
   return (
-    <TableContext.Provider value={null}>
-      <div className="overflow-x-auto rounded-md bg-red-500">
-        <table className="min-w-full text-center bg-gray-50">
+    <TableContext.Provider value={{ colors, isDarkMode }}>
+      <div className="overflow-x-auto rounded-md">
+        <table className="min-w-full text-center">
           {children}
         </table>
       </div>
@@ -16,9 +19,12 @@ function Table({ children }) {
 }
 
 function Header({ children }) {
+  const { colors, isDarkMode } = useContext(TableContext);
   return (
-    <thead className="bg-gray-100 text-sm text-gray-600 border font-normal">
-      {children}
+    <thead>
+      <tr className={`capitalize text-left text-sm border font-normal ${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_100} ${colors.text_gray_900}`}`}>
+        {children}
+      </tr>
     </thead>
   )
 }
@@ -31,12 +37,24 @@ function Body({ data, render }) {
   )
 }
 
-function Row({ children }) {
-  return children
+function Row({ children, rowBgColor, onClick }) {
+  const { colors, isDarkMode } = useContext(TableContext);
+  return (
+    <tr onClick={onClick} className={`${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_900} hover:${colors.bg_slate_800}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} border-b text-sm text-left cursor-pointer border`}>
+      {children}
+    </tr>
+  )
 }
 
 function Footer({ children }) {
-  return children
+  const { colors, isDarkMode } = useContext(TableContext);
+  return (
+    <tfoot>
+      <tr className={`border ${isDarkMode ? `${colors.bg_white} bg-opacity-5 ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_600}`}`}>
+        {children}
+      </tr>
+    </tfoot>
+  )
 }
 
 Table.Header = Header;

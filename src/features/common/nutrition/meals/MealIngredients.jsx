@@ -8,7 +8,6 @@ import NutritionAppFood from "../Admin/ProFitFoods/NutritionAppFood"
 
 function MealIngredients({ foods = [], isExist = false, section = "food" }) {
     const { userRole } = useCurrentUser();
-    // console.log(foods)
     return (
         <div className="bg-gray-100 border-2 border-dotted border-blue-700 p-4 rounded-md w-full">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-2">
@@ -18,7 +17,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                             food={food}
                             isExist={isExist}
                             section={section}
-                            key={isExist ? food.food?._id ? food.food?._id : food.food : food.food}
+                            key={isExist ? (food.food?._id ? food.food?._id : food.food) : food.food}
                         />
                     )
                 }

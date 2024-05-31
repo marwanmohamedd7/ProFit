@@ -121,3 +121,18 @@ export async function getTraineeSubscriptions(token, id, page) {
   const data = await response.json();
   return data;
 }
+
+export async function getTraineeProgressPhotos(token, id) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/progress/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}

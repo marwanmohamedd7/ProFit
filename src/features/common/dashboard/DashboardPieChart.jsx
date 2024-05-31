@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../../ui/Button";
 import { CiShare1 } from "react-icons/ci";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import Table from "../../../ui/Table";
+import StatusLabel from "../../../ui/StatusLabel";
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
@@ -35,8 +36,8 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                     </p>
                 </Button>
             </div>
-            <div className="flex justify-between gap-4">
-                <div className="rounded-md" style={{ width: '50%' }}>
+            <div className="flex flex-col justify-between gap-2">
+                <div className="rounded-md" style={{ width: '100%' }}>
                     <ResponsiveContainer width="100%" height={240}>
                         <PieChart>
                             <Pie
@@ -54,6 +55,15 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                                     <Cell fill={entry.color} stroke={entry.color} cursor="pointer" key={entry.label} />
                                 ))}
                             </Pie>
+                            <Legend
+                                verticalAlign="middle"
+                                iconType="circle"
+                                layout="vertical"
+                                align="right"
+                                iconSize="15"
+                                width="30%"
+                                margin={20}
+                            />
                             <Tooltip
                                 content={({ active, payload }) => {
                                     if (active && payload && payload.length) {
@@ -71,23 +81,26 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="text-blue-900" style={{ width: '50%' }}>
+                <div className="text-blue-900" style={{ width: '100%' }}>
                     <Table>
                         <Table.Header>
-                            <tr className="capitalize text-left">
-                                {headers.map(item => <th key={item} className="p-3">{item}</th>)}
-                                <th className="p-3"></th>
-                            </tr>
+                            {headers.map(item => <th key={item} className="p-3 w-1/3">{item}</th>)}
+                            {/* <th className="p-3"></th> */}
                         </Table.Header>
                         <Table.Body data={data} render={(item) =>
-                            <tr className="text-sm text-left border bg-white" key={item.label}>
+                            <Table.Row>
                                 <td className="p-3">{item.label}</td>
                                 <td className="p-3">{item.value}</td>
-                                <td className="p-3">{((item.value / totalValues) * 100).toFixed(1)}%</td>
-                                <td className="p-3">
-                                    <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: item.color }}></span>
+                                {/* <td className="p-3">{((item.value / totalValues) * 100).toFixed(1)}%</td> */}
+                                <td className="p-3 flex items-center gap-1 flex-nowrap">
+                                    <StatusLabel status={"active"} />
+                                    <StatusLabel status={"expired"} />
+                                    <StatusLabel status={"cancelled"} />
                                 </td>
-                            </tr>
+                                {/* <td className="p-3">
+                                    <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: item.color }}></span>
+                                </td> */}
+                            </Table.Row>
                         } />
                     </Table>
                 </div>

@@ -3,6 +3,7 @@ import Image from "../../../../../ui/Image"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
+import ImageViewer from "../../../../../ui/ImageViewer";
 
 function PendingTrainerPersonalInfoForm({ getPendingTrainerInfo = {} }) {
     const navigate = useNavigate()
@@ -17,13 +18,15 @@ function PendingTrainerPersonalInfoForm({ getPendingTrainerInfo = {} }) {
     return (
         <div className="flex flex-col gap-4 shadow-sm bg-white py-1 rounded-md">
             <div className="flex flex-col gap-6">
-                <Image
-                    photoType="(profile)"
-                    dimensions="w-32 h-32"
-                    disabled={true}
-                    canUpdate={false}
-                    src={profilePhoto || ""}
-                />
+                <ImageViewer imageURL={profilePhoto}>
+                    <Image
+                        photoType="(profile)"
+                        dimensions="w-32 h-32"
+                        disabled={true}
+                        canUpdate={false}
+                        src={profilePhoto || ""}
+                    />
+                </ImageViewer>
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">

@@ -21,12 +21,10 @@ function TraineeDietPlansTable({ diets, count }) {
     return (
         <Table>
             <Table.Header>
-                <tr className="capitalize">
-                    <th className="w-1/6 px-4 py-2 text-left">diet plan name</th>
-                    <th className="w-1/6 px-4 py-2 text-left">created at</th>
-                    <th className="w-2/6 px-4 py-2 text-left">plan macros</th>
-                    <th className="w-1/6 px-4 py-2 text-left">Actions</th>
-                </tr>
+                <th className="w-1/6 px-4 py-2">diet plan name</th>
+                <th className="w-1/6 px-4 py-2">created at</th>
+                <th className="w-2/6 px-4 py-2">plan macros</th>
+                <th className="w-1/6 px-4 py-2">Actions</th>
             </Table.Header >
             <Table.Body data={sortedDiets} render={diet => <TraineeDietPlansTableRow diet={diet} key={diet._id} />} />
             <Table.Footer>

@@ -8,8 +8,14 @@ export const subtractDates = (dateStr1, dateStr2) =>
 export const calcBirthday = (date) =>
   differenceInYears(new Date(), parseISO(date));
 
-export const formatDate = (date) =>
+export const formatDate_time = (date) =>
   format(new Date(date), "dd MMMM, yyyy 'at' HH:mm a");
+
+export const formatDate = (date) =>
+  format(new Date(date), "dd MMMM, yyyy");
+
+export const formatTime = (date) =>
+  format(new Date(date), "hh:mm a");
 
 export const formatDistanceFromNow = (dateStr) =>
   formatDistance(parseISO(dateStr), new Date(), {

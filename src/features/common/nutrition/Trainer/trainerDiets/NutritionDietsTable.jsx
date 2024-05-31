@@ -11,21 +11,21 @@ function NutritionDietsTable({ diets, count, dietType, onCloseModal }) {
             <Table.Header>
                 {
                     dietType !== "customized plan" ?
-                        <tr className="capitalize">
+                        <>
                             <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">diet template name</th>
                             {/* <th className="lg:w-[20%] w-[50%] px-4 py-2 text-left">meals count</th> */}
                             <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">days count</th>
                             <th className="lg:w-[30%] w-[10%] px-4 py-2 text-left whitespace-nowrap">program macros</th>
                             <th className="lg:w-[10%] w-[10%] px-8 py-2 text-right whitespace-nowrap">Actions</th>
-                        </tr>
+                        </>
                         :
-                        <tr className="capitalize">
+                        <>
                             <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">diet template name</th>
                             {/* <th className="lg:w-[20%] w-[50%] px-4 py-2 text-left">meals count</th> */}
                             <th className="lg:w-[20%] w-[10%] px-4 py-2 text-left whitespace-nowrap">days count</th>
                             <th className="lg:w-[30%] w-[10%] px-4 py-2 text-left whitespace-nowrap">program macros</th>
                             <th className="lg:w-[10%] w-[10%] pl-8 py-2 text-left whitespace-nowrap">Actions</th>
-                        </tr>
+                        </>
                 }
 
             </Table.Header>

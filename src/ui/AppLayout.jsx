@@ -2,11 +2,15 @@ import { useLocation } from "react-router-dom";
 import { useMainNav } from "../context/MainNavProvider";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import styles from "../styles/styles";
+import { useDarkMode } from "../context/DarkModeProvider";
 
 
 function AppLayout({ children }) {
+  const colors = styles();
   const { isOpen } = useMainNav();
   const { pathname } = useLocation();
+  const { isDarkMode } = useDarkMode();
   return (
     <div className={`grid grid-rows-[auto_1fr] transition-all duration-500 h-dvh ${isOpen ? "grid-cols-[10rem_1fr] sm:grid-cols-[14rem_1fr]" : "grid-cols-[5rem_1fr]"}`}>
       <Header />
@@ -38,7 +42,7 @@ function AppLayout({ children }) {
       }
       {
         (pathname.split("/").slice(-1).join("") !== "messages" && pathname.split("/").slice(-1).join("") !== "dashboard") &&
-        <main className="relative overflow-scroll">
+        <main className={`relative overflow-scroll ${isDarkMode && colors.bg_slate_900}`}>
           <section className="p-2">
             <div className="mx-auto p-2">
               {children}

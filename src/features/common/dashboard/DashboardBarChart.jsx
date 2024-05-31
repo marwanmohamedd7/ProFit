@@ -47,7 +47,7 @@ function DashboardBarChart() {
             </div>
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
-                    <ResponsiveContainer width="100%" height={365}>
+                    <ResponsiveContainer width="100%" height={470}>
                         <BarChart data={dataReady}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Bar

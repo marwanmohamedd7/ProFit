@@ -27,44 +27,42 @@ function DietsFreePlanTableRow({ diet }) {
     }, [isActive, published, _id, setIsActive, updateDietTemplate])
     return (
         <Table.Row>
-            <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border">
-                <td className="p-4 whitespace-nowrap text-left">{planName}</td>
+            <td className="p-4 whitespace-nowrap text-left">{planName}</td>
 
-                <td className="p-4 whitespace-nowrap text-left">subscribers</td>
+            <td className="p-4 whitespace-nowrap text-left">subscribers</td>
 
-                <td className="p-4 whitespace-nowrap text-left">rating</td>
+            <td className="p-4 whitespace-nowrap text-left">rating</td>
 
-                <td className="p-4 whitespace-nowrap text-left">
-                    <DietTableRowMacros
-                        fats={planmacros.fats}
-                        carbs={planmacros.carbs}
-                        calories={planmacros.calories}
-                        proteins={planmacros.proteins}
-                    />
-                </td>
+            <td className="p-4 whitespace-nowrap text-left">
+                <DietTableRowMacros
+                    fats={planmacros.fats}
+                    carbs={planmacros.carbs}
+                    calories={planmacros.calories}
+                    proteins={planmacros.proteins}
+                />
+            </td>
 
-                <td className="p-4 whitespace-nowrap text-left">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
+            <td className="p-4 whitespace-nowrap text-left">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
 
-                <td className="p-4 whitespace-nowrap text-sm text-left font-medium">
-                    <div className='flex items-center gap-1'>
-                        <Button onClick={() => navigate(`diets/${_id}`)} type="icon-update">
-                            <HiPencil />
-                        </Button>
+            <td className="p-4 whitespace-nowrap text-sm text-left font-medium">
+                <div className='flex items-center gap-1'>
+                    <Button onClick={() => navigate(`diets/${_id}`)} type="icon-update">
+                        <HiPencil />
+                    </Button>
 
-                        <Modal>
-                            <Modal.Open opens="delete-diet-template">
-                                <Button type="icon-delete"
-                                >
-                                    <HiTrash />
-                                </Button>
-                            </Modal.Open>
-                            <Modal.Window opens="delete-diet-template">
-                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="diet plan" />
-                            </Modal.Window>
-                        </Modal>
-                    </div>
-                </td>
-            </tr>
+                    <Modal>
+                        <Modal.Open opens="delete-diet-template">
+                            <Button type="icon-delete"
+                            >
+                                <HiTrash />
+                            </Button>
+                        </Modal.Open>
+                        <Modal.Window opens="delete-diet-template">
+                            <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="diet plan" />
+                        </Modal.Window>
+                    </Modal>
+                </div>
+            </td>
         </Table.Row>
     )
 }

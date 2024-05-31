@@ -11,7 +11,7 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                 {
                     section === "food"
                         ?
-                        <tr className="capitalize text-left">
+                        <>
                             <th className="px-4 py-2">Food Details</th>
                             {/* <th className="px-4 py-2">Serving</th> */}
                             <th className="px-4 py-2">Amount/Serving</th>
@@ -21,9 +21,9 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                             <th className="px-4 py-2">Calories</th>
                             <th className="px-4 py-2">Category</th>
                             <th className="px-4 py-2">Actions</th>
-                        </tr>
+                        </>
                         :
-                        <tr className="capitalize text-left">
+                        <>
                             <th className="px-4 py-2">Food Details</th>
                             {/* <th className="px-4 py-2">Serving</th> */}
                             <th className="px-4 py-2">Amount/Serving</th>
@@ -33,9 +33,8 @@ function NutritionTable({ foods, count, section, onCloseModal }) {
                             <th className="px-4 py-2">Calories</th>
                             <th className="px-4 py-2">Category</th>
                             <th className="px-4 py-2">Add food</th>
-                        </tr>
+                        </>
                 }
-
             </Table.Header>
             <Table.Body data={foods} render={(food) => <NutritionTableRow food={food} key={food._id} section={section} onCloseModal={onCloseModal} />} />
             <Table.Footer>

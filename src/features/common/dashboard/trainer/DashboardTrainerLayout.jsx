@@ -2,7 +2,7 @@ import { formatCurrency } from "../../../../utils/helpers"
 import Stat from "../Stat"
 import Stats from "../Stats"
 import DashboardInfo from "../DashboardInfo"
-import AssessmentsChart from "./AssessmentsChart"
+import AssessmentsChart from "./assessmentChart/AssessmentsChart"
 import StarIcon from "../../../../Icons/StarIcon"
 import CoinIcon from "../../../../Icons/CoinIcon"
 import AppleIcon from "../../../../Icons/AppleIcon"
@@ -17,10 +17,10 @@ import UsersMoreIcon from "../../../../Icons/UsersMoreIcon"
 const pieChartData = {
     totalValues: 100,
     data: [
-        { label: 'Gold', value: 40, color: '#0088FE' },
-        { label: 'Silver', value: 30, color: '#00C49F' },
-        { label: 'Bronze', value: 30, color: '#FFBB28' },
-        { label: 'Champion', value: 20, color: '#FF8042' },
+        { label: 'Gold', value: 40, active: 20, expired: 10, cancelled: 30, color: '#0088FE' },
+        { label: 'Silver', value: 30, active: 20, expired: 10, cancelled: 30, color: '#00C49F' },
+        { label: 'Bronze', value: 30, active: 20, expired: 10, cancelled: 30, color: '#FFBB28' },
+        { label: 'Champion', value: 20, active: 20, expired: 10, cancelled: 30, color: '#FF8042' },
     ]
 }
 const dountChartData = {
@@ -66,6 +66,18 @@ function DashboardTrainerLayout() {
                 <Stat icon={<StarIcon />} color="bg-amber-100" title="Profile Rating" value="4.3" />
             </Stats>
             <div className="grid grid-cols-2 gap-4">
+                <AssessmentsChart />
+                <DashboardPieChart
+                    pieChartData={pieChartData}
+                    pieChartDetails={
+                        {
+                            title: "Packages Overview",
+                            icon: <PackageIcon />,
+                            url: "/trainer/packages",
+                            headers: ["name", "Subscribers", "status"]
+                        }
+                    }
+                />
                 <DashboardDountChart
                     dountChartData={dountChartData}
                     dountChartDetails={
@@ -75,18 +87,8 @@ function DashboardTrainerLayout() {
                             url: "/trainer/trainees",
                             headers: ["status", "Count", "Percentage"]
                         }
-                    } />
-                <DashboardPieChart
-                    pieChartData={pieChartData}
-                    pieChartDetails={
-                        {
-                            title: "Packages Overview",
-                            icon: <PackageIcon />,
-                            url: "/trainer/packages",
-                            headers: ["name", "Subscribers", "Percentage"]
-                        }
-                    } />
-                <AssessmentsChart />
+                    }
+                />
                 <DashboardBarChart />
                 <DashboardAreaChart areaChartData={areaChartData} areaChartDetails={
                     {

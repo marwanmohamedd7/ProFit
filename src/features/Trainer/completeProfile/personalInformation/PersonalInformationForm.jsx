@@ -2,6 +2,7 @@ import { useSetPersonalInfo } from "./useSetPersonalInfo";
 import toast from "react-hot-toast";
 import Image from "../../../../ui/Image";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
+import ImageViewer from "../../../../ui/ImageViewer";
 
 function PersonalInformationForm(
     {
@@ -44,15 +45,17 @@ function PersonalInformationForm(
     return (
         <>
             <div className="flex flex-col gap-6">
-                <Image
-                    minDimension={150}
-                    photoType="(profile)"
-                    dimensions="w-32 h-32"
-                    error={requiredImgMessage}
-                    onCropComplete={onCropComplete}
-                    isLoading={isLoading && isLoadingImg}
-                    src={profilePhoto || getValues()?.profilePhoto}
-                />
+                <ImageViewer imageURL={profilePhoto}>
+                    <Image
+                        minDimension={150}
+                        photoType="(profile)"
+                        dimensions="w-32 h-32"
+                        error={requiredImgMessage}
+                        onCropComplete={onCropComplete}
+                        isLoading={isLoading && isLoadingImg}
+                        src={profilePhoto || getValues()?.profilePhoto}
+                    />
+                </ImageViewer>
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
@@ -102,7 +105,7 @@ function PersonalInformationForm(
                                     value: 11,
                                     message: "Phone number must contains at least 11 characters."
                                 }, // phone number must be
-                                maxLength:{
+                                maxLength: {
                                     value: 11,
                                     message: "Phone number must not exceeds 11 characters."
                                 },

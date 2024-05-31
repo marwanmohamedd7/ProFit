@@ -7,29 +7,31 @@ import Modal from "../../../../ui/Modal";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 import { useDietProvider } from "../../../../context/DietProvider";
 import FoodMacros from "./FoodMacros";
+import ImageViewer from "../../../../ui/ImageViewer";
 
 function MealFood({ food, section, isExist = false }) {
     // 1- food.food: the default id that comes with the food object when we add a new one
     // 2- food.food._id: the food object id that comes from already existing meal in database (when updating)
     let inadvisableFood = false;
-    const id = isExist ? food.food?._id ? food.food?._id : food.food : food.food;
-    const { macros, foodname, foodImage, amount: per, diseaseCompatibility, foodAllergens } = food;
-
     const { dispatch: dispatchMeal } = useMealProvider();
+    const id = isExist ? food.food?._id ? food.food?._id : food.food : food.food;
+    const { macros, foodname, foodImage, amount: per } = food;
     const { dispatch: dispatchDiet, plantype, disease: planDiseases, foodAllergens: planFoodAllergens } = useDietProvider();
+
     const [amount, setAmount] = useState(Number(per));
     const [fats, setFats] = useState(Number(macros.fats));
     const [carbs, setCarbs] = useState(Number(macros.carbs));
     const [proteins, setProteins] = useState(Number(macros.proteins));
     const [calories, setCalories] = useState(Number(macros.calories));
-
     if (planDiseases?.length && plantype === "Customized plan") planDiseases.map(disease => {
-        if (diseaseCompatibility?.includes(disease)) inadvisableFood = true;
+        const diseases = typeof food?.food === "string" ? food?.diseaseCompatibility : food?.food?.diseaseCompatibility;
+        if (diseases?.includes(disease)) inadvisableFood = true;
         return disease;
     })
 
     if (planFoodAllergens?.length && plantype === "Customized plan") planFoodAllergens.map(allergy => {
-        if (foodAllergens?.includes(allergy)) inadvisableFood = true;
+        const allergens = typeof food?.food === "string" ? food?.foodAllergens : food?.food?.foodAllergens;
+        if (allergens?.includes(allergy)) inadvisableFood = true;
         return allergy;
     })
 
@@ -75,7 +77,9 @@ function MealFood({ food, section, isExist = false }) {
             <div className=" flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2 text-lg font-bold text-blue-700">
                 <div className="flex flex-col xl:items-center xl:flex-row xl:gap-3 gap-2 xl:mb-0 mb-1 xl:basis-72">
                     <div className="xl:h-24 xl:w-24 sm:w-44 sm:h-44 w-40 h-40 flex items-center justify-center">
-                        <img className="rounded-md" src={foodImage} alt={foodname} />
+                        <ImageViewer imageURL={foodImage}>
+                            <img className="rounded-md cursor-pointer" src={foodImage} alt={foodname} />
+                        </ImageViewer>
                     </div>
                     <div className="capitalize whitespace-nowrap">
                         <div className="xl:text-lg text-xl font-bold">{foodname}</div>

@@ -4,7 +4,7 @@ import VerticualTabs from "../../../../ui/VerticualTabs"
 
 function FreePlans() {
     return (
-        <div className="space-y-10 bg-white py-4 rounded-md">
+        <div className="space-y-10 py-4 rounded-md">
             <VerticualTabs tabsFeild="plan" defaultTab="diet">
                 <VerticualTabs.Tabs>
                     <VerticualTabs.Open opens="diet" icon={<CiApple />}>

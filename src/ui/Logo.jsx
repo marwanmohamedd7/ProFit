@@ -1,14 +1,18 @@
+import { useDarkMode } from "../context/DarkModeProvider";
 import { useMainNav } from "../context/MainNavProvider";
 import { useCurrentUser } from "../context/UserProvider";
+import styles from "../styles/styles";
 
 function Logo() {
+  const colors = styles();
   const { isOpen } = useMainNav();
-  const { userRole } = useCurrentUser()
+  const { isDarkMode } = useDarkMode();
+  const { userRole } = useCurrentUser();
 
   return (
-    <div className={`flex ${isOpen ? "justify-start" :"justify-center"} text-center py-1 px-2 border-solid border-b border-grey-100`}>
+    <div className={`flex ${isOpen ? "justify-start" : "justify-center"} ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_white} text-center py-1 px-2 border-solid border-b`}>
       <div className="rounded-md flex items-center justify-center gap-3 capitalize p-1">
-        <div className="bg-blue-900 rounded-lg px-1.5 py-2.5">
+        <div className={`${isDarkMode ? colors.bg_slate_900 : colors.bg_blue_900} rounded-lg px-1.5 py-2.5`}>
           <svg
             width="44"
             height="30"
@@ -42,13 +46,14 @@ function Logo() {
 
         {isOpen &&
           <div className={`flex flex-col items-start gap-1`}>
-            <h1 className="font-extrabold text-2xl sm:text-3xl text-blue-900 leading-6 sm:leading-7">
+
+            <h1 className={`font-extrabold text-2xl sm:text-3xl ${isDarkMode ? colors.text_white : colors.text_blue_900} leading-6 sm:leading-7`}>
               pro
               <span className="uppercase">
                 Fit
               </span>
             </h1>
-            <span className="text-xs text-gray-500 font-normal p-0 m-0">
+            <span className={`text-xs ${isDarkMode ? colors.text_gray_200 : colors.text_gray_500} font-normal p-0 m-0`}>
               {userRole} panel
             </span>
           </div>

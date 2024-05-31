@@ -18,6 +18,8 @@ import UsersIcon from "../Icons/UsersIcon";
 import PinPaperCheckIcon from "../Icons/PinPaperCheckIcon";
 import HeadphonesIcon from "../Icons/HeadphonesIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
+import styles from "../styles/styles";
+import { useDarkMode } from "../context/DarkModeProvider";
 // import { PiHeadphones } from "react-icons/pi";
 
 const sidebarBtnsDataAdmin = [
@@ -144,7 +146,9 @@ const sidebarBtnsDataTrainer = [
 ]
 
 function MainNav() {
+  const colors = styles();
   const navigate = useNavigate()
+  const { isDarkMode } = useDarkMode();
   const { setUserId, setUserToken, setUserRole, userRole } = useCurrentUser();
   function handleLogout() {
     setUserId(null)
@@ -157,23 +161,25 @@ function MainNav() {
   const { isOpen } = useMainNav();
   return (
     <div
-      className="capitalize p-3 flex flex-col
-     justify-between text-sm sm:text-base"
+      className={`capitalize p-3 flex flex-col
+     justify-between text-sm sm:text-base ${isDarkMode ? colors.bg_slate_800 : colors.bg_white}`}
     >
-      <ul className={`flex flex-col gap-1 ${!isOpen && "divide-y"}`}>
+      <ul className={`flex flex-col gap-1.5 ${!isOpen && `divide-y ${isDarkMode && "divide-gray-700"}`}`}>
         {
           userRole === "admin" ?
             <>
               {
                 sidebarBtnsDataAdmin.map((btnData, index) =>
-                  <MainNavLists key={index} data={btnData} />)
+                  <div key={index} className={`${!isOpen && "pt-1.5"}`}><MainNavLists data={btnData} /></div>
+                )
               }
             </>
             :
             <>
               {
                 sidebarBtnsDataTrainer.map((btnData, index) =>
-                  <MainNavLists key={index} data={btnData} />)
+                  <div key={index} className={`${!isOpen && "pt-1.5"}`}><MainNavLists data={btnData} /></div>
+                )
               }
             </>
         }

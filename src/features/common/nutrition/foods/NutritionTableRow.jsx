@@ -12,6 +12,8 @@ import Button from "../../../../ui/Button";
 import ConfirmDelete from "../../../../ui/ConfirmDelete";
 // import { useParams } from "react-router-dom";
 import { useDietProvider } from "../../../../context/DietProvider";
+import ImageViewer from "../../../../ui/ImageViewer";
+import StatusLabel from "../../../../ui/StatusLabel";
 
 function NutritionTableRow({ food, section, onCloseModal }) {
     // const { id: mealId } = useParams();
@@ -19,7 +21,7 @@ function NutritionTableRow({ food, section, onCloseModal }) {
     const { userRole } = useCurrentUser();
     const { deleteFood, isDeleting } = useDeleteFood();
     const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
-    const { per: amount, diseaseCompatibility, foodAllergens } = food;
+    const { per: amount, diseaseCompatibility, foodAllergens, foodImage, foodname, category, macros, servingUnit } = food;
     const { dispatch: dispatchDiet, days: dietDays, plantype, disease: planDiseases, foodAllergens: planFoodAllergens } = useDietProvider();
 
     if (planDiseases?.length && plantype === "Customized plan") planDiseases.map(disease => {
@@ -43,7 +45,6 @@ function NutritionTableRow({ food, section, onCloseModal }) {
         // 2- add the new food to the meals if it doesn't exist
         if (section === "meal") {
             foodItem = mealFoods.find(food => (food.food._id === _id) || (food.food === _id))
-            // console.log({ ...values, amount, food: _id })
             !foodItem && dispatchMeal({ type: "meal/addFood", payload: { ...values, amount, food: _id } })
         }
         else {
@@ -68,132 +69,123 @@ function NutritionTableRow({ food, section, onCloseModal }) {
     }
 
     return (
-        <Table.Row>
-            {
-                section === "food"
-                    ?
-                    <tr key={food.id} className="border-b text-sm text-left text-blue-800 bg-white hover:bg-gray-50 cursor-pointer border">
-                        <td className="px-4 py-2 whitespace-nowrap">
-                            <div className="flex items-center gap-3">
-                                <div className="flex-shrink-0 h-14 w-14">
-                                    <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
-                                </div>
-                                <div className="">
-                                    <div className="text-sm font-bold">{food.foodname}</div>
-                                </div>
-                            </div>
-                        </td>
-                        {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
-                        <td className="p-4 whitespace-nowrap">{food.per + " / " + food.servingUnit.toLowerCase()}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.proteins + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.fats + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.carbs + " g"}</td>
-                        <td className="p-4 whitespace-nowrap">{food.macros.calories + " Kcal"}</td>
-                        <td className="p-4 whitespace-nowrap">
-                            <span className="bg-green-100 px-2 py-1 rounded-md text-xs font-semibold text-green-600">{food.category}</span>
-                        </td>
-                        <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
-                            {
-                                userRole === "admin" ?
-                                    <div className='flex items-center justify-start gap-2'>
-                                        <Modal>
-                                            <Modal.Open opens="update-food">
-                                                <Button type="icon-update">
-                                                    <HiPencil />
-                                                </Button>
-                                            </Modal.Open>
-                                            <Modal.Window opens="update-food" >
-                                                <CreateFood foodToUpdate={food} />
-                                            </Modal.Window>
-                                        </Modal>
+        section === "food" ?
+            <Table.Row>
+                <td className="px-4 py-2 whitespace-nowrap">
+                    <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0 h-14 w-14">
+                            <ImageViewer imageURL={foodImage}>
+                                <img className="h-14 w-14 rounded-md" src={foodImage} alt={foodname} />
+                            </ImageViewer>
+                        </div>
+                        <div className="">
+                            <div className="text-sm font-bold">{foodname}</div>
+                        </div>
+                    </div>
+                </td>
+                {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
+                <td className="p-4 whitespace-nowrap">{amount + " / " + servingUnit.toLowerCase()}</td>
+                <td className="p-4 whitespace-nowrap">{macros.proteins + " g"}</td>
+                <td className="p-4 whitespace-nowrap">{macros.fats + " g"}</td>
+                <td className="p-4 whitespace-nowrap">{macros.carbs + " g"}</td>
+                <td className="p-4 whitespace-nowrap">{macros.calories + " Kcal"}</td>
+                <td className="p-4 whitespace-nowrap"> <StatusLabel labelName={category} /></td>
+                <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
+                    {
+                        userRole === "admin" ?
+                            <div className='flex items-center justify-start gap-2'>
+                                <Modal>
+                                    <Modal.Open opens="update-food">
+                                        <Button type="icon-update">
+                                            <HiPencil />
+                                        </Button>
+                                    </Modal.Open>
+                                    <Modal.Window opens="update-food" >
+                                        <CreateFood foodToUpdate={food} />
+                                    </Modal.Window>
+                                </Modal>
 
-                                        <Modal>
-                                            <Modal.Open opens="delete-food">
-                                                <Button type="icon-delete"
-                                                >
-                                                    <HiTrash />
-                                                </Button>
-                                            </Modal.Open>
-                                            <Modal.Window opens="delete-food">
-                                                <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
-                                            </Modal.Window>
-                                        </Modal>
-                                    </div>
-                                    :
-                                    <>
-                                        {
-                                            food.admin ?
-                                                <div className='flex items-center justify-start gap-2'>
-                                                    <span
-                                                        href="#"
-                                                        className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
-                                                    >
-                                                        <IoEyeOutline />
-                                                    </span>
-                                                </div>
-                                                :
-                                                <div className='flex items-center justify-start gap-2'>
-                                                    <Modal>
-                                                        <Modal.Open opens="update-food">
-                                                            <Button type="icon-update">
-                                                                <HiPencil />
-                                                            </Button>
-                                                        </Modal.Open>
-                                                        <Modal.Window opens="update-food" >
-                                                            <CreateFood foodToUpdate={food} />
-                                                        </Modal.Window>
-                                                    </Modal>
-
-                                                    <Modal>
-                                                        <Modal.Open opens="delete-food">
-                                                            <Button type="icon-delete"
-                                                            >
-                                                                <HiTrash />
-                                                            </Button>
-                                                        </Modal.Open>
-                                                        <Modal.Window opens="delete-food">
-                                                            <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
-                                                        </Modal.Window>
-                                                    </Modal>
-                                                </div>
-                                        }
-                                    </>
-                            }
-                        </td>
-                    </tr>
-                    :
-                    <tr key={food.id} className={`border-b text-sm text-left text-blue-800 border cursor-pointer ${inadvisableFood ? "bg-red-100" : "bg-white hover:bg-gray-50"}`}>
-                        <td className={`px-4 py-2 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
-                            <div className="flex items-center gap-3">
-                                <div className="flex-shrink-0 h-h-14 w-14">
-                                    <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
-                                </div>
-                                <div className="">
-                                    <div className="text-sm font-bold">{food.foodname}</div>
-                                </div>
+                                <Modal>
+                                    <Modal.Open opens="delete-food">
+                                        <Button type="icon-delete"
+                                        >
+                                            <HiTrash />
+                                        </Button>
+                                    </Modal.Open>
+                                    <Modal.Window opens="delete-food">
+                                        <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
+                                    </Modal.Window>
+                                </Modal>
                             </div>
-                        </td>
-                        {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.per + " / " + food.servingUnit.toLowerCase()}</td>
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.proteins + " g"}</td>
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.fats + " g"}</td>
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.carbs + " g"}</td>
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{food.macros.calories + " Kcal"}</td>
-                        <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
-                            <span className={`px-2 py-1 rounded-md text-xs font-semibold ${inadvisableFood ? "bg-red-300 text-red-700" : "bg-green-100 text-green-600"}`}>{food.category}</span>
-                        </td>
-                        <td className={`p-4 whitespace-nowrap text-center ${inadvisableFood && "border border-red-100"}`}>
-                            <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
-                                <p className="flex items-center justify-center gap-2 capitalize">
-                                    <span>add</span>
-                                    <span className="font-light"><FaPlus /></span>
-                                </p>
-                            </Button>
-                            {/* <button onClick={handleAddFood} className="bg-blue-700 text-white p-4.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button> */}
-                        </td>
-                    </tr>
-            }
-        </Table.Row>
+                            :
+                            food.admin ?
+                                <div className='flex items-center justify-start gap-2'>
+                                    <span
+                                        href="#"
+                                        className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
+                                    >
+                                        <IoEyeOutline />
+                                    </span>
+                                </div>
+                                :
+                                <div className='flex items-center justify-start gap-2'>
+                                    <Modal>
+                                        <Modal.Open opens="update-food">
+                                            <Button type="icon-update">
+                                                <HiPencil />
+                                            </Button>
+                                        </Modal.Open>
+                                        <Modal.Window opens="update-food" >
+                                            <CreateFood foodToUpdate={food} />
+                                        </Modal.Window>
+                                    </Modal>
+
+                                    <Modal>
+                                        <Modal.Open opens="delete-food">
+                                            <Button type="icon-delete"
+                                            >
+                                                <HiTrash />
+                                            </Button>
+                                        </Modal.Open>
+                                        <Modal.Window opens="delete-food">
+                                            <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(food._id)} resourceName="food" />
+                                        </Modal.Window>
+                                    </Modal>
+                                </div>
+                    }
+                </td>
+            </Table.Row>
+            :
+            <Table.Row rowBgColor={`${inadvisableFood && "bg-red-100"}`}>
+                <td className={`px-4 py-2 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
+                    <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0 h-h-14 w-14">
+                            <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
+                        </div>
+                        <div className="">
+                            <div className="text-sm font-bold">{food.foodname}</div>
+                        </div>
+                    </div>
+                </td>
+                {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{amount + " / " + servingUnit.toLowerCase()}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.proteins + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.fats + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.carbs + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.calories + " Kcal"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
+                    <span className={`px-2 py-1 rounded-md text-xs font-semibold ${inadvisableFood ? "bg-red-300 text-red-700" : "bg-green-100 text-green-600"}`}>{category}</span>
+                </td>
+                <td className={`p-4 whitespace-nowrap text-center ${inadvisableFood && "border border-red-100"}`}>
+                    <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
+                        <p className="flex items-center justify-center gap-2 capitalize">
+                            <span>add</span>
+                            <span className="font-light"><FaPlus /></span>
+                        </p>
+                    </Button>
+                    {/* <button onClick={handleAddFood} className="bg-blue-700 text-white p-4.5 rounded-md flex justify-center text-xs w-full"><FaPlus /></button> */}
+                </td>
+            </Table.Row>
     )
 }
 

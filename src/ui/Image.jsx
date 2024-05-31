@@ -6,7 +6,7 @@ import { MdOutlineEdit } from "react-icons/md"
 function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24 h-24", minDimension = 150, photoType, disabled = false, onCropComplete }) {
     return (
         <Modal>
-            <div className={`relative ${dimensions} mb-2.5`}>
+            <div className={`relative ${dimensions} mb-2.5 cursor-pointer`}>
                 {
                     !canUpdate ?
                         <>

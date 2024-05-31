@@ -73,20 +73,18 @@ function DashboardDountChart({ dountChartData, dountChartDetails }) {
                 <div className="text-blue-900" style={{ width: '50%' }}>
                     <Table>
                         <Table.Header>
-                            <tr className="capitalize text-left">
-                                {headers.map(item => <th key={item} className="p-3">{item}</th>)}
-                                <th className="p-3"></th>
-                            </tr>
+                            {headers.map(item => <th key={item} className="p-3">{item}</th>)}
+                            <th className="p-3"></th>
                         </Table.Header>
                         <Table.Body data={data} render={(item) =>
-                            <tr className="text-sm text-left border bg-white" key={item.label}>
+                            <Table.Row>
                                 <td className="p-3">{item.label}</td>
                                 <td className="p-3">{item.value}</td>
                                 <td className="p-3">{((item.value / totalValues) * 100).toFixed(1)}%</td>
                                 <td className="p-3">
                                     <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: item.color }}></span>
                                 </td>
-                            </tr>
+                            </Table.Row>
                         } />
                     </Table>
                 </div>

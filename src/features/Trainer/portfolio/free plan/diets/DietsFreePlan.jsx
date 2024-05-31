@@ -14,7 +14,7 @@ function DietsFreePlan() {
     // if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
     return (
         <>
-            <div className="bg-white p-4 rounded-lg border w-full space-y-4">
+            <div className="p-4 rounded-lg border w-full space-y-4">
                 {isLoading ? <div className="flex items-center justify-center h-[40dvh] text-blue-900"><SpinnerMini size="text-2xl"/></div> :
                     <>
                         <div className="flex justify-between items-end">

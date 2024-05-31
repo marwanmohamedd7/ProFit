@@ -11,10 +11,11 @@ import { useGetSpecificSubscribedTrainee } from "./useGetSpecificSubscribedTrain
 import { useCreateRequestAssessment } from "./useCreateRequestAssessment";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 import { useNavigate } from "react-router-dom";
-import { calcBirthday, formatDate } from "../../../../utils/helpers";
+import { calcBirthday, formatDate_time } from "../../../../utils/helpers";
 import TraineeSubscriptions from "../traineeSubcriptions/TraineeSubscriptions";
 // import { usePageLocation } from "../../../../hooks/usePageLocation";
 import BreadCrumbs from "../../../../ui/BreadCrumbs";
+import ImageViewer from "../../../../ui/ImageViewer";
 
 function TrainerSubscribedTraineeInfo() {
     let assessmentStatus;
@@ -36,7 +37,9 @@ function TrainerSubscribedTraineeInfo() {
                 {/* <BackBtn path={previousPath} /> */}
                 <div className="flex items-start gap-3">
                     <div className="h-14 w-14">
-                        <img className="h-14 w-14 rounded-md" src={profilePhoto} alt={firstName} />
+                        <ImageViewer imageURL={profilePhoto}>
+                            <img className="h-14 w-14 rounded-md cursor-pointer" src={profilePhoto} alt={firstName} />
+                        </ImageViewer>
                     </div>
                     <div className="flex flex-col justify-center gap-1">
                         <p className="flex items-center gap-1 capitalize text-blue-700">
@@ -74,7 +77,7 @@ function TrainerSubscribedTraineeInfo() {
                                 <span><FiRefreshCcw /></span>
                                 <span>last sync at:</span>
                             </p>
-                            <p className="text-gray-500">{formatDate(createdAt)}</p>
+                            <p className="text-gray-500">{formatDate_time(createdAt)}</p>
                         </div>
 
                         <div className="flex justify-start gap-2 capitalize">

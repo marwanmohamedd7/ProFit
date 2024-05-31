@@ -5,7 +5,7 @@ import { MdOutlinePhotoCamera } from "react-icons/md";
 import TraineeProgressPhotos from "./traineeProgressPhotos/TraineeProgressPhotos";
 function TraineeProgress() {
     return (
-        <div className="space-y-10 bg-white py-4 rounded-md">
+        <div className="space-y-10 py-4 rounded-md">
             <VerticualTabs tabsFeild="progress" defaultTab="performance">
                 <VerticualTabs.Tabs>
                     <VerticualTabs.Open opens="performance" icon={<BsBarChart />}>

@@ -1,22 +1,24 @@
+import StatusLabel from "../../../../ui/StatusLabel"
 import Table from "../../../../ui/Table"
+import { formatDate, formatTime } from "../../../../utils/helpers"
 
 function AdminFinancialTableRow({ transcation }) {
-    let statusStyle;
-    const { traineeName, trainerName, startDate, subscriptionType, packageName, status, duration, Amount } = transcation
-    if (status === "Active") statusStyle = `text-green-500 bg-green-100`;
-    else statusStyle = `text-red-500 bg-red-100`;
+    const { traineeName, trainerName, startDate, subscriptionType, packageName, status, duration, Amount } = transcation ?? {}
     return (
         <Table.Row>
-            <tr className="border-b text-sm text-left text-blue-800 bg-white cursor-pointer hover:bg-gray-50 border capitalize">
-                <td className="p-4 whitespace-nowrap">{trainerName}</td>
-                <td className="p-4 whitespace-nowrap">{traineeName}</td>
-                <td className="p-4 whitespace-nowrap">{startDate}</td>
-                <td className="p-4 whitespace-nowrap">{subscriptionType}</td>
-                <td className="p-4 whitespace-nowrap">{packageName}</td>
-                <td className="p-4 whitespace-nowrap">{duration} months</td>
-                <td className="p-4 whitespace-nowrap statusStyle"><span className={`px-2 py-0.5 rounded-md text-xs font-semibold ${statusStyle}`}>{status}</span></td>
-                <td className="p-4 whitespace-nowrap"><strong>{Amount}</strong> EG</td>
-            </tr>
+            <td className="p-4 whitespace-nowrap">{trainerName}</td>
+            <td className="p-4 whitespace-nowrap">{traineeName}</td>
+            <td className="p-4 whitespace-nowrap">
+                <p className="flex flex-col justify-center gap-0.5">
+                    <strong>{formatDate(startDate)}</strong>
+                    <span>{formatTime(startDate)}</span>
+                </p>
+            </td>
+            <td className="p-4 whitespace-nowrap">{subscriptionType}</td>
+            <td className="p-4 whitespace-nowrap">{packageName}</td>
+            <td className="p-4 whitespace-nowrap">{duration} months</td>
+            <td className="p-4 whitespace-nowrap statusStyle"><StatusLabel status={status} /></td>
+            <td className="p-4 whitespace-nowrap"><strong>{Amount}</strong> EG</td>
         </Table.Row >
     )
 }

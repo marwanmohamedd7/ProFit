@@ -54,7 +54,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
     }
     return (
         <form onSubmit={handleSubmit(submit)}>
-            <div className="space-y-10 bg-white p-4 rounded-md">
+            <div className="space-y-10 p-4 rounded-md">
                 <div className="space-y-4">
                     <h1 className="capitalize text-blue-900 font-bold text-xl">personal information</h1>
                     <PersonalInformationForm

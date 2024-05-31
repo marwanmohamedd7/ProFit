@@ -23,7 +23,7 @@ function VerticualTabs({ children, tabsFeild, defaultTab }) {
 function Tabs({ children }) {
     return (
         <div>
-            <div className="flex flex-col justify-center gap-2 bg-white p-4 rounded-lg border">
+            <div className="flex flex-col justify-center gap-2 p-4 rounded-lg border">
                 {children}
             </div>
         </div>

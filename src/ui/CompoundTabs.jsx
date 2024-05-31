@@ -1,9 +1,13 @@
 import { createContext, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
+import styles from "../styles/styles";
+import { useDarkMode } from "../context/DarkModeProvider";
 
 const TabsContext = createContext();
 
 function CompoundTabs({ children, tabsFeild, defaultTab }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const [searchParams, setSearchParams] = useSearchParams();
     let currentActive = !searchParams.get(tabsFeild) ? defaultTab : searchParams.get(tabsFeild)
     function open(value) {
@@ -12,16 +16,17 @@ function CompoundTabs({ children, tabsFeild, defaultTab }) {
         setSearchParams(searchParams)
     }
     return (
-        <TabsContext.Provider value={{ currentActive, open }}>
+        <TabsContext.Provider value={{ currentActive, open, colors, isDarkMode }}>
             {children}
         </TabsContext.Provider>
     )
 }
 
 function Tabs({ children }) {
+    const { colors, isDarkMode } = useContext(TabsContext);
     return (
         <div>
-            <ul className="flex flex-wrap -mb-px text-sm font-medium text-center border-b text-gray-500 capitalize">
+            <ul className={`flex flex-wrap -mb-px text-sm font-medium text-center border-b capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.border_gray_700}` : colors.text_gray_500}`}>
                 {children}
             </ul>
         </div>
@@ -29,13 +34,13 @@ function Tabs({ children }) {
 }
 
 function Open({ children, opens: opensTab }) {
-    const { currentActive, open } = useContext(TabsContext);
+    const { currentActive, open, colors, isDarkMode } = useContext(TabsContext);
     return <button
         onClick={() => open(opensTab)}
         className={`inline-block transition-all duration-300 p-4 w-auto rounded-t-lg border-b capitalize tracking-wide font-semibold
-         ${opensTab === currentActive ? 'text-blue-600 border-blue-500 font-semibold' : 'border-gray-100 hover:text-gray-600 hover:border-gray-300'
-            }`}
-    >
+         ${opensTab === currentActive ? `${isDarkMode ? `${colors.text_blue_500}` : `${colors.text_blue_700}`} ${colors.border_blue_600} font-semibold`
+                :
+                `${isDarkMode ? `${colors.border_gray_800} hover:border-gray-600 hover:text-gray-300` : `${colors.border_gray_100} hover:${colors.border_gray_300} hover:${colors.text_gray_600}`}`}`}>
         {children}
     </button>
 }

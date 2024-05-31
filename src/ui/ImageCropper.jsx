@@ -62,7 +62,7 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
 
     return (
         <div className="w-full" id="image-cropper">
-            <label htmlFor="file">
+            <label onClick={(e) => e.stopPropagation()} htmlFor="file">
                 <span className="sr-only">Upload photo</span>
                 <input
                     id="file"
@@ -99,7 +99,8 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
                     </div>
                     <div className="flex justify-end items-end">
                         <Button customeStyle="my-2"
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.stopPropagation();
                                 setCanvasPreview(
                                     imgRef.current, // HTML ImageElement
                                     previewCanvasRef.current, // HTML CanvasElement
