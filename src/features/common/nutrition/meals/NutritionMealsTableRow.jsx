@@ -36,7 +36,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
     }
     return (
         section === "meal" ?
-            <Table.Row>
+            <Table.Row border={false}>
                 <td className="p-4 whitespace-nowrap text-left">
                     <p className="flex flex-col gap-1">
                         <span className="font-bold text-lg">{mealname}</span>
@@ -45,7 +45,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
                 </td>
 
                 <td className="p-4 gap-2 text-left flex flex-wrap">
-                    {ingredients.map(ing => <span key={ing._id} className={`${isDarkMode ? `${colors.bg_slate_600} ${colors.text_blue_50} bg-opacity-40` : `${colors.bg_gray_100}`} px-2 py-1 rounded-full text-xs font-semibold w-fit`}>{`${ing.foodname} ${ing.amount} ${ing.servingUnit.at(0).toLowerCase()}`}</span>)}
+                    {ingredients.map(ing => <span key={ing._id} className={`${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.text_gray_50}` : `${colors.bg_gray_100}`} px-2 py-1 rounded-full text-xs font-semibold w-fit`}>{`${ing.foodname} ${ing.amount} ${ing.servingUnit.at(0).toLowerCase()}`}</span>)}
                 </td>
 
                 <td className="p-4 whitespace-nowrap text-left w-full">
@@ -111,12 +111,10 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
                         :
                         meal?.admin ?
                             <div className='flex items-center justify-end mr-8 gap-1'>
-                                <span
-                                    href="#"
-                                    className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
+                                <Button type="icon-update"
                                 >
                                     <IoEyeOutline />
-                                </span>
+                                </Button>
                             </div>
                             :
                             <div className='flex items-center justify-end gap-1'>

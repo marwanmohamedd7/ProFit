@@ -15,8 +15,12 @@ import MealIngredients from "../../meals/MealIngredients";
 import MealDetailsForm from "../../meals/MealDetailsForm";
 import ConfirmDelete from "../../../../../ui/ConfirmDelete";
 import NutritionMeals from "../trainerMeals/NutritionMeals";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
+import styles from "../../../../../styles/styles";
 
 function DietMeal({ meal, index }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const { dispatch, days } = useDietProvider()
     const [searchParams] = useSearchParams()
     const activeDay = searchParams.get("day") ?? "1";
@@ -49,7 +53,7 @@ function DietMeal({ meal, index }) {
         dispatch({ type: "diet/mealInfo", payload: { day: activeDay, mealId, mealname, mealnote, mealtype } })
     }, [mealname, mealnote, mealtype, mealId, activeDay, dispatch])
     return (
-        <div className={`space-y-4 p-2 bg-gray-50 border rounded-md ${mealToggle && "border-t-4 border-t-blue-700"}`}>
+        <div className={`space-y-4 p-4 ${isDarkMode ? `${colors.bg_slate_900} ${colors.border_gray_700}` : colors.bg_gray_50} border rounded-md ${mealToggle && "border-t-4 border-t-blue-700"}`}>
             <div className="flex items-center gap-2">
                 <div className="grow">
                     <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
@@ -57,13 +61,13 @@ function DietMeal({ meal, index }) {
                 <div className="flex items-center gap-2">
                     <Modal>
                         <Modal.Open opens="delete-food">
-                            <button disabled={activeDayMeals <= 2 ? true : false} className="disabled:cursor-not-allowed bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
+                            <button disabled={activeDayMeals <= 2 ? true : false} className={`${isDarkMode ? `${colors.bg_red_800} ${colors.text_white} hover:${colors.bg_red_700}` : `${colors.bg_red_700} ${colors.text_white} hover:${colors.bg_red_600}`} disabled:cursor-not-allowed xl:p-3 p-2.5 rounded-lg text-lg`}><BiTrash /></button>
                         </Modal.Open>
                         <Modal.Window opens="delete-food">
                             <ConfirmDelete onConfirm={handleDeleteMealSection} resourceName="section" />
                         </Modal.Window>
                     </Modal>
-                    <button onClick={() => setMealToggle(value => !value)} className="bg-gray-100 border text-gray-600 xl:p-3 p-2.5 rounded-lg text-lg">{mealToggle ? <FaChevronUp /> : <FaChevronDown />}</button>
+                    <button onClick={() => setMealToggle(value => !value)} className={`${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.text_gray_100} ${colors.border_gray_700}` : `${colors.bg_gray_100} ${colors.text_gray_700}`} border xl:p-3 p-2.5 rounded-lg text-lg`}>{mealToggle ? <FaChevronUp /> : <FaChevronDown />}</button>
                 </div>
             </div>
             {

@@ -8,7 +8,7 @@ function Title() {
     const { pathName } = usePageLocation();
     const [section] = pathName;
     return (
-        <h1 className={`font-bold capitalize ${isDarkMode ? colors.text_gray_200 : colors.text_gray_700} text-2xl`} >{section === "portfolio" ? `my ${section}` : section}</h1>
+        <h1 className={`font-bold capitalize ${isDarkMode ? colors.text_white : colors.text_gray_900} text-2xl`} >{section === "portfolio" ? `my ${section}` : section}</h1>
     )
 }
 

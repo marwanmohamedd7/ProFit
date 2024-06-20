@@ -24,7 +24,7 @@ function TraineeDietPlansTable({ diets, count }) {
                 <th className="w-1/6 px-4 py-2">diet plan name</th>
                 <th className="w-1/6 px-4 py-2">created at</th>
                 <th className="w-2/6 px-4 py-2">plan macros</th>
-                <th className="w-1/6 px-4 py-2">Actions</th>
+                <th className="w-1/6 px-4 py-2 text-center">Actions</th>
             </Table.Header >
             <Table.Body data={sortedDiets} render={diet => <TraineeDietPlansTableRow diet={diet} key={diet._id} />} />
             <Table.Footer>

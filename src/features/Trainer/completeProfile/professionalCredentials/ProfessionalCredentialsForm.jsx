@@ -1,36 +1,5 @@
-import Select from "react-select";
-import { Controller } from "react-hook-form"
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel";
-
-const customStyles = {
-    control: (provided, state) => ({
-        ...provided,
-        border: '1px solid #ccc', // Adjust the border color to match your theme
-        padding: '2px',   // Increase padding
-        boxShadow: 'none', // Remove boxShadow
-        borderRadius: "8px",
-        '&:hover': { borderColor: '#aaa' }, // Adjust hover state
-    }),
-    placeholder: (provided, state) => ({
-        ...provided,
-        color: '#666', // Placeholder text color
-    }),
-    multiValue: (provided, state) => ({
-        ...provided,
-        backgroundColor: '#e9e9e9', // Background of selected values
-    }),
-    multiValueLabel: (provided, state) => ({
-        ...provided,
-        color: '#333', // Text color of selected values
-    }),
-    multiValueRemove: (provided, state) => ({
-        ...provided,
-        '&:hover': {
-            backgroundColor: '#c23b22', // Background of the remove icon on hover
-            color: 'white', // Color of the remove icon on hover
-        },
-    }),
-};
+import InputDropdownMultiSelection from "../../../../ui/InputDropdownMultiSelection";
 
 const options = [
     { value: "weight_loss", label: "Weight Loss" },
@@ -45,26 +14,7 @@ const options = [
 function ProfessionalCredentialsForm({ control, register, errors, watch, disabled }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-                <Controller
-                    name="specializations"
-                    control={control}
-                    disabled={disabled}
-                    rules={{ required: 'specializations field cannot be empty.' }}
-                    render={({ field }) => (
-                        <Select
-                            {...field}
-                            isDisabled={disabled}
-                            options={options} // Make sure 'options' is defined somewhere in your component
-                            isMulti
-                            placeholder="specializations"
-                            classNamePrefix="select"
-                            styles={customStyles}
-                        />
-                    )}
-                />
-                {errors.specializations && <span className="text-xs text-red-700">{errors.specializations.message}</span>}
-            </div>
+            <InputDropdownMultiSelection name="specializations" placeholder="specializations" options={options} control={control} disabled={disabled} errors={errors?.specializations} />
             <div className="flex flex-col justify-end">
                 <InputFloatingLabel item={{ label: "Years of Experience*", id: "yearsOfExperience", type: "number", value: watch("yearsOfExperience") }}
                     disabled={disabled}

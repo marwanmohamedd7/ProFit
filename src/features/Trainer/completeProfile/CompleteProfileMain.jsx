@@ -7,7 +7,7 @@ import ProfessionalCred from "./professionalCredentials/ProfessionalCred"
 
 
 function CompleteProfileMain() {
-    const { page } = useParams()
+    const { page } = useParams();
     return (
         <main>
             <div className="grid grid-cols-[auto_1fr] h-dvh">

@@ -5,15 +5,20 @@ import Spinner from "../../../ui/Spinner"
 import SearchInput from "../../../ui/SearchInput"
 import Modal from "../../../ui/Modal"
 import Button from "../../../ui/Button"
+import { useSearch } from "../../../hooks/useSearch"
+import TableOperationsContainer from "../../../ui/TableOperationsContainer"
 
 function PackagesTrainer() {
-    const { packages, count, isLoading } = useGetPackages()
+    const { packages, allPackages, count, isLoading } = useGetPackages()
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allPackages, ["packageName", "packageType", "subscribersLimit", "duration", "price"]);
     if (isLoading) return <div className="h-[50dvh]"><Spinner /></div>
+    const dataCount = searchKeyword ? 1 : count
+    const dataReady = searchKeyword ? searchedItems : packages;
     return (
-        <>
+        <TableOperationsContainer>
             <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                    <SearchInput placeholder="search package..." />
+                <div className="flex justify-between items-center px-4">
+                    <SearchInput placeholder="search package..." setSearchKeyword={setSearchKeyword}/>
                     <Modal>
                         <Modal.Open opens="add-new-package">
                             <Button>
@@ -28,9 +33,9 @@ function PackagesTrainer() {
                         </Modal.Window>
                     </Modal>
                 </div>
-                <ProfilePackagesTable packages={packages} count={count} />
+                <ProfilePackagesTable packages={dataReady} count={dataCount} isLoading={isLoading} />
             </div>
-        </>
+        </TableOperationsContainer>
     )
 }
 

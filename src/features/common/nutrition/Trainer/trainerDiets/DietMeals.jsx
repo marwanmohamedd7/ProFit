@@ -3,15 +3,19 @@ import { useSearchParams } from "react-router-dom";
 import { useDietProvider } from "../../../../../context/DietProvider";
 import DietMeal from "./DietMeal";
 import Button from "../../../../../ui/Button";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
+import styles from "../../../../../styles/styles";
 
 function DietMeals() {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const [searchParams] = useSearchParams()
     const { days, dispatch } = useDietProvider()
     const activeDay = searchParams.get("day") ?? "1";
     const activeDayMeals = days.find(day => day.day === activeDay)?.meals ?? [];
     return (
-        <div className="bg-white border space-y-4 p-4 rounded-md">
-            <h3 className="text-blue-800 font-bold capitalize">diet meals</h3>
+        <div className={`border space-y-4 p-4 rounded-md ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.bg_white}`}>
+            <h3 className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>diet meals</h3>
             {activeDayMeals.map((meal, index) =>
                 <DietMeal index={index} key={meal?._id || meal?.mealId} meal={meal} />
             )}

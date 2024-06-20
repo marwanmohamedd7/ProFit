@@ -7,9 +7,13 @@ import toast from "react-hot-toast";
 import Button from "../../../../ui/Button";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 import PersonalInformationForm from "./PersonalInformationForm";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function PersonalInformation({ getPersonalInfo = {} }) {
+    const colors = styles();
     const navigate = useNavigate()
+    const { isDarkMode } = useDarkMode();
     const [isLoadingImg, setIsLoadingImg] = useState(false)
     const [requiredImgMessage, setRequiredImgMessage] = useState("")
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
@@ -54,7 +58,7 @@ function PersonalInformation({ getPersonalInfo = {} }) {
     }
 
     return (
-        <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-blue-900 font-bold text-xl capitalize">personal information</h1>
             <PersonalInformationForm
                 watch={watch}

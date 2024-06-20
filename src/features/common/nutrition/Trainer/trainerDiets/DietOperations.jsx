@@ -15,6 +15,8 @@ import BackBtn from "../../../../../ui/BackBtn"
 import BreadCrumbs from "../../../../../ui/BreadCrumbs"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
 import { useCreateCustomizedPlan } from "../../../../Trainer/trainees/traineeDietPlans/useCreateCustomizedPlan"
+import { useDarkMode } from "../../../../../context/DarkModeProvider"
+import styles from "../../../../../styles/styles"
 
 function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     let searchParams = "";
@@ -22,6 +24,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     const { _id, planName, dietType: diettype, description } = dietToUpdate;
     const isExist = Boolean(_id);
     const navigate = useNavigate();
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const { prevPath } = usePageLocation();
     const previousPath = prevPath.split("/").slice(0, -1).join("/")
     const [submitCount, setSubmitCount] = useState(0); // Track the number of submit attempts
@@ -85,7 +89,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                 <div className="flex justify-between items-center gap-4 mb-4">
                     <div className="flex items-center justify-center gap-3">
                         <BackBtn path={isExist || id ? `${previousPath}${searchParams}` : `${prevPath}${searchParams}`} />
-                        <span className="font-bold text-blue-900 text-2xl capitalize">{sectionName}</span>
+                        <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{sectionName}</span>
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -102,7 +106,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                                     <Button type="secondary">Load Diet Template</Button>
                                 </Modal.Open>
                                 <Modal.Window opens="load-diet-template">
-                                    <NutritionDiets dietType={dietType} />
+                                        <NutritionDiets dietType={dietType} customStyle={true} />
                                 </Modal.Window>
                             </Modal>
                         }
@@ -115,9 +119,9 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                 <div className="space-y-4" >
                     <div className="flex items-center gap-3">
                         <BackBtn path={previousPath.split("/").slice(-1).join("") === "trainee" ? `${previousPath}/${dietToUpdate?.trainee?._id}` : previousPath} />
-                        <span className="font-bold text-blue-900 text-2xl capitalize">{sectionName}</span>
+                        <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{sectionName}</span>
                     </div>
-                    <div className="bg-gray-50 rounded-md border p-4">
+                    <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_gray_50}`} rounded-md border p-4`}>
                         {/* <BreadCrumbs /> */}
                         <div className="flex justify-between items-center gap-4">
                             <div className="flex items-start gap-3">
@@ -125,11 +129,11 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                                     <img className="h-14 w-14 rounded-lg" src={traineeData?.profilePhoto} alt={traineeData?.firstName} />
                                 </div>
                                 <div className="flex flex-col justify-center gap-1">
-                                    <p className="flex items-center gap-1 capitalize text-blue-700">
+                                    <p className={`flex items-center gap-1 capitalize ${isDarkMode ? colors.text_white : colors.text_gray_900}`}>
                                         <span className="text-sm font-bold">{traineeData?.firstName}</span>
                                         <span className="text-sm font-bold">{traineeData?.lastName}</span>
                                     </p>
-                                    <p className="text-xs flex flex-col text-blue-900">
+                                    <p className={`text-xs flex flex-col ${isDarkMode ? colors.text_gray_100 : colors.text_gray_700}`}>
                                         <span>{traineeData?.email}</span>
                                         <span>{traineeData?.phoneNumber}</span>
                                     </p>

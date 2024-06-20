@@ -1,37 +1,50 @@
-import { CiShare1 } from "react-icons/ci";
 import { format, parseISO } from "date-fns";
-import { useNavigate } from "react-router-dom"
+import DashboardInfoCardLayout from "./DashboardInfoCardLayout";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import Button from "../../../ui/Button"
+import { useDarkMode } from "../../../context/DarkModeProvider";
 
 function DashboardAreaChart({ areaChartData, areaChartDetails }) {
-    const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     const { title, icon, url } = areaChartDetails;
-    const dataReady = areaChartData.map(({ date, value }) => ({ date: format(parseISO(date), 'MMMM d'), value }))
+    const dataReady = areaChartData.map(({ startDate, totalPaidAmount }) => ({ date: format(parseISO(startDate), 'MMMM d'), value: totalPaidAmount }));
+
+    const colors = {
+        light: {
+            stroke: "#1D4ED8",
+            fill: "#1D4ED8",
+            grid: "#E5E7EB",
+            tooltipBg: "#FFFFFF",
+            tooltipBorder: "#E5E7EB",
+            tooltipText: "#374151",
+            xAxisTick: "#374151",
+            yAxisTick: "#374151"
+        },
+        dark: {
+            stroke: "#93C5FD",
+            fill: "#2563EB",
+            grid: "#4B5563",
+            tooltipBg: "#1F2937",
+            tooltipBorder: "#374151",
+            tooltipText: "#F9FAFB",
+            xAxisTick: "#F9FAFB",
+            yAxisTick: "#F9FAFB"
+        }
+    };
+
+    const currentColors = isDarkMode ? colors.dark : colors.light;
+
     return (
-        <div className="col-span-2 rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
-            <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
-                <h2 className="flex items-center gap-2 text-blue-900 font-bold">
-                    <span>{icon}</span>
-                    <span>{title}</span>
-                </h2>
-                <Button onClick={() => navigate(url)} type="viewLink">
-                    <p className="flex items-center justify-center gap-1">
-                        <span>View Details</span>
-                        <span><CiShare1 /></span>
-                    </p>
-                </Button>
-            </div>
+        <DashboardInfoCardLayout title={`${title}`} url={url} icon={icon} grid_cols="col-span-2">
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
                     <ResponsiveContainer width="100%" height={350}>
                         <AreaChart data={dataReady}>
-                            <CartesianGrid strokeDasharray="4" />
+                            <CartesianGrid strokeDasharray="4" stroke={currentColors.grid} />
                             <Area
                                 dataKey="value"
                                 type="monotone"
-                                stroke="#1D4ED8"
-                                fill="#1D4ED8"
+                                stroke={currentColors.stroke}
+                                fill={currentColors.fill}
                                 strokeWidth={2}
                                 cursor="pointer"
                             />
@@ -39,38 +52,46 @@ function DashboardAreaChart({ areaChartData, areaChartDetails }) {
                                 content={({ active, payload }) => {
                                     if (active && payload && payload.length) {
                                         return (
-                                            <div className="bg-white p-3 border border-gray-200 shadow-sm rounded-md text-sm space-y-1">
-                                                <p className="font-bold text-gray-800">date: {payload[0].payload.date}</p>
-                                                <p className="text-gray-600">total sales: {payload[0].payload.value} EGP</p>
+                                            <div className="p-3 border shadow-sm rounded-md text-sm space-y-1"
+                                                style={{
+                                                    backgroundColor: currentColors.tooltipBg,
+                                                    borderColor: currentColors.tooltipBorder
+                                                }}>
+                                                <p className="font-bold" style={{ color: currentColors.tooltipText }}>
+                                                    Date: {payload[0].payload.date}
+                                                </p>
+                                                <p style={{ color: currentColors.tooltipText }}>
+                                                    Total sales: {payload[0].payload.value} EGP
+                                                </p>
                                             </div>
-                                        )
+                                        );
                                     }
                                     return null;
-                                }} />
+                                }}
+                            />
                             <XAxis
                                 dataKey="date"
-                                tick={{ fill: "#012357" }}
-                                tickLine={{ stroke: "#012357" }}
+                                tick={{ fill: currentColors.xAxisTick }}
+                                tickLine={{ stroke: currentColors.xAxisTick }}
                                 fontSize={14}
                                 tickMargin={10}
                                 tickSize={4}
                             />
                             <YAxis
                                 unit=" EP"
-                                tick={{ fill: "#012357" }}
-                                tickLine={{ stroke: "#012357" }}
+                                tick={{ fill: currentColors.yAxisTick }}
+                                tickLine={{ stroke: currentColors.yAxisTick }}
                                 fontSize={14}
                                 tickMargin={5}
                                 tickSize={4}
                                 tickCount={6}
                             />
-                            {/* <Legend /> */}
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
             </div>
-        </div>
-    )
+        </DashboardInfoCardLayout>
+    );
 }
 
-export default DashboardAreaChart
+export default DashboardAreaChart;

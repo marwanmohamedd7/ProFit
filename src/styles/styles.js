@@ -1,45 +1,4 @@
 export function styles() {
-  const colors = [
-    "slate",
-    "gray",
-    "zinc",
-    "neutral",
-    "stone",
-    "red",
-    "orange",
-    "amber",
-    "yellow",
-    "lime",
-    "green",
-    "emerald",
-    "teal",
-    "cyan",
-    "sky",
-    "blue",
-    "indigo",
-    "violet",
-    "purple",
-    "fuchsia",
-    "pink",
-    "rose",
-    "white",
-    "black",
-  ];
-
-  const shades = [
-    "50",
-    "100",
-    "200",
-    "300",
-    "400",
-    "500",
-    "600",
-    "700",
-    "800",
-    "900",
-    "950",
-  ];
-
   const styles = {
     bg_white: "bg-white",
     bg_black: "bg-black",
@@ -156,7 +115,7 @@ export function styles() {
     border_neutral_800: "border-neutral-800",
     border_neutral_900: "border-neutral-900",
     border_neutral_950: "border-neutral-950",
-    
+
     text_white: "text-white",
     text_black: "text-black",
     text_red_50: "text-red-50",
@@ -215,22 +174,62 @@ export function styles() {
     text_neutral_900: "text-neutral-900",
     text_neutral_950: "text-neutral-950",
   };
-
-//   colors.forEach((color) => {
-//     if (color === "white" || color === "black") {
-//       styles[`bg_${color}`] = `bg-${color}`;
-//       styles[`border_${color}`] = `border-${color}`;
-//       styles[`text_${color}`] = `text-${color}`;
-//     } else {
-//       shades.forEach((shade) => {
-//         styles[`bg_${color}_${shade}`] = `bg-${color}-${shade}`;
-//         styles[`border_${color}_${shade}`] = `border-${color}-${shade}`;
-//         styles[`text_${color}_${shade}`] = `text-${color}-${shade}`;
-//       });
-//     }
-//   });
-
   return styles;
 }
 
 export default styles;
+
+ // const colors = [
+  //   "slate",
+  //   "gray",
+  //   "zinc",
+  //   "neutral",
+  //   "stone",
+  //   "red",
+  //   "orange",
+  //   "amber",
+  //   "yellow",
+  //   "lime",
+  //   "green",
+  //   "emerald",
+  //   "teal",
+  //   "cyan",
+  //   "sky",
+  //   "blue",
+  //   "indigo",
+  //   "violet",
+  //   "purple",
+  //   "fuchsia",
+  //   "pink",
+  //   "rose",
+  //   "white",
+  //   "black",
+  // ];
+
+  // const shades = [
+  //   "50",
+  //   "100",
+  //   "200",
+  //   "300",
+  //   "400",
+  //   "500",
+  //   "600",
+  //   "700",
+  //   "800",
+  //   "900",
+  //   "950",
+  // ];
+
+  //   colors.forEach((color) => {
+  //     if (color === "white" || color === "black") {
+  //       styles[`bg_${color}`] = `bg-${color}`;
+  //       styles[`border_${color}`] = `border-${color}`;
+  //       styles[`text_${color}`] = `text-${color}`;
+  //     } else {
+  //       shades.forEach((shade) => {
+  //         styles[`bg_${color}_${shade}`] = `bg-${color}-${shade}`;
+  //         styles[`border_${color}_${shade}`] = `border-${color}-${shade}`;
+  //         styles[`text_${color}_${shade}`] = `text-${color}-${shade}`;
+  //       });
+  //     }
+  //   });

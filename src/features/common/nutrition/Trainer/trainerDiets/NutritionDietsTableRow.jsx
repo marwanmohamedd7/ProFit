@@ -1,16 +1,16 @@
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { GoArrowRight } from "react-icons/go"
 import { HiPencil, HiTrash } from "react-icons/hi2"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import { useDeleteDietTemplate } from "./useDeleteDietTemplate"
+import { useDarkMode } from "../../../../../context/DarkModeProvider"
+import { useDietProvider } from "../../../../../context/DietProvider"
+import toast from "react-hot-toast"
 import Modal from "../../../../../ui/Modal"
 import Table from "../../../../../ui/Table"
 import Button from "../../../../../ui/Button"
-import ConfirmDelete from "../../../../../ui/ConfirmDelete"
-import { useDeleteDietTemplate } from "./useDeleteDietTemplate"
-import DietTableRowMacros from "./DietTableRowMacros"
-import { GoArrowRight } from "react-icons/go"
-import { useDietProvider } from "../../../../../context/DietProvider"
-import toast from "react-hot-toast"
-import { useDarkMode } from "../../../../../context/DarkModeProvider"
 import styles from "../../../../../styles/styles"
+import DietTableRowMacros from "./DietTableRowMacros"
+import ConfirmDelete from "../../../../../ui/ConfirmDelete"
 
 function NutritionDietsTableRow({ diet, dietType, onCloseModal }) {
     const colors = styles();
@@ -34,7 +34,7 @@ function NutritionDietsTableRow({ diet, dietType, onCloseModal }) {
     }
 
     return (
-        <Table.Row>
+        <Table.Row border={false}>
             <td className="p-4 whitespace-nowrap text-left">
                 <p className="flex flex-col gap-1">
                     <span className="font-bold text-lg">{planName}</span>

@@ -9,8 +9,8 @@ function Table({ children }) {
   const { isDarkMode } = useDarkMode();
   return (
     <TableContext.Provider value={{ colors, isDarkMode }}>
-      <div className="overflow-x-auto rounded-md">
-        <table className="min-w-full text-center">
+      <div className="overflow-x-auto">
+        <table className="min-w-full text-center rounded-md">
           {children}
         </table>
       </div>
@@ -18,11 +18,11 @@ function Table({ children }) {
   )
 }
 
-function Header({ children }) {
+function Header({ children, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
     <thead>
-      <tr className={`capitalize text-left text-sm border font-normal ${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_100} ${colors.text_gray_900}`}`}>
+      <tr className={`capitalize text-left text-sm border ${!border && "border-x-0"} font-normal ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_900}`}`}>
         {children}
       </tr>
     </thead>
@@ -37,20 +37,20 @@ function Body({ data, render }) {
   )
 }
 
-function Row({ children, rowBgColor, onClick }) {
+function Row({ children, rowBgColor, onClick, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
-    <tr onClick={onClick} className={`${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_900} hover:${colors.bg_slate_800}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} border-b text-sm text-left cursor-pointer border`}>
+    <tr onClick={onClick} className={`transition-all duration-300 border ${!border && "border-x-0"} ${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_800} bg-opacity-50 hover:${colors.bg_slate_700}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} text-sm text-left cursor-pointer`}>
       {children}
     </tr>
   )
 }
 
-function Footer({ children }) {
+function Footer({ children, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
     <tfoot>
-      <tr className={`border ${isDarkMode ? `${colors.bg_white} bg-opacity-5 ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_600}`}`}>
+      <tr className={`border ${!border && "border-x-0"} ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_600}`}`}>
         {children}
       </tr>
     </tfoot>

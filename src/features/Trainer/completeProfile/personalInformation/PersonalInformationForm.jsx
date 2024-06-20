@@ -2,7 +2,9 @@ import { useSetPersonalInfo } from "./useSetPersonalInfo";
 import toast from "react-hot-toast";
 import Image from "../../../../ui/Image";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
-import ImageViewer from "../../../../ui/ImageViewer";
+import InputTextArea from "../../../../ui/InputTextArea";
+import InputRadiaButtons from "../../../../ui/InputRadiaButtons";
+// import ImageViewer from "../../../../ui/ImageViewer";
 
 function PersonalInformationForm(
     {
@@ -18,6 +20,7 @@ function PersonalInformationForm(
         requiredImgMessage,
         setRequiredImgMessage,
     }) {
+
     const { setPersonalInfo, isLoadingSettingInfo } = useSetPersonalInfo()
     const isLoading = disabled || isLoadingSettingInfo
 
@@ -42,20 +45,29 @@ function PersonalInformationForm(
         });
     }
 
+    function validateAge(value) {
+        const today = new Date();
+        const birthDate = new Date(value);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) age--;
+        return age >= 12 || "You must be at least 12 years old.";
+    }
+
     return (
         <>
             <div className="flex flex-col gap-6">
-                <ImageViewer imageURL={profilePhoto}>
-                    <Image
-                        minDimension={150}
-                        photoType="(profile)"
-                        dimensions="w-32 h-32"
-                        error={requiredImgMessage}
-                        onCropComplete={onCropComplete}
-                        isLoading={isLoading && isLoadingImg}
-                        src={profilePhoto || getValues()?.profilePhoto}
-                    />
-                </ImageViewer>
+                {/* <ImageViewer imageURL={profilePhoto}> */}
+                <Image
+                    minDimension={150}
+                    photoType="(profile)"
+                    dimensions="w-32 h-32"
+                    error={requiredImgMessage}
+                    onCropComplete={onCropComplete}
+                    isLoading={isLoading && isLoadingImg}
+                    src={profilePhoto || getValues()?.profilePhoto}
+                />
+                {/* </ImageViewer> */}
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
@@ -123,51 +135,32 @@ function PersonalInformationForm(
                         {
                             ...register("birthDate", {
                                 required: 'This field is required',
+                                validate: validateAge
                             })
                         }
                     }
                 />
             </div>
 
-            <div className="space-y-1">
-                <label htmlFor="biography" className="block text-sm font-medium capitalize text-gray-700">biography*</label>
-                <textarea
-                    id="biography"
-                    disabled={isLoading}
-                    //  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque quidem, doloribus, laboriosam odit repudiandae sint fugit optio id, itaque necessitatibus hic. Expedita vitae cupiditate fuga distinctio atque, earum quo! ipsum dolor sit amet consectetur adipisicing elit. A beatae atque iure obcaecati officiis, totam earum numquam incidunt amet nam."
-                    className="mt-1 disabled:bg-gray-50 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    {...register("biography", {
+            <InputTextArea
+                disabled={isLoading}
+                placeholder="Description..."
+                register={{
+                    ...register("biography", {
                         // required: false,
                         required: "This field is required",
-                    })}
-                />
-                {errors?.biography?.message && <span className="text-xs text-red-700">{errors?.biography?.message}</span>}
-            </div>
+                    })
+                }}
+                errors={errors?.biography?.message}
+            />
 
             <div className="flex flex-col gap-2">
-                <label htmlFor="male" className="text-sm font-medium capitalize text-gray-700 flex items-center gap-2">
-                    <input
-                        id="male"
-                        disabled={isLoading}
-                        {...register("gender", { required: 'This field is required' })}
-                        type="radio"
-                        value="Male"
-                        className="form-radio"
-                    />
-                    <span>Male</span>
-                </label>
-                <label htmlFor="female" className="text-sm font-medium capitalize text-gray-700 flex items-center gap-2">
-                    <input
-                        id="female"
-                        disabled={isLoading}
-                        {...register("gender", { required: 'This field is required' })}
-                        type="radio"
-                        value="Female"
-                        className="form-radio"
-                    />
-                    <span>Female</span>
-                </label>
-                {errors?.gender?.message && <span className="text-red-700 text-xs">{errors?.gender?.message}</span>}
+                <InputRadiaButtons
+                    disabled={isLoading}
+                    values={["male", "female"]}
+                    errors={errors?.gender?.message}
+                    register={{ ...register("gender", { required: 'This field is required' }) }}
+                />
             </div>
 
         </>

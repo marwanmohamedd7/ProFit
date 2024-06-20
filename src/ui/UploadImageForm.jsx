@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { HiMiniCheckCircle } from "react-icons/hi2";
 import { MdOutlineEdit } from "react-icons/md";
+import { useDarkMode } from "../context/DarkModeProvider";
+import styles from "../styles/styles";
+
 
 function UploadImageForm({
     id,
@@ -12,15 +15,16 @@ function UploadImageForm({
     dimentions = "h-28 w-28",
     disabled = false,
     photo: photoType,
-},
-) {
+}) {
     const [image, setImage] = useState(src); // Default image path
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     return (
         <div className="space-y-1">
-            <div className={`relative ${dimentions}`}>
+            <div className={`relative ${dimentions} ${isDarkMode && colors.border_gray_700}`}>
                 <label
                     htmlFor={id}
-                    className={`cursor-pointer absolute right-[-5%] top-[-5%] text-blue-50 p-1 rounded-full bg-blue-700`}
+                    className={`cursor-pointer absolute right-[-5%] top-[-5%] p-1 rounded-full  ${isDarkMode ? `text-blue-400 hover:bg-blue-800 bg-blue-900` : `text-blue-50 hover:bg-blue-600 bg-blue-700`}`}
                 >
                     <MdOutlineEdit />
                 </label>
@@ -32,17 +36,17 @@ function UploadImageForm({
                     <>
                         {image ?
                             <div
-                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize`}
+                                className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.text_gray_500} ${colors.bg_gray_100}`}`}
                             >
-                                <span className="text-blue-700 text-3xl"><HiMiniCheckCircle /></span>
-                                <span className="text-blue-700 text-lg font-bold capitalize">uploaded</span>
+                                <span className={`text-gray-700 text-3xl ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}><HiMiniCheckCircle /></span>
+                                <span className={`text-lg font-bold capitalize ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}>uploaded</span>
                             </div>
                             :
                             <div
-                                className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize`}
+                                className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.text_gray_500} ${colors.bg_gray_100}`}`}
                             >
-                                <span>upload</span>
-                                <span>{photoType} photo</span>
+                                <span className={`${isDarkMode ? colors.text_gray_300 : colors.text_gray_500}`}>upload</span>
+                                <span className={`${isDarkMode ? colors.text_gray_300 : colors.text_gray_500}`}>{photoType} photo</span>
                             </div>
                         }
                     </>

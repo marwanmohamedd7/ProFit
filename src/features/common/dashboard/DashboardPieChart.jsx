@@ -1,43 +1,52 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../../../ui/Button";
-import { CiShare1 } from "react-icons/ci";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import Table from "../../../ui/Table";
-import StatusLabel from "../../../ui/StatusLabel";
+import DashboardInfoCardLayout from "./DashboardInfoCardLayout";
+import { useDarkMode } from "../../../context/DarkModeProvider";
+import { useCallback } from "react";
 
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+function DashboardPieChart({ pieChartData, pieChartDetails, role, dimenstion }) {
+    const { isDarkMode } = useDarkMode();
+    const { total, details } = pieChartData;
+    const { title, icon, url, headers, colors: chartColors } = pieChartDetails;
+    const data = details.map((item, index) => (role === "admin" ? { label: item.users.replaceAll("-", " "), value: item.value, ...chartColors[index] } : { ...item, ...chartColors[index] }))
+
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = useCallback(
+        ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+            const x = cx + radius * Math.cos(-midAngle * RADIAN);
+            const y = cy + radius * Math.sin(-midAngle * RADIAN);
+            return (
+                <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                    {(percent * 100) ? `${(percent * 100).toFixed(1)}%` : ``}
+                </text>
+            );
+        }, [RADIAN]
+    )
+
+    const colors = {
+        light: {
+            tooltipBg: "bg-white",
+            tooltipBorder: "border-gray-200",
+            tooltipDateText: "text-gray-800",
+            tooltipValueText: "text-gray-600",
+            tooltipPercentText: "text-gray-500"
+        },
+        dark: {
+            tooltipBg: "bg-gray-800",
+            tooltipBorder: "border-gray-700",
+            tooltipDateText: "text-gray-100",
+            tooltipValueText: "text-gray-200",
+            tooltipPercentText: "text-gray-300"
+        }
+    };
+
+    const currentColors = isDarkMode ? colors.dark : colors.light;
 
     return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${(percent * 100).toFixed(1)}%`}
-        </text>
-    );
-};
-
-function DashboardPieChart({ pieChartData, pieChartDetails }) {
-    const navigate = useNavigate();
-    const { totalValues, data } = pieChartData;
-    const { title, icon, url, headers } = pieChartDetails;
-    return (
-        <div className="rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
-            <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
-                <h2 className="flex items-center gap-2 text-blue-900 font-bold">
-                    <span>{icon}</span>
-                    <span>{title}</span>
-                </h2>
-                <Button onClick={() => navigate(url)} type="viewLink">
-                    <p className="flex items-center justify-center gap-1">
-                        <span>View Details</span>
-                        <span><CiShare1 /></span>
-                    </p>
-                </Button>
-            </div>
-            <div className="flex flex-col justify-between gap-2">
-                <div className="rounded-md" style={{ width: '100%' }}>
+        <DashboardInfoCardLayout title={title} url={url} icon={icon}>
+            <div className={`flex ${!dimenstion && "flex-col"} justify-between items-center gap-2`}>
+                <div className="rounded-md" style={{ width: dimenstion || '100%' }}>
                     <ResponsiveContainer width="100%" height={240}>
                         <PieChart>
                             <Pie
@@ -49,29 +58,31 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                                 cy="50%"
                                 labelLine={false}
                                 label={renderCustomizedLabel}
-                                fill="#8884d8"
                             >
                                 {data.map(entry => (
-                                    <Cell fill={entry.color} stroke={entry.color} cursor="pointer" key={entry.label} />
+                                    <Cell fill={isDarkMode ? entry.darkColor : entry.color} stroke={isDarkMode ? entry.darkColor : entry.color} cursor="pointer" key={entry.label} />
                                 ))}
                             </Pie>
-                            <Legend
-                                verticalAlign="middle"
-                                iconType="circle"
-                                layout="vertical"
-                                align="right"
-                                iconSize="15"
-                                width="30%"
-                                margin={20}
-                            />
+                            {
+                                role !== "admin" &&
+                                <Legend
+                                    verticalAlign="middle"
+                                    iconType="circle"
+                                    layout="vertical"
+                                    align="right"
+                                    iconSize="15"
+                                    width="30%"
+                                    margin={20}
+                                />
+                            }
                             <Tooltip
                                 content={({ active, payload }) => {
                                     if (active && payload && payload.length) {
                                         return (
-                                            <div className="bg-white p-3 border border-gray-200 shadow-sm rounded-md text-sm space-y-1">
-                                                <p className="font-bold text-gray-800">{headers[0]}: {payload[0].payload.payload.label}</p>
-                                                <p className="text-gray-600">{headers[1]}: {payload[0].payload.payload.value}</p>
-                                                <p className="text-gray-500">{headers[2]}: {(payload[0].payload.payload.value / totalValues * 100).toFixed(1)}%</p>
+                                            <div className={`p-3 border shadow-sm rounded-md text-sm space-y-1 ${currentColors.tooltipBg} ${currentColors.tooltipBorder}`}>
+                                                <p className={`font-bold ${currentColors.tooltipDateText}`}>{headers[headers.includes("name") ? headers.indexOf("name") : headers.indexOf("role")]}: {payload[0].payload.payload.label}</p>
+                                                <p className={`${currentColors.tooltipValueText}`}>{headers[headers.includes("subscribers") ? headers.indexOf("subscribers") : headers.indexOf("count")]}: {payload[0].payload.payload.value}</p>
+                                                <p className={`${currentColors.tooltipPercentText}`}>{headers[headers.indexOf("percentage")]}: {(payload[0].payload.payload.value / total * 100).toFixed(1)}%</p>
                                             </div>
                                         )
                                     }
@@ -81,32 +92,33 @@ function DashboardPieChart({ pieChartData, pieChartDetails }) {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="text-blue-900" style={{ width: '100%' }}>
+                <div className="text-blue-900" style={{ width: dimenstion || '100%' }}>
                     <Table>
-                        <Table.Header>
-                            {headers.map(item => <th key={item} className="p-3 w-1/3">{item}</th>)}
-                            {/* <th className="p-3"></th> */}
+                        <Table.Header border={true}>
+                            {headers.map(item => <th key={item} className="p-3">{item}</th>)}
+                            <th className="p-3"></th>
                         </Table.Header>
                         <Table.Body data={data} render={(item) =>
-                            <Table.Row>
-                                <td className="p-3">{item.label}</td>
-                                <td className="p-3">{item.value}</td>
-                                {/* <td className="p-3">{((item.value / totalValues) * 100).toFixed(1)}%</td> */}
-                                <td className="p-3 flex items-center gap-1 flex-nowrap">
-                                    <StatusLabel status={"active"} />
-                                    <StatusLabel status={"expired"} />
-                                    <StatusLabel status={"cancelled"} />
+                            <Table.Row key={item.label} border={true}>
+                                {
+                                    Object.entries(item)
+                                        .filter(([key]) => !key.includes('color') && !key.includes('darkColor'))
+                                        .map(([key, value]) => (
+                                            <td key={key} className="p-3">{value}</td>
+                                        ))
+                                }
+                                <td className="p-3">{(item.value / total * 100).toFixed(1)}%</td>
+                                <td className="p-3">
+                                    <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: isDarkMode ? item.darkColor : item.color }}></span>
                                 </td>
-                                {/* <td className="p-3">
-                                    <span className="block w-4 h-4 rounded-full" style={{ backgroundColor: item.color }}></span>
-                                </td> */}
                             </Table.Row>
                         } />
                     </Table>
                 </div>
             </div>
-        </div>
+        </DashboardInfoCardLayout>
     );
 }
 
-export default DashboardPieChart
+export default DashboardPieChart;
+

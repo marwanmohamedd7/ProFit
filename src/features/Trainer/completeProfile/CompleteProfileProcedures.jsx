@@ -1,5 +1,7 @@
 import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useDarkMode } from "../../../context/DarkModeProvider";
+import styles from "../../../styles/styles";
 const procedures = [
     {
         pageName: "personal-information",
@@ -25,7 +27,9 @@ const procedures = [
 ]
 
 function CompleteProfileProcedures({ page }) {
+    const colors = styles();
     const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     return (
         <div className="relative flex flex-col justify-around xl:px-16 lg:px-10 md:px-8 sm:px-6 px-4"
             style={

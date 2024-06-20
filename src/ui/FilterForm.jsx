@@ -1,35 +1,27 @@
-import { useState } from "react"
-import { CiFilter } from "react-icons/ci";
-// import { FaDeleteLeft } from "react-icons/fa6";
-import { HiMiniChevronDown } from "react-icons/hi2";
+// import { CiFilter } from "react-icons/ci";
+import { useSearchParams } from "react-router-dom";
+import { useDarkMode } from "../context/DarkModeProvider";
 import Button from "./Button";
-import FilterTabs from "./FilterTabs";
+import styles from "../styles/styles";
 
-function FilterForm({ children, filterTabs = {} }) {
-    const [isOpen, setIsOpen] = useState(false);
-    return !isOpen ? (
-        <Button onClick={() => setIsOpen(true)}>
-            <span><CiFilter /></span>
-            <span>Filter</span>
-            <span><HiMiniChevronDown /></span>
-        </Button>
-    ) : (
-        <div className="w-full mx-auto my-4 p-4 bg-white rounded-md border">
+function FilterForm({ children, isOpen, setIsOpen }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+    const [searchParams, setSearchParams] = useSearchParams();
+    function handleReset() {
+        if (searchParams.get("filter")) searchParams.delete("filter")
+        setSearchParams(searchParams);
+        setIsOpen(false);
+    }
+    return isOpen && (
+        <div className={`w-full mx-auto my-4 p-4 ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_900}`:`${colors.bg_gray_50}`} rounded-md border`}>
             <form className="flex flex-col gap-4 capitalize" onSubmit={(e) => e.preventDefault()}>
-                {
-                    Object.keys(filterTabs).length > 0 &&
-                    <div className="flex justify-center">
-                        <FilterTabs filterTabs={filterTabs} />
-                    </div>
-                }
-
                 {children}
-
-                <div className="flex gap-2">
-                    <Button type="primary">
-                        <p className="flex justify-center items-center gap-2">
-                            <span><CiFilter /></span>
-                            <span>Filter</span>
+                <div className="flex gap-2" >
+                    <Button type="primary" onClick={handleReset}>
+                        <p className="flex justify-center items-center gap-2 capitalize">
+                            {/* <span><CiFilter /></span> */}
+                            <span>reset</span>
                         </p>
                     </Button>
                     <Button type="secondary" onClick={() => setIsOpen(false)}>

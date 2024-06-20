@@ -1,5 +1,10 @@
+import { useDarkMode } from "../context/DarkModeProvider";
+import styles from "../styles/styles";
+
 // Circular Progress Component
 function CircularProgress({ variations, allDays, days, percentage, icon, plan, size = "size-20" }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     let offset;
     const radius = 16;
     const circumference = 2 * Math.PI * radius;
@@ -15,7 +20,7 @@ function CircularProgress({ variations, allDays, days, percentage, icon, plan, s
         <div className={`relative ${size}`}>
             <svg className="size-full" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                 {/* Background Circle */}
-                <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 transition-all duration-700" strokeWidth="3"></circle>
+                <circle cx="18" cy="18" r="16" fill="none" className={`stroke-current ${isDarkMode ? colors.text_gray_200 : colors.text_gray_300} transition-all duration-700`} strokeWidth="3"></circle>
                 {/* <circle cx="18" cy="18" r="16" fill="none" className="stroke-current text-gray-200 dark:text-neutral-700" strokeWidth="2"></circle> */}
                 {/* Progress Circle inside a group with rotation */}
                 <g className="origin-center -rotate-90 transform">
@@ -24,7 +29,7 @@ function CircularProgress({ variations, allDays, days, percentage, icon, plan, s
                         cy="18"
                         r="16"
                         fill="none"
-                        className="stroke-current text-blue-700 transition-all duration-700"
+                        className={`stroke-current ${isDarkMode ? `${colors.text_blue_600}` : colors.text_blue_700} transition-all duration-700`}
                         strokeWidth="3"
                         strokeDasharray={circumference}
                         strokeDashoffset={offset < 0 ? 0 : offset} // Set the dynamic offset here
@@ -33,10 +38,10 @@ function CircularProgress({ variations, allDays, days, percentage, icon, plan, s
                 </g>
             </svg>
             {/* Percentage Text */}
-            <div className="absolute top-1/2 start-1/2 transform -translate-y-1/2 -translate-x-1/2 text-center text-lg font-bold text-blue-700 ">
+            <div className={`absolute pb-[0.1rem] top-1/2 start-1/2 transform -translate-y-1/2 -translate-x-1/2 text-center text-base font-bold ${isDarkMode ? colors.text_white : colors.text_gray_800}`}>
                 {
                     variations === "percentage" && (
-                        <p className="flex justify-center items-center gap-1">
+                        <p className="flex justify-center items-center gap-1 font-bold">
                             <span>{percentage}</span>
                             <span>%</span>
                         </p>

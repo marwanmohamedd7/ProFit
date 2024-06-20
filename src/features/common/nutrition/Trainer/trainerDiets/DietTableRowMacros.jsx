@@ -5,7 +5,7 @@ function DietTableRowMacros({ calories, proteins, carbs, fats }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     return (
-        <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_gray_100} ${colors.text_gray_700}`} px-4 py-2 rounded-md border`}>
+        <div className={`${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.border_gray_700}` : `${colors.bg_gray_100} ${colors.text_gray_700}`} px-4 py-2 rounded-md border`}>
             <div className="flex items-center justify-between gap-8 text-lg font-bold">
                 <h3 className="flex flex-col gap-1">
                     <p className="flex items-center gap-1">

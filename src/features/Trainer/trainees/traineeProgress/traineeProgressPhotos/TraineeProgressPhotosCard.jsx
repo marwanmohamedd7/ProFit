@@ -1,7 +1,7 @@
 import { formatDate_time } from "../../../../../utils/helpers"
 
 function TraineeProgressPhotosCard({ photo }) {
-    const { image, createdAt } = photo ?? {};
+    const { photo: image, createdAt } = photo ?? {};
     return (
         <div className="flex flex-col items-center justify-start gap-2 h-fit p-3.5 rounded-lg border">
             <div className="w-60 h-60">

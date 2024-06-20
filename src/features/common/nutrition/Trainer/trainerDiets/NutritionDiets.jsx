@@ -5,16 +5,19 @@ import Button from "../../../../../ui/Button";
 import Spinner from "../../../../../ui/Spinner";
 import NutritionDietsTable from "./NutritionDietsTable";
 import NutritionOperations from "../../NutritionOperations";
+import { useSearch } from "../../../../../hooks/useSearch";
 
 function NutritionDiets({ dietType = "my plan", onCloseModal }) {
-    const navigate = useNavigate()
-    const { getDietTemplates, count, isLoading } = useGetDietTemplates()
-    if (isLoading) return <div className="flex items-center justify-center h-[50dvh]"><Spinner /></div>
+    const navigate = useNavigate();
+    const { getDietTemplates, allTrainerDietTemplates, count, isLoading } = useGetDietTemplates();
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allTrainerDietTemplates, ["planName", "plantype", "daysCount"]);
+    const dataCount = searchKeyword ? 1 : count
+    const dataReady = searchKeyword ? searchedItems : getDietTemplates;
     return (
-        <div>
+        <div className={`space-y-4`}>
             <NutritionOperations
-                // filterForm={<NutritionFoodFilterForm />}
                 search="Search Diet Template Name..."
+                setSearchKeyword={setSearchKeyword}
             >
                 {
                     dietType !== "customized plan" &&
@@ -26,7 +29,12 @@ function NutritionDiets({ dietType = "my plan", onCloseModal }) {
                     </Button>
                 }
             </NutritionOperations >
-            <NutritionDietsTable diets={getDietTemplates} count={count} dietType={dietType} onCloseModal={onCloseModal} />
+            {
+                isLoading ?
+                    <Spinner />
+                    :
+                    <NutritionDietsTable diets={dataReady} count={dataCount} dietType={dietType} onCloseModal={onCloseModal} />
+            }
         </div>
     )
 }

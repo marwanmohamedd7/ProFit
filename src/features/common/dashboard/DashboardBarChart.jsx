@@ -1,9 +1,8 @@
-import { CiShare1 } from "react-icons/ci";
 import { format, parseISO } from "date-fns";
-import { useNavigate } from "react-router-dom";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import Button from "../../../ui/Button";
 import CoinIcon from "../../../Icons/CoinIcon";
+import DashboardInfoCardLayout from "./DashboardInfoCardLayout";
+import { useDarkMode } from "../../../context/DarkModeProvider";
 
 const data = [
     { date: '2024-05-01', subscribers: 4000 },
@@ -29,22 +28,10 @@ const data = [
 ];
 
 function DashboardBarChart() {
-    const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     const dataReady = data.map(({ date, subscribers }) => ({ date: format(parseISO(date), 'MMMM d'), subscribers }))
     return (
-        <div className="rounded-md p-4 capitalize border space-y-4 shadow-sm bg-white">
-            <div className="flex justify-between items-center gap-2 flex-wrap md:flex-nowrap whitespace-nowrap">
-                <h2 className="flex items-center gap-2 text-blue-900 font-bold">
-                    <span><CoinIcon /></span>
-                    <span>subscriptions overview</span>
-                </h2>
-                <Button onClick={() => navigate("/trainer/subscriptions")} type="viewLink">
-                    <p className="flex items-center justify-center gap-1">
-                        <span>View Details</span>
-                        <span><CiShare1 /></span>
-                    </p>
-                </Button>
-            </div>
+        <DashboardInfoCardLayout title={`subscriptions overview`} url={`/trainer/subscriptions`} icon={<CoinIcon />}>
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
                     <ResponsiveContainer width="100%" height={470}>
@@ -73,16 +60,16 @@ function DashboardBarChart() {
                                 }} />
                             <XAxis
                                 dataKey="date"
-                                tick={{ fill: "#012357" }}
-                                tickLine={{ stroke: "#012357" }}
+                                tick={{ fill: isDarkMode ? `#F9FAFB` : `#374151` }}
+                                tickLine={{ stroke: isDarkMode ? `#F9FAFB` : `#374151` }}
                                 fontSize={14}
                                 tickMargin={10}
                                 tickSize={4}
                             />
                             <YAxis
                                 unit=" EP"
-                                tick={{ fill: "#012357" }}
-                                tickLine={{ stroke: "#012357" }}
+                                tick={{ fill: isDarkMode ? `#F9FAFB` : `#374151` }}
+                                tickLine={{ stroke: isDarkMode ? `#F9FAFB` : `#374151` }}
                                 fontSize={14}
                                 tickMargin={5}
                                 tickSize={4}
@@ -93,8 +80,8 @@ function DashboardBarChart() {
                     </ResponsiveContainer>
                 </div>
             </div>
-        </div>
-    )
+        </DashboardInfoCardLayout>
+    );
 }
 
 export default DashboardBarChart

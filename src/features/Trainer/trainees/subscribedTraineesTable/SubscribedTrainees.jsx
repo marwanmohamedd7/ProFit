@@ -3,28 +3,37 @@ import FilterButtons from "../../../../ui/FilterButtons"
 import SubscribedTraineesTable from "./SubscribedTraineesTable"
 import { useGetSubscribedTrainees } from "./useGetSubscribedTrainees"
 import Spinner from "../../../../ui/Spinner"
+import { useSearch } from "../../../../hooks/useSearch"
+import TableOperationsContainer from "../../../../ui/TableOperationsContainer"
 
 function SubscribedTrainees() {
-    const { getSubscribedTrainees, isLoading, count } = useGetSubscribedTrainees()
+    const { getSubscribedTrainees, allSubscribedTrainees, isLoading, count } = useGetSubscribedTrainees();
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allSubscribedTrainees, [["traineeId", "firstName"], ["traineeId", "lastName"], ["package", "packageName"], ["package", "packageType"], "subscriptionType", "status", "duration"]);
     if (isLoading) return <div className="flex items-center justify-center h-[60dvh]"><Spinner /></div>
+    const dataCount = searchKeyword ? 1 : count
+    const dataReady = searchKeyword ? searchedItems : getSubscribedTrainees;
     return (
-        <>
-                <div className="flex flex-wrap gap-2 lg:gap-0 justify-between py-4">
-                    <SearchInput placeholder="Search Trainee Name..." />
-                    <FilterButtons
-                        fiterBtns={{
-                            fiterFeild: "trainees",
-                            options: [
-                                { label: "All", value: "all" },
-                                { label: "Active", value: "active" },
-                                { label: "Blocked", value: "blocked" },
-                                { label: "Pending", value: "pending" },
-                            ]
-                        }}
-                    />
-                </div>
-            <SubscribedTraineesTable trainees={getSubscribedTrainees} count={count} />
-        </>
+        <TableOperationsContainer>
+            <div className="flex flex-wrap gap-2 lg:gap-0 justify-between px-4 pb-4">
+                <SearchInput
+                    placeholder="Search Trainee Name..."
+                    setSearchKeyword={setSearchKeyword}
+                />
+                <FilterButtons
+                    fiterBtns={{
+                        fiterFeild: "trainees",
+                        options: [
+                            { label: "All", value: "All" },
+                            { label: "Active", value: "Active" },
+                            { label: "Expired", value: "Expired" },
+                            { label: "Pending", value: "Pending" },
+                            { label: "Cancelled", value: "Cancelled" },
+                        ]
+                    }}
+                />
+            </div>
+            <SubscribedTraineesTable trainees={dataReady} count={dataCount} />
+        </TableOperationsContainer>
     )
 }
 

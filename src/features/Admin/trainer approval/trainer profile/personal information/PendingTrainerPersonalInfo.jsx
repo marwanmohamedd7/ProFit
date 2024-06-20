@@ -1,22 +1,27 @@
-import SpinnerMini from "../../../../../ui/SpinnerMini"
-import PendingTrainerPersonalInfoForm from "./PendingTrainerPersonalInfoForm"
-import { useGetTrainerPersonalInfo } from "./useGetTrainerPersonalInfo"
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
+import styles from "../../../../../styles/styles";
+import SpinnerMini from "../../../../../ui/SpinnerMini";
+import PendingTrainerPersonalInfoForm from "./PendingTrainerPersonalInfoForm";
+import { useGetTrainerPersonalInfo } from "./useGetTrainerPersonalInfo";
 
 function PendingTrainerPersonalInfo() {
-    const { getPendingTrainerInfo, isLoading } = useGetTrainerPersonalInfo()
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+    const { getPendingTrainerInfo, isLoading } = useGetTrainerPersonalInfo();
+
     return (
-        <section className="space-y-4 bg-white p-4 sm:p-5 rounded-md border">
-            <h2 className="text-xl text-blue-900 font-bold">Personal Information</h2>
+        <section className={`space-y-4 p-4 rounded-md border ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_white}`}>
+            <h2 className={`text-xl font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900}`}>Personal Information</h2>
             {
                 isLoading ?
-                    <div className="bg-gray-50 h-[40dvh] text-center p-1 rounded-md shadow-sm flex justify-center items-center">
-                        <div className="font-bold text-blue-900 my-4"><SpinnerMini /></div>
+                    <div className={`h-[40dvh] text-center rounded-md flex justify-center items-center`}>
+                        <SpinnerMini />
                     </div>
                     :
                     <PendingTrainerPersonalInfoForm getPendingTrainerInfo={getPendingTrainerInfo} />
             }
         </section>
-    )
+    );
 }
 
-export default PendingTrainerPersonalInfo
+export default PendingTrainerPersonalInfo;

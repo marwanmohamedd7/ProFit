@@ -38,5 +38,6 @@ export function useGetTrainerMeals() {
     isLoading,
     trainerMeals: trainerMeals?.data ?? [],
     count: trainerMeals?.totalDocuments,
+    allTrainerMeals: trainerMeals?.allData ?? [],
   };
 }

@@ -15,9 +15,22 @@ export async function getAppFoods(token, page) {
   return data;
 }
 
-export async function getTrainerFoods(token, page, QueryParams) {
+export async function getTrainerFoods(
+  token,
+  page,
+  QueryParams,
+  searchKeyword,
+  filterValues
+) {
+  const filters = filterValues
+    ? `&${Object.entries(filterValues)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("&")}`
+    : filterValues;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/AllFoods/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&${QueryParams}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/AllFoods/?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filters}&${
+      searchKeyword ? `keywords=${searchKeyword}` : `${QueryParams}`
+    }`,
     {
       method: "GET",
       headers: {
@@ -27,6 +40,7 @@ export async function getTrainerFoods(token, page, QueryParams) {
   );
   if (!response.ok) throw new Error(response.status);
   const data = await response.json();
+  // console.log(data)
   return data;
 }
 

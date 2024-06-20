@@ -2,6 +2,7 @@ import { CiApple, CiGrid41 } from "react-icons/ci"
 import CompoundTabs from "../../../../ui/CompoundTabs"
 import NutritionAppFood from "./ProFitFoods/NutritionAppFood"
 import NutritionAppMeals from "./ProFitMealTemplate/NutritionAppMeals"
+import TableOperationsContainer from "../../../../ui/TableOperationsContainer"
 
 function NutritionAdmin() {
     return (
@@ -27,12 +28,16 @@ function NutritionAdmin() {
                         </p>
                     </CompoundTabs.Open>
                 </CompoundTabs.Tabs>
-                <CompoundTabs.Window opens="foods">
-                    <NutritionAppFood />
-                </CompoundTabs.Window>
-                <CompoundTabs.Window opens="meals_templates">
-                    <NutritionAppMeals />
-                </CompoundTabs.Window>
+                <div className="my-4">
+                    <TableOperationsContainer>
+                        <CompoundTabs.Window opens="foods">
+                            <NutritionAppFood />
+                        </CompoundTabs.Window>
+                        <CompoundTabs.Window opens="meals_templates">
+                            <NutritionAppMeals />
+                        </CompoundTabs.Window>
+                    </TableOperationsContainer>
+                </div>
             </CompoundTabs>
         </>
     )

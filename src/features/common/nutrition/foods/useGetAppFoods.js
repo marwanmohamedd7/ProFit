@@ -35,7 +35,8 @@ export function useGetAppFoods() {
 
   return {
     isLoading,
-    appFoods: appFoods?.data,
+    appFoods: appFoods?.data ?? [],
     count: appFoods?.totalDocuments,
+    allAppFoods: appFoods?.allData ?? [],
   };
 }

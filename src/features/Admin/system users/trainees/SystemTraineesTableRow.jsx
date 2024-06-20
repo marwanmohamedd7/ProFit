@@ -3,16 +3,21 @@ import Table from "../../../../ui/Table";
 import ImageViewer from "../../../../ui/ImageViewer";
 import StatusLabel from "../../../../ui/StatusLabel";
 import { formatDate, formatTime } from "../../../../utils/helpers";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
+import Button from "../../../../ui/Button";
 // import { IoCheckmarkOutline, IoEyeOutline } from "react-icons/io5"
 
 function SystemTraineesTableRow({ trainee }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const { firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, status, assignedTrainer, package: packageDetails } = trainee ?? {};
     return (
         <Table.Row>
             <td className="px-4 py-2 whitespace-nowrap mx-auto">
                 <div className="flex items-center gap-3">
                     <div className="flex-shrink-0 h-14 w-14">
-                        <ImageViewer imageURL={profilePhoto}>
+                        <ImageViewer imageURL={profilePhoto || ""}>
                             <img className="h-14 w-14 rounded-md" src={profilePhoto} alt={firstName} />
                         </ImageViewer>
                     </div>
@@ -21,7 +26,7 @@ function SystemTraineesTableRow({ trainee }) {
                             <span className="text-sm font-bold">{firstName}</span>
                             <span className="text-sm font-bold">{lastName}</span>
                         </p>
-                        <div className="text-xs flex flex-col text-gray-800">
+                        <div className={`text-xs flex flex-col  ${isDarkMode ? colors.text_gray_100 : colors.text_gray_700}`}>
                             <span>{email}</span>
                             <span>{phoneNumber}</span>
                         </div>
@@ -61,12 +66,10 @@ function SystemTraineesTableRow({ trainee }) {
 
                     </span> */}
 
-                    <span
-                        href="#"
-                        className="text-red-600 p-2 hover:text-red-900 bg-red-100 rounded-md"
+                    <Button type="icon-delete"
                     >
                         <MdOutlineBlock />
-                    </span>
+                    </Button>
                 </div>
             </td>
         </Table.Row>

@@ -7,9 +7,13 @@ import { HiArrowLongRight } from "react-icons/hi2"
 import SocialMedia from "../../completeProfile/professionalCredentials/SocialMedia"
 import { useUpdateUserAboutData } from "./useUpdateUserAboutData"
 import SpinnerMini from "../../../../ui/SpinnerMini"
+import { useDarkMode } from "../../../../context/DarkModeProvider"
+import styles from "../../../../styles/styles"
 
 function AboutMeForm({ getUserAboutData = {} }) {
-    const [isLoadingImg, setIsLoadingImg] = useState(false)
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+    const [isLoadingImg, setIsLoadingImg] = useState(false);
     const [requiredImgMessage, setRequiredImgMessage] = useState("")
     const { updateUserAboutData, isUpdating } = useUpdateUserAboutData()
     const { _id, profilePhoto, socialMedia, ...values } = getUserAboutData || {};
@@ -18,6 +22,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
         defaultValues: getSession ? { ...socialMedia, ...values } : {},
 
     })
+    const h1Style = isDarkMode ? colors.text_white : colors.text_gray_900;
     function submit(data) {
         if (!data) return
         let isMatching = true;
@@ -56,7 +61,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
         <form onSubmit={handleSubmit(submit)}>
             <div className="space-y-10 p-4 rounded-md">
                 <div className="space-y-4">
-                    <h1 className="capitalize text-blue-900 font-bold text-xl">personal information</h1>
+                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>personal information</h1>
                     <PersonalInformationForm
                         watch={watch}
                         errors={errors}
@@ -73,7 +78,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
                 </div>
 
                 <div className="space-y-4">
-                    <h1 className="capitalize text-blue-900 font-bold text-xl">professional credentials</h1>
+                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>professional credentials</h1>
                     <ProfessionalCredentialsForm
                         watch={watch}
                         errors={errors}
@@ -84,7 +89,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
                 </div>
 
                 <div className="space-y-4">
-                    <h1 className="capitalize text-blue-900 font-bold text-xl">Social Media and Contact Links</h1>
+                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>Social Media and Contact Links</h1>
                     <div className="space-y-2">
                         <SocialMedia link={{ url: socialMedia?.facebook ?? "", name: 'Facebook', img: '/images/facebook.png' }}
                             watch={watch("facebook")}

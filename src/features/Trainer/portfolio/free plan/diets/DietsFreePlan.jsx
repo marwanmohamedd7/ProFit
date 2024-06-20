@@ -4,36 +4,49 @@ import { useNavigate } from "react-router-dom"
 import DietsFreePlanTable from "./DietsFreePlanTable"
 import { useDietProvider } from "../../../../../context/DietProvider"
 import { useGetFreeDietPlans } from "./useGetFreeDietPlans"
-// import Spinner from "../../../../../ui/Spinner"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
+import styles from "../../../../../styles/styles"
+import { useDarkMode } from "../../../../../context/DarkModeProvider"
+import SearchInput from "../../../../../ui/SearchInput"
+import { useSearch } from "../../../../../hooks/useSearch"
 
 function DietsFreePlan() {
+    const colors = styles();
     const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     const { dispatch } = useDietProvider();
-    const { getDietFreePlans, isLoading, count } = useGetFreeDietPlans()
-    // if (isLoading) return <div className="flex items-center justify-center h-[40dvh]"><Spinner /></div>
+    const { getDietFreePlans, allDietFreePlans, isLoading, count } = useGetFreeDietPlans();
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allDietFreePlans, ["planName", "plantype", "daysCount"]);
+    const dataCount = searchKeyword ? 1 : count
+    const dataReady = searchKeyword ? searchedItems : getDietFreePlans;
     return (
         <>
-            <div className="p-4 rounded-lg border w-full space-y-4">
-                {isLoading ? <div className="flex items-center justify-center h-[40dvh] text-blue-900"><SpinnerMini size="text-2xl"/></div> :
+            <div className={`pb-4 rounded-lg border w-full ${isDarkMode ? `${colors.text_white} ${colors.border_gray_700}` : colors.text_gray_900}`}>
+                {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-2xl" /></div> :
                     <>
-                        <div className="flex justify-between items-end">
+                        <div className="space-y-4 p-4">
                             <div className="flex flex-col gap-0.5">
-                                <h2 className="font-bold text-blue-900 text-xl capitalize">free plans</h2>
-                                <p className="text-blue-900 text-sm capitalize">Boost Marketing and Engage more Trainees</p>
+                                <h2 className="font-bold text-xl capitalize">free plans</h2>
+                                <p className={`text-sm capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>Boost Marketing and Engage more Trainees</p>
                             </div>
-                            <Button type="primary" onClick={() => {
-                                navigate("diets")
-                                dispatch({ type: "diet/startFreeDietPlan" })
-                            }
-                            }>
-                                <p className="capitalize flex justify-center items-center gap-1">
-                                    <span>create new free plan</span>
-                                    <span className="text-lg"><HiPlusSm /></span>
-                                </p>
-                            </Button>
+                            <div className="flex items-center justify-between gap-2">
+                                <SearchInput
+                                    placeholder="Search Free Diet Plan..."
+                                    setSearchKeyword={setSearchKeyword}
+                                />
+                                <Button type="primary" onClick={() => {
+                                    navigate("diets")
+                                    dispatch({ type: "diet/startFreeDietPlan" })
+                                }
+                                }>
+                                    <p className="capitalize flex justify-center items-center gap-1">
+                                        <span>create new free plan</span>
+                                        <span className="text-lg"><HiPlusSm /></span>
+                                    </p>
+                                </Button>
+                            </div>
                         </div>
-                        <DietsFreePlanTable diets={getDietFreePlans} count={count} />
+                        <DietsFreePlanTable diets={dataReady} count={dataCount} />
                     </>
                 }
             </div>

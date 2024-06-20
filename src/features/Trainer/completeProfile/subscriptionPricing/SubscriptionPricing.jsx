@@ -9,8 +9,8 @@ import ProfilePackagesTable from "../../packages/ProfilePackagesTable"
 import { useGetPackages } from "../../packages/useGetPackages"
 
 function SubscriptionPricing() {
-    const navigate = useNavigate()
-    const { packages = [], isLoading } = useGetPackages()
+    const navigate = useNavigate();
+    const { packages, count, isLoading } = useGetPackages();
     if (isLoading) return <Spinner />
     return (
         <>
@@ -30,19 +30,19 @@ function SubscriptionPricing() {
                             <AddPackage />
                         </Modal.Window>
                     </Modal>
-                    <ProfilePackagesTable packages={packages} />
+                    <ProfilePackagesTable packages={packages} count={count} />
                 </div>
                 <div className="flex justify-between items-center">
                     <Button type="secondary" onClick={(e) => {
                         e.preventDefault()
                         navigate("/complete-profile/professional-credentials", { replace: true })
                     }} disabled={isLoading}>back</Button>
-                    <Button onClick={(e) => {
+                    <Button customeStyle={`${!packages.length && "grayscale opacity-50"}`} onClick={(e) => {
                         e.preventDefault()
                         navigate("/complete-profile/submission-and-review", { replace: true })
-                    }} disabled={isLoading}>
+                    }} disabled={isLoading || !packages.length}>
                         {isLoading ? <SpinnerMini /> :
-                            <p className="flex justify-center font-bold tracking-wide items-center gap-2">
+                            <p className={`flex justify-center font-bold tracking-wide items-center gap-2`}>
                                 <span>next page</span>
                                 <span className="text-xl"><HiArrowLongRight /></span>
                             </p>

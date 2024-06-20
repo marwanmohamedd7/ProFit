@@ -36,7 +36,8 @@ export function useGetAppMeals() {
 
   return {
     isLoading,
-    appMeals: appMeals?.data,
+    appMeals: appMeals?.data ?? [],
     count: appMeals?.totalDocuments,
+    allAppMeals: appMeals?.allData ?? [],
   };
 }

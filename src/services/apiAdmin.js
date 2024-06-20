@@ -125,9 +125,10 @@ export async function pendingTrainerAcceptOrReject(userData, id, token) {
   return data;
 }
 
-export async function getSystemUsers(token, page, QueryParams) {
+export async function getSystemUsers(token, page, QueryParams, filter) {
+    const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/SystemUsers/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&users=${QueryParams}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/SystemUsers/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&users=${QueryParams}${filterValue}`,
     {
       method: "GET",
       headers: {
@@ -140,9 +141,10 @@ export async function getSystemUsers(token, page, QueryParams) {
   return data;
 }
 
-export async function getAdminFinancials(token, page) {
+export async function getAdminFinancials(token, page, filter) {
+  const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    `https://profit-qjbo.onrender.com/api/v1/admin/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {

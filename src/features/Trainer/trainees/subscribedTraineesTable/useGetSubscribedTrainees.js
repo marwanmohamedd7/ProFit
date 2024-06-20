@@ -9,10 +9,13 @@ export function useGetSubscribedTrainees() {
   const [searchParams] = useSearchParams();
   const { userId, userToken } = useCurrentUser();
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const filter = searchParams.get("trainees")
+    ? searchParams.get("trainees")
+    : "";
 
   const { data: getSubscribedTrainees, isLoading } = useQuery({
-    queryKey: ["subscribedTrainees", userId, page], // unique string to identify the request
-    queryFn: () => apiGetSubscribedTrainees(userToken, page),
+    queryKey: ["subscribedTrainees", userId, page, filter], // unique string to identify the request
+    queryFn: () => apiGetSubscribedTrainees(userToken, page, filter),
     retry: false,
   });
 
@@ -22,23 +25,24 @@ export function useGetSubscribedTrainees() {
   );
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["subscribedTrainees", userId, page + 1], // unique string to identify the request
-      queryFn: () => apiGetSubscribedTrainees(userToken, page + 1),
+      queryKey: ["subscribedTrainees", userId, page + 1, filter], // unique string to identify the request
+      queryFn: () => apiGetSubscribedTrainees(userToken, page + 1, filter),
       retry: false,
     });
   }
 
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["subscribedTrainees", userId, page - 1], // unique string to identify the request
-      queryFn: () => apiGetSubscribedTrainees(userToken, page - 1),
+      queryKey: ["subscribedTrainees", userId, page - 1, filter], // unique string to identify the request
+      queryFn: () => apiGetSubscribedTrainees(userToken, page - 1, filter),
       retry: false,
     });
   }
 
   return {
     isLoading,
-    getSubscribedTrainees: getSubscribedTrainees?.data,
+    getSubscribedTrainees: getSubscribedTrainees?.data ?? [],
     count: getSubscribedTrainees?.totalDocuments,
+    allSubscribedTrainees: getSubscribedTrainees?.allData ?? [],
   };
 }

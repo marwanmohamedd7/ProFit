@@ -18,7 +18,7 @@ function BreadCrumbs() {
     };
     return (
         <nav className="flex text-sm mb-4 rounded-lg justify-start items-center max-w-auto" aria-label="Breadcrumb">
-            <ol className={`inline-flex px-5 py-2.5 font-light ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700} ${colors.text_gray_200}` : `${colors.bg_gray_50} ${colors.text_gray_500}`} rounded-md border items-center space-x-1 md:space-x-2 rtl:space-x-reverse`}>
+            <ol className={`inline-flex px-5 py-2.5 font-light ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700} ${colors.text_gray_200}` : `${colors.bg_white} ${colors.text_gray_500}`} rounded-md border items-center space-x-1 md:space-x-2 rtl:space-x-reverse`}>
                 {pathName.length === 1 && pathName[0] === "dashboard" ?
                     (
                         <li className="inline-flex items-center">

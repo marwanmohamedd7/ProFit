@@ -6,10 +6,14 @@ import CreateMeal from "./CreateMeal";
 import Spinner from "../../../../ui/Spinner";
 import BreadCrumbs from "../../../../ui/BreadCrumbs";
 import BackBtn from "../../../../ui/BackBtn";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function MealOperationsPage() {
-    const { userRole } = useCurrentUser()
-    const { dispatch } = useMealProvider()
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+    const { userRole } = useCurrentUser();
+    const { dispatch } = useMealProvider();
     const { getMeal, isLoading } = useGetSpecificMeal();
 
     useEffect(function () {
@@ -27,7 +31,7 @@ function MealOperationsPage() {
                     <div className="flex justify-between items-center mb-4">
                         <p className="flex items-center justify-center gap-4">
                             <BackBtn path={`/${userRole}/nutrition?nutrition=meals_templates`} />
-                            <span className="font-bold text-blue-900 text-2xl capitalize">{getMeal?._id ? "update meal" : "Create New Meal"}</span>
+                            <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{getMeal?._id ? "update meal" : "Create New Meal"}</span>
                         </p>
                     </div>
                 </div>

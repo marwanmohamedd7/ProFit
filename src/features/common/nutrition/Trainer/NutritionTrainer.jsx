@@ -4,8 +4,10 @@ import CompoundTabs from "../../../../ui/CompoundTabs"
 import NutritionFood from "./trainerFoods/NutritionFoods";
 import NutritionMeals from "./trainerMeals/NutritionMeals";
 import NutritionDiets from "./trainerDiets/NutritionDiets";
+import TableOperationsContainer from "../../../../ui/TableOperationsContainer";
 
 function NutritionTrainer() {
+
     return (
         <>
             <CompoundTabs tabsFeild="nutrition" defaultTab="foods">
@@ -35,15 +37,20 @@ function NutritionTrainer() {
                         </p>
                     </CompoundTabs.Open>
                 </CompoundTabs.Tabs>
-                <CompoundTabs.Window opens="foods">
-                    <NutritionFood />
-                </CompoundTabs.Window>
-                <CompoundTabs.Window opens="meals_templates">
-                    <NutritionMeals />
-                </CompoundTabs.Window>
-                <CompoundTabs.Window opens="diet_templates">
-                    <NutritionDiets dietType="my plan"/>
-                </CompoundTabs.Window>
+
+                <div className="my-4">
+                    <TableOperationsContainer>
+                        <CompoundTabs.Window opens="foods">
+                            <NutritionFood />
+                        </CompoundTabs.Window>
+                        <CompoundTabs.Window opens="meals_templates">
+                            <NutritionMeals />
+                        </CompoundTabs.Window>
+                        <CompoundTabs.Window opens="diet_templates">
+                            <NutritionDiets dietType="my plan" />
+                        </CompoundTabs.Window>
+                    </TableOperationsContainer>
+                </div>
             </CompoundTabs>
         </>
     )

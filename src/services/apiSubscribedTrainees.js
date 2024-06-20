@@ -1,8 +1,9 @@
 import { PAGE_SIZE_DEFAULT } from "../utils/constants";
 
-export async function getSubscribedTrainees(token, page) {
+export async function getSubscribedTrainees(token, page, filter) {
+  const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/getActiveTrainees?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/getActiveTrainees?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {
@@ -15,9 +16,10 @@ export async function getSubscribedTrainees(token, page) {
   return data;
 }
 
-export async function getSubscribedTraineesAssessment(token, page) {
+export async function getSubscribedTraineesAssessment(token, page, filter) {
+  const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/getTraineesDietAssessment?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/getTraineesDietAssessment?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {

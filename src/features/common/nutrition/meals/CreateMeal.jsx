@@ -13,8 +13,12 @@ import MealMacros from "./MealMacros";
 import MealDetailsForm from "./MealDetailsForm";
 import MealIngredients from "./MealIngredients";
 import { useEffect } from "react";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function CreateMeal({ mealToUpdate = {} }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const { _id } = mealToUpdate
     const isExist = Boolean(_id)
     const navigate = useNavigate()
@@ -62,14 +66,14 @@ function CreateMeal({ mealToUpdate = {} }) {
     return (
         <>
             <div className="space-y-4">
-                <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-4">
-                    <div className="text-blue-700 font-bold capitalize">
+                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                    <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal details
                     </div>
                     <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
                 </div>
-                <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-4">
-                    <div className="text-blue-700 font-bold capitalize">
+                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                    <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal macros
                     </div>
                     <MealMacros
@@ -79,8 +83,8 @@ function CreateMeal({ mealToUpdate = {} }) {
                         calories={mealMacros?.calories ?? 0}
                     />
                 </div>
-                <div className=" bg-white p-4 rounded-md border flex flex-col justify-center gap-4">
-                    <div className="text-blue-700 font-bold capitalize">
+                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                    <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal ingredients
                     </div>
                     <MealIngredients foods={foods} isExist={isExist} section="meal" />

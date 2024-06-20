@@ -23,8 +23,8 @@ function TraineeDietPlansTableRow({ diet }) {
                 />
             </td>
 
-            <td className="p-4 whitespace-nowrap text-sm text-left font-medium">
-                <div className='flex items-center gap-1'>
+            <td className="p-4 whitespace-nowrap text-sm text-center font-medium">
+                <div className='flex items-center justify-center gap-1'>
                     {
                         status === "Current" ?
                             <Button onClick={() => navigate(`/trainer/trainees/trainee/diets/${_id}`)} type="icon-update">

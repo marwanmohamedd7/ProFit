@@ -38,7 +38,8 @@ export function useGetDietTemplates() {
 
   return {
     isLoading,
-    getDietTemplates: getDietTemplates?.data,
+    getDietTemplates: getDietTemplates?.data ?? [],
     count: getDietTemplates?.totalDocuments,
+    allTrainerDietTemplates: getDietTemplates?.allData ?? [],
   };
 }

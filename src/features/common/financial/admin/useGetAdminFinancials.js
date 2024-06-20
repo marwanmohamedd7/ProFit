@@ -9,10 +9,13 @@ export function useGetAdminFinancials() {
   const [searchParams] = useSearchParams();
   const { userId, userToken } = useCurrentUser();
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const filter = searchParams.get("transcations")
+    ? searchParams.get("transcations")
+    : "";
 
   const { data: getAdminFinancials, isLoading } = useQuery({
-    queryKey: ["adminFinancial", userId, page], // unique string to identify the request
-    queryFn: () => apiGetAdminFinancials(userToken, page),
+    queryKey: ["adminFinancial", userId, page,filter], // unique string to identify the request
+    queryFn: () => apiGetAdminFinancials(userToken, page,filter),
     retry: false,
   });
 
@@ -22,16 +25,16 @@ export function useGetAdminFinancials() {
   );
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["adminFinancial", userId, page + 1], // unique string to identify the request
-      queryFn: () => apiGetAdminFinancials(userToken, page + 1),
+      queryKey: ["adminFinancial", userId, page + 1,filter], // unique string to identify the request
+      queryFn: () => apiGetAdminFinancials(userToken, page + 1,filter),
       retry: false,
     });
   }
 
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["adminFinancial", userId, page - 1], // unique string to identify the request
-      queryFn: () => apiGetAdminFinancials(userToken, page - 1),
+      queryKey: ["adminFinancial", userId, page - 1,filter], // unique string to identify the request
+      queryFn: () => apiGetAdminFinancials(userToken, page - 1,filter),
       retry: false,
     });
   }
@@ -40,5 +43,6 @@ export function useGetAdminFinancials() {
     isLoading,
     getAdminFinancials: getAdminFinancials?.data ?? [],
     count: getAdminFinancials?.totalDocuments,
+    allAdminFinancials: getAdminFinancials?.allData ?? [],
   };
 }

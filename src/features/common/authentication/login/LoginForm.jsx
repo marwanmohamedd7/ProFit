@@ -7,8 +7,14 @@ import Button from "../../../../ui/Button";
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 import { useLocalStorageState } from "../../../../hooks/useLocalStorageState";
+import styles from "../../../../styles/styles";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+// import styles from "../../../../styles/styles";
+// import { useDarkMode } from "../../../../context/DarkModeProvider";
 
 function LoginForm() {
+  const colors = styles()
+  const { isDarkMode } = useDarkMode();
   const { login, isLogginIn } = useLogin()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,13 +67,13 @@ function LoginForm() {
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              className="text-blue-700 focus:ring-blue-600 border-gray-300 rounded"
+              className={`${isDarkMode ? `accent-slate-700 border-gray-700` :`accent-gray-700 focus:ring-gray-600 border-gray-300`} rounded`}
             />
-            <label htmlFor="remember-me" className="text-blue-900">
+            <label htmlFor="remember-me" className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600}`}>
               Remember me
             </label>
           </div>
-          <p className="capitalize text-blue-700 cursor-pointer font-semibold">forget password?</p>
+          <p className={`capitalize ${isDarkMode ? colors.text_gray_200 : colors.text_gray_600} cursor-pointer font-semibold`}>forget password?</p>
         </div>
       </div>
 
@@ -84,7 +90,7 @@ function LoginForm() {
         </Button>
         <p className="text-gray-400 text-xs tracking-wide flex items-center gap-1">
           <span className="capitalize">don't have an account yet?</span>
-          <NavLink to="/signup" replace={true} className="text-blue-600 font-bold">Sign up</NavLink>
+          <NavLink to="/signup" replace={true} className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600} font-bold`}>Sign up</NavLink>
         </p>
       </div>
 

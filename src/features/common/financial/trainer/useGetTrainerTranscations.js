@@ -9,10 +9,12 @@ export function useGetTrainerTranscations() {
   const [searchParams] = useSearchParams();
   const { userId, userToken } = useCurrentUser();
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
-
+  const filter = searchParams.get("subscriptions")
+    ? searchParams.get("subscriptions")
+    : "";
   const { data: getTrainerTranscations, isLoading } = useQuery({
-    queryKey: ["trainerTranscations", userId, page], // unique string to identify the request
-    queryFn: () => apiGetTrainerTranscations(userToken, page),
+    queryKey: ["trainerTranscations", userId, page,filter], // unique string to identify the request
+    queryFn: () => apiGetTrainerTranscations(userToken, page,filter),
     retry: false,
   });
 
@@ -22,16 +24,16 @@ export function useGetTrainerTranscations() {
   );
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["trainerTranscations", userId, page + 1], // unique string to identify the request
-      queryFn: () => apiGetTrainerTranscations(userToken, page + 1),
+      queryKey: ["trainerTranscations", userId, page + 1,filter], // unique string to identify the request
+      queryFn: () => apiGetTrainerTranscations(userToken, page + 1,filter),
       retry: false,
     });
   }
 
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["trainerTranscations", userId, page - 1], // unique string to identify the request
-      queryFn: () => apiGetTrainerTranscations(userToken, page - 1),
+      queryKey: ["trainerTranscations", userId, page - 1,filter], // unique string to identify the request
+      queryFn: () => apiGetTrainerTranscations(userToken, page - 1,filter),
       retry: false,
     });
   }
@@ -40,5 +42,6 @@ export function useGetTrainerTranscations() {
     isLoading,
     getTrainerTranscations: getTrainerTranscations?.data ?? [],
     count: getTrainerTranscations?.totalDocuments,
+    allTrainerTranscations: getTrainerTranscations?.allData ?? [],
   };
 }

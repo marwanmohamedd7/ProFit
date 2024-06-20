@@ -5,11 +5,15 @@ import Modal from "../../../../ui/Modal"
 import Button from "../../../../ui/Button"
 import NutritionFoods from "../Trainer/trainerFoods/NutritionFoods"
 import NutritionAppFood from "../Admin/ProFitFoods/NutritionAppFood"
+import { useDarkMode } from "../../../../context/DarkModeProvider"
+import styles from "../../../../styles/styles"
 
 function MealIngredients({ foods = [], isExist = false, section = "food" }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const { userRole } = useCurrentUser();
     return (
-        <div className="bg-gray-100 border-2 border-dotted border-blue-700 p-4 rounded-md w-full">
+        <div className={`${isDarkMode ? `${colors.bg_slate_900}` : colors.bg_white} border-2 border-dotted border-blue-700 p-4 rounded-md w-full`}>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-2">
                 {
                     foods.length > 0 && foods.map((food) =>
@@ -32,7 +36,9 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                             </Button>
                         </Modal.Open>
                         <Modal.Window opens={`choose-meal-recipes`}>
-                            {userRole === "admin" ? <NutritionAppFood section={section} /> : <NutritionFoods section={section} />}
+                            <div className="py-4">
+                                {userRole === "admin" ? <NutritionAppFood section={section} /> : <NutritionFoods section={section} />}
+                            </div>
                         </Modal.Window>
                     </Modal>
                 </div>

@@ -1,7 +1,11 @@
-import CircularProgress from "../../../../../ui/CircularProgress"
+import DietMacrosCard from "./DietMacrosCard";
+import styles from "../../../../../styles/styles";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
 
 function DietMacros({ dietMacros, targetDietMacros }) {
-    const targetMacros = Boolean(Object.keys(targetDietMacros).length);
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+    const isTargetMacrosExist = Boolean(Object.keys(targetDietMacros).length);
     const { proteins, fats, carbs, calories } = dietMacros;
 
     const getPercentage = (value, target) => {
@@ -9,43 +13,46 @@ function DietMacros({ dietMacros, targetDietMacros }) {
         return Math.round((value / target) * 100);
     };
 
-    const roundFats = getPercentage(fats, targetMacros ? targetDietMacros.fats : fats);
-    const roundCarbs = getPercentage(carbs, targetMacros ? targetDietMacros.carbs : carbs);
-    const roundCalories = getPercentage(calories, targetMacros ? targetDietMacros.calories : calories);
-    const roundProteins = getPercentage(proteins, targetMacros ? targetDietMacros.proteins : proteins);
-
+    const roundFats = getPercentage(fats, isTargetMacrosExist ? targetDietMacros.fats : fats);
+    const roundCarbs = getPercentage(carbs, isTargetMacrosExist ? targetDietMacros.carbs : carbs);
+    const roundCalories = getPercentage(calories, isTargetMacrosExist ? targetDietMacros.calories : calories);
+    const roundProteins = getPercentage(proteins, isTargetMacrosExist ? targetDietMacros.proteins : proteins);
     return (
-        <div className="bg-white border space-y-4 p-4 rounded-md">
-            <h3 className="text-blue-800 font-bold">Diet Macros</h3>
+        <div className={`border space-y-4 p-4 rounded-md ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.bg_white}`}>
+            <h3 className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>Diet Macros</h3>
             <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-4">
-                <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">
-                    <div className="flex flex-col justify-center gap-2 text-gray-700">
-                        <h3 className="text-lg font-normal tracking-wide">Calories</h3>
-                        <p className="text-xl"><strong>{Math.round(calories)} Kcal/</strong>{Math.round(targetMacros ? targetDietMacros.calories : calories)} Kcal</p>
-                    </div>
-                    <CircularProgress variations="percentage" percentage={roundCalories} />
-                </div>
-                <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">
-                    <div className="flex flex-col justify-center gap-2 text-gray-700">
-                        <h3 className="text-lg font-normal tracking-wide">Proteins</h3>
-                        <p className="text-xl"><strong>{Math.round(proteins)}g/</strong>{Math.round(targetMacros ? targetDietMacros.proteins : proteins)}g</p>
-                    </div>
-                    <CircularProgress variations="percentage" percentage={roundProteins} />
-                </div>
-                <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">
-                    <div className="flex flex-col justify-center gap-2 text-gray-700">
-                        <h3 className="text-lg font-normal tracking-wide">Carbs</h3>
-                        <p className="text-xl"><strong>{Math.round(carbs)}g/</strong>{Math.round(targetMacros ? targetDietMacros.carbs : carbs)}g</p>
-                    </div>
-                    <CircularProgress variations="percentage" percentage={roundCarbs} />
-                </div>
-                <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">
-                    <div className="flex flex-col justify-center gap-2 text-gray-700">
-                        <h3 className="text-lg font-normal tracking-wide">Fats</h3>
-                        <p className="text-xl"><strong>{Math.round(fats)}g/</strong>{Math.round(targetMacros ? targetDietMacros.fats : fats)}g</p>
-                    </div>
-                    <CircularProgress variations="percentage" percentage={roundFats} />
-                </div>
+                <DietMacrosCard
+                    roundedValue={roundCalories}
+                    macroValue={calories}
+                    isTargetMacrosExist={isTargetMacrosExist}
+                    targetDietMacros={targetDietMacros}
+                    macroName="calories"
+                    measuringUnit="Kcal"
+                />
+                <DietMacrosCard
+                    roundedValue={roundProteins}
+                    macroValue={proteins}
+                    isTargetMacrosExist={isTargetMacrosExist}
+                    targetDietMacros={targetDietMacros}
+                    macroName="proteins"
+                    measuringUnit="g"
+                />
+                <DietMacrosCard
+                    roundedValue={roundCarbs}
+                    macroValue={carbs}
+                    isTargetMacrosExist={isTargetMacrosExist}
+                    targetDietMacros={targetDietMacros}
+                    macroName="carbs"
+                    measuringUnit="g"
+                />
+                <DietMacrosCard
+                    roundedValue={roundFats}
+                    macroValue={fats}
+                    isTargetMacrosExist={isTargetMacrosExist}
+                    targetDietMacros={targetDietMacros}
+                    macroName="fats"
+                    measuringUnit="g"
+                />
             </div>
         </div>
     );

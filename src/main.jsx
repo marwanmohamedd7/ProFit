@@ -10,6 +10,7 @@ import { MealProvider } from './context/MealProvider.jsx'
 import { DietProvider } from './context/DietProvider.jsx'
 import { MainNavProvider } from './context/MainNavProvider.jsx'
 import { DarkModeProvider } from './context/DarkModeProvider.jsx'
+import 'preline'; // Import Preline
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

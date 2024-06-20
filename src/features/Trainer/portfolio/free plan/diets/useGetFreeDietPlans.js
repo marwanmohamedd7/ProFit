@@ -37,7 +37,8 @@ export function useGetFreeDietPlans() {
   }
   return {
     isLoading,
-    getDietFreePlans: getDietFreePlans?.data,
+    getDietFreePlans: getDietFreePlans?.data ?? [],
     count: getDietFreePlans?.totalDocuments,
+    allDietFreePlans: getDietFreePlans?.allData ?? [],
   };
 }

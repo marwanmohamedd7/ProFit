@@ -5,7 +5,6 @@ function PendingTrainerPackagesTable({ packages = [] }) {
     return (
         <Table>
             <Table.Header>
-                <tr className="capitalize text-left">
                     <th className="px-6 py-2">package name</th>
                     <th className="px-6 py-2">type</th>
                     <th className="px-6 py-2">price</th>
@@ -13,7 +12,6 @@ function PendingTrainerPackagesTable({ packages = [] }) {
                     <th className="px-6 py-2">subscribers limit</th>
                     <th className="px-6 py-2">active</th>
                     <th className="px-6 py-2">actions</th>
-                </tr>
             </Table.Header>
             <Table.Body data={packages} render={(packagee) => <PendingTrainerPackageRow packagee={packagee} key={packagee._id} />} />
             <Table.Footer />

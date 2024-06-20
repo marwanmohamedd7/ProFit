@@ -8,6 +8,50 @@ body {
   padding: 0;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar--hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar--hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* If you want to customize the scrollbar instead */
+/* Uncomment the following lines to customize the scrollbar */
+
+/* width */
+/* 
+.scrollbar--hide::-webkit-scrollbar {
+  width: 8px;
+}
+*/
+
+/* Track */
+/* 
+.scrollbar--hide::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+*/
+
+/* Handle */
+/* 
+.scrollbar--hide::-webkit-scrollbar-thumb {
+  background: #888;
+}
+*/
+
+/* Handle on hover */
+/* 
+.scrollbar--hide::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+*/
+
 /*
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -2,14 +2,18 @@
 
 import { useDarkMode } from "../context/DarkModeProvider";
 
-const ActiveButton = ({ isActive, setIsActive, disabled = false }) => {
+const ActiveButton = ({ isActive, setIsActive, disabled = false, setDisableActiveToggle }) => {
     const { isDarkMode } = useDarkMode();
+    function handleToggle() {
+        setDisableActiveToggle(true)
+        setIsActive((value) => !value)
+    }
     return (
         <button
             type="button"
             disabled={disabled}
-            onClick={() => setIsActive((value) => !value)}
-            className={`${isActive ? 'bg-blue-700' : isDarkMode?`bg-gray-700`: 'bg-gray-200'
+            onClick={handleToggle}
+            className={`${isActive ? 'bg-blue-700' : isDarkMode ? `bg-gray-700` : 'bg-gray-200'
                 } relative inline-flex items-center py-1 rounded-full w-11 transition-colors focus:outline-none`}
         >
             <span

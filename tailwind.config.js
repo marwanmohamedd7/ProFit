@@ -2,7 +2,11 @@
 import colors from "tailwindcss/colors";
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/preline/preline.js",
+  ],
   theme: {
     fontFamily: {
       cairo: "Cairo",
@@ -22,5 +26,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("preline/plugin")],
 };

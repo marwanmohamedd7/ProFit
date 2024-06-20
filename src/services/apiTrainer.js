@@ -32,9 +32,10 @@ export async function updateUserAbout(userData, token) {
   return data;
 }
 
-export async function getTrainerTranscations(token, page) {
+export async function getTrainerTranscations(token, page, filter) {
+  const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/trainers/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    `https://profit-qjbo.onrender.com/api/v1/trainers/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {

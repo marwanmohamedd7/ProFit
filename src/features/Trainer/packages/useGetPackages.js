@@ -38,5 +38,6 @@ export function useGetPackages() {
     isLoading,
     packages: packages?.data ?? [],
     count: packages?.totalDocuments,
+    allPackages: packages?.allData ?? [],
   };
 }

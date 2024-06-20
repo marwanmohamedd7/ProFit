@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react"
-import { HiPencil, HiTrash } from "react-icons/hi2"
-import { useDeletePackage } from "./useDeletePackage"
-import { useUpdatePackage } from "./useUpdatePackage"
-import AddPackage from "./AddPackage"
-import Modal from "../../../ui/Modal"
-import Table from "../../../ui/Table"
-import Button from "../../../ui/Button"
-import ActiveButton from "../../../ui/ActiveButton"
-import ConfirmDelete from "../../../ui/ConfirmDelete"
+import { useEffect, useState, useCallback } from "react";
+import { HiPencil, HiTrash } from "react-icons/hi2";
+import { useUpdatePackage } from "./useUpdatePackage";
+import { useDeletePackage } from "./useDeletePackage";
+import AddPackage from "./AddPackage";
+import Modal from "../../../ui/Modal";
+import Table from "../../../ui/Table";
+import Button from "../../../ui/Button";
+import ActiveButton from "../../../ui/ActiveButton";
+import ConfirmDelete from "../../../ui/ConfirmDelete";
 
-function ProfilePackagesTableRow({ packagee, activePackages }) {
-    const { _id, packageName, packageType, price, duration, subscribersLimit, active } = packagee
-    const { deletePackage, isDeleting } = useDeletePackage()
-    const { updatePackage, isUpdating } = useUpdatePackage()
-    const [isActive, setIsActive] = useState(active ?? true)
-    function onDelete(id) {
-        if (!id) return
-        deletePackage(id)
-    }
-    useEffect(function () {
-        if (active === isActive) return
-        updatePackage({ id: _id, updatedPackageData: { active: isActive } })
-    }, [activePackages, isActive, active, _id, setIsActive, updatePackage])
+function ProfilePackagesTableRow({ packageData, activePackages, isLoading, disableActiveToggle, setDisableActiveToggle }) {
+    const { _id, packageName, packageType, price, duration, subscribersLimit, active } = packageData;
+    const { deletePackage, isDeleting } = useDeletePackage();
+    const { updatePackage, isUpdating } = useUpdatePackage();
+    const [isActive, setIsActive] = useState(active ?? true);
+    const onDelete = useCallback((id) => {
+        if (!id) return;
+        deletePackage(id);
+    }, [deletePackage]);
+    
+    useEffect(() => {
+        if (active !== isActive) {
+            updatePackage({ id: _id, updatedPackageData: { active: isActive } }, {
+                onSuccess: () => setDisableActiveToggle(false)
+            });
+        }
+    }, [isActive, active, _id, updatePackage, setDisableActiveToggle, activePackages]);
+
+    const isButtonDisabled = disableActiveToggle || isLoading || isUpdating;
+
     return (
         <Table.Row>
             <td className="p-4 whitespace-nowrap">{packageName}</td>
@@ -29,24 +36,30 @@ function ProfilePackagesTableRow({ packagee, activePackages }) {
             <td className="p-4 whitespace-nowrap">{price} EGP</td>
             <td className="p-4 whitespace-nowrap">{duration} Months</td>
             <td className="p-4 whitespace-nowrap">{subscribersLimit}</td>
-            <td className="p-4 whitespace-nowrap">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={(activePackages >= 3 && !active) ?? isUpdating} />}</td>
+            <td className="p-4 whitespace-nowrap">
+                <ActiveButton
+                    isActive={isActive}
+                    setDisableActiveToggle={setDisableActiveToggle}
+                    setIsActive={setIsActive}
+                    disabled={isButtonDisabled || (activePackages >= 4 && !active)}
+                />
+            </td>
             <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
-                <div className='flex items-center justify-start gap-2'>
+                <div className="flex items-center justify-start gap-2">
                     <Modal>
                         <Modal.Open opens="update-package">
-                            <Button type="icon-update">
+                            <Button type="icon-update" disabled={isButtonDisabled}>
                                 <HiPencil />
                             </Button>
                         </Modal.Open>
-                        <Modal.Window opens="update-package" >
-                            <AddPackage packageToUpdate={packagee} />
+                        <Modal.Window opens="update-package">
+                            <AddPackage packageToUpdate={packageData} isLoading={isButtonDisabled} />
                         </Modal.Window>
                     </Modal>
 
                     <Modal>
                         <Modal.Open opens="delete-food">
-                            <Button type="icon-delete"
-                            >
+                            <Button type="icon-delete" disabled={isButtonDisabled}>
                                 <HiTrash />
                             </Button>
                         </Modal.Open>
@@ -56,8 +69,8 @@ function ProfilePackagesTableRow({ packagee, activePackages }) {
                     </Modal>
                 </div>
             </td>
-        </Table.Row >
-    )
+        </Table.Row>
+    );
 }
 
-export default ProfilePackagesTableRow
+export default ProfilePackagesTableRow;

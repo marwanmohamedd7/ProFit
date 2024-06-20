@@ -9,10 +9,14 @@ export function useGetSubscribedTraineesAssessment() {
   const [searchParams] = useSearchParams();
   const { userId, userToken } = useCurrentUser();
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const filter = searchParams.get("trainees")
+    ? searchParams.get("trainees")
+    : "";
 
   const { data: getSubscribedTraineesAssessment, isLoading } = useQuery({
-    queryKey: ["subscribedTraineesAssessment", userId, page], // unique string to identify the request
-    queryFn: () => apiGetSubscribedTraineesAssessment(userToken, page),
+    queryKey: ["subscribedTraineesAssessment", userId, page],
+    filter, // unique string to identify the request
+    queryFn: () => apiGetSubscribedTraineesAssessment(userToken, page, filter),
     retry: false,
   });
 
@@ -22,23 +26,28 @@ export function useGetSubscribedTraineesAssessment() {
   );
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["subscribedTraineesAssessment", userId, page + 1], // unique string to identify the request
-      queryFn: () => apiGetSubscribedTraineesAssessment(userToken, page + 1),
+      queryKey: ["subscribedTraineesAssessment", userId, page + 1, filter], // unique string to identify the request
+      queryFn: () =>
+        apiGetSubscribedTraineesAssessment(userToken, page + 1, filter),
       retry: false,
     });
   }
 
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["subscribedTraineesAssessment", userId, page - 1], // unique string to identify the request
-      queryFn: () => apiGetSubscribedTraineesAssessment(userToken, page - 1),
+      queryKey: ["subscribedTraineesAssessment", userId, page - 1, filter], // unique string to identify the request
+      queryFn: () =>
+        apiGetSubscribedTraineesAssessment(userToken, page - 1, filter),
       retry: false,
     });
   }
 
   return {
     isLoading,
-    getSubscribedTraineesAssessment: getSubscribedTraineesAssessment?.data,
+    getSubscribedTraineesAssessment:
+      getSubscribedTraineesAssessment?.data ?? [],
     count: getSubscribedTraineesAssessment?.totalDocuments,
+    allSubscribedTraineesAssessment:
+      getSubscribedTraineesAssessment?.allData ?? [],
   };
 }

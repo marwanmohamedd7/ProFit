@@ -1,13 +1,18 @@
-import { useGetTransformations } from "./useGetTransformations"
-import Empty from "../../../../../ui/Empty"
-import Modal from "../../../../../ui/Modal"
-import Button from "../../../../../ui/Button"
-import AddTransformation from "./AddTransformation"
-import TransformationCard from "./TransformationCard"
-import SpinnerMini from "../../../../../ui/SpinnerMini"
+import { useGetTransformations } from "./useGetTransformations";
+import Empty from "../../../../../ui/Empty";
+import Modal from "../../../../../ui/Modal";
+import Button from "../../../../../ui/Button";
+import AddTransformation from "./AddTransformation";
+import TransformationCard from "./TransformationCard";
+import SpinnerMini from "../../../../../ui/SpinnerMini";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
+import styles from "../../../../../styles/styles";
 
 function Transformations() {
-    const { transformations = [], isLoading } = useGetTransformations()
+    const { transformations = [], isLoading } = useGetTransformations();
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
+
     return (
         <div className="space-y-4 my-4">
             {
@@ -15,8 +20,8 @@ function Transformations() {
                     <div className="lg:w-1/2 w-full">
                         {
                             isLoading ?
-                                <div className="bg-gray-100 text-center p-1 rounded-md shadow-sm flex justify-center items-center">
-                                    <p className="font-bold text-xl text-blue-900 my-4"><SpinnerMini /></p>
+                                <div className={`text-center p-1 rounded-md shadow-sm flex justify-center items-center ${isDarkMode ? colors.bg_slate_800 : colors.bg_gray_100}`}>
+                                    <p className={`font-bold text-xl my-4 ${isDarkMode ? colors.text_white : colors.text_blue_900}`}><SpinnerMini /></p>
                                 </div>
                                 : <Empty resource={"transformations"} />
                         }
@@ -35,14 +40,14 @@ function Transformations() {
                         disabled={isLoading}
                         onClick={(e) => e.preventDefault()} type="secondary">
                         <p className="flex justify-center items-center gap-2 capitalize">
-                            <span>add new tranformation</span>
+                            <span>add new transformation</span>
                             <span className="text-lg">&#43;</span>
                         </p>
                     </Button>
                 </Modal.Open>
             </Modal>
         </div>
-    )
+    );
 }
 
-export default Transformations
+export default Transformations;

@@ -2,16 +2,27 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import Button from "../../../../ui/Button"
 import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function SocialMedia({ link, register, disabled, watch }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     const [showLink, setShowLink] = useState("")
+    const textStyle = isDarkMode ? colors.text_white : colors.text_gray_900;
     return (
-        <div className="flex flex-wrap items-center justify-between gap-4 border-gray-300 rounded py-2">
-            <span className="text-xl basis-40 flex items-center gap-4 text-gray-600" >
-                <img className="w-8" src={link.img} alt={`${link.name}-icon`} />
-                <NavLink to={link.url} target={`${link.url ? "_blank" : ""}`} className="text-sm text-gray-900">
-                    {link.url ? (link.url).startsWith("https://") ? (link.url).replace("https://", "") : link.url : link.name}
+        <div className={`flex flex-wrap items-center justify-between gap-4 rounded py-2 ${textStyle}`}>
+            <span className="text-xl basis-40 flex items-center gap-4" >
+                <img className="w-10" src={link.img} alt={`${link.name}-icon`} />
+                <NavLink to={link.url} target={`${link.url ? "_blank" : ""}`} className="text-sm">
+                    <p className="flex flex-col justify-center gap-1">
+                        <span className={`font-semibold ${isDarkMode ? colors.text_white : colors.text_gray_700}`}>{link.name}</span>
+                        {link.url && <span className={`text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{(link.url).startsWith("https://") ? (link.url).replace("https://", "") : link.url}</span>}
+                    </p>
                 </NavLink>
+                {/* <NavLink to={link.url} target={`${link.url ? "_blank" : ""}`} className="text-sm">
+                    {link.url ? (link.url).startsWith("https://") ? (link.url).replace("https://", "") : link.url : link.name}
+                </NavLink> */}
             </span>
             <div className="flex items-center gap-2 capitalize">
                 {showLink === link.name &&

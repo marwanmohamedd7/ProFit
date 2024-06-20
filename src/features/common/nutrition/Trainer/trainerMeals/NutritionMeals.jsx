@@ -5,14 +5,17 @@ import Button from "../../../../../ui/Button"
 import Spinner from "../../../../../ui/Spinner"
 import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
-import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
+import { useSearch } from "../../../../../hooks/useSearch"
 
 function NutritionMeals({ section = "meal", onCloseModal }) {
-    const navigate = useNavigate()
-    const { trainerMeals, count, isLoading } = useGetTrainerMeals();
-    if (isLoading) return <div className="flex items-center justify-center h-[50dvh]"><Spinner /></div>
+    const navigate = useNavigate();
+    const { trainerMeals, allTrainerMeals, count, isLoading } = useGetTrainerMeals();
+
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allTrainerMeals, ["mealname", "mealtype", ["mealmacros", "calories"], ["mealmacros", "carbs"], ["mealmacros", "fats"], ["mealmacros", "proteins"]]);
+    const dataCount = searchKeyword ? 1 : count
+    const dataReady = searchKeyword ? searchedItems : trainerMeals;
     return (
-        <div>
+        <div className="space-y-4">
             <NutritionOperations
                 filterTabs={{
                     filterField: "meal",
@@ -22,8 +25,9 @@ function NutritionMeals({ section = "meal", onCloseModal }) {
                         { label: "proFIT meals templates", value: "profitMeals" },
                     ]
                 }}
-                filterForm={<NutritionFoodFilterForm />}
+                // filterForm={<NutritionFoodFilterForm />}
                 search="Search Meal Name..."
+                setSearchKeyword={setSearchKeyword}
             >
                 {
                     section === "meal" &&
@@ -35,7 +39,12 @@ function NutritionMeals({ section = "meal", onCloseModal }) {
                     </Button>
                 }
             </NutritionOperations>
-            <NutritionMealsTable meals={trainerMeals} section={section} count={count} onCloseModal={onCloseModal} />
+            {
+                isLoading ?
+                    <Spinner />
+                    :
+                    <NutritionMealsTable meals={dataReady} count={dataCount} section={section} onCloseModal={onCloseModal} />
+            }
         </div>
     )
 }

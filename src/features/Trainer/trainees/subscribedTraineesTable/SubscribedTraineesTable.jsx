@@ -1,23 +1,39 @@
+import { useSorting } from "../../../../hooks/useSorting";
 import Empty from "../../../../ui/Empty"
 import Pagination from "../../../../ui/Pagination"
+import SortTableColumnsHeader from "../../../../ui/SortTableColumnsHeader";
 import Table from "../../../../ui/Table"
 import SubscribedTraineesTableRow from "./SubscribedTraineesTableRow"
 
+const columns = [
+    { key: ["traineeId", "firstName"], label: "trainee details" },
+    { key: "startDate", label: "subscription date" },
+    { key: ["package", "packageName"], label: "package name" },
+    { key: "duration", label: "duration" },
+    { key: "endDate", label: "remaining days" },
+    { key: "status", label: "status" },
+];
+
 function SubscribedTraineesTable({ trainees, count, empty = "" }) {
-    if (!count) return <Empty resource={empty ? empty : "trainees"} />
+    const { sortedData, sortConfig, setSortConfig } = useSorting(trainees);
+    if (!count || !trainees.length) return <Empty resource={empty ? empty : "trainees"} />
     return (
         <Table>
             <Table.Header>
-                <th className="pl-4 py-2 whitespace-nowrap">trainee details</th>
-                {/* <th className="px-4 py-2 whitespace-nowrap">Last Assessment</th> */}
-                <th className="px-10 py-2 whitespace-nowrap">subscription date</th>
-                <th className="px-10 py-2 whitespace-nowrap">package name</th>
-                <th className="px-10 py-2 whitespace-nowrap">duration</th>
-                <th className="px-10 py-2 whitespace-nowrap">remaining days</th>
-                <th className="px-10 py-2 whitespace-nowrap">status</th>
+                {columns.map(({ key, label }) => (
+                    <th className={`${label === "trainee details" ? `px-4` : `px-8`} py-2 whitespace-nowrap`} key={label}>
+                        <SortTableColumnsHeader
+                            sortingKey={key}
+                            columnName={label}
+                            sortConfig={sortConfig}
+                            setSortConfig={setSortConfig}
+                        />
+                    </th>
+                ))}
                 <th className="px-10 py-2 whitespace-nowrap">actions</th>
+                {/* <th className="px-4 py-2 whitespace-nowrap">Last Assessment</th> */}
             </Table.Header>
-            <Table.Body data={trainees} render={(trainee) => <SubscribedTraineesTableRow trainee={trainee} key={trainee._id} />} />
+            <Table.Body data={sortedData} render={(trainee) => <SubscribedTraineesTableRow trainee={trainee} key={trainee._id} />} />
             <Table.Footer>
                 <Pagination count={count} />
             </Table.Footer>

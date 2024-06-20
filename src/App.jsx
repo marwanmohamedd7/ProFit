@@ -36,6 +36,8 @@ import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
 import DashboardTrainer from "./pagesTrainer/DashboardTrainer";
 import DietPlanCustomized from './pagesTrainer/DietPlanCustomized';
 import PageNotFound from './ui/PageNotFound';
+import "preline/preline";
+import { SocketProvider } from './context/SocketProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -84,11 +86,15 @@ function App() {
 
           <Route path="trainer" element={
             <ProtectedRoute role="trainer">
-              <Trainer />
+              <SocketProvider>
+                <Trainer />
+              </SocketProvider>
             </ProtectedRoute>
           }>
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<DashboardTrainer />} />
+            <Route path="dashboard/trainee/:id" element={<TraineeInfo />} />
+            <Route path="dashboard/diets/:id" element={<DietPlanCustomized />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="portfolio/diets" element={<DietPlanFree />} />
             <Route path="portfolio/diets/:id" element={<DietPlanFree />} />

@@ -3,8 +3,11 @@ import { useDeleteQualification } from "./useDeleteQualification"
 import Modal from "../../../../../ui/Modal";
 import ConfirmDelete from "../../../../../ui/ConfirmDelete";
 import ImageViewer from "../../../../../ui/ImageViewer";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
 
 function QualificationAndAchievementPhoto({ img }) {
+    const { isDarkMode } = useDarkMode();
+    const iconStyle = isDarkMode ? `text-red-400 hover:bg-red-800 bg-red-900` : `text-red-50 hover:bg-red-600 bg-red-700`
     const { _id, photo } = img ?? {}
     const { deleteQualification, isLoading: isDeletingQualification } = useDeleteQualification()
     function handleDeleteImage() {
@@ -16,7 +19,7 @@ function QualificationAndAchievementPhoto({ img }) {
             <Modal>
                 <Modal.Open opens="delete-food">
                     <button onClick={handleDeleteImage}
-                        className="cursor-pointer absolute right-[-7.5%] top-[-7.5%] text-blue-50 p-1 rounded-full bg-red-700"
+                        className={`cursor-pointer absolute right-[-12.5%] top-[-10%] p-1.5 rounded-full ${iconStyle}`}
                     >
                         <HiTrash />
                     </button>

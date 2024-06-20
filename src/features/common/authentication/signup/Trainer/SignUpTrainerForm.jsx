@@ -7,9 +7,13 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import Button from "../../../../../ui/Button";
 import SpinnerMini from "../../../../../ui/SpinnerMini";
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel";
+import { useDarkMode } from "../../../../../context/DarkModeProvider";
+import styles from "../../../../../styles/styles";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignUpTrainerForm() {
+    const colors = styles()
+    const { isDarkMode } = useDarkMode();
     const { signup, isSignningUp } = useSignUp()
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -135,9 +139,9 @@ function SignUpTrainerForm() {
                             id="remember-me"
                             name="remember-me"
                             type="checkbox"
-                            className="text-blue-700 focus:ring-blue-600 border-gray-300 rounded"
+                            className={`${isDarkMode ? `accent-slate-700 border-gray-700` : `accent-gray-700 focus:ring-gray-600 border-gray-300`} rounded`}
                         />
-                        <label htmlFor="remember-me" className="text-blue-900">
+                        <label htmlFor="remember-me" className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600}`}>
                             Remember me
                         </label>
                     </div>
@@ -155,7 +159,7 @@ function SignUpTrainerForm() {
                 </Button>
                 <p className="text-gray-400 text-xs tracking-wide flex items-center flex-wrap gap-1">
                     <span className="capitalize">already have an account?</span>
-                    <NavLink to="/login" className="text-blue-600 font-bold">Login</NavLink>
+                    <NavLink to="/login" className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600} font-bold`}>Login</NavLink>
                 </p>
             </div>
         </form>

@@ -8,10 +8,14 @@ import InputFloatingLabel from "../../../../ui/InputFloatingLabel"
 import { useDietProvider } from "../../../../context/DietProvider";
 import FoodMacros from "./FoodMacros";
 import ImageViewer from "../../../../ui/ImageViewer";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function MealFood({ food, section, isExist = false }) {
     // 1- food.food: the default id that comes with the food object when we add a new one
     // 2- food.food._id: the food object id that comes from already existing meal in database (when updating)
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     let inadvisableFood = false;
     const { dispatch: dispatchMeal } = useMealProvider();
     const id = isExist ? food.food?._id ? food.food?._id : food.food : food.food;
@@ -73,8 +77,8 @@ function MealFood({ food, section, isExist = false }) {
     }
 
     return (
-        <div className={`px-4 py-2 rounded-md w-full border ${inadvisableFood ? "bg-red-100" : "bg-white"}`}>
-            <div className=" flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2 text-lg font-bold text-blue-700">
+        <div className={`px-4 py-2 rounded-md w-full border ${inadvisableFood ? "bg-red-100" : `${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_gray_50}`}`}>
+            <div className={`flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2 text-lg font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900}`}>
                 <div className="flex flex-col xl:items-center xl:flex-row xl:gap-3 gap-2 xl:mb-0 mb-1 xl:basis-72">
                     <div className="xl:h-24 xl:w-24 sm:w-44 sm:h-44 w-40 h-40 flex items-center justify-center">
                         <ImageViewer imageURL={foodImage}>
@@ -95,7 +99,7 @@ function MealFood({ food, section, isExist = false }) {
                         />
                         <Modal>
                             <Modal.Open opens="delete-food">
-                                <button className="bg-red-700 text-white xl:p-3 p-2.5 rounded-lg text-lg"><BiTrash /></button>
+                                <button className={`${isDarkMode ? `${colors.bg_red_800} ${colors.text_white} hover:${colors.bg_red_700}` : `${colors.bg_red_700} ${colors.text_white} hover:${colors.bg_red_600}`} transition-all duration-300 xl:p-3 p-2.5 rounded-lg text-lg`}><BiTrash /></button>
                             </Modal.Open>
                             <Modal.Window opens="delete-food">
                                 <ConfirmDelete onConfirm={handleDeleteFood} resourceName="food" />

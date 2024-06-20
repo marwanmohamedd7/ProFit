@@ -1,8 +1,9 @@
-import InputDropdown from "../../../../ui/InputDropdown"
+import { useSearchParams } from "react-router-dom";
+import InputDropdown from "../../../../ui/InputDropdown";
 
 const filterAttr = [
     {
-        label: 'Base Macro',
+        label: 'base Macro',
         options: [
             "mainProtein",
             "mainCarbs",
@@ -11,10 +12,9 @@ const filterAttr = [
             "subCarbs",
             "subFats",
         ]
-        // options: ["Select Food Base Macro"]
     },
     {
-        label: "Diet Type",
+        label: "diet Type",
         options: [
             "Vegetarian",
             "Vegan",
@@ -24,15 +24,13 @@ const filterAttr = [
             "Standard",
             "Other",
         ]
-        // options: ["select Food Diet Type"]
     },
     {
-        label: "Meal Type",
-        options: ["Breackfast", "Lunch", "Snack", "Dinner"]
-        // options: ["Select Food Meal Type"]
+        label: "meal type",
+        options: ["Breakfast", "Lunch", "Snack", "Dinner"]
     },
     {
-        label: "Category",
+        label: "category",
         options: [
             "Desserts",
             "Vegetables",
@@ -50,16 +48,40 @@ const filterAttr = [
             "Milk Product",
             "Sauces",
         ]
-        // options: ["Select Food Category"]
     },
-]
+];
 
-function NutritionFoodFilterForm() {
+function NutritionFoodFilterForm({ restTrigger }) {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    // Function to handle filter value changes
+    function handleEvent(filterType, value) {
+        const currentFilters = searchParams.get("filter") ? JSON.parse(searchParams.get("filter")) : {};
+
+        // Update the filter type with the selected value
+        if (value) {
+            currentFilters[filterType] = value;
+        } else {
+            delete currentFilters[filterType];
+        }
+
+        // Check if currentFilters is empty
+        if (Object.keys(currentFilters).length === 0) searchParams.delete("filter");
+        else searchParams.set("filter", JSON.stringify(currentFilters)); // Set the updated filters in the URL parameters
+        setSearchParams(searchParams);
+    }
+
     return (
         <div className="flex justify-center gap-2">
-            {filterAttr.map((item, index) => <InputDropdown key={index} item={item} />)}
+            {filterAttr.map((item, index) => (
+                <InputDropdown
+                    key={index}
+                    item={item}
+                    handleEvent={(value) => handleEvent(item.label.replace(" ", ""), value)}
+                />
+            ))}
         </div>
-    )
+    );
 }
 
-export default NutritionFoodFilterForm
+export default NutritionFoodFilterForm;

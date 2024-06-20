@@ -14,8 +14,12 @@ import ConfirmDelete from "../../../../ui/ConfirmDelete";
 import { useDietProvider } from "../../../../context/DietProvider";
 import ImageViewer from "../../../../ui/ImageViewer";
 import StatusLabel from "../../../../ui/StatusLabel";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function NutritionTableRow({ food, section, onCloseModal }) {
+    const colors = styles();
+    const { isDarkMode } = useDarkMode();
     // const { id: mealId } = useParams();
     let inadvisableFood = false;
     const { userRole } = useCurrentUser();
@@ -24,12 +28,12 @@ function NutritionTableRow({ food, section, onCloseModal }) {
     const { per: amount, diseaseCompatibility, foodAllergens, foodImage, foodname, category, macros, servingUnit } = food;
     const { dispatch: dispatchDiet, days: dietDays, plantype, disease: planDiseases, foodAllergens: planFoodAllergens } = useDietProvider();
 
-    if (planDiseases?.length && plantype === "Customized plan") planDiseases.map(disease => {
+    if (planDiseases?.length && typeof section !== "string" && plantype === "Customized plan") planDiseases.map(disease => {
         if (diseaseCompatibility?.includes(disease)) inadvisableFood = true;
         return disease;
     })
 
-    if (planFoodAllergens?.length && plantype === "Customized plan") planFoodAllergens.map(allergy => {
+    if (planFoodAllergens?.length && typeof section !== "string" && plantype === "Customized plan") planFoodAllergens.map(allergy => {
         if (foodAllergens?.includes(allergy)) inadvisableFood = true;
         return allergy;
     })
@@ -70,7 +74,7 @@ function NutritionTableRow({ food, section, onCloseModal }) {
 
     return (
         section === "food" ?
-            <Table.Row>
+            <Table.Row border={false}>
                 <td className="px-4 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                         <div className="flex-shrink-0 h-14 w-14">
@@ -89,7 +93,7 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                 <td className="p-4 whitespace-nowrap">{macros.fats + " g"}</td>
                 <td className="p-4 whitespace-nowrap">{macros.carbs + " g"}</td>
                 <td className="p-4 whitespace-nowrap">{macros.calories + " Kcal"}</td>
-                <td className="p-4 whitespace-nowrap"> <StatusLabel labelName={category} /></td>
+                <td className="p-4 whitespace-nowrap"><StatusLabel labelName={category} /></td>
                 <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
                     {
                         userRole === "admin" ?
@@ -120,12 +124,9 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                             :
                             food.admin ?
                                 <div className='flex items-center justify-start gap-2'>
-                                    <span
-                                        href="#"
-                                        className="text-blue-600 p-2 hover:text-blue-900 bg-blue-100 rounded-md"
-                                    >
+                                    <Button type="icon-update">
                                         <IoEyeOutline />
-                                    </span>
+                                    </Button>
                                 </div>
                                 :
                                 <div className='flex items-center justify-start gap-2'>
@@ -156,8 +157,8 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                 </td>
             </Table.Row>
             :
-            <Table.Row rowBgColor={`${inadvisableFood && "bg-red-100"}`}>
-                <td className={`px-4 py-2 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
+            <Table.Row rowBgColor={`${inadvisableFood && (isDarkMode ? `${colors.bg_red_900} bg-opacity-60` : `${colors.bg_red_100}`)}`}>
+                <td className={`px-4 py-2 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>
                     <div className="flex items-center gap-3">
                         <div className="flex-shrink-0 h-h-14 w-14">
                             <img className="h-14 w-14 rounded-md" src={food.foodImage} alt={food.foodname} />
@@ -168,15 +169,13 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                     </div>
                 </td>
                 {/* <td className="p-4 whitespace-nowrap">{food.servingUnit}</td> */}
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{amount + " / " + servingUnit.toLowerCase()}</td>
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.proteins + " g"}</td>
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.fats + " g"}</td>
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.carbs + " g"}</td>
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>{macros.calories + " Kcal"}</td>
-                <td className={`p-4 whitespace-nowrap ${inadvisableFood && "border border-red-100"}`}>
-                    <span className={`px-2 py-1 rounded-md text-xs font-semibold ${inadvisableFood ? "bg-red-300 text-red-700" : "bg-green-100 text-green-600"}`}>{category}</span>
-                </td>
-                <td className={`p-4 whitespace-nowrap text-center ${inadvisableFood && "border border-red-100"}`}>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>{amount + " / " + servingUnit.toLowerCase()}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>{macros.proteins + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>{macros.fats + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>{macros.carbs + " g"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>{macros.calories + " Kcal"}</td>
+                <td className={`p-4 whitespace-nowrap ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}><StatusLabel labelName={category} customStyle={inadvisableFood ? (isDarkMode ? `${colors.text_red_500} ${colors.bg_red_900} bg-opacity-50` : `${colors.text_red_500} ${colors.bg_red_200}`) : ""} /></td>
+                <td className={`p-4 whitespace-nowrap text-center ${inadvisableFood && (isDarkMode ? `border ${colors.border_red_900} border-opacity-5` : `border ${colors.border_red_100}`)}`}>
                     <Button onClick={handleAddFood} type="secondary" customeStyle="py-2">
                         <p className="flex items-center justify-center gap-2 capitalize">
                             <span>add</span>

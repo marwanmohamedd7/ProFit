@@ -6,14 +6,14 @@ function ImageViewer({ children, imageURL, imageStyle }) {
             {
                 typeof imageURL === "string" ?
                     <PhotoView src={imageURL}>
-                        <div style={{ display: 'inline-block' }}>
+                        <div className="cursor-pointer" style={{ display: 'inline-block' }}>
                             {children}
                         </div>
                     </PhotoView>
                     :
-                    imageURL.map((img, index) => (
+                    imageURL?.map((img, index) => (
                         <PhotoView key={index} src={img}>
-                            <div style={{ display: 'inline-block' }}>
+                            <div className="cursor-pointer" style={{ display: 'inline-block' }}>
                                 <img src={img} alt="img" className={imageStyle} />
                             </div>
                         </PhotoView>
