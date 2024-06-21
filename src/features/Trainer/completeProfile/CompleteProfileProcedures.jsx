@@ -37,7 +37,7 @@ function CompleteProfileProcedures({ page }) {
                 isDarkMode
                     ? {
                         backgroundImage:
-                            "linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.90) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(59, 130, 246, 0.8) 80.52%), url('/trainerBackground.jpeg')",
+                            "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.85) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(59, 130, 246, 0.8) 80.52%), url('/trainerBackground.jpeg')",
                         backgroundColor: "black",
                         backgroundPosition: "center",
                         backgroundSize: "cover",

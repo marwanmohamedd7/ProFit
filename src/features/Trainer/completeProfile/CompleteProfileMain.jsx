@@ -15,7 +15,7 @@ function CompleteProfileMain() {
     return (
         <main>
             <div className="grid grid-cols-[auto_1fr] h-dvh scrollbar--custom relative">
-                <button onClick={toggleDarkMode} className={`absolute top-4 right-8 p-2 text-2xl rounded-md cursor-pointer ${isDarkMode ? `${colors.bg_blue_900} bg-opacity-50 ${colors.text_blue_500}` : `${colors.bg_blue_100} ${colors.text_blue_600}`}`}>
+                <button onClick={toggleDarkMode} className={`absolute top-4 right-4 p-2 text-2xl rounded-md cursor-pointer ${isDarkMode ? `${colors.bg_blue_900} bg-opacity-50 ${colors.text_blue_500}` : `${colors.bg_blue_100} ${colors.text_blue_600}`}`}>
                     {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
                 </button>
                 {page === "personal-information" && (
