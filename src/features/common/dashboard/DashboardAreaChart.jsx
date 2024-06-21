@@ -34,7 +34,7 @@ function DashboardAreaChart({ areaChartData, areaChartDetails }) {
     const currentColors = isDarkMode ? colors.dark : colors.light;
 
     return (
-        <DashboardInfoCardLayout title={`${title}`} url={url} icon={icon} grid_cols="col-span-2">
+        <DashboardInfoCardLayout isEmpty={dataReady.length} title={`${title}`} url={url} icon={icon} grid_cols="col-span-2">
             <div className="flex justify-between gap-4 w-full">
                 <div className="rounded-md" style={{ width: '100%' }}>
                     <ResponsiveContainer width="100%" height={350}>

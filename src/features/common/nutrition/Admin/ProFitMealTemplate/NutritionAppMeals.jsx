@@ -5,7 +5,7 @@ import Button from "../../../../../ui/Button"
 import Spinner from "../../../../../ui/Spinner"
 import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
-import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
+// import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm"
 import { useSearch } from "../../../../../hooks/useSearch"
 
 function NutritionAppMeals({ section = "meal" }) {
@@ -18,7 +18,7 @@ function NutritionAppMeals({ section = "meal" }) {
     return (
         <div className="space-y-4">
             <NutritionOperations
-                filterForm={<NutritionFoodFilterForm />}
+                // filterForm={<NutritionFoodFilterForm />}
                 search="Search Meal Name..."
                 setSearchKeyword={setSearchKeyword}
             >

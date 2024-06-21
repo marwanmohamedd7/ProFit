@@ -1,5 +1,5 @@
 import { HiPlusSm } from "react-icons/hi";
-import { useGetAppFoods } from "../../foods/useGetAppFoods";
+import { useGetAppFoods } from "./useGetAppFoods";
 import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
 import CreateFood from "../../foods/CreateFood";

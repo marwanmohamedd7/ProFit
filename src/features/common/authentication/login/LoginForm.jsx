@@ -67,7 +67,7 @@ function LoginForm() {
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              className={`${isDarkMode ? `accent-slate-700 border-gray-700` :`accent-gray-700 focus:ring-gray-600 border-gray-300`} rounded`}
+              className={`${isDarkMode ? `accent-slate-700 border-gray-700` : `accent-gray-700 focus:ring-gray-600 border-gray-300`} rounded`}
             />
             <label htmlFor="remember-me" className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600}`}>
               Remember me
@@ -80,7 +80,7 @@ function LoginForm() {
       <div className="flex flex-col justify-center gap-4">
         <Button type="login">
           {isLogginIn ?
-            <SpinnerMini />
+            <SpinnerMini dark={false} />
             :
             <p className="flex justify-center items-center gap-2 font-bold">
               <span className="text-base">Login</span>

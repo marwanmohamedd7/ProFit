@@ -95,8 +95,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                     <div className="flex items-center gap-2">
                         <Button type="primary" onClick={handleSubmit(onSubmit)}>
                             <p className="capitalize">
-                                {dietType === "my plan" && <span>{isLoading ? <SpinnerMini /> : isExist ? "update diet template" : "save diet template"}</span>}
-                                {dietType === "free plan" && <span>{isLoading ? <SpinnerMini /> : isExist ? "update free diet plan" : "save free diet plan"}</span>}
+                                {dietType === "my plan" && <span>{isLoading ? <SpinnerMini dark={false} /> : isExist ? "update diet template" : "save diet template"}</span>}
+                                {dietType === "free plan" && <span>{isLoading ? <SpinnerMini dark={false} /> : isExist ? "update free diet plan" : "save free diet plan"}</span>}
                             </p>
                         </Button>
                         {
@@ -121,7 +121,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                         <BackBtn path={previousPath.split("/").slice(-1).join("") === "trainee" ? `${previousPath}/${dietToUpdate?.trainee?._id}` : previousPath} />
                         <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{sectionName}</span>
                     </div>
-                    <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_gray_50}`} rounded-md border p-4`}>
+                    <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_white}`} rounded-md border p-4`}>
                         {/* <BreadCrumbs /> */}
                         <div className="flex justify-between items-center gap-4">
                             <div className="flex items-start gap-3">
@@ -142,7 +142,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                             <div className="flex items-center gap-2">
                                 <Button type="primary" onClick={handleSubmit(onSubmit)}>
                                     <p className="capitalize">
-                                        {isLoading ? <SpinnerMini /> : dietToUpdate?.trainee?.dietAssessmentStatus === "Ready" ? "save customized diet plan" : "update customized diet plan"}
+                                        {isLoading ? <SpinnerMini dark={false} /> : dietToUpdate?.trainee?.dietAssessmentStatus === "Ready" ? "save customized diet plan" : "update customized diet plan"}
                                     </p>
                                 </Button>
                                 {

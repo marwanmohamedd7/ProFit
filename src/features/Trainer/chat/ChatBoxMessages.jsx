@@ -25,9 +25,9 @@ function ChatBoxMessages({ messages }) {
     useEffect(() => {
         scrollToBottom(); // Smooth scroll to bottom when messages update
     }, [messages]);
-    
+
     return (
-        <div className={`p-4 space-y-2 overflow-y-scroll max-h-[34.65rem] scrollbar--hide ${isDarkMode ? `${colors.bg_slate_800} bg-opacity-10` : `${colors.bg_gray_50}`}`}>
+        <div className={`p-4 space-y-2 overflow-y-scroll max-h-[34.65rem] scrollbar--custom ${isDarkMode ? `${colors.bg_slate_800} bg-opacity-10` : `${colors.bg_gray_50}`}`}>
             {messages.map((message, index) => {
                 const key = message?._id ? `${message._id}-${index}` : `${message?.conversationId}-${index}`;
                 return message.sender._id === userId

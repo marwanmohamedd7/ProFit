@@ -32,7 +32,7 @@ function Pagination({ count, pages }) {
       </td>
       <td colSpan="100%" className="text-xs p-3 font-semibold">
         <div className='flex justify-end cursor-pointer items-center'>
-          <button disabled={currentPage === 1} onClick={handlePrevPage} className={`cursor-pointer border p-2 rounded-l-md font-bold ${isDarkMode ? `hover:bg-gray-600 hover:text-gray-50 ${colors.border_gray_700} disabled:hover:border-gray-700` : `hover:bg-gray-200 hover:text-gray-600 disabled:hover:border-gray-200`} transition-all duration-300 disabled:hover:bg-transparent disabled:hover:cursor-not-allowed`}>
+          <button disabled={currentPage === 1} onClick={handlePrevPage} className={`cursor-pointer border p-2 rounded-l-md font-bold ${isDarkMode ? `hover:bg-gray-600 hover:text-gray-50 ${colors.border_gray_700} disabled:hover:border-gray-600` : `hover:bg-gray-200 hover:text-gray-600 disabled:hover:border-gray-200`} transition-all duration-300 disabled:hover:bg-transparent disabled:hover:cursor-not-allowed`}>
             <span className=""><HiMiniChevronLeft /></span>
             {/* <span>&lt;</span> */}
           </button>
@@ -41,7 +41,7 @@ function Pagination({ count, pages }) {
             <span>{`-`}</span>
             <span>{`${pageCount ? pageCount : 1}`}</span>
           </p>
-          <button disabled={currentPage === pageCount} onClick={handleNextPage} className={`cursor-pointer border p-2 rounded-r-md font-bold ${isDarkMode ? `hover:bg-gray-600 hover:text-gray-50 ${colors.border_gray_700} disabled:hover:border-gray-700` : `hover:bg-gray-200 hover:text-gray-600 disabled:hover:border-gray-200`} transition-all duration-300 disabled:hover:bg-transparent disabled:hover:cursor-not-allowed`}>
+          <button disabled={currentPage === pageCount} onClick={handleNextPage} className={`cursor-pointer border p-2 rounded-r-md font-bold ${isDarkMode ? `hover:bg-gray-600 hover:text-gray-50 ${colors.border_gray_700} disabled:hover:border-gray-600` : `hover:bg-gray-200 hover:text-gray-600 disabled:hover:border-gray-200`} transition-all duration-300 disabled:hover:bg-transparent disabled:hover:cursor-not-allowed`}>
             <span><HiMiniChevronRight /></span>
             {/* <span>&gt;</span> */}
           </button>

@@ -149,7 +149,7 @@ function SignUpTrainerForm() {
             </div>
             <div className="flex flex-col justify-center gap-4">
                 <Button disabled={isSignningUp} type="submit">
-                    {isSignningUp ? <SpinnerMini />
+                    {isSignningUp ? <SpinnerMini dark={false} />
                         :
                         <p className="flex justify-center items-center gap-2 font-bold">
                             <span className="text-base">let's create new account</span>

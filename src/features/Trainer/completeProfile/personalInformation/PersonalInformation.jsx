@@ -59,7 +59,7 @@ function PersonalInformation({ getPersonalInfo = {} }) {
 
     return (
         <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
-            <h1 className="text-blue-900 font-bold text-xl capitalize">personal information</h1>
+            <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold text-xl capitalize`}>personal information</h1>
             <PersonalInformationForm
                 watch={watch}
                 errors={errors}
@@ -74,7 +74,7 @@ function PersonalInformation({ getPersonalInfo = {} }) {
             />
 
             <div className="flex justify-end items-center">
-                <Button disabled={isLoadingSettingInfo}>{isLoadingSettingInfo && !isLoadingImg ? <SpinnerMini /> :
+                <Button disabled={isLoadingSettingInfo}>{isLoadingSettingInfo && !isLoadingImg ? <SpinnerMini dark={false} /> :
                     <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                         <span>next page</span>
                         <span className="text-xl"><HiArrowLongRight /></span>

@@ -2,8 +2,10 @@ import Button from "./Button";
 import { useRef, useState } from "react";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop } from "react-image-crop";
+import { useDarkMode } from "../context/DarkModeProvider";
 
 function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
+    const { isDarkMode } = useDarkMode();
     const ASPECT_RATIO = 1;
     const MIN_DIMENSION = minDimension;
     const imgRef = useRef(null)
@@ -69,11 +71,11 @@ function ImageCropper({ minDimension, onCropComplete, onCloseModal }) {
                     type="file"
                     accept="image/*"
                     onChange={onSelectFile}
-                    className="block text-sm text-blue-700 file:my-4 file:py-1 file:px-2 file:cursor-pointer
-                file:rounded-md file:border-0 file:mr-2 file:text-blue-50 file:bg-blue-700 hover:file:bg-blue-600"
+                    className={`block text-sm file:my-4 file:py-1 file:px-2 file:cursor-pointer transition-all duration-300 cursor-pointer
+                file:rounded-md file:border-0 file:mr-2 ${isDarkMode ? `text-gray-400 file:text-gray-50 file:bg-slate-700 hover:file:bg-slate-600` :`text-gray-500 file:text-gray-50 file:bg-gray-500 hover:file:bg-gray-400`}`}
                 />
             </label>
-            {error && <p className="text-red-400 text-xs">{error}</p>}
+            {error && <p className={`${isDarkMode ? "text-red-500" : "text-red-700"} text-xs`}>{error}</p>}
             {imgSrc &&
                 <div className="space-y-2">
                     <div className="flex flex-col items-center gap-2">

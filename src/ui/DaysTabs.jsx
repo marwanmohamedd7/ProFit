@@ -74,7 +74,7 @@ function DaysTabs({ children }) {
 
 function Tabs({ children }) {
     const { handleAddingDays, isDarkMode, colors } = useContext(DayContext);
-    const buttonStyle = `bg-transparent hover:${isDarkMode ? colors.bg_slate_700 : colors.bg_gray_200} p-3 transition-all duration-300 ${isDarkMode ? colors.text_white : colors.text_gray_600} border ${isDarkMode ? colors.border_gray_600 : colors.border_gray_600} rounded-md`;
+    const buttonStyle = `hover:${isDarkMode ? colors.bg_slate_700 : colors.bg_gray_50} p-3.5 transition-all duration-300 ${isDarkMode ? colors.text_white : colors.text_gray_600} border ${isDarkMode ? colors.border_gray_700 : colors.border_gray_400} rounded-md`;
 
     return (
         <div className="flex items-center">
@@ -82,7 +82,7 @@ function Tabs({ children }) {
                 {children}
             </div>
             <div className="flex gap-1 ml-2">
-                <button onClick={handleAddingDays} className={buttonStyle}>
+                <button onClick={handleAddingDays} className={`${isDarkMode ? colors.bg_slate_800 : colors.bg_white} ${buttonStyle}`}>
                     <span><BiPlus /></span>
                 </button>
             </div>

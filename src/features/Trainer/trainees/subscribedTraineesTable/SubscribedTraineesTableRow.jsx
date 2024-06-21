@@ -52,10 +52,10 @@ function SubscribedTraineesTableRow({ trainee }) {
                     </div>
                 </div>
             </td>
-            <td className="px-8 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
-            <td className="px-8 py-4 whitespace-nowrap">{packageTrainee?.packageName || "N/A"}</td>
-            <td className="px-8 py-4 whitespace-nowrap">{duration} months</td>
-            <td className="px-7 py-2 whitespace-nowrap capitalize">
+            <td className="px-9 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
+            <td className="px-9 py-4 whitespace-nowrap">{packageTrainee?.packageName || "N/A"}</td>
+            <td className="px-9 py-4 whitespace-nowrap">{duration} months</td>
+            <td className="px-8 py-2 whitespace-nowrap capitalize">
                 <div className="flex items-center gap-2">
                     {status === "Active" ? (
                         <>
@@ -70,8 +70,8 @@ function SubscribedTraineesTableRow({ trainee }) {
                     )}
                 </div>
             </td>
-            <td className="px-8 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
-            <td className="px-8 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <td className="px-9 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
+            <td className="px-9 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
                     <button
                         disabled={(dietAssessmentStatus === "Ready" || dietAssessmentStatus === "Working") ? false : true}

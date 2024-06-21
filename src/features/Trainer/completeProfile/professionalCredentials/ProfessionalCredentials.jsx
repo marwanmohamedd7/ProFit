@@ -8,10 +8,14 @@ import Button from "../../../../ui/Button";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 import ProfessionalCredentialsForm from "./ProfessionalCredentialsForm";
 import { useForm } from "react-hook-form";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 
 function ProfessionalCredentials({ getProfessionalCred = {} }) {
-    const navigate = useNavigate()
+    const colors = styles();
+    const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     const { setProfessionalCred, isLoading: isLoadingSettingCred } = useSetProfileCredentials()
     const { _id, socialMedia, ...values } = getProfessionalCred || {};
     const isExist = Boolean(_id)
@@ -31,10 +35,10 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
             // 2- Convert the "specialization" array into a sorted string 
             newData.specializations = newData.specializations.map(item => item.value).sort().join(",")
             oldData.specializations = oldData.specializations.map(item => item.value).sort().join(",")
-            
+
             oldData.yearsOfExperience = String(oldData.yearsOfExperience);
             newData.yearsOfExperience = String(newData.yearsOfExperience);
-           
+
             // 3- compare data with the server's one and make changes
             newData = Object.values(newData).sort()
             oldData = Object.values(oldData).sort()
@@ -65,7 +69,7 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
             <div className="space-y-6">
                 {/* Professional Credentials */}
                 <section className="container flex flex-col gap-6">
-                    <h1 className="text-blue-900 font-bold text-xl capitalize">Professional Credentials</h1>
+                    <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold text-xl capitalize`}>Professional Credentials</h1>
                     <ProfessionalCredentialsForm
                         watch={watch}
                         errors={errors}
@@ -77,19 +81,20 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
 
                 {/* Qualifications and Achievements */}
                 <section className="container space-y-4">
-                    <h2 className="text-xl text-blue-900 font-bold">Qualifications and Achievements*</h2>
+                    <h2 className={`text-xl ${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold`}>Qualifications and Achievements*</h2>
                     <QualificationAndAchievement />
                 </section>
 
+
                 {/* Clients Transformation Photos */}
                 <section className="container space-y-4">
-                    <h2 className="text-xl text-blue-900 font-bold">Clients Transformation Photos <span className="font-medium text-lg">(optional)</span></h2>
+                    <h2 className={`text-xl ${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold`}>Clients Transformation Photos <span className="font-medium text-lg">(optional)</span></h2>
                     <Transformations />
                 </section>
 
                 {/* Social Media and Contact Links */}
                 <section className="container space-y-4">
-                    <h2 className="text-xl text-blue-900 font-bold">Social Media and Contact Links</h2>
+                    <h2 className={`text-xl ${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold`}>Social Media and Contact Links</h2>
                     <div className="space-y-2">
                         <SocialMedia link={{ url: socialMedia?.facebook ?? "", name: 'Facebook', img: '/images/facebook.png' }}
                             watch={watch("facebook")}
@@ -115,7 +120,7 @@ function ProfessionalCredentials({ getProfessionalCred = {} }) {
                     e.preventDefault()
                     navigate("/complete-profile/personal-information", { replace: true })
                 }}>back</Button>
-                <Button disabled={isLoading}>{isLoading ? <SpinnerMini /> :
+                <Button disabled={isLoading}>{isLoading ? <SpinnerMini dark={false} /> :
                     <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                         <span>next page</span>
                         <span className="text-xl"><HiArrowLongRight /></span>

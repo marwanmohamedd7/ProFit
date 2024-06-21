@@ -21,7 +21,7 @@ function SystemTrainersTable({ users, count }) {
         <Table>
             <Table.Header>
                 {columns.map(({ key, label }) => (
-                    <th className="px-4 py-2 whitespace-nowrap" key={label}>
+                    <th className={`${label === "trainer details" ? "px-4" : "px-10"} py-2 whitespace-nowrap`} key={label}>
                         <SortTableColumnsHeader
                             sortingKey={key}
                             columnName={label}
@@ -30,7 +30,7 @@ function SystemTrainersTable({ users, count }) {
                         />
                     </th>
                 ))}
-                <th className="px-4 py-2 whitespace-nowrap">actions</th>
+                <th className="px-10 py-2 whitespace-nowrap">actions</th>
             </Table.Header>
             <Table.Body data={sortedData} render={(trainer) => <SystemTrainersTableRow trainer={trainer} key={trainer.id} />} />
             <Table.Footer>

@@ -11,13 +11,15 @@ import { formatDate, formatTime } from "../../../../utils/helpers";
 import { useDarkMode } from "../../../../context/DarkModeProvider";
 import styles from "../../../../styles/styles";
 import Button from "../../../../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function SystemTrainersTableRow({ trainer }) {
+    const navigate = useNavigate();
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     // const { acceptPendingTrainer, isAccepting } = usePendingTrainerAccept();
     // const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
-    const { firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, activeSubscribers, status, paidAmount } = trainer ?? {};
+    const { _id, firstName, lastName, email, phoneNumber, profilePhoto, Registration_Date, activeSubscribers, status, paidAmount } = trainer ?? {};
     return (
         <Table.Row>
             <td className="px-4 py-2 whitespace-nowrap mx-auto">
@@ -39,18 +41,18 @@ function SystemTrainersTableRow({ trainer }) {
                     </div>
                 </div>
             </td>
-            <td className="p-4 whitespace-nowrap">{activeSubscribers}</td>
-            <td className="p-4 whitespace-nowrap">{paidAmount}</td>
-            <td className="p-4 whitespace-nowrap">
+            <td className="px-10 py-4 whitespace-nowrap">{activeSubscribers}</td>
+            <td className="px-10 py-4 whitespace-nowrap">{paidAmount}</td>
+            <td className="px-10 py-4 whitespace-nowrap">
                 <p className="flex flex-col justify-center gap-0.5">
                     <strong>{formatDate(Registration_Date)}</strong>
                     <span>{formatTime(Registration_Date)}</span>
                 </p>
             </td>
-            <td className="p-4 whitespace-nowrap"><StatusLabel status={status} /></td>
-            <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
+            <td className="px-10 py-4 whitespace-nowrap"><StatusLabel status={status} /></td>
+            <td className="px-10 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
-                    <Button type="icon-update"
+                    <Button onClick={() => navigate(`/admin/system-users/trainer-profile/${_id}`)} type="icon-update"
                     >
                         <IoEyeOutline />
                     </Button>

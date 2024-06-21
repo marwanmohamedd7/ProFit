@@ -6,9 +6,9 @@ import { useDarkMode } from "../../../../../../context/DarkModeProvider";
 import styles from "../../../../../../styles/styles";
 
 function PendingTrainerClientsTransformation() {
-    const { getPendingTrainerClientsTransformation: transformations = [], isLoading } = useGetPendingTrainerClientsTransformation();
     const colors = styles();
     const { isDarkMode } = useDarkMode();
+    const { getPendingTrainerClientsTransformation: transformations, isLoading } = useGetPendingTrainerClientsTransformation();
 
     return (
         <section className={`space-y-4 p-4 rounded-md border ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_white}`}>

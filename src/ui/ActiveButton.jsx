@@ -2,10 +2,9 @@
 
 import { useDarkMode } from "../context/DarkModeProvider";
 
-const ActiveButton = ({ isActive, setIsActive, disabled = false, setDisableActiveToggle }) => {
+const ActiveButton = ({ isActive, setIsActive, disabled = false }) => {
     const { isDarkMode } = useDarkMode();
     function handleToggle() {
-        setDisableActiveToggle(true)
         setIsActive((value) => !value)
     }
     return (

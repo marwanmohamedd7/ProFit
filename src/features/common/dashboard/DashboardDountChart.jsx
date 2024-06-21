@@ -28,7 +28,7 @@ function DashboardDountChart({ dountChartData, dountChartDetails }) {
     const currentColors = isDarkMode ? colors.dark : colors.light;
 
     return (
-        <DashboardInfoCardLayout title={`${title}`} url={url} icon={icon}>
+        <DashboardInfoCardLayout isEmpty={total} title={`${title}`} url={url} icon={icon}>
             <div className="flex justify-between items-center gap-4">
                 <div className="rounded-md" style={{ width: '50%' }}>
                     <ResponsiveContainer width="100%" height={240}>

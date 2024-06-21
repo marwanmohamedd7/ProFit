@@ -9,7 +9,7 @@ import Button from "../../../ui/Button";
 import ActiveButton from "../../../ui/ActiveButton";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
 
-function ProfilePackagesTableRow({ packageData, activePackages, isLoading, disableActiveToggle, setDisableActiveToggle }) {
+function ProfilePackagesTableRow({ packageData, activePackages, isLoading }) {
     const { _id, packageName, packageType, price, duration, subscribersLimit, active } = packageData;
     const { deletePackage, isDeleting } = useDeletePackage();
     const { updatePackage, isUpdating } = useUpdatePackage();
@@ -18,16 +18,14 @@ function ProfilePackagesTableRow({ packageData, activePackages, isLoading, disab
         if (!id) return;
         deletePackage(id);
     }, [deletePackage]);
-    
+
     useEffect(() => {
         if (active !== isActive) {
-            updatePackage({ id: _id, updatedPackageData: { active: isActive } }, {
-                onSuccess: () => setDisableActiveToggle(false)
-            });
+            updatePackage({ id: _id, updatedPackageData: { active: isActive } });
         }
-    }, [isActive, active, _id, updatePackage, setDisableActiveToggle, activePackages]);
+    }, [isActive, active, _id, updatePackage, activePackages]);
 
-    const isButtonDisabled = disableActiveToggle || isLoading || isUpdating;
+    const isButtonDisabled = isLoading || isUpdating;
 
     return (
         <Table.Row>
@@ -39,7 +37,6 @@ function ProfilePackagesTableRow({ packageData, activePackages, isLoading, disab
             <td className="p-4 whitespace-nowrap">
                 <ActiveButton
                     isActive={isActive}
-                    setDisableActiveToggle={setDisableActiveToggle}
                     setIsActive={setIsActive}
                     disabled={isButtonDisabled || (activePackages >= 4 && !active)}
                 />

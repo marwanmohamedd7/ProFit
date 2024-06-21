@@ -2,9 +2,13 @@ import Spinner from "./Spinner"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../features/common/authentication/useUser"
+import { useDarkMode } from "../context/DarkModeProvider";
+import styles from "../styles/styles";
 
 function ProtectedRoute({ children, role }) {
-    const navigate = useNavigate()
+    const colors = styles();
+    const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
 
     // 1. Load the authenticated user
     // isAuthenticated: returns the role of the authenticated user (which user is logged in)
@@ -27,7 +31,7 @@ function ProtectedRoute({ children, role }) {
     }, [isAuthenticated, isLoading, status, role, navigate])
 
     // 3. While loading, show a spinner
-    if (isLoading) return <div className="h-dvh flex justify-center items-center">
+    if (isLoading) return <div className={`h-dvh flex justify-center items-center ${isDarkMode ? colors.bg_slate_900 : colors.bg_white}`}>
         <Spinner />
     </div>
 

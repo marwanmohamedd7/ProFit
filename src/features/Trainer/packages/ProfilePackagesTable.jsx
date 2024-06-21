@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Empty from "../../../ui/Empty"
 import Pagination from "../../../ui/Pagination"
 import Table from "../../../ui/Table"
@@ -17,7 +16,6 @@ const columns = [
 
 function ProfilePackagesTable({ packages, count, isLoading }) {
     const { sortedData, sortConfig, setSortConfig } = useSorting(packages);
-    const [disableActiveToggle, setDisableActiveToggle] = useState(false);
     if (!count || !packages.length) return <Empty resource={"packages"} />
     const activePackages = packages.reduce((acc, cur) => cur.active ? acc + 1 : acc, 0)
     return (
@@ -36,7 +34,7 @@ function ProfilePackagesTable({ packages, count, isLoading }) {
                 <th className="px-4 py-2">active</th>
                 <th className="px-4 py-2">actions</th>
             </Table.Header>
-            <Table.Body data={sortedData} render={(packageData) => <ProfilePackagesTableRow packageData={packageData} activePackages={activePackages} isLoading={isLoading} key={packageData._id} disableActiveToggle={disableActiveToggle} setDisableActiveToggle={setDisableActiveToggle} />} />
+            <Table.Body data={sortedData} render={(packageData) => <ProfilePackagesTableRow packageData={packageData} activePackages={activePackages} isLoading={isLoading} key={packageData._id} />} />
             <Table.Footer>
                 <Pagination count={count} pages={PAGE_SIZE_DEFAULT} />
             </Table.Footer>

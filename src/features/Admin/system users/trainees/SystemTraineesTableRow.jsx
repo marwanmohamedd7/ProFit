@@ -33,22 +33,23 @@ function SystemTraineesTableRow({ trainee }) {
                     </div>
                 </div>
             </td>
-            <td className="p-4 whitespace-nowrap font-bold">
+            <td className="px-10 py-4 whitespace-nowrap font-bold">
                 <p className="flex items-center gap-1 capitalize">
                     <span className="text-sm font-bold">{assignedTrainer?.firstName}</span>
                     <span className="text-sm font-bold">{assignedTrainer?.lastName}</span>
-                </p></td>
-            <td className="p-4 whitespace-nowrap">{packageDetails?.packageName}</td>
-            {/* <td className="p-4 whitespace-nowrap">{trainee.startAt}</td>
-            <td className="p-4 whitespace-nowrap">{trainee.endAt}</td> */}
-            <td className="p-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
-            <td className="p-4 whitespace-nowrap">
+                </p>
+            </td>
+            <td className="px-10 py-4 whitespace-nowrap">{packageDetails?.packageName}</td>
+            <td className="px-10 py-4 whitespace-nowrap">
                 <p className="flex flex-col justify-center gap-0.5">
                     <strong>{formatDate(Registration_Date)}</strong>
                     <span>{formatTime(Registration_Date)}</span>
                 </p>
             </td>
-            <td className="p-4 whitespace-nowrap text-right text-sm font-medium">
+            {/* <td className="px-10 py-4 whitespace-nowrap">{trainee.startAt}</td>
+            <td className="px-10 py-4 whitespace-nowrap">{trainee.endAt}</td> */}
+            <td className="px-10 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
+            <td className="px-10 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
                     {/* <span
                         href="#"

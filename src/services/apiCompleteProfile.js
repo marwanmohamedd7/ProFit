@@ -202,8 +202,12 @@ export async function createPackage(packageData, token) {
       body: JSON.stringify(packageData),
     }
   );
-  if (!response.ok) throw new Error("Server error! Can't create package.");
-  const data = await response.json();
+  let data;
+  if (!response.ok) {
+    data = await response.json();
+    throw new Error(data.message);
+  }
+  data = await response.json();
   return data;
 }
 
@@ -234,8 +238,12 @@ export async function updatePackage(updatedPackageData, id, token) {
       body: JSON.stringify(updatedPackageData),
     }
   );
-  if (!response.ok) throw new Error("Server error! Can't update package.");
-  const data = await response.json();
+  let data;
+  if (!response.ok) {
+    data = await response.json();
+    throw new Error(data.message);
+  }
+  data = await response.json();
   return data;
 }
 

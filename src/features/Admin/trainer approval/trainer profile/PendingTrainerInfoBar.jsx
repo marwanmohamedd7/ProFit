@@ -1,13 +1,13 @@
 import { RxCross1 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { IoCheckmarkOutline } from "react-icons/io5";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
 import { usePendingTrainerReject } from "./usePendingTrainerReject";
 import { usePendingTrainerAccept } from "./usePendingTrainerAccept";
 import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar";
 import Button from "../../../../ui/Button";
-import SpinnerMini from "../../../../ui/SpinnerMini";
-import { useDarkMode } from "../../../../context/DarkModeProvider";
 import styles from "../../../../styles/styles";
+import SpinnerMini from "../../../../ui/SpinnerMini";
 
 function PendingTrainerInfoBar() {
     const colors = styles();
@@ -17,7 +17,6 @@ function PendingTrainerInfoBar() {
     const { rejectPendingTrainer, isRejecting } = usePendingTrainerReject();
     const { getPendingTrainerInfoBar, isLoading: isGettingInfo } = useGetPendingTrainerInfoBar();
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, status } = getPendingTrainerInfoBar ?? {};
-
     return (
         <div className={`flex flex-wrap gap-4 items-center justify-between p-4 rounded-md max-w-full border ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_white}`}>
             {
@@ -45,7 +44,7 @@ function PendingTrainerInfoBar() {
                             </div>
                         </div>
                         {
-                            status !== "accepted" &&
+                            (status !== "accepted" && status !== "rejected") &&
                             <div className="flex items-center justify-center gap-2 text-sm">
                                 <Button
                                     type="accept"

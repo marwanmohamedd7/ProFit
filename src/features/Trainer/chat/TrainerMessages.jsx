@@ -9,6 +9,7 @@ import styles from "../../../styles/styles";
 import { useGetChats } from "./useGetChats";
 import Spinner from "../../../ui/Spinner";
 import { useChatSocket } from "../../../context/SocketProvider";
+import { useSearch } from "../../../hooks/useSearch";
 // import { useSearch } from "../../../hooks/useSearch";
 
 // Initialize socket connection
@@ -18,7 +19,7 @@ function TrainerMessages() {
     const { isDarkMode } = useDarkMode();
     const [activeChat, setActiveChat] = useState(null);
     const { getTrainerChats, isLoading } = useGetChats();
-    // const { searchedItems, setSearchKeyword } = useSearch(getTrainerChats.map(({ participant }) => participant), ["firstName", "lastName", "email"]);
+    const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(getTrainerChats, [["participant", "firstName"], ["participant", "lastName"]]);
 
     useEffect(() => {
         if (activeChat) {
@@ -33,14 +34,13 @@ function TrainerMessages() {
         };
     }, [activeChat, socket]);
 
-    if (isLoading) return <Spinner />
-
+    if (isLoading) return <div className={`h-full ${isDarkMode ? colors.bg_slate_900 : colors.bg_white}`}><Spinner /></div>
     return (
         <div className="grid grid-cols-[auto_1fr] h-full">
             <div className={`flex flex-col gap-4 justify-start p-4 ${isDarkMode ? colors.bg_slate_900 : colors.bg_gray_50}`}>
                 <Title />
-                <SearchInput placeholder="search trainee name" width="w-full" backgroundColor={colors.text_white} />
-                <AllChats chats={getTrainerChats} activeChat={activeChat} setActiveChat={setActiveChat} />
+                <SearchInput placeholder="search trainee name" width="w-full" setSearchKeyword={setSearchKeyword} />
+                <AllChats chats={searchedItems} activeChat={activeChat} setActiveChat={setActiveChat} searchKeyword={searchKeyword} />
             </div>
             {
                 activeChat ? <ChatBox activeChat={activeChat} socket={socket} />

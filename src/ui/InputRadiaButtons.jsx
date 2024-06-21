@@ -15,7 +15,7 @@ function InputRadiaButtons({ disabled, register, values, errors }) {
                             {...register}
                             type="radio"
                             value={name.slice(0, 1).toUpperCase() + name.slice(1)}
-                            className={`form-radio disabled:cursor-not-allowed`}
+                            className={`form-radio disabled:cursor-not-allowed cursor-pointer`}
                         />
                         <span className="capitalize">{name}</span>
                     </label>

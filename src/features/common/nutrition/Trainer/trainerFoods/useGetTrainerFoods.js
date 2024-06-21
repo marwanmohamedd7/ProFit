@@ -16,6 +16,7 @@ export function useGetTrainerFoods() {
   const food = !searchParams.get("food")
     ? "allFoods"
     : searchParams.get("food");
+
   const { data: trainerFoods, isLoading } = useQuery({
     queryKey: ["trainerFoods", userId, page, food, searchKeyword, filterValues], // unique string to identify the request
     queryFn: () =>

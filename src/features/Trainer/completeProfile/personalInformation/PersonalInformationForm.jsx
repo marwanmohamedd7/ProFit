@@ -55,20 +55,18 @@ function PersonalInformationForm(
     }
 
     return (
-        <>
-            <div className="flex flex-col gap-6">
-                {/* <ImageViewer imageURL={profilePhoto}> */}
-                <Image
-                    minDimension={150}
-                    photoType="(profile)"
-                    dimensions="w-32 h-32"
-                    error={requiredImgMessage}
-                    onCropComplete={onCropComplete}
-                    isLoading={isLoading && isLoadingImg}
-                    src={profilePhoto || getValues()?.profilePhoto}
-                />
-                {/* </ImageViewer> */}
-            </div>
+        <div className="space-y-6">
+            {/* <ImageViewer imageURL={profilePhoto}> */}
+            <Image
+                minDimension={150}
+                photoType="(profile)"
+                dimensions="w-32 h-32"
+                error={requiredImgMessage}
+                onCropComplete={onCropComplete}
+                isLoading={isLoading && isLoadingImg}
+                src={profilePhoto || getValues()?.profilePhoto}
+            />
+            {/* </ImageViewer> */}
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 capitalize">
                 <InputFloatingLabel item={{ id: "country", label: "country*", value: watch("country") }}
@@ -140,30 +138,31 @@ function PersonalInformationForm(
                         }
                     }
                 />
+
+                <div className="grid col-span-full">
+                    <InputTextArea
+                        disabled={isLoading}
+                        placeholder="Description..."
+                        register={{
+                            ...register("biography", {
+                                // required: false,
+                                required: "This field is required",
+                            })
+                        }}
+                        errors={errors?.biography?.message}
+                    />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    <InputRadiaButtons
+                        disabled={isLoading}
+                        values={["male", "female"]}
+                        errors={errors?.gender?.message}
+                        register={{ ...register("gender", { required: 'This field is required' }) }}
+                    />
+                </div>
             </div>
-
-            <InputTextArea
-                disabled={isLoading}
-                placeholder="Description..."
-                register={{
-                    ...register("biography", {
-                        // required: false,
-                        required: "This field is required",
-                    })
-                }}
-                errors={errors?.biography?.message}
-            />
-
-            <div className="flex flex-col gap-2">
-                <InputRadiaButtons
-                    disabled={isLoading}
-                    values={["male", "female"]}
-                    errors={errors?.gender?.message}
-                    register={{ ...register("gender", { required: 'This field is required' }) }}
-                />
-            </div>
-
-        </>
+        </div>
     )
 }
 export default PersonalInformationForm

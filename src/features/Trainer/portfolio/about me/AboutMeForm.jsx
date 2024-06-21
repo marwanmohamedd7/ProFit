@@ -112,7 +112,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
                     <Button>
                         {
                             isUpdating ?
-                                <SpinnerMini />
+                                <SpinnerMini dark={false} />
                                 :
                                 <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                                     <span>save changes</span>

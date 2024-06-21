@@ -19,7 +19,7 @@ function NutritionOperations({ children, filterForm, filterTabs = {}, search, se
                 </div>
             }
             {
-                Object.keys(filterTabs).length > 0 &&
+                filterForm &&
                 <FilterForm filterTabs={filterTabs} isOpen={isOpen} setIsOpen={setIsOpen}>
                     {filterForm}
                 </FilterForm>

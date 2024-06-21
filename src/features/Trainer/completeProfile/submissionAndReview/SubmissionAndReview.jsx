@@ -5,9 +5,13 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { useCurrentUser } from "../../../../context/UserProvider";
 import Button from "../../../../ui/Button";
 import SpinnerMini from "../../../../ui/SpinnerMini";
+import { useDarkMode } from "../../../../context/DarkModeProvider";
+import styles from "../../../../styles/styles";
 
 function SubmissionAndReview() {
-    const navigate = useNavigate()
+    const colors = styles();
+    const navigate = useNavigate();
+    const { isDarkMode } = useDarkMode();
     const [terms, setTerms] = useState(true)
     const { setUserToken, setUserRole } = useCurrentUser()
     const { submitProfile, isSubmitting } = useSubmitProfile()
@@ -32,9 +36,9 @@ function SubmissionAndReview() {
     return (
         <div className="container flex flex-col gap-8">
             <div className="flex flex-col justify-center gap-4">
-                <h1 className="text-blue-900 font-bold text-xl capitalize">Administrative review</h1>
+                <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} font-bold text-xl capitalize`}>Administrative review</h1>
 
-                <ul className="list-disc text-sm font-semibold text-blue-900 space-y-1.5 pl-6">
+                <ul className={`list-disc text-sm font-semibold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} space-y-1.5 pl-6`}>
                     <li>At ProFIT, we are committed to maintaining the highest standards of professionalism and quality in our community of trainers and trainees.</li>
                     <li>To ensure this, every trainer profile submitted for registration undergoes a thorough administrative review.</li>
                     <li>This process involves verifying the accuracy of your professional credentials, qualifications, and experience as stated in your profile.</li>
@@ -53,12 +57,12 @@ function SubmissionAndReview() {
                         type="checkbox"
                         id="terms-conditions"
                         name="terms-conditions"
-                        className="form-checkbox h-4 w-4 text-blue-700 accent-blue-700 rounded-md focus:outline-none transition-all duration-300"
+                        className={`form-checkbox h-4 w-4 ${isDarkMode ? `${colors.text_gray_100} accent-blue-600` : `${colors.text_gray_700} accent-blue-700`}  rounded-md focus:outline-none transition-all duration-300`}
                         checked={terms}
                         onChange={() => setTerms(value => !value)}
                     />
-                    <label htmlFor="terms-conditions" className="text-blue-800 text-sm font-semibold">
-                        <span>I accept the platform's <strong className="text-blue-700 tracking-wide">terms</strong> and <strong className="text-blue-700 tracking-wide">conditions</strong> or privacy policy.</span>
+                    <label htmlFor="terms-conditions" className={`${isDarkMode ? colors.text_gray_300 : colors.text_gray_800} text-xs font-semibold`}>
+                        <span>I accept the platform's <strong className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_700} tracking-wide`}>terms</strong> and <strong className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_700} tracking-wide`}>conditions</strong> or privacy policy.</span>
                     </label>
                 </div>
             </div>
@@ -69,7 +73,7 @@ function SubmissionAndReview() {
                     navigate("/complete-profile/subscription-pricing", { replace: true })
                 }} type="secondary">back</Button>
                 <Button onClick={handleSubmit}>
-                    {isSubmitting ? <SpinnerMini /> :
+                    {isSubmitting ? <SpinnerMini dark={false} /> :
                         <p className="flex justify-center font-bold tracking-wide items-center gap-2">
                             <span>submit request</span>
                             <span className="text-xl"><HiArrowLongRight /></span>

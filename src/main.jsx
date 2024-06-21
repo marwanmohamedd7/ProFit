@@ -14,8 +14,8 @@ import 'preline'; // Import Preline
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ErrorBoundary FallbackComponent={ErrorFallBack} onReset={() => window.location.replace("/")}>
-      <DarkModeProvider>
+    <DarkModeProvider>
+      <ErrorBoundary FallbackComponent={ErrorFallBack} onReset={() => window.location.replace("/")}>
         <UserProvider>
           <DietProvider>
             <MealProvider>
@@ -25,8 +25,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </MealProvider>
           </DietProvider>
         </UserProvider>
-      </DarkModeProvider>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </DarkModeProvider>
   </React.StrictMode>,
 )
 

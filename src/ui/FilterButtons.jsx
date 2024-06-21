@@ -7,8 +7,8 @@ function FilterButtons({ fiterBtns: { fiterFeild, options } }) {
   const { isDarkMode } = useDarkMode();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(fiterFeild) || options.at(0).value;
-  const inActiveBtn = isDarkMode ? `${colors.bg_slate_800} ${colors.text_gray_400}` : `${colors.bg_white} ${colors.text_gray_600}`
-  const activeBtn = isDarkMode ? `${colors.bg_slate_700} ${colors.text_gray_50}` : `${colors.bg_gray_100} ${colors.text_gray_950}`
+  const inActiveBtn = isDarkMode ? `${colors.bg_slate_800} ${colors.text_gray_400} hover:bg-slate-700` : `${colors.bg_white} ${colors.text_gray_600} hover:bg-gray-50`
+  const activeBtn = isDarkMode ? `${colors.bg_slate_600} ${colors.text_gray_50}` : `${colors.bg_gray_100} ${colors.text_gray_950}`
 
   function handleBtnClick(value) {
     // Update search params with new filter

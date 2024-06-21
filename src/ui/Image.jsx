@@ -2,8 +2,10 @@ import Modal from "./Modal"
 import SpinnerMini from "./SpinnerMini"
 import ImageCropper from "./ImageCropper"
 import { MdOutlineEdit } from "react-icons/md"
+import { useDarkMode } from "../context/DarkModeProvider";
 
 function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24 h-24", minDimension = 150, photoType, disabled = false, onCropComplete }) {
+    const { isDarkMode } = useDarkMode();
     return (
         <Modal>
             <div className={`relative ${dimensions} mb-2.5 cursor-pointer`}>
@@ -17,7 +19,7 @@ function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24
                                     </div>
                                     :
                                     <div
-                                        className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimensions} capitalize`}
+                                        className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${isDarkMode ? ` text-gray-400 border-gray-700` : ` text-gray-500`} ${dimensions} capitalize`}
                                     >
                                         {isLoading ? <SpinnerMini /> :
                                             <p className="text-sm flex flex-col gap-1">
@@ -44,7 +46,7 @@ function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24
                                     </div>
                                     :
                                     <div
-                                        className={`rounded-md text-gray-500 text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimensions} capitalize`}
+                                        className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${isDarkMode ? ` text-gray-400 border-gray-700 bg-slate-800` : ` text-gray-500`} ${dimensions} capitalize`}
                                     >
                                         {isLoading ? <SpinnerMini /> :
                                             <>
@@ -54,11 +56,11 @@ function Image({ id, error, src, isLoading, canUpdate = true, dimensions = "w-24
                                         }
                                     </div>
                             }
-                            {error && <span className="text-red-700 text-xs">{error}</span>}
+                            {error && <span className={`${isDarkMode ? "text-red-500" :"text-red-700"} text-xs`}>{error}</span>}
                         </>
                 }
             </div>
-            <Modal.Window opens="upload image">
+            <Modal.Window opens="upload image" outsideCloseClick={false}>
                 <ImageCropper minDimension={minDimension} onCropComplete={onCropComplete} />
             </Modal.Window>
         </Modal>

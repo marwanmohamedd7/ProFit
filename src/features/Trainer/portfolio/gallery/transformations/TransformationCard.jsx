@@ -21,12 +21,12 @@ function TransformationCard({ transformation }) {
     }
 
     return (
-        <div className={`rounded-lg p-4 space-y-2 border ${isDarkMode ? `${colors.bg_slate_800} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_white} ${colors.text_gray_700} ${colors.border_gray_200}`}`}>
+        <div className={`rounded-lg p-4 space-y-2 border grid grid-rows-[auto_1fr] ${isDarkMode ? `${colors.bg_slate_800} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_white} ${colors.text_gray_700} ${colors.border_gray_200}`}`}>
             <div className="flex items-center justify-center gap-2">
                 <ImageViewer imageStyle="w-56 h-56 rounded-md cursor-pointer" imageURL={[afterImage, beforeImage]} />
             </div>
-            <div className="flex flex-col justify-between gap-4">
-                <div className="flex flex-col gap-1 p-1">
+            <div className="flex flex-col justify-center gap-4">
+                <div className="flex flex-col gap-1 p-1 h-full">
                     <h4 className="text-lg font-bold capitalize">{title}</h4>
                     <p className={`text-sm ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>
                         {description}

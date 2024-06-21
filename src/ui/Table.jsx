@@ -9,7 +9,7 @@ function Table({ children }) {
   const { isDarkMode } = useDarkMode();
   return (
     <TableContext.Provider value={{ colors, isDarkMode }}>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto scrollbar--custom">
         <table className="min-w-full text-center rounded-md">
           {children}
         </table>
@@ -22,7 +22,7 @@ function Header({ children, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
     <thead>
-      <tr className={`capitalize text-left text-sm border ${!border && "border-x-0"} font-normal ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_900}`}`}>
+      <tr className={`capitalize text-left text-sm border ${!border && "border-x-0"} font-normal ${isDarkMode ? `${colors.bg_slate_700} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_900}`}`}>
         {children}
       </tr>
     </thead>
@@ -40,7 +40,7 @@ function Body({ data, render }) {
 function Row({ children, rowBgColor, onClick, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
-    <tr onClick={onClick} className={`transition-all duration-300 border ${!border && "border-x-0"} ${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_800} bg-opacity-50 hover:${colors.bg_slate_700}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} text-sm text-left cursor-pointer`}>
+    <tr onClick={onClick} className={`transition-all duration-300 border ${!border && "border-x-0"} ${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_800} bg-opacity-50 hover:${colors.bg_slate_600}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} text-sm text-left cursor-pointer`}>
       {children}
     </tr>
   )
@@ -50,7 +50,7 @@ function Footer({ children, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
     <tfoot>
-      <tr className={`border ${!border && "border-x-0"} ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_600}`}`}>
+      <tr className={`border ${!border && "border-x-0"} ${isDarkMode ? `${colors.bg_slate_700} bg-opacity-30 ${colors.text_white} ${colors.border_gray_700}` : `${colors.bg_gray_50} ${colors.text_gray_600}`}`}>
         {children}
       </tr>
     </tfoot>

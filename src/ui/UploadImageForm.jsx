@@ -38,8 +38,8 @@ function UploadImageForm({
                             <div
                                 className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border ${dimentions} capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.text_gray_500} ${colors.bg_gray_100}`}`}
                             >
-                                <span className={`text-gray-700 text-3xl ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}><HiMiniCheckCircle /></span>
-                                <span className={`text-lg font-bold capitalize ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}>uploaded</span>
+                                <span className={`text-3xl ${isDarkMode ? colors.text_gray_100 : colors.text_gray_700}`}><HiMiniCheckCircle /></span>
+                                <span className={`text-lg font-bold capitalize ${isDarkMode ? colors.text_gray_100 : colors.text_gray_700}`}>uploaded</span>
                             </div>
                             :
                             <div

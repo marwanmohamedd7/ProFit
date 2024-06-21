@@ -8,6 +8,7 @@ function AssessmentsOverviewTable({ traineesAssessments }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { readyDietTraineesCount, readyWorkoutTraineesCount, trainees } = traineesAssessments
+    if (!trainees.length) return <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} text-center p-10 text-lg w-full capitalize`}>You don't have any activity</h1>
     return (
         // <Table>
         //     <Table.Header>
@@ -42,7 +43,7 @@ function AssessmentsOverviewTable({ traineesAssessments }) {
                     <SubscribedTrainees />
                 </div> */}
             </div>
-            <div className="flex flex-col gap-2 overflow-y-scroll scrollbar--hide h-96">
+            <div className="flex flex-col gap-2 overflow-y-scroll scrollbar--custom h-96">
                 {
                     trainees.map(assessment => <AssessmentsOverviewTableRow assessment={assessment} key={assessment?.traineeId} />)
                 }

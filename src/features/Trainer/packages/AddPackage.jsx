@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCreatePackage } from "./useCreatePackage";
 import { useUpdatePackage } from "./useUpdatePackage";
 import Button from "../../../ui/Button";
@@ -7,16 +7,15 @@ import SpinnerMini from "../../../ui/SpinnerMini";
 import ActiveButton from "../../../ui/ActiveButton";
 import InputFloatingLabel from "../../../ui/InputFloatingLabel";
 import InputDropdown from "../../../ui/InputDropdown";
-import { useGetPackages } from "./useGetPackages"; // Import the hook to get all packages
 import { useDarkMode } from "../../../context/DarkModeProvider";
 import styles from "../../../styles/styles";
+import InputTextArea from "../../../ui/InputTextArea";
 
 function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoading }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { createPackage, isCreating } = useCreatePackage();
     const { updatePackage, isUpdating } = useUpdatePackage();
-    const { packages } = useGetPackages(); // Get all packages
 
     const { _id: packageId, ...packageValues } = packageToUpdate;
     const [isActive, setIsActive] = useState(packageValues?.active ?? true);
@@ -26,14 +25,6 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
     });
 
     let isLoading = isCreating || isUpdating || parentLoading;
-
-    const activePackagesCount = packages.filter(pkg => pkg.active).length;
-
-    useEffect(() => {
-        if (activePackagesCount >= 4) {
-            setIsActive(false);
-        }
-    }, [activePackagesCount]);
 
     function onSubmit(data) {
         if (!data) return;
@@ -88,18 +79,17 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                         }}
                     />
                 </div>
-                <div className="space-y-1">
-                    {/* <label htmlFor="description" className={`block text-sm font-medium capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_700}`}>description</label> */}
-                    <textarea
-                        id="description"
-                        placeholder="package description...."
-                        className={`mt-1 block w-full py-2 h-28 px-3 border ${isDarkMode ? colors.border_gray_700 : colors.border_gray_300} ${isDarkMode ? `${colors.bg_gray_800} focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-400` : `${colors.bg_white} focus:ring-blue-700 focus:border-blue-700 placeholder:text-gray-500`} rounded-md focus:outline-none sm:text-sm`}
-                        {...register("description", {
+                <InputTextArea
+                    id="description"
+                    register={{
+                        ...register("description", {
                             required: false,
-                        })}
-                    />
-                    {errors?.description?.message && <span className="text-xs text-red-700">{errors?.description?.message}</span>}
-                </div>
+                        })
+                    }}
+                    disabled={isLoading}
+                    placeholder="package description...."
+                    errors={errors?.description?.message}
+                />
             </div>
 
             <div className="py-4 space-y-4">
@@ -161,7 +151,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                 </div>
                 <div className="flex gap-2">
                     <div>
-                        <ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={activePackagesCount >= 4 || isLoading} />
+                        <ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isLoading} />
                     </div>
                     <p className={`flex flex-col justify-center capitalize text-xs ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}>
                         <span>active</span>
@@ -173,7 +163,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
             <div className="pt-6">
                 <Button type="primary" disabled={isLoading}>
                     <p className="flex items-center justify-center gap-2 capitalize">
-                        {isLoading ? <span className="text-xs"><SpinnerMini /></span> :
+                        {isLoading ? <span className="text-xs"><SpinnerMini dark={false} /></span> :
                             <>
                                 <span>{isUpdateSession ? "update package" : "Add package"}</span>
                                 {!isUpdateSession && <span>&#43;</span>}

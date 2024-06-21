@@ -92,7 +92,7 @@ function CreateMeal({ mealToUpdate = {} }) {
                 <div className="flex items-center gap-2">
                     <Button type="primary" onClick={handleSubmit(onSubmit)}>
                         <p className="capitalize">
-                            {isLoading ? <SpinnerMini /> : isExist ? "update meal" : "save new meal"}
+                            {isLoading ? <SpinnerMini dark={false} /> : isExist ? "update meal" : "save new meal"}
                         </p>
                     </Button>
                     <Button onClick={() => {

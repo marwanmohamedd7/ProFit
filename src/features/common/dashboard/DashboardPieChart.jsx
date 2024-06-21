@@ -42,9 +42,9 @@ function DashboardPieChart({ pieChartData, pieChartDetails, role, dimenstion }) 
     };
 
     const currentColors = isDarkMode ? colors.dark : colors.light;
-
+    
     return (
-        <DashboardInfoCardLayout title={title} url={url} icon={icon}>
+        <DashboardInfoCardLayout isEmpty={total} title={title} url={url} icon={icon}>
             <div className={`flex ${!dimenstion && "flex-col"} justify-between items-center gap-2`}>
                 <div className="rounded-md" style={{ width: dimenstion || '100%' }}>
                     <ResponsiveContainer width="100%" height={240}>

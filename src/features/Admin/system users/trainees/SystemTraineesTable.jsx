@@ -8,9 +8,9 @@ import Empty from "../../../../ui/Empty";
 const columns = [
     { key: "firstName", label: "trainee details" },
     { key: ["assignedTrainer", "firstName"], label: "trainer subscribed" },
-    { key: ["package","packageName"], label: "package" },
-    { key: "status", label: "status" },
+    { key: ["package", "packageName"], label: "package" },
     { key: "Registration_Date", label: "registration date" },
+    { key: "status", label: "status" },
 ];
 
 function SystemTraineesTable({ users, count }) {
@@ -20,7 +20,7 @@ function SystemTraineesTable({ users, count }) {
         <Table>
             <Table.Header>
                 {columns.map(({ key, label }) => (
-                    <th className="px-4 py-2 whitespace-nowrap" key={label}>
+                    <th className={`${label === "trainee details" ? "px-4" : "px-10"} py-2 whitespace-nowrap`} key={label}>
                         <SortTableColumnsHeader
                             sortingKey={key}
                             columnName={label}
@@ -29,7 +29,7 @@ function SystemTraineesTable({ users, count }) {
                         />
                     </th>
                 ))}
-                <th className="px-4 py-2 whitespace-nowrap">actions</th>
+                <th className="px-10 py-2 whitespace-nowrap">actions</th>
                 {/* <th className="px-4 py-2 whitespace-nowrap">start at</th>
                     <th className="px-4 py-2 whitespace-nowrap">end at</th> */}
             </Table.Header>

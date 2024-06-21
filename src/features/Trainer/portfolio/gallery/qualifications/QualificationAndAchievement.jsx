@@ -37,17 +37,17 @@ function QualificationAndAchievement() {
     }
 
     return (
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-start gap-4">
             {getQualifications?.map((img) => <QualificationAndAchievementPhoto key={img._id} img={img} />)}
             <div className="relative">
                 <label
                     htmlFor={"image"}
-                    className={`cursor-pointer absolute right-[-10%] top-[-10%] p-1.5 rounded-full ${isDarkMode ? `text-blue-400 hover:bg-blue-800 bg-blue-900` :`text-blue-50 hover:bg-blue-600 bg-blue-700`}`}
+                    className={`cursor-pointer absolute right-[-10%] top-[-10%] p-1.5 rounded-full ${isDarkMode ? `text-blue-400 hover:bg-blue-800 bg-blue-900` : `text-blue-50 hover:bg-blue-600 bg-blue-700`}`}
                 >
                     <MdOutlineEdit />
                 </label>
                 <div
-                    className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border h-28 w-28 capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.text_gray_500} ${colors.bg_gray_100} ${colors.border_gray_200}`}`}
+                    className={`rounded-md text-xs flex flex-col items-center justify-center gap-2 tracking-wide text-center border h-32 w-32 capitalize ${isDarkMode ? `${colors.text_gray_400} ${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.text_gray_500} ${colors.bg_gray_100} ${colors.border_gray_200}`}`}
                 >
                     {isLoading ?
                         <SpinnerMini />

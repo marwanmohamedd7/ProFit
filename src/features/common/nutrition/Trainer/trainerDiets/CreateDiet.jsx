@@ -26,7 +26,7 @@ function CreateDiet({ register, watch, getValues, errors }) {
                 </div>
             }
 
-            <div className="py-4">
+            <div className="pb-4">
                 <DaysTabsItems>
                     <div className="py-4 space-y-4">
                         <DietMacros dietMacros={activeDayDietMacros} targetDietMacros={targetmacros} />

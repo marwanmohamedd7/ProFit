@@ -321,7 +321,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                     </CompoundTabs.Window>
                     <section className="flex justify-start gap-2 pt-4">
                         <Button disabled={isLoading} type="primary">
-                            {isLoading ? <SpinnerMini /> : <span className="capitalize">{isUpdatingSession ? "Update Food" : "Add Food"}</span>}
+                            {isLoading ? <SpinnerMini dark={false} /> : <span className="capitalize">{isUpdatingSession ? "Update Food" : "Add Food"}</span>}
                         </Button>
                         <Button disabled={isLoading} onClick={onCloseModal} type="secondary">
                             <span>Cancel</span>

@@ -1,4 +1,4 @@
-import 'react-image-crop/dist/ReactCrop.css'
+import 'react-image-crop/dist/ReactCrop.css';
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useCurrentUser } from "./context/UserProvider";
@@ -38,6 +38,7 @@ import DietPlanCustomized from './pagesTrainer/DietPlanCustomized';
 import PageNotFound from './ui/PageNotFound';
 import "preline/preline";
 import { SocketProvider } from './context/SocketProvider';
+import { useDarkMode } from './context/DarkModeProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,7 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+  const { isDarkMode } = useDarkMode();
   const { setUserId, setUserToken, setUserRole } = useCurrentUser();
   const token = localStorage.getItem("userToken"); // Retrieve the token from local storage
   const isValid = token ? checkTokenValidity(token) : "";
@@ -140,8 +142,8 @@ function App() {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "#fff",
-            color: "#333",
+            backgroundColor: isDarkMode ? "#334155" : "#fff",
+            color: isDarkMode ? "#fff" : "#111827",
           },
         }}
       />

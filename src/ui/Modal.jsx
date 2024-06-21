@@ -33,9 +33,9 @@ function Open({ opens: openWindow, children }) {
   )
 }
 
-function Window({ opens: openWindow, children }) {
+function Window({ opens: openWindow, children, outsideCloseClick = true }) {
   const { openName, close, colors, isDarkMode } = useContext(ModalContext);
-  const ref = useOutSideClick(close)
+  const ref = useOutSideClick(outsideCloseClick && close)
   if (openName !== openWindow) return null
   return (
     createPortal(

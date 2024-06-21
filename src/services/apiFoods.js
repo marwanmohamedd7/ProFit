@@ -1,8 +1,13 @@
 import { PAGE_SIZE_DEFAULT } from "../utils/constants";
 
-export async function getAppFoods(token, page) {
+export async function getAppFoods(token, page, filterValues) {
+  const filters = filterValues
+    ? `&${Object.entries(filterValues)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("&")}`
+    : filterValues;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}&limit=${PAGE_SIZE_DEFAULT}`,
+    `https://profit-qjbo.onrender.com/api/v1/Food/?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filters}`,
     {
       method: "GET",
       headers: {

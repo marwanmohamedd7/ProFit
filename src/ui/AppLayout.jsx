@@ -18,14 +18,14 @@ function AppLayout({ children }) {
       {/* <main className="bg-gray-50 pt-[4rem] pb-[6.4rem] px-[4.8rem] overflow-scroll"> */}
       {
         pathname.split("/").slice(-1).join("") === "dashboard" &&
-        <main className={`relative overflow-scroll ${isDarkMode ? colors.bg_slate_900 : colors.bg_gray_50}`}>
-            <div className={`absolute ${isDarkMode ? "bg-gradient-to-r from-blue-800 to-blue-900" : "bg-gradient-to-r from-sky-700 to-sky-900"} w-full h-1/4`}
+        <main className={`relative overflow-scroll scrollbar--custom ${isDarkMode ? colors.bg_slate_900 : colors.bg_gray_50}`}>
+          <div className={`absolute ${isDarkMode ? "bg-gradient-to-r from-blue-800 to-blue-900" : "bg-gradient-to-r from-sky-700 to-sky-900"} w-full h-1/4`}
           // style={{
           //   backgroundImage: "linear-gradient(to right, #0284c7, #1e40af), url(/settingsBackground.png)",
           //   backgroundSize: "cover",
           //   backgroundBlendMode: "overlay"
           // }}
-              
+
           >
             <section className="p-2">
               <div className="mx-auto p-2">
@@ -37,13 +37,13 @@ function AppLayout({ children }) {
       }
       {
         pathname.split("/").slice(-1).join("") === "messages" &&
-        <main className="relative overflow-scroll">
+        <main className="relative overflow-scroll scrollbar--custom">
           {children}
         </main >
       }
       {
         (pathname.split("/").slice(-1).join("") !== "messages" && pathname.split("/").slice(-1).join("") !== "dashboard") &&
-        <main className={`relative overflow-scroll ${isDarkMode ? colors.bg_slate_900 : colors.bg_gray_50}`}>
+        <main className={`relative overflow-scroll scrollbar--custom ${isDarkMode ? colors.bg_slate_900 : colors.bg_gray_50}`}>
           <section className="p-2">
             <div className="mx-auto p-2">
               {children}

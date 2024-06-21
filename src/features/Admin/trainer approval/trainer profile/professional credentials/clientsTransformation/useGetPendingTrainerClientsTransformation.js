@@ -13,7 +13,7 @@ export function useGetPendingTrainerClientsTransformation() {
   });
   return {
     getPendingTrainerClientsTransformation:
-      getPendingTrainerClientsTransformation?.data,
+      getPendingTrainerClientsTransformation?.data ?? [],
     isLoading,
   };
 }
