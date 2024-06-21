@@ -17,7 +17,7 @@ function TrainerPortfolio() {
         <>
             {
                 floatedMessage &&
-                <div className={`flex justify-between border ${isDarkMode && colors.border_gray_700} rounded-lg p-4 mt-4`}>
+                <div className={`flex justify-between border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}`:`${colors.bg_white}`} rounded-lg p-4 mt-4`}>
                     <div className="flex flex-col justify-center gap-4">
                             <h1 className={`flex items-center gap-2 ${isDarkMode ? colors.text_gray_50 : colors.text_gray_900} font-bold text-lg capitalize`}>
                             <span className="text-2xl"><HiInformationCircle /></span>

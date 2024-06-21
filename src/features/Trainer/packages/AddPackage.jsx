@@ -95,8 +95,8 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
             <div className="py-4 space-y-4">
                 <div className="grid grid-cols-3 gap-x-2">
                     <div>
-                        <div className={`flex items-center text-sm space-x-1 border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.border_gray_300} rounded-lg`}>
-                            <span className={`border-r p-2.5 h-full flex items-center ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : colors.bg_gray_100}`}>EGP</span>
+                        <div className={`flex items-center text-sm space-x-1 border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.border_gray_300} rounded-md`}>
+                            <span className={`border-r p-2.5 h-full rounded-l-md flex items-center ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : colors.bg_gray_100}`}>EGP</span>
                             <input
                                 type="number"
                                 id="price"
@@ -116,8 +116,8 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                     </div>
 
                     <div>
-                        <div className={`flex items-center text-sm space-x-1 border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.border_gray_300} rounded-lg`}>
-                            <span className={`border-r p-2.5 h-full flex items-center ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : colors.bg_gray_100}`}>Months</span>
+                        <div className={`flex items-center text-sm space-x-1 border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.border_gray_300} rounded-md`}>
+                            <span className={`border-r p-2.5 h-full flex rounded-l-md items-center ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : colors.bg_gray_100}`}>Months</span>
                             <select id="duration" className={`capitalize block w-full text-xs sm:text-sm px-2 ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} ${colors.border_gray_700} focus:ring-blue-500 focus:border-blue-500` : `${colors.text_gray_700} ${colors.border_gray_300} focus:ring-blue-700 focus:border-blue-700`} rounded-md focus:outline-none`}
                                 {...register("duration", {
                                     required: "This field is required",

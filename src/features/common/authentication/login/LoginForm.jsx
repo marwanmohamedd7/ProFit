@@ -67,7 +67,7 @@ function LoginForm() {
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              className={`${isDarkMode ? `accent-slate-700 border-gray-700` : `accent-gray-700 focus:ring-gray-600 border-gray-300`} rounded`}
+              className={`${isDarkMode ? `accent-blue-700 border-blue-600` : `accent-blue-700 focus:ring-blue-600 border-gray-300`} rounded`}
             />
             <label htmlFor="remember-me" className={`${isDarkMode ? colors.text_gray_200 : colors.text_gray_600}`}>
               Remember me

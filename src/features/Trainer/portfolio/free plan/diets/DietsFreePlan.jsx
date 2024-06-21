@@ -21,7 +21,7 @@ function DietsFreePlan() {
     const dataReady = searchKeyword ? searchedItems : getDietFreePlans;
     return (
         <>
-            <div className={`pb-4 rounded-lg border w-full ${isDarkMode ? `${colors.text_white} ${colors.border_gray_700}` : colors.text_gray_900}`}>
+            <div className={`pb-4 rounded-lg border w-full ${isDarkMode ? `${colors.text_white} ${colors.border_gray_700} ${colors.bg_slate_800}` : `${colors.text_gray_900} ${colors.bg_white}`}`}>
                 {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-2xl" /></div> :
                     <>
                         <div className="space-y-4 p-4">
