@@ -4,19 +4,20 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useCreateDietTemplate } from "./useCreateDietTemplate"
 import { useUpdateDietTemplate } from "./useUpdateDietTemplate"
+import { useDarkMode } from "../../../../../context/DarkModeProvider"
 import { useDietProvider } from "../../../../../context/DietProvider"
 import { usePageLocation } from "../../../../../hooks/usePageLocation"
+import { useCreateCustomizedPlan } from "../../../../Trainer/trainees/traineeDietPlans/useCreateCustomizedPlan"
 import toast from "react-hot-toast"
 import CreateDiet from "./CreateDiet"
 import Modal from "../../../../../ui/Modal"
 import NutritionDiets from "./NutritionDiets"
 import Button from "../../../../../ui/Button"
 import BackBtn from "../../../../../ui/BackBtn"
+import styles from "../../../../../styles/styles"
 import BreadCrumbs from "../../../../../ui/BreadCrumbs"
 import SpinnerMini from "../../../../../ui/SpinnerMini"
-import { useCreateCustomizedPlan } from "../../../../Trainer/trainees/traineeDietPlans/useCreateCustomizedPlan"
-import { useDarkMode } from "../../../../../context/DarkModeProvider"
-import styles from "../../../../../styles/styles"
+import DietAssessmentSettings from "./DietAssessmentSettings"
 
 function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     let searchParams = "";
@@ -106,7 +107,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                                     <Button type="secondary">Load Diet Template</Button>
                                 </Modal.Open>
                                 <Modal.Window opens="load-diet-template">
-                                        <NutritionDiets dietType={dietType} customStyle={true} />
+                                    <NutritionDiets dietType={dietType} customStyle={true} />
                                 </Modal.Window>
                             </Modal>
                         }
@@ -147,14 +148,26 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                                 </Button>
                                 {
                                     dietType === "customized plan" &&
-                                    <Modal>
-                                        <Modal.Open opens="load-diet-template">
-                                            <Button type="secondary">Load Diet Template</Button>
-                                        </Modal.Open>
-                                        <Modal.Window opens="load-diet-template">
-                                            <NutritionDiets dietType={dietType} />
-                                        </Modal.Window>
-                                    </Modal>
+                                    <>
+                                        <Modal>
+                                            <Modal.Open opens="load-diet-template">
+                                                <Button type="secondary">Load Diet Template</Button>
+                                            </Modal.Open>
+                                            <Modal.Window opens="load-diet-template">
+                                                <div className="py-4">
+                                                    <NutritionDiets dietType={dietType} />
+                                                </div>
+                                            </Modal.Window>
+                                        </Modal>
+                                        <Modal>
+                                            <Modal.Open opens="diet-assessment-settings">
+                                                <Button type="secondary">Diet plan settings</Button>
+                                            </Modal.Open>
+                                            <Modal.Window opens="diet-assessment-settings">
+                                                <DietAssessmentSettings />
+                                            </Modal.Window>
+                                        </Modal>
+                                    </>
                                 }
                             </div>
                         </div>

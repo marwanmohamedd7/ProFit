@@ -29,7 +29,6 @@ function TrainerSubscribedTraineeInfo() {
 
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, dietAssessmentStatus, traineeDietAssessment = {} } = getSpecificSubscribedTrainee;
     const { activityLevel, fitnessGoals, birthDate, gender, height, weight, createdAt } = traineeDietAssessment;
-
     if (dietAssessmentStatus === "Working" || dietAssessmentStatus === "Pending") assessmentStatus = "request assessment";
     if (dietAssessmentStatus === "Ready") assessmentStatus = "assessment ready";
     if (dietAssessmentStatus === "In Preparation") assessmentStatus = "in progress...";
@@ -79,7 +78,7 @@ function TrainerSubscribedTraineeInfo() {
                     <span><FiRefreshCcw /></span>
                     <span>last sync at:</span>
                 </p>
-                <p className={`${isDarkMode ? colors.text_gray_300 : colors.text_gray_500}`}>{formatDate_time(createdAt)}</p>
+                <p className={`${isDarkMode ? colors.text_gray_300 : colors.text_gray_500}`}>{formatDate_time(createdAt ?? new Date())}</p>
             </div>
             {
                 (dietAssessmentStatus !== "Pending" && Object.keys(traineeDietAssessment).length > 0) &&

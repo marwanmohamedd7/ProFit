@@ -3,6 +3,7 @@ import { BsBarChart } from "react-icons/bs";
 import { TbRulerMeasure } from "react-icons/tb";
 import { MdOutlinePhotoCamera } from "react-icons/md";
 import TraineeProgressPhotos from "./traineeProgressPhotos/TraineeProgressPhotos";
+import TrainerProgressPerformance from "./trainerProgressPerformance/TrainerProgressPerformance";
 function TraineeProgress() {
     return (
         <div className="space-y-10 py-4 rounded-md">
@@ -21,12 +22,13 @@ function TraineeProgress() {
 
                 <VerticualTabs.Window opens="performance">
                     {/* <DietsFreePlan /> */}
+                    <TrainerProgressPerformance />
                 </VerticualTabs.Window>
                 <VerticualTabs.Window opens="measurement">
                     {/* <DietsFreePlan/> */}
                 </VerticualTabs.Window>
                 <VerticualTabs.Window opens="photo">
-                    <TraineeProgressPhotos/>
+                    <TraineeProgressPhotos />
                 </VerticualTabs.Window>
             </VerticualTabs>
         </div>

@@ -1,18 +1,14 @@
 import { useDarkMode } from "../context/DarkModeProvider";
-import styles from "../styles/styles";
 
 function Spinner() {
-  const colors = styles();
   const { isDarkMode } = useDarkMode();
-  const borderColor = isDarkMode ? colors.border_blue_600 : colors.border_blue_700;
-
   return (
-    <div className={`w-full h-full flex justify-center items-center py-4 bg-transparent`}>
+    <div className="w-full h-full flex justify-center items-center py-4 bg-transparent">
       <div className="spinner">
-        <div className={`double-bounce1 ${borderColor}`}></div>
-        <div className={`double-bounce2 ${borderColor}`}></div>
+        <div className="double-bounce1"></div>
+        <div className="double-bounce2"></div>
       </div>
-      <style jsx>{`
+      <style>{`
         .spinner {
           width: 40px;
           height: 40px;
@@ -43,12 +39,12 @@ function Spinner() {
       `}</style>
     </div>
   );
-  
-  // return (
-  //   <div className={`w-full h-full flex justify-center items-center py-4 bg-transparent`}>
-  //     <div className={`w-12 h-12 border-t-4 border-b-4 ${!isDarkMode && colors.border_blue_700} opacity-90 border-brand-600 rounded-full animate-spin`}></div>
-  //   </div>
-  // )
 }
 
 export default Spinner;
+
+// return (
+//   <div className={`w-full h-full flex justify-center items-center py-4 bg-transparent`}>
+//     <div className={`w-12 h-12 border-t-4 border-b-4 ${!isDarkMode && colors.border_blue_700} opacity-90 border-brand-600 rounded-full animate-spin`}></div>
+//   </div>
+// )

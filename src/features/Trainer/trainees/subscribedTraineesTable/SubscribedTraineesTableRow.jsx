@@ -1,3 +1,4 @@
+import React from 'react';
 import Table from "../../../../ui/Table";
 import { useNavigate } from "react-router-dom";
 import { CiApple, CiDumbbell } from "react-icons/ci";
@@ -34,11 +35,11 @@ function SubscribedTraineesTableRow({ trainee }) {
             e.stopPropagation();
             navigate(`trainee/${_id}`);
         }}>
-            <td className="px-4 py-2 whitespace-nowrap mx-auto">
+            <td className="px-3 py-2 whitespace-nowrap mx-auto">
                 <div className="flex items-center gap-3">
                     <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0 h-14 w-14">
                         <ImageViewer imageURL={profilePhoto}>
-                            <img className="h-14 w-14 rounded-md" src={profilePhoto} alt={firstName} />
+                            <img className="h-14 w-14 rounded-md" src={profilePhoto || "public/images/default-user.jpg"} alt={firstName} />
                         </ImageViewer>
                     </div>
                     <div className="flex flex-col justify-center gap-1">
@@ -52,10 +53,10 @@ function SubscribedTraineesTableRow({ trainee }) {
                     </div>
                 </div>
             </td>
-            <td className="px-9 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
-            <td className="px-9 py-4 whitespace-nowrap">{packageTrainee?.packageName || "N/A"}</td>
-            <td className="px-9 py-4 whitespace-nowrap">{duration} months</td>
-            <td className="px-8 py-2 whitespace-nowrap capitalize">
+            <td className="px-6 py-4 whitespace-nowrap">{format(new Date(startDate), 'dd MMMM, yyyy')}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{packageTrainee?.packageName || "N/A"}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{duration} months</td>
+            <td className="px-5 py-2 whitespace-nowrap capitalize">
                 <div className="flex items-center gap-2">
                     {status === "Active" ? (
                         <>
@@ -70,8 +71,8 @@ function SubscribedTraineesTableRow({ trainee }) {
                     )}
                 </div>
             </td>
-            <td className="px-9 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
-            <td className="px-9 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <td className="px-6 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
+            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
                     <button
                         disabled={(dietAssessmentStatus === "Ready" || dietAssessmentStatus === "Working") ? false : true}

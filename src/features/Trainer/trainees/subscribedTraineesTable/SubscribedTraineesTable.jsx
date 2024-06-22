@@ -21,7 +21,7 @@ function SubscribedTraineesTable({ trainees, count, empty = "" }) {
         <Table>
             <Table.Header>
                 {columns.map(({ key, label }) => (
-                    <th className={`${label === "trainee details" ? `px-4` : `px-9`} py-2 whitespace-nowrap`} key={label}>
+                    <th className={`${label === "trainee details" ? `px-3` : `px-6`} py-2 whitespace-nowrap`} key={label}>
                         <SortTableColumnsHeader
                             sortingKey={key}
                             columnName={label}
@@ -30,7 +30,7 @@ function SubscribedTraineesTable({ trainees, count, empty = "" }) {
                         />
                     </th>
                 ))}
-                <th className="px-9 py-2 whitespace-nowrap">actions</th>
+                <th className="px-6 py-2 whitespace-nowrap">actions</th>
                 {/* <th className="px-4 py-2 whitespace-nowrap">Last Assessment</th> */}
             </Table.Header>
             <Table.Body data={sortedData} render={(trainee) => <SubscribedTraineesTableRow trainee={trainee} key={trainee._id} />} />

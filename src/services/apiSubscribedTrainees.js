@@ -32,6 +32,51 @@ export async function getSubscribedTraineesAssessment(token, page, filter) {
   return data;
 }
 
+export async function getDietAssessmentSettingsForm(token, id) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/getTraineeDietAssessment/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getSubscribedTraineeCommitments(token, id) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/trackingTraineePlans/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getSubscribedTraineePerformances(token, id) {
+  const response = await fetch(
+    `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/trainee-data/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
 export async function doRequestAssessment(token, id) {
   const response = await fetch(
     `https://profit-qjbo.onrender.com/api/v1/trainers/trainees/makeRequestAssessment/${id}`,

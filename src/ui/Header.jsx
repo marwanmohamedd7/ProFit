@@ -30,7 +30,7 @@ function Header() {
           {isLoading ? <span className="ml-4 text-blue-900"><SpinnerMini /></span>
             :
             <>
-              <img className="ml-4 h-10 w-10 rounded-md" src={profilePhoto} alt="avatar" />
+              <img className="ml-4 h-10 w-10 rounded-md" src={profilePhoto || "public/images/default-user.jpg"} alt="avatar" />
               <div className="flex flex-col justify-center">
                 <p className={`flex items-center gap-1 text-sm font-bold ${isDarkMode ? colors.text_white :colors.text_gray_700}`}>
                   <span className="capitalize">{firstName}</span>

@@ -85,10 +85,10 @@ function DashboardTrainerLayout() {
         <div className="space-y-4">
             <DashboardInfo />
             <Stats>
-                <Stat icon={<CoinIcon />} color={isDarkMode ? `text-blue-500 bg-blue-900 bg-opacity-50` : `bg-blue-100 text-blue-500`} title="Total Earnings" value={`${formatCurrency(totalPaidAmount)}`} />
-                <Stat icon={<DumbbellIcon />} color={isDarkMode ? `text-red-500 bg-red-900 bg-opacity-50` : `bg-red-100 text-red-500`} title="Total Workout Plans" value={totalWorkoutPlans} />
-                <Stat icon={<AppleIcon fill={true} />} color={isDarkMode ? `text-green-500 bg-green-900 bg-opacity-50` : `bg-green-100 text-green-500`} title="Total Diet Plans" value={totalNutritionPlans} />
-                <Stat icon={<StarIcon />} color={isDarkMode ? `text-amber-500 bg-amber-900 bg-opacity-50` : `bg-amber-100 text-amber-500`} title="Profile Rating" value={averageRating} />
+                <Stat icon={<CoinIcon />} color={isDarkMode ? `text-blue-500 bg-blue-900 bg-opacity-50` : `bg-blue-100 text-blue-600`} title="Total Earnings" value={`${formatCurrency(totalPaidAmount)}`} />
+                <Stat icon={<DumbbellIcon />} color={isDarkMode ? `text-red-500 bg-red-900 bg-opacity-50` : `bg-red-100 text-red-600`} title="Total Workout Plans" value={totalWorkoutPlans} />
+                <Stat icon={<AppleIcon fill={true} />} color={isDarkMode ? `text-green-500 bg-green-900 bg-opacity-50` : `bg-green-100 text-green-600`} title="Total Diet Plans" value={totalNutritionPlans} />
+                <Stat icon={<StarIcon />} color={isDarkMode ? `text-amber-500 bg-amber-900 bg-opacity-50` : `bg-amber-100 text-amber-600`} title="Profile Rating" value={averageRating} />
             </Stats>
             <div className="grid grid-cols-2 gap-4">
                 <AssessmentsChart traineesAssessments={getDashboardTraineesAssessments} />

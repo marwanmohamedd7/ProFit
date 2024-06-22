@@ -6,7 +6,7 @@ function SignUpTrainer() {
     const colors = styles()
     const { isDarkMode } = useDarkMode();
     return (
-        <div className={`min-h-screen flex items-center justify-center ${isDarkMode ? `${colors.bg_slate_900}` : colors.bg_white} py-12 px-4 sm:px-6 lg:px-8`}>
+        <div className={`min-h-screen flex items-center justify-center ${isDarkMode ? `${colors.bg_slate_900}` : colors.bg_gray_50} py-12 px-4 sm:px-6 lg:px-8`}>
             <div className={`max-w-md w-full flex flex-col gap-6 p-10  rounded-md border ${isDarkMode ? `${colors.bg_slate_900} ${colors.border_gray_700} divide-gray-700` : colors.bg_white} shadow-md divide-y`}>
                 <div className="flex items-center gap-2">
                     <svg className={`p-1 rounded-md ${isDarkMode ? colors.bg_blue_900 : colors.bg_blue_700} w-11 h-11`} viewBox="0 0 44 29" fill="none" xmlns="http://www.w3.org/2000/svg">

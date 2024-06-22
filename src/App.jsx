@@ -15,15 +15,15 @@ import Spinner from './ui/Spinner';
 
 const Admin = lazy(() => import("./ui/Admin"));
 const Trainer = lazy(() => import("./ui/Trainer"));
-const Login = lazy(() => import("./pagesAdmin/Login"));
+const Login = lazy(() => import("./pagesCommon/Login"));
 const Users = lazy(() => import("./pagesAdmin/Users"));
 const Meals = lazy(() => import('./pagesCommon/Meals'));
 const SignUp = lazy(() => import("./pagesTrainer/SignUp"));
-const Workout = lazy(() => import("./pagesAdmin/Workout"));
+const Workout = lazy(() => import("./pagesCommon/Workout"));
 const Account = lazy(() => import("./pagesAdmin/Account"));
 const Support = lazy(() => import("./pagesAdmin/Support"));
 const PageNotFound = lazy(() => import('./ui/PageNotFound'));
-const Financial = lazy(() => import("./pagesAdmin/Financial"));
+const Transcations = lazy(() => import("./pagesCommon/Transcations"));
 const Trainees = lazy(() => import("./pagesTrainer/Trainees"));
 const Messages = lazy(() => import("./pagesTrainer/Messages"));
 const Packages = lazy(() => import("./pagesTrainer/Packages"));
@@ -32,13 +32,10 @@ const Portfolio = lazy(() => import("./pagesTrainer/Portfolio"));
 const TraineeInfo = lazy(() => import('./pagesTrainer/TraineeInfo'));
 const DietPlanFree = lazy(() => import('./pagesTrainer/DietPlanFree'));
 const TrainerReview = lazy(() => import("./pagesAdmin/TrainerReview"));
-const Transcations = lazy(() => import("./pagesTrainer/Transcations"));
-const DashboardAdmin = lazy(() => import("./pagesAdmin/DashboardAdmin"));
-const WorkoutTrainer = lazy(() => import("./pagesTrainer/WorkoutTrainer"));
+const Dashboard = lazy(() => import("./pagesCommon/Dashboard"));
 const TrainersApproval = lazy(() => import("./pagesAdmin/TrainersApproval"));
 const CompleteProfile = lazy(() => import("./pagesTrainer/CompleteProfile"));
 const DietPlanTrainer = lazy(() => import('./pagesTrainer/DietPlanTrainer'));
-const DashboardTrainer = lazy(() => import("./pagesTrainer/DashboardTrainer"));
 const DietPlanCustomized = lazy(() => import('./pagesTrainer/DietPlanCustomized'));
 
 // before lazy loading
@@ -82,7 +79,7 @@ function App() {
               </ProtectedRoute>
             }>
               <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<DashboardAdmin />} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="trainer-approval" element={<TrainersApproval />} />
               <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
               <Route path="system-users/trainer-profile/:id" element={<TrainerReview />} />
@@ -92,7 +89,7 @@ function App() {
               <Route path="workout" element={<Workout />} />
               <Route path="system-users" element={<Users />} />
               <Route path="account" element={<Account />} />
-              <Route path="Financial" element={<Financial />} />
+              <Route path="Financial" element={<Transcations />} />
               <Route path="support" element={<Support />} />
             </Route>
 
@@ -104,7 +101,7 @@ function App() {
               </ProtectedRoute>
             }>
               <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<DashboardTrainer />} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="dashboard/trainee/:id" element={<TraineeInfo />} />
               <Route path="dashboard/diets/:id" element={<DietPlanCustomized />} />
               <Route path="portfolio" element={<Portfolio />} />
@@ -120,7 +117,7 @@ function App() {
               <Route path="nutrition/meals/:id" element={<Meals />} />
               <Route path="nutrition/diets" element={<DietPlanTrainer />} />
               <Route path="nutrition/diets/:id" element={<DietPlanTrainer />} />
-              <Route path="workout" element={<WorkoutTrainer />} />
+              <Route path="workout" element={<Workout />} />
               <Route path="packages" element={<Packages />} />
               <Route path="subscriptions" element={<Transcations />} />
             </Route>
