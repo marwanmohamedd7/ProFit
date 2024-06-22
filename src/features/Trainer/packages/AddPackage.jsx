@@ -11,7 +11,7 @@ import { useDarkMode } from "../../../context/DarkModeProvider";
 import styles from "../../../styles/styles";
 import InputTextArea from "../../../ui/InputTextArea";
 
-function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoading }) {
+function AddPackage({ packageToUpdate = {}, overwrite = true, onCloseModal, isLoading: parentLoading }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { createPackage, isCreating } = useCreatePackage();
@@ -52,6 +52,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                 <div className="grid grid-cols-2 gap-x-2">
                     <InputFloatingLabel
                         item={{ id: "packageName", label: "package name", value: watch("packageName") }}
+                        disabled={isLoading}
                         error={errors?.packageName?.message}
                         register={{
                             ...register("packageName", {
@@ -100,8 +101,9 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                             <input
                                 type="number"
                                 id="price"
+                                disabled={isLoading}
                                 placeholder="Amount"
-                                className={`outline-none w-full px-2 ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} placeholder:text-gray-400` : `${colors.text_gray_700} placeholder:text-gray-500`}`}
+                                className={`outline-none w-full px-2 disabled:cursor-not-allowed ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} placeholder:text-gray-400` : `${colors.text_gray_700} placeholder:text-gray-500`}`}
                                 {...register("price", {
                                     required: "This field is required",
                                     valueAsNumber: true, // convert the input to number type
@@ -118,7 +120,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                     <div>
                         <div className={`flex items-center text-sm space-x-1 border ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.border_gray_300} rounded-md`}>
                             <span className={`border-r p-2.5 h-full flex rounded-l-md items-center ${isDarkMode ? `${colors.bg_slate_900} ${colors.text_white} ${colors.border_gray_700}` : colors.bg_gray_100}`}>Months</span>
-                            <select id="duration" className={`capitalize block w-full text-xs sm:text-sm px-2 ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} ${colors.border_gray_700} focus:ring-blue-500 focus:border-blue-500` : `${colors.text_gray_700} ${colors.border_gray_300} focus:ring-blue-700 focus:border-blue-700`} rounded-md focus:outline-none`}
+                            <select disabled={isLoading} id="duration" className={`capitalize block w-full disabled:cursor-not-allowed text-xs sm:text-sm px-2 ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} ${colors.border_gray_700} focus:ring-blue-500 focus:border-blue-500` : `${colors.text_gray_700} ${colors.border_gray_300} focus:ring-blue-700 focus:border-blue-700`} rounded-md focus:outline-none`}
                                 {...register("duration", {
                                     required: "This field is required",
                                     valueAsNumber: true, // convert the input to number type
@@ -137,6 +139,7 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                     <InputFloatingLabel
                         item={{ id: "subscribersLimit", label: "subscribers limitation", type: "number", value: watch("subscribersLimit") }}
                         error={errors?.subscribersLimit?.message}
+                        disabled={isLoading}
                         register={{
                             ...register("subscribersLimit", {
                                 required: 'This field is required',
@@ -160,18 +163,22 @@ function AddPackage({ packageToUpdate = {}, onCloseModal, isLoading: parentLoadi
                 </div>
             </div>
 
-            <div className="pt-6">
-                <Button type="primary" disabled={isLoading}>
-                    <p className="flex items-center justify-center gap-2 capitalize">
-                        {isLoading ? <span className="text-xs"><SpinnerMini dark={false} /></span> :
-                            <>
-                                <span>{isUpdateSession ? "update package" : "Add package"}</span>
-                                {!isUpdateSession && <span>&#43;</span>}
-                            </>
-                        }
-                    </p>
-                </Button>
-            </div>
+            {
+                overwrite &&
+                <div className="pt-6">
+                    <Button type="primary" disabled={isLoading}>
+                        <p className="flex items-center justify-center gap-2 capitalize">
+                            {isLoading ? <span className="text-xs"><SpinnerMini dark={false} /></span> :
+                                <>
+                                    <span>{isUpdateSession ? "update package" : "Add package"}</span>
+                                    {!isUpdateSession && <span>&#43;</span>}
+                                </>
+                            }
+                        </p>
+                    </Button>
+                </div>
+            }
+
         </form>
     );
 }
