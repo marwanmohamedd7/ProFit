@@ -124,9 +124,16 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                             :
                             food.admin ?
                                 <div className='flex items-center justify-start gap-2'>
-                                    <Button type="icon-update">
-                                        <IoEyeOutline />
-                                    </Button>
+                                    <Modal>
+                                        <Modal.Open opens="update-food">
+                                            <Button type="icon-update">
+                                                <IoEyeOutline />
+                                            </Button>
+                                        </Modal.Open>
+                                        <Modal.Window opens="update-food" >
+                                            <CreateFood foodToUpdate={food} overwrite={false} isLoading={true} />
+                                        </Modal.Window>
+                                    </Modal>
                                 </div>
                                 :
                                 <div className='flex items-center justify-start gap-2'>

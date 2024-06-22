@@ -3,7 +3,7 @@ import { useDarkMode } from "../../../../../context/DarkModeProvider";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import styles from "../../../../../styles/styles";
 
-function ProgressBarChart({ barChartData }) {
+function ProgressBarChart({ barChartData, yAxisLabel }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     if (!barChartData || !barChartData.length) return <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} text-center p-10 text-lg h-[15rem] w-full capitalize`}>You don't have any progress</h1>
@@ -44,7 +44,7 @@ function ProgressBarChart({ barChartData }) {
                             tickSize={4}
                         />
                         <YAxis
-                            unit=""
+                            unit={yAxisLabel}
                             tick={{ fill: isDarkMode ? `#F9FAFB` : `#374151` }}
                             tickLine={{ stroke: isDarkMode ? `#F9FAFB` : `#374151` }}
                             fontSize={14}

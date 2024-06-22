@@ -10,7 +10,7 @@ function PerformanceWaterNeeds({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake, title: "water needs" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake, title: "water needs", yAxisLabel:" ml" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
             <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-1">

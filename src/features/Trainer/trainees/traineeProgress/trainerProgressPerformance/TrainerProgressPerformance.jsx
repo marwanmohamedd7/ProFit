@@ -5,15 +5,15 @@ import PerformanceSleepTrack from "./performancesDataCards/PerformanceSleepTrack
 import PerformanceSteps from "./performancesDataCards/PerformanceSteps";
 import PerformanceWaterNeeds from "./performancesDataCards/PerformanceWaterNeeds";
 import PerformanceWorkoutCommitment from "./performancesDataCards/PerformanceWorkoutCommitment";
-import { useGetProgressCommitments } from "./useGetProgressCommitments";
+// import { useGetProgressCommitments } from "./useGetProgressCommitments";
 import useGetProgressPerformances from "./useGetProgressPerformances";
 
 function TrainerProgressPerformance() {
-    const { getTraineeProgressCommitments, isLoading: isGettingCommitments } = useGetProgressCommitments();
+    // const { getTraineeProgressCommitments, isLoading: isGettingCommitments } = useGetProgressCommitments();
     const { getTraineeProgressPerformances, isLoading: isGettingperformances } = useGetProgressPerformances();
-    if (isGettingCommitments || isGettingperformances) return <div className="h-[20rem] w-full flex items-center justify-center"><SpinnerMini /></div>
+    if (isGettingperformances) return <div className="h-[20rem] w-full flex items-center justify-center"><SpinnerMini /></div>
     const { heartRate, sleepData, steps, waterIntake, weeklyHeartRate, weeklySleep, weeklySteps, weeklyWaterIntake } = getTraineeProgressPerformances;
-    console.log(getTraineeProgressCommitments)
+    // console.log(getTraineeProgressCommitments)
     return (
         <div className="grid grid-rows-[1fr_1fr] grid-cols-3 w-full gap-4 rounded-lg">
             <PerformanceDietCommitment />

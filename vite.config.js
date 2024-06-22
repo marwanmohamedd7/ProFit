@@ -5,4 +5,16 @@ import eslint from "vite-plugin-eslint";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), eslint()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://profit-qjbo.onrender.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 });
+
+

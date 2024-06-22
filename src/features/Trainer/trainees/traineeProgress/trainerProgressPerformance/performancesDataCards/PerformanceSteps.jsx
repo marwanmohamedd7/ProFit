@@ -10,7 +10,7 @@ function PerformanceSteps({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklySteps, title: "steps" }} icon={<StepsIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="steps">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklySteps, title: "steps", yAxisLabel:" step" }} icon={<StepsIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="steps">
             <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-1">

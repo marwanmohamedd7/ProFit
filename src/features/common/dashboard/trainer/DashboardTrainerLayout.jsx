@@ -91,24 +91,6 @@ function DashboardTrainerLayout() {
                 <Stat icon={<StarIcon />} color={isDarkMode ? `text-amber-500 bg-amber-900 bg-opacity-50` : `bg-amber-100 text-amber-600`} title="Profile Rating" value={averageRating} />
             </Stats>
             <div className="grid grid-cols-2 gap-4">
-                <AssessmentsChart traineesAssessments={getDashboardTraineesAssessments} />
-                <DashboardPieChart
-                    pieChartData={packages}
-                    pieChartDetails={
-                        {
-                            title: "Packages Overview",
-                            icon: <PackageIcon />,
-                            url: "/trainer/packages",
-                            headers: ["name", "subscribers", "active", "expired", "cancelled", "percentage"],
-                            colors: [
-                                {color: '#0088FE', darkColor: '#005BB5'},
-                                {color: '#00C49F', darkColor: '#00796B'},
-                                {color: '#FFBB28', darkColor: '#FFA500'},
-                                {color: '#FF8042', darkColor: '#FF4500'},
-                            ]
-                        }
-                    }
-                />
                 <DashboardDountChart
                     dountChartData={trainees}
                     dountChartDetails={
@@ -119,9 +101,9 @@ function DashboardTrainerLayout() {
                             headers: ["status", "Count", "Percentage"],
                             colors: [
                                 // { color: '#7B68EE', darkColor: '#6A5ACD' },
-                                { color: '#6A5ACD', darkColor: '#483D8B' },
-                                { color: '#48D1CC', darkColor: '#20B2AA' },
                                 { color: '#FF6347', darkColor: '#CD5C5C' },
+                                { color: '#48D1CC', darkColor: '#20B2AA' },
+                                { color: '#6A5ACD', darkColor: '#483D8B' },
                             ]
                         }
                     }
@@ -135,14 +117,32 @@ function DashboardTrainerLayout() {
                             url: "/trainer/trainees",
                             headers: ["status", "Count", "Percentage"],
                             colors: [
+                                { color: '#FF1493', darkColor: '#C71585' },
+                                { color: '#32CD32', darkColor: '#228B22' },
                                 { color: '#FFD700', darkColor: '#B8860B' },
                                 { color: '#4682B4', darkColor: '#5F9EA0' },
-                                { color: '#32CD32', darkColor: '#228B22' },
-                                { color: '#FF1493', darkColor: '#C71585' },
                             ]
                         }
                     }
                 />
+                <DashboardPieChart
+                    pieChartData={packages}
+                    pieChartDetails={
+                        {
+                            title: "Packages Overview",
+                            icon: <PackageIcon />,
+                            url: "/trainer/packages",
+                            headers: ["name", "subscribers", "active", "expired", "cancelled", "percentage"],
+                            colors: [
+                                {color: '#FFBB28', darkColor: '#FFA500'},
+                                {color: '#FF8042', darkColor: '#FF4500'},
+                                {color: '#0088FE', darkColor: '#005BB5'},
+                                {color: '#00C49F', darkColor: '#00796B'},
+                            ]
+                        }
+                    }
+                />
+                <AssessmentsChart traineesAssessments={getDashboardTraineesAssessments} />
                 {/* <DashboardBarChart /> */}
                 <DashboardAreaChart areaChartData={subscriptionsByStartDate} areaChartDetails={
                     {

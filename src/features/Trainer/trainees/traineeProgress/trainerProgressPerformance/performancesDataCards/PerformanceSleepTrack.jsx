@@ -10,7 +10,7 @@ function PerformanceSleepTrack({ data }) {
     const { isDarkMode } = useDarkMode();
     const { hours, minutes, createdAt, weeklySleep } = data
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklySleep, title: "sleep track" }} icon={<SleepTrackIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="sleep track">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklySleep, title: "sleep track", yAxisLabel: " hrs" }} icon={<SleepTrackIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="sleep track">
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-2 lowercase">
                     <div className="flex items-center gap-2 lowercase">

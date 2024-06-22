@@ -20,10 +20,22 @@ function CompoundTabs({ children, tabsFeild, defaultTab }) {
     };
 
     function open(value) {
+        // Clear the current search parameters
         clearSearchParams();
-        if (searchParams.get("page")) searchParams.set("page", 1)
-        searchParams.set(tabsFeild, value)
-        setSearchParams(searchParams)
+
+        // Get the current search parameters object
+        const searchParams = new URLSearchParams(window.location.search);
+
+        // If a "page" parameter exists, reset it to 1
+        if (searchParams.get("page")) {
+            searchParams.set("page", 1);
+        }
+
+        // Set the new tab field value
+        searchParams.set(tabsFeild, value);
+
+        // Update the URL search parameters
+        setSearchParams(searchParams);
     }
     return (
         <TabsContext.Provider value={{ currentActive, open, colors, isDarkMode }}>

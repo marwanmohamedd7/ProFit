@@ -20,7 +20,7 @@ function TrainerProgressPerformanceCards({ title, icon, color, detailedData, chi
                             <button className={`text-xs capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>see details</button>
                         </Modal.Open>
                         <Modal.Window opens={detailedData?.title}>
-                            <ProgressBarChart barChartData={detailedData?.data} />
+                            <ProgressBarChart barChartData={detailedData?.data} yAxisLabel={detailedData?.yAxisLabel} />
                         </Modal.Window>
                     </Modal>
                     <span className={`text-lg ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}><MdKeyboardArrowRight /></span>

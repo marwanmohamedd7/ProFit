@@ -21,7 +21,7 @@ function getArrayData(key) {
     return key.map(({ value }) => value);
 }
 
-function CreateFood({ onCloseModal, foodToUpdate }) {
+function CreateFood({ onCloseModal, foodToUpdate, overwrite = true, isLoading: isViewing = false }) {
     const { isDarkMode } = useDarkMode();
     const [calories, setCalories] = useState();
     const { createFood, isCreating } = useCreateFood();
@@ -43,7 +43,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
     const fats = Number(watch("fats"));
     const carbs = Number(watch("carbs"));
     const proteins = Number(watch("proteins"));
-    const isLoading = isCreating || isUpdating;
+    const isLoading = isCreating || isUpdating || isViewing;
     function onSubmit(data) {
         if (!data) return;
         let isMatching = true;
@@ -143,6 +143,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                                 <InputDropdownMultiSelection
                                     name="dietType"
                                     placeholder="Diet Type"
+                                    disabled={isLoading}
                                     control={control}
                                     errors={errors?.dietType?.message}
                                     options={[
@@ -154,6 +155,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                                 <InputDropdownMultiSelection
                                     name="religionrestriction"
                                     placeholder="Religion Restriction"
+                                    disabled={isLoading}
                                     control={control}
                                     errors={errors?.religionrestriction?.message}
                                     options={[
@@ -194,6 +196,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             <InputDropdownMultiSelection
                                 name="foodAllergens"
                                 placeholder="Food Allergies"
+                                disabled={isLoading}
                                 control={control}
                                 errors={errors?.foodAllergens?.message}
                                 options={[
@@ -203,6 +206,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             <InputDropdownMultiSelection
                                 name="diseaseCompatibility"
                                 placeholder="Disease"
+                                disabled={isLoading}
                                 control={control}
                                 errors={errors?.diseaseCompatibility?.message}
                                 options={[
@@ -212,6 +216,7 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             <InputDropdownMultiSelection
                                 name="mealtype"
                                 placeholder="Meal Type"
+                                disabled={isLoading}
                                 control={control}
                                 errors={errors?.mealtype?.message}
                                 options={["Breakfast", "Lunch", "Snack", "Dinner"]}
@@ -319,14 +324,17 @@ function CreateFood({ onCloseModal, foodToUpdate }) {
                             />
                         </section>
                     </CompoundTabs.Window>
-                    <section className="flex justify-start gap-2 pt-4">
-                        <Button disabled={isLoading} type="primary">
-                            {isLoading ? <SpinnerMini dark={false} /> : <span className="capitalize">{isUpdatingSession ? "Update Food" : "Add Food"}</span>}
-                        </Button>
-                        <Button disabled={isLoading} onClick={onCloseModal} type="secondary">
-                            <span>Cancel</span>
-                        </Button>
-                    </section>
+                    {
+                        overwrite &&
+                        <div className="flex justify-start gap-2 pt-4">
+                            <Button disabled={isLoading} type="primary">
+                                {isLoading ? <SpinnerMini dark={false} /> : <span className="capitalize">{isUpdatingSession ? "Update Food" : "Add Food"}</span>}
+                            </Button>
+                            <Button disabled={isLoading} onClick={onCloseModal} type="secondary">
+                                <span>Cancel</span>
+                            </Button>
+                        </div>
+                    }
                 </div>
             </CompoundTabs>
         </form>
