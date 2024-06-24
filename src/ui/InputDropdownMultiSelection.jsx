@@ -44,7 +44,7 @@ const getCustomStyles = (isDarkMode, disabled) => ({
     }),
 });
 
-function InputDropdownMultiSelection({ name, placeholder, options, control, disabled, errors }) {
+function InputDropdownMultiSelection({ name, placeholder, options, required, control, disabled, errors }) {
     const { isDarkMode } = useDarkMode();
     const formattedOptions = typeof options[0] === "string" ? options.map(option => ({ value: option, label: option })) : options;
 
@@ -54,7 +54,7 @@ function InputDropdownMultiSelection({ name, placeholder, options, control, disa
                 name={name}
                 control={control}
                 disabled={disabled}
-                rules={{ required: `${placeholder} field cannot be empty.` }}
+                rules={{ required: required ?? `${placeholder} field cannot be empty.` }}
                 render={({ field }) => (
                     <Select
                         {...field}
@@ -67,7 +67,7 @@ function InputDropdownMultiSelection({ name, placeholder, options, control, disa
                     />
                 )}
             />
-            {errors && <span className={`text-xs ${isDarkMode ? "text-red-500" :"text-red-700"}`}>{errors}</span>}
+            {errors && <span className={`text-xs ${isDarkMode ? "text-red-500" : "text-red-700"}`}>{errors}</span>}
         </div>
     )
 }
