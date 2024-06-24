@@ -1,6 +1,6 @@
 export async function getTrainerChats(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/chat/conversations",
+    "https://pro-fit.onrender.com/api/v1/chat/conversations",
     {
       method: "GET",
       headers: {
@@ -15,7 +15,7 @@ export async function getTrainerChats(token) {
 
 export async function getChatMessages(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/chat/conversations/${id}/messages`,
+    `https://pro-fit.onrender.com/api/v1/chat/conversations/${id}/messages`,
     {
       method: "GET",
       headers: {
@@ -30,7 +30,7 @@ export async function getChatMessages(id, token) {
 
 export async function sendChatMessage(id, formData, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/chat/conversations/${id}/messages`,
+    `https://pro-fit.onrender.com/api/v1/chat/conversations/${id}/messages`,
     {
       method: "POST",
       headers: {

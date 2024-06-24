@@ -11,7 +11,7 @@ function SocketProvider({ children }) {
 
     useEffect(() => {
         if (userToken) {
-            const socketInstance = io('https://profit-qjbo.onrender.com', {
+            const socketInstance = io('https://pro-fit.onrender.com', {
                 auth: { token: userToken }
             });
             setSocket(socketInstance);
@@ -22,7 +22,7 @@ function SocketProvider({ children }) {
                 setSocket(null);
             };
         }
-        
+
     }, [userToken]);
 
     return (

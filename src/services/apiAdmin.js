@@ -2,7 +2,7 @@ import { PAGE_SIZE_DEFAULT } from "../utils/constants";
 
 export async function getPendingTrainers(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/admin/trainers/PendingTrainers",
+    "https://pro-fit.onrender.com/api/v1/admin/trainers/PendingTrainers",
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export async function getPendingTrainers(token) {
 
 export async function getPendingTrainerInfo(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/personalinfo/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/personalinfo/${id}`,
     {
       method: "GET",
       headers: {
@@ -32,7 +32,7 @@ export async function getPendingTrainerInfo(id, token) {
 
 export async function getPendingTrainerProfessionalCred(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/ProfessionalCredentials/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/ProfessionalCredentials/${id}`,
     {
       method: "GET",
       headers: {
@@ -47,7 +47,7 @@ export async function getPendingTrainerProfessionalCred(id, token) {
 
 export async function getPendingTrainerClientsTransformation(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/ClientTransformations/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/ClientTransformations/${id}`,
     {
       method: "GET",
       headers: {
@@ -65,7 +65,7 @@ export async function getPendingTrainerQualificationsAndAchievements(
   token
 ) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/QualificationsAndAchievements/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/QualificationsAndAchievements/${id}`,
     {
       method: "GET",
       headers: {
@@ -80,7 +80,7 @@ export async function getPendingTrainerQualificationsAndAchievements(
 
 export async function getPendingTrainerPackages(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/packages/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/packages/${id}`,
     {
       method: "GET",
       headers: {
@@ -95,7 +95,7 @@ export async function getPendingTrainerPackages(id, token) {
 
 export async function getPendingTrainerInfoBar(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/TrainerInfoBar/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/TrainerInfoBar/${id}`,
     {
       method: "GET",
       headers: {
@@ -110,7 +110,7 @@ export async function getPendingTrainerInfoBar(id, token) {
 
 export async function pendingTrainerAcceptOrReject(userData, id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/trainers/adminApprove/${id}`,
+    `https://pro-fit.onrender.com/api/v1/admin/trainers/adminApprove/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -126,9 +126,9 @@ export async function pendingTrainerAcceptOrReject(userData, id, token) {
 }
 
 export async function getSystemUsers(token, page, QueryParams, filter) {
-    const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
+  const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/SystemUsers/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&users=${QueryParams}${filterValue}`,
+    `https://pro-fit.onrender.com/api/v1/admin/SystemUsers/?page=${page}&limit=${PAGE_SIZE_DEFAULT}&users=${QueryParams}${filterValue}`,
     {
       method: "GET",
       headers: {
@@ -144,7 +144,7 @@ export async function getSystemUsers(token, page, QueryParams, filter) {
 export async function getAdminFinancials(token, page, filter) {
   const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
+    `https://pro-fit.onrender.com/api/v1/admin/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {

@@ -7,14 +7,12 @@ export default defineConfig({
   plugins: [react(), eslint()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://profit-qjbo.onrender.com',
+      "/api": {
+        target: "https://pro-fit.onrender.com",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  }
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
-
-

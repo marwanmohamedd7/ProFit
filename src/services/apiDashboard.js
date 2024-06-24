@@ -2,7 +2,7 @@
 export async function getTrainerDashboardPerformanceMetrics(token, filter) {
   const filterValue = !filter || filter === "All" ? "" : `?days=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/trainers/Dashboard/performanceMetrics${filterValue}`,
+    `https://pro-fit.onrender.com/api/v1/trainers/Dashboard/performanceMetrics${filterValue}`,
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export async function getTrainerDashboardPerformanceMetrics(token, filter) {
 
 export async function getTrainerDashboardData(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/Dashboard/getDashboardData",
+    "https://pro-fit.onrender.com/api/v1/trainers/Dashboard/getDashboardData",
     {
       method: "GET",
       headers: {
@@ -32,7 +32,7 @@ export async function getTrainerDashboardData(token) {
 
 export async function getDashboardTraineesAssessments(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/Dashboard/getActiveReadyAssessmentTraineesDashboard",
+    "https://pro-fit.onrender.com/api/v1/trainers/Dashboard/getActiveReadyAssessmentTraineesDashboard",
     {
       method: "GET",
       headers: {
@@ -49,7 +49,7 @@ export async function getDashboardTraineesAssessments(token) {
 export async function getAdminDashboardPerformanceMetrics(token, filter) {
   const filterValue = !filter || filter === "All" ? "" : `?days=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/admin/Dashboard/performanceMetrics${filterValue}`,
+    `https://pro-fit.onrender.com/api/v1/admin/Dashboard/performanceMetrics${filterValue}`,
     {
       method: "GET",
       headers: {
@@ -64,7 +64,7 @@ export async function getAdminDashboardPerformanceMetrics(token, filter) {
 
 export async function getAdminDashboardData(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/admin/Dashboard/getDashboardData",
+    "https://pro-fit.onrender.com/api/v1/admin/Dashboard/getDashboardData",
     {
       method: "GET",
       headers: {

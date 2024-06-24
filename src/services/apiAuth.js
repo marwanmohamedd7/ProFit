@@ -1,6 +1,6 @@
 export async function signUp(signUpData) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/auth/",
+    "https://pro-fit.onrender.com/api/v1/trainers/auth/",
     {
       method: "POST",
       headers: {
@@ -17,8 +17,8 @@ export async function signUp(signUpData) {
 export async function getCurrentUser(token, userRole) {
   const response = await fetch(
     userRole === "admin"
-      ? "https://profit-qjbo.onrender.com/api/v1/admin/PersonalInfo"
-      : "https://profit-qjbo.onrender.com/api/v1/trainers/trainer_Data",
+      ? "https://pro-fit.onrender.com/api/v1/admin/PersonalInfo"
+      : "https://pro-fit.onrender.com/api/v1/trainers/trainer_Data",
     {
       method: "GET",
       headers: {
@@ -34,7 +34,7 @@ export async function getCurrentUser(token, userRole) {
 
 export async function login({ email, password }) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/auth/SignIn",
+    "https://pro-fit.onrender.com/api/v1/trainers/auth/SignIn",
     {
       method: "POST",
       headers: {
@@ -47,7 +47,6 @@ export async function login({ email, password }) {
     }
   );
   const data = await response.json();
-  console.log(await response.json());
   if (!response.ok) throw new Error(data.error);
   return data;
 }

@@ -2,7 +2,7 @@ import { PAGE_SIZE_DEFAULT } from "../utils/constants";
 
 export async function getUserAbout(token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/trainer_about",
+    "https://pro-fit.onrender.com/api/v1/trainers/trainer_about",
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export async function getUserAbout(token) {
 
 export async function updateUserAbout(userData, token) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/trainers/update_trainer_about",
+    "https://pro-fit.onrender.com/api/v1/trainers/update_trainer_about",
     {
       method: "PATCH",
       headers: {
@@ -35,7 +35,7 @@ export async function updateUserAbout(userData, token) {
 export async function getTrainerTranscations(token, page, filter) {
   const filterValue = !filter || filter === "All" ? "" : `&status=${filter}`;
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/trainers/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
+    `https://pro-fit.onrender.com/api/v1/trainers/AllSubscriptions?page=${page}&limit=${PAGE_SIZE_DEFAULT}${filterValue}`,
     {
       method: "GET",
       headers: {

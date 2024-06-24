@@ -2,7 +2,7 @@ import { PAGE_SIZE_MEALS } from "../utils/constants";
 
 export async function getDietTemplates(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Nutrition/Myplans/?page=${page}&limit=${PAGE_SIZE_MEALS}`,
+    `https://pro-fit.onrender.com/api/v1/Nutrition/Myplans/?page=${page}&limit=${PAGE_SIZE_MEALS}`,
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export async function getDietTemplates(token, page) {
 
 export async function getDietFreePlans(token, page) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Nutrition/FreePlans?page=${page}&limit=${PAGE_SIZE_MEALS}`,
+    `https://pro-fit.onrender.com/api/v1/Nutrition/FreePlans?page=${page}&limit=${PAGE_SIZE_MEALS}`,
     {
       method: "GET",
       headers: {
@@ -32,7 +32,7 @@ export async function getDietFreePlans(token, page) {
 
 export async function getSpecificDietTemplate(token, id) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
+    `https://pro-fit.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "GET",
       headers: {
@@ -47,7 +47,7 @@ export async function getSpecificDietTemplate(token, id) {
 
 export async function createDietTemplate(token, dietData) {
   const response = await fetch(
-    "https://profit-qjbo.onrender.com/api/v1/Nutrition/",
+    "https://pro-fit.onrender.com/api/v1/Nutrition/",
     {
       method: "POST",
       headers: {
@@ -64,7 +64,7 @@ export async function createDietTemplate(token, dietData) {
 
 export async function updateDietTemplate(id, token, dietData) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
+    `https://pro-fit.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -81,7 +81,7 @@ export async function updateDietTemplate(id, token, dietData) {
 
 export async function deleteDietTemplate(id, token) {
   const response = await fetch(
-    `https://profit-qjbo.onrender.com/api/v1/Nutrition/${id}`,
+    `https://pro-fit.onrender.com/api/v1/Nutrition/${id}`,
     {
       method: "DELETE",
       headers: {
