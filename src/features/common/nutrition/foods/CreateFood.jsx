@@ -54,11 +54,11 @@ function CreateFood({ onCloseModal, foodToUpdate, overwrite = true, isLoading: i
             macros: { fats, carbs, proteins, calories },
             per: Number(per),
             foodImage: newFoodImg,
-            mealtype: getArrayData(mealtype),
-            dietType: getArrayData(dietType),
-            foodAllergens: getArrayData(foodAllergens),
-            religionrestriction: getArrayData(religionrestriction),
-            diseaseCompatibility: getArrayData(diseaseCompatibility),
+            mealtype: mealtype ? getArrayData(mealtype) : [],
+            dietType: dietType ? getArrayData(dietType) : [],
+            foodAllergens: foodAllergens ? getArrayData(foodAllergens) : [],
+            religionrestriction: religionrestriction ? getArrayData(religionrestriction) : [],
+            diseaseCompatibility: diseaseCompatibility ? getArrayData(diseaseCompatibility) : [],
             ...values
         };
         Object.entries(foodData).forEach(([key, value]) => {

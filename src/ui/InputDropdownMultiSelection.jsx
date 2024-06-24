@@ -47,7 +47,6 @@ const getCustomStyles = (isDarkMode, disabled) => ({
 function InputDropdownMultiSelection({ name, placeholder, options, required, control, disabled, errors }) {
     const { isDarkMode } = useDarkMode();
     const formattedOptions = typeof options[0] === "string" ? options.map(option => ({ value: option, label: option })) : options;
-
     return (
         <div className="relative">
             <Controller
