@@ -40,7 +40,7 @@ function Body({ data, render }) {
 function Row({ children, rowBgColor, onClick, border = false }) {
   const { colors, isDarkMode } = useContext(TableContext);
   return (
-    <tr onClick={onClick} className={`transition-all duration-300 border ${!border && "border-x-0"} ${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_800} bg-opacity-50 hover:${colors.bg_slate_600}`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} text-sm text-left cursor-pointer`}>
+    <tr onClick={onClick} className={`transition-all duration-300 border ${!border && "border-x-0"} ${isDarkMode ? `${colors.text_white} ${rowBgColor ? rowBgColor : `${colors.bg_slate_800} bg-opacity-50 hover:bg-slate-600`} ${colors.border_gray_700}` : `${colors.text_gray_700} ${rowBgColor ? rowBgColor : ` ${colors.bg_white} hover:${colors.bg_gray_50}`}`} text-sm text-left cursor-pointer`}>
       {children}
     </tr>
   )

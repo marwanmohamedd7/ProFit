@@ -153,9 +153,9 @@ function AddPackage({ packageToUpdate = {}, overwrite = true, onCloseModal, isLo
                     />
                 </div>
                 <div className="flex gap-2">
-                    <div>
+                    <span>
                         <ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isLoading} />
-                    </div>
+                    </span>
                     <p className={`flex flex-col justify-center capitalize text-xs ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}>
                         <span>active</span>
                         <span className={`${isDarkMode ? colors.text_gray_500 : colors.text_gray_400}`}>set as default</span>

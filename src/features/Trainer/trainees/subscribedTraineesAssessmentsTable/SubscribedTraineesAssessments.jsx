@@ -1,5 +1,4 @@
 import { useSearch } from "../../../../hooks/useSearch"
-import FilterButtons from "../../../../ui/FilterButtons"
 import SearchInput from "../../../../ui/SearchInput"
 import Spinner from "../../../../ui/Spinner"
 import TableOperationsContainer from "../../../../ui/TableOperationsContainer"
@@ -18,18 +17,6 @@ function SubscribedTraineesAssessments() {
                 <SearchInput
                     placeholder="Search Trainee Name..."
                     setSearchKeyword={setSearchKeyword}
-                />
-                <FilterButtons
-                    fiterBtns={{
-                        fiterFeild: "trainees",
-                        options: [
-                            { label: "All", value: "All" },
-                            { label: "Active", value: "Active" },
-                            { label: "Expired", value: "Expired" },
-                            { label: "Pending", value: "Pending" },
-                            { label: "Cancelled", value: "Cancelled" },
-                        ]
-                    }}
                 />
             </div>
             <TrainerSubscribedTraineesTable trainees={dataReady} count={dataCount} empty="assessments" />

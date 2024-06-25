@@ -21,13 +21,14 @@ import DietAssessmentSettings from "./DietAssessmentSettings"
 
 function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     let searchParams = "";
+    const colors = styles();
     const { id } = useParams()
-    const { _id, planName, dietType: diettype, description } = dietToUpdate;
+    const { _id, planName, dietType: diettype, description, published } = dietToUpdate;
     const isExist = Boolean(_id);
     const navigate = useNavigate();
-    const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { prevPath } = usePageLocation();
+    const [isActive, setIsActive] = useState(published ?? true);
     const previousPath = prevPath.split("/").slice(0, -1).join("/")
     const [submitCount, setSubmitCount] = useState(0); // Track the number of submit attempts
     const { dispatch, error, submittedData } = useDietProvider();
@@ -35,9 +36,11 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     const { updateDietTemplate, isUpdating } = useUpdateDietTemplate();
     const { createTraineeCustomizePlan, isCreating: isCreating1 } = useCreateCustomizedPlan();
     const isLoading = isCreating || isUpdating || isCreating1;
+
     const { handleSubmit, formState: { errors }, getValues, register, watch } = useForm({
         defaultValues: isExist ? { planName, dietType: diettype, description } : {},
     });
+
     function onSubmit(data) {
         if (!data) return;
         const { planName, dietType, description } = data
@@ -49,7 +52,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
     useEffect(() => {
         if (error && submitCount > 0) toast.error(error);
         else if (submittedData) {
-            const { error, ...dietData } = submittedData;
+            let { error, ...dietData } = submittedData;
+            if (dietType === "free plan") dietData = { ...dietData, published: isActive }
             if (isExist && dietType === "customized plan") {
                 const { trainee: { _id } } = dietData;
                 createTraineeCustomizePlan({ _id, dietData }, {
@@ -75,7 +79,8 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                 })
             }
         }
-    }, [_id, id, dispatch, error, isExist, submitCount, submittedData, prevPath, previousPath, dietToUpdate?.trainee?._id, searchParams, dietType, navigate, createDietTemplate, updateDietTemplate, createTraineeCustomizePlan]);  // Depend on error and submit count
+    }, [_id, id, dispatch, error, isExist, isActive, submitCount, submittedData, prevPath, previousPath, dietToUpdate?.trainee?._id, searchParams, dietType, navigate, createDietTemplate, updateDietTemplate, createTraineeCustomizePlan]);  // Depend on error and submit count
+
     let sectionName;
     if (dietType === "free plan") sectionName = "free diet builder"
     if (dietType === "my plan") {
@@ -101,19 +106,21 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                             </p>
                         </Button>
                         {
-                            dietType === "customized plan" &&
+                            dietType === "free plan" &&
                             <Modal>
                                 <Modal.Open opens="load-diet-template">
                                     <Button type="secondary">Load Diet Template</Button>
                                 </Modal.Open>
                                 <Modal.Window opens="load-diet-template">
-                                    <NutritionDiets dietType={dietType} customStyle={true} />
+                                    <div className="py-4">
+                                        <NutritionDiets dietType={dietType} />
+                                    </div>
                                 </Modal.Window>
                             </Modal>
                         }
                     </div>
                 </div>
-                <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} />
+                <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} isActive={isActive} setIsActive={setIsActive} />
             </>
             :
             <>
@@ -172,7 +179,7 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                             </div>
                         </div>
                     </div>
-                    <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} />
+                    <CreateDiet register={register} watch={watch} errors={errors} getValues={getValues()} dietType={dietType} isActive={isActive} setIsActive={setIsActive} />
                 </div>
             </>
     )

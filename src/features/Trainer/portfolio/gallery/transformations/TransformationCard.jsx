@@ -45,12 +45,12 @@ function TransformationCard({ transformation }) {
                     </Modal>
 
                     <Modal>
-                        <Modal.Open opens="delete-food">
+                        <Modal.Open opens="delete-transformation">
                             <Button type="icon-delete" disabled={isDeleting}>
                                 <HiTrash />
                             </Button>
                         </Modal.Open>
-                        <Modal.Window opens="delete-food">
+                        <Modal.Window opens="delete-transformation">
                             <ConfirmDelete isLoading={isDeleting} onConfirm={(e) => onDelete(e, transformation._id)} resourceName="transformation" />
                         </Modal.Window>
                     </Modal>

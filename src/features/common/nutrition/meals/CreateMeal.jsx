@@ -66,13 +66,13 @@ function CreateMeal({ mealToUpdate = {} }) {
     return (
         <>
             <div className="space-y-4">
-                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal details
                     </div>
                     <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
                 </div>
-                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal macros
                     </div>
@@ -83,7 +83,7 @@ function CreateMeal({ mealToUpdate = {} }) {
                         calories={mealMacros?.calories ?? 0}
                     />
                 </div>
-                <div className={`${isDarkMode && colors.border_gray_700} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal ingredients
                     </div>

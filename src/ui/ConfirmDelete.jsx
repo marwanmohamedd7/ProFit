@@ -3,7 +3,7 @@ import SpinnerMini from "./SpinnerMini";
 import { useDarkMode } from "../context/DarkModeProvider";
 import styles from "../styles/styles";
 
-function ConfirmDelete({ resourceName, onConfirm, onCloseModal, isLoading }) {
+function ConfirmDelete({ action ="delete",resourceName, onConfirm, onCloseModal, isLoading }) {
   const colors = styles();
   const { isDarkMode } = useDarkMode();
   return (
@@ -12,7 +12,7 @@ function ConfirmDelete({ resourceName, onConfirm, onCloseModal, isLoading }) {
         <span className={`text-4xl ${isDarkMode ? colors.text_gray_200 : colors.text_gray_400}`}><BsExclamationCircleFill /></span>
         <p className={`flex flex-col justify-center items-center gap-1 ${isDarkMode ? colors.text_gray_50 : colors.text_gray_700} font-semibold tracking-wide`}>
           <span>
-            Are you sure you want to delete this <strong>{resourceName}</strong> permanently?
+            Are you sure you want to <strong>{action}</strong> this <strong>{resourceName}</strong> permanently?
           </span>
           <span>This action cannot be undone.</span>
         </p>

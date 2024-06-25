@@ -37,7 +37,6 @@ function NutritionTableRow({ food, section, onCloseModal }) {
         if (foodAllergens?.includes(allergy)) inadvisableFood = true;
         return allergy;
     })
-
     function onDelete(id) {
         if (!id) return;
         deleteFood(id)

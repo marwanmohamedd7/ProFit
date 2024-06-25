@@ -14,17 +14,17 @@ function TrainerProgressPerformanceCards({ title, icon, color, detailedData, chi
                     <span className={`${color}`}>{icon}</span>
                     <h1 className={`font-bold ${isDarkMode ? colors.text_white : colors.text_gray_900}`}>{title}</h1>
                 </div>
-                <div className="flex items-center gap-2">
-                    <Modal>
-                        <Modal.Open opens={detailedData?.title}>
-                            <button className={`text-xs capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>see details</button>
-                        </Modal.Open>
-                        <Modal.Window opens={detailedData?.title}>
-                            <ProgressBarChart barChartData={detailedData?.data} yAxisLabel={detailedData?.yAxisLabel} />
-                        </Modal.Window>
-                    </Modal>
-                    <span className={`text-lg ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}><MdKeyboardArrowRight /></span>
-                </div>
+                <Modal>
+                    <Modal.Open opens={detailedData?.title}>
+                        <button className={`text-xs capitalize flex items-center gap-0.5 ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>
+                            <span className="pb-0.5">see details</span>
+                            <span className="text-base"><MdKeyboardArrowRight /></span>
+                        </button>
+                    </Modal.Open>
+                    <Modal.Window opens={detailedData?.title}>
+                        <ProgressBarChart barChartData={detailedData?.data} yAxisLabel={detailedData?.yAxisLabel} />
+                    </Modal.Window>
+                </Modal>
             </div>
             {children}
         </div>

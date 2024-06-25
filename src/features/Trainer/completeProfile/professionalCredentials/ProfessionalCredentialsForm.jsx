@@ -13,7 +13,7 @@ const options = [
 
 function ProfessionalCredentialsForm({ control, register, errors, watch, disabled }) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-4">
             <InputDropdownMultiSelection name="specializations" placeholder="specializations" options={options} control={control} disabled={disabled} errors={errors?.specializations} />
             <div className="flex flex-col justify-end">
                 <InputFloatingLabel item={{ label: "Years of Experience*", id: "yearsOfExperience", type: "number", value: watch("yearsOfExperience") }}

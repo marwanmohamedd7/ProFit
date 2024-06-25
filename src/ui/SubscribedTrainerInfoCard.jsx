@@ -1,7 +1,7 @@
 import styles from "../styles/styles";
 import { useDarkMode } from "../context/DarkModeProvider";
 
-function SubscribedTrainerInfoCard({ field, value, setValue, backgroundColor, updateValue = false }) {
+function SubscribedTrainerInfoCard({ field, value, setValue, disabled = false, backgroundColor, updateValue = false }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     return (
@@ -11,9 +11,10 @@ function SubscribedTrainerInfoCard({ field, value, setValue, backgroundColor, up
                 {
                     updateValue ?
                         <input
-                            type="number"
                             id="price"
+                            type="number"
                             value={value}
+                            disabled={disabled}
                             onChange={(e) => setValue(e.target.value)}
                             className={`outline-none w-full font-bold py-2 ${isDarkMode ? `${colors.text_gray_300} ${colors.bg_slate_800} placeholder:text-gray-400` : `${colors.text_gray_700} ${backgroundColor} placeholder:text-gray-500`}`}
                         /> :

@@ -1,9 +1,10 @@
 import InputDropdown from "../../../../../ui/InputDropdown"
 import InputFloatingLabel from "../../../../../ui/InputFloatingLabel"
+import InputTextArea from "../../../../../ui/InputTextArea"
 
 function DietForm({ register, watch, errors, getValues }) {
     return (
-        <form className="flex items-center justify-center gap-2">
+        <form className="grid grid-cols-2 gap-2">
             <InputFloatingLabel
                 item={{ id: "planName", label: "diet template name", value: watch("planName") }}
                 error={errors?.planName?.message}
@@ -38,7 +39,7 @@ function DietForm({ register, watch, errors, getValues }) {
                     })
                 }}
             />
-            <InputFloatingLabel
+            {/* <InputFloatingLabel
                 item={{ id: "description", label: "diet template note", value: watch("description") }}
                 error={errors?.description?.message}
                 register={
@@ -48,7 +49,18 @@ function DietForm({ register, watch, errors, getValues }) {
                         })
                     }
                 }
-            />
+            /> */}
+            <div className="grid col-span-2">
+                <InputTextArea
+                    errors={errors?.description?.message}
+                    placeholder="Diet template note..."
+                    register={{
+                        ...register("description", {
+                            required: false,
+                        })
+                    }}
+                />
+            </div>
         </form>
     )
 }

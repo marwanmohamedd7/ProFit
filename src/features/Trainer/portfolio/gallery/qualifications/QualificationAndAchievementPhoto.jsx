@@ -19,14 +19,14 @@ function QualificationAndAchievementPhoto({ img }) {
     return (
         <div className="relative">
             <Modal>
-                <Modal.Open opens="delete-food">
+                <Modal.Open opens="delete-image">
                     <button onClick={handleDeleteImage}
                         className={`cursor-pointer absolute right-[-12.5%] top-[-10%] p-1.5 rounded-full ${iconStyle}`}
                     >
                         <HiTrash />
                     </button>
                 </Modal.Open>
-                <Modal.Window opens="delete-food">
+                <Modal.Window opens="delete-image">
                     <ConfirmDelete isLoading={isDeletingQualification} onConfirm={handleDeleteImage} resourceName="photo" />
                 </Modal.Window>
             </Modal>

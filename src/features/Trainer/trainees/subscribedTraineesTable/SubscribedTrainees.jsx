@@ -26,7 +26,6 @@ function SubscribedTrainees() {
                             { label: "All", value: "All" },
                             { label: "Active", value: "Active" },
                             { label: "Expired", value: "Expired" },
-                            { label: "Pending", value: "Pending" },
                             { label: "Cancelled", value: "Cancelled" },
                         ]
                     }}

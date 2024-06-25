@@ -95,22 +95,6 @@ function DashboardAdminLayout() {
                 <Stat icon={<UsersMoreIcon />} color={isDarkMode ? `text-indigo-500 bg-indigo-900 bg-opacity-50` : `bg-indigo-100 text-indigo-600`} title="total pending trainers" value={totalPendingTrainers} />
             </Stats>
             <div className="grid grid-cols-2 gap-4">
-                <DashboardPieChart
-                    role="admin"
-                    dimenstion="50%"
-                    pieChartData={systemUsers}
-                    pieChartDetails={
-                        {
-                            title: "system users Overview",
-                            icon: <UsersIcon />,
-                            url: "/admin/system-users",
-                            headers: ["role", "count", "percentage"],
-                            colors: [
-                                { color: '#2196F3', darkColor: '#0D47A1' },
-                                { color: '#4CAF50', darkColor: '#1B5E20' },
-                            ]
-                        }
-                    } />
                 <DashboardDountChart
                     dountChartData={overAllTrainers}
                     dountChartDetails={
@@ -141,6 +125,22 @@ function DashboardAdminLayout() {
                                 { color: '#FF8042', darkColor: '#CC6536' },
                                 { color: '#FFBB28', darkColor: '#CC9620' },
                                 { color: '#2196F3', darkColor: '#1769AA' },
+                            ]
+                        }
+                    } />
+                <DashboardPieChart
+                    role="admin"
+                    dimenstion="50%"
+                    pieChartData={systemUsers}
+                    pieChartDetails={
+                        {
+                            title: "system users Overview",
+                            icon: <UsersIcon />,
+                            url: "/admin/system-users",
+                            headers: ["role", "count", "percentage"],
+                            colors: [
+                                { color: '#2196F3', darkColor: '#0D47A1' },
+                                { color: '#4CAF50', darkColor: '#1B5E20' },
                             ]
                         }
                     } />

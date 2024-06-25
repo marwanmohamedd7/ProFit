@@ -47,6 +47,23 @@ export async function getDietAssessmentSettingsForm(token, id) {
   return data;
 }
 
+export async function updateDietAssessmentSettingsForm(dietData, token, id) {
+  const response = await fetch(
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/updateTraineeDietAssessment/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dietData),
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
 export async function getSubscribedTraineeCommitments(token, id) {
   const response = await fetch(
     `https://pro-fit.onrender.com/api/v1/trainers/trainees/trackingTraineePlans/${id}`,

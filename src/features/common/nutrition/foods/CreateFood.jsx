@@ -129,51 +129,36 @@ function CreateFood({ onCloseModal, foodToUpdate, overwrite = true, isLoading: i
                                 src={currentFoodImg ?? null}
                                 rules={{ required: !currentFoodImg ? "food photo is required" : false }}
                             />
-                            <div className="grid grid-cols-2 gap-2">
-                                <InputFloatingLabel
-                                    item={{ id: "foodname", label: "Food Name", value: watch("foodname") }}
-                                    disabled={isLoading}
-                                    error={errors?.foodname?.message}
-                                    register={{
-                                        ...register("foodname", {
-                                            required: 'This field is required',
-                                        })
-                                    }}
-                                />
-                                <InputDropdownMultiSelection
-                                    name="dietType"
-                                    placeholder="Diet Type"
-                                    disabled={isLoading}
-                                    control={control}
-                                    errors={errors?.dietType?.message}
-                                    options={[
-                                        "Vegetarian", "Vegan", "Ketogenic", "Paleo", "Mediterranean", "Standard", "Other"
-                                    ]}
-                                />
-                            </div>
-                            <div className="space-y-4">
-                                <InputDropdownMultiSelection
-                                    name="religionrestriction"
-                                    required={false}
-                                    placeholder="Religion Restriction"
-                                    disabled={isLoading}
-                                    control={control}
-                                    errors={errors?.religionrestriction?.message}
-                                    options={[
-                                        "Alcohol", "Pork", "Carrion", "Beef", "Meat Products", "Chicken"
-                                    ]}
-                                />
-                                <InputTextArea
-                                    disabled={isLoading}
-                                    errors={errors?.description?.message}
-                                    placeholder="Description..."
-                                    register={{
-                                        ...register("description", {
-                                            required: false,
-                                        })
-                                    }}
-                                />
-                            </div>
+                            <InputFloatingLabel
+                                item={{ id: "foodname", label: "Food Name", value: watch("foodname") }}
+                                disabled={isLoading}
+                                error={errors?.foodname?.message}
+                                register={{
+                                    ...register("foodname", {
+                                        required: 'This field is required',
+                                    })
+                                }}
+                            />
+                            <InputTextArea
+                                disabled={isLoading}
+                                errors={errors?.description?.message}
+                                placeholder="Description..."
+                                register={{
+                                    ...register("description", {
+                                        required: false,
+                                    })
+                                }}
+                            />
+                            <InputDropdownMultiSelection
+                                name="dietType"
+                                placeholder="Diet Type"
+                                disabled={isLoading}
+                                control={control}
+                                errors={errors?.dietType?.message}
+                                options={[
+                                    "Vegetarian", "Vegan", "Ketogenic", "Paleo", "Mediterranean", "Standard", "Other"
+                                ]}
+                            />
                         </section>
                     </CompoundTabs.Window>
                     <CompoundTabs.Window opens="foodPreferences">
@@ -223,6 +208,17 @@ function CreateFood({ onCloseModal, foodToUpdate, overwrite = true, isLoading: i
                                 control={control}
                                 errors={errors?.mealtype?.message}
                                 options={["Breakfast", "Lunch", "Snack", "Dinner"]}
+                            />
+                            <InputDropdownMultiSelection
+                                name="religionrestriction"
+                                required={false}
+                                placeholder="Religion Restriction"
+                                disabled={isLoading}
+                                control={control}
+                                errors={errors?.religionrestriction?.message}
+                                options={[
+                                    "Alcohol", "Pork", "Carrion", "Beef", "Meat Products", "Chicken"
+                                ]}
                             />
                         </section>
                     </CompoundTabs.Window>

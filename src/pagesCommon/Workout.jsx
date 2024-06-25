@@ -1,16 +1,19 @@
-import Title from "../ui/Title";
-import BreadCrumbs from "../ui/BreadCrumbs";
-import WorkoutAdmin from "../features/common/workout/Admin/WorkoutAdmin";
-import { useCurrentUser } from "../context/UserProvider";
+// import Title from "../ui/Title";
+// import BreadCrumbs from "../ui/BreadCrumbs";
+// import WorkoutAdmin from "../features/common/workout/Admin/WorkoutAdmin";
+// import { useCurrentUser } from "../context/UserProvider";
+
+import FutureFeatures from "../ui/FutureFeatures";
 
 function Workout() {
-  const { userRole } = useCurrentUser();
+  // const { userRole } = useCurrentUser();
   return <div className="space-y-4">
-    <div>
+    <FutureFeatures />
+    {/* <div>
       <BreadCrumbs />
       <Title />
     </div>
-    {userRole === "trainer" ? "" : <WorkoutAdmin />}
+    {userRole === "trainer" ? "" : <WorkoutAdmin />} */}
   </div>;
 }
 

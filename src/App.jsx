@@ -8,7 +8,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import checkTokenValidity from "./utils/checkTokenValidity";
 import ProtectedRouteProfile from "./ui/ProtectedRouteProfile";
-import "preline/preline";
 import { SocketProvider } from './context/SocketProvider';
 import { useDarkMode } from './context/DarkModeProvider';
 import Spinner from './ui/Spinner';
@@ -18,6 +17,7 @@ const Trainer = lazy(() => import("./ui/Trainer"));
 const Login = lazy(() => import("./pagesCommon/Login"));
 const Users = lazy(() => import("./pagesAdmin/Users"));
 const Meals = lazy(() => import('./pagesCommon/Meals'));
+const Foods = lazy(() => import('./pagesCommon/Foods'));
 const SignUp = lazy(() => import("./pagesTrainer/SignUp"));
 const Workout = lazy(() => import("./pagesCommon/Workout"));
 const Account = lazy(() => import("./pagesAdmin/Account"));
@@ -84,6 +84,8 @@ function App() {
               <Route path="trainer-approval/trainer-profile/:id" element={<TrainerReview />} />
               <Route path="system-users/trainer-profile/:id" element={<TrainerReview />} />
               <Route path="nutrition" element={<Nutrition />} />
+              <Route path="nutrition/foods" element={<Foods />} />
+              <Route path="nutrition/foods/:id" element={<Foods />} />
               <Route path="nutrition/meals" element={<Meals />} />
               <Route path="nutrition/meals/:id" element={<Meals />} />
               <Route path="workout" element={<Workout />} />
@@ -113,6 +115,8 @@ function App() {
               <Route path="trainees/trainee/diets/:id" element={<DietPlanCustomized />} />
               <Route path="messages" element={<Messages />} />
               <Route path="nutrition" element={<Nutrition />} />
+              <Route path="nutrition/foods" element={<Foods />} />
+              <Route path="nutrition/foods/:id" element={<Foods />} />
               <Route path="nutrition/meals" element={<Meals />} />
               <Route path="nutrition/meals/:id" element={<Meals />} />
               <Route path="nutrition/diets" element={<DietPlanTrainer />} />

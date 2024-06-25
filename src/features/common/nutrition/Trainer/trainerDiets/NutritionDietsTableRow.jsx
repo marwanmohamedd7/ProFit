@@ -30,7 +30,7 @@ function NutritionDietsTableRow({ diet, dietType, onCloseModal }) {
         searchParams.set("day", 1);
         setSearchParams(searchParams);
         toast.success("Added diet item!");
-        onCloseModal();
+        onCloseModal?.();
     }
 
     return (
@@ -51,7 +51,7 @@ function NutritionDietsTableRow({ diet, dietType, onCloseModal }) {
                 />
             </td>
             {
-                dietType !== "customized plan" ?
+                dietType !== "customized plan" && dietType !== "free plan" ?
                     <td className="p-4 whitespace-nowrap text-sm font-medium">
                         <div className='flex items-center justify-end gap-1'>
                             <Button onClick={() => navigate(`diets/${_id}`)} type="icon-update">

@@ -71,7 +71,7 @@ function DashboardPieChart({ pieChartData, pieChartDetails, role, dimenstion }) 
                                     layout="vertical"
                                     align="right"
                                     iconSize="15"
-                                    width="30%"
+                                    width="40%"
                                     margin={20}
                                 />
                             }

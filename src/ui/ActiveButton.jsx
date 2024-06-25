@@ -2,11 +2,15 @@
 
 import { useDarkMode } from "../context/DarkModeProvider";
 
-const ActiveButton = ({ isActive, setIsActive, disabled = false }) => {
+const ActiveButton = ({ isActive, setIsActive, onClick, disabled = false }) => {
+    
     const { isDarkMode } = useDarkMode();
-    function handleToggle() {
+    function handleToggle(e) {
+        e.stopPropagation();
         setIsActive((value) => !value)
+        onClick?.(); // call the onClick function if it exists
     }
+
     return (
         <button
             type="button"

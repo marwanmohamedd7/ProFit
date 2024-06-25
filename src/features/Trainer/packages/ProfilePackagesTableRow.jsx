@@ -19,11 +19,7 @@ function ProfilePackagesTableRow({ packageData, activePackages, isLoading }) {
         deletePackage(id);
     }, [deletePackage]);
 
-    useEffect(() => {
-        if (active !== isActive) {
-            updatePackage({ id: _id, updatedPackageData: { active: isActive } });
-        }
-    }, [isActive, active, _id, updatePackage, activePackages]);
+    useEffect(() => setIsActive(active), [active])
 
     const isButtonDisabled = isLoading || isUpdating;
 
@@ -36,6 +32,7 @@ function ProfilePackagesTableRow({ packageData, activePackages, isLoading }) {
             <td className="p-4 whitespace-nowrap">{subscribersLimit}</td>
             <td className="p-4 whitespace-nowrap">
                 <ActiveButton
+                    onClick={() => updatePackage({ id: _id, updatedPackageData: { active: !isActive } })}
                     isActive={isActive}
                     setIsActive={setIsActive}
                     disabled={isButtonDisabled || (activePackages >= 4 && !active)}
@@ -55,12 +52,12 @@ function ProfilePackagesTableRow({ packageData, activePackages, isLoading }) {
                     </Modal>
 
                     <Modal>
-                        <Modal.Open opens="delete-food">
+                        <Modal.Open opens="delete-package">
                             <Button type="icon-delete" disabled={isButtonDisabled}>
                                 <HiTrash />
                             </Button>
                         </Modal.Open>
-                        <Modal.Window opens="delete-food">
+                        <Modal.Window opens="delete-package">
                             <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="package" />
                         </Modal.Window>
                     </Modal>

@@ -8,6 +8,9 @@ import { useGetPendingTrainerInfoBar } from "./useGetPendingTrainerInfoBar";
 import Button from "../../../../ui/Button";
 import styles from "../../../../styles/styles";
 import SpinnerMini from "../../../../ui/SpinnerMini";
+import StatusLabel from "../../../../ui/StatusLabel";
+import Modal from "../../../../ui/Modal";
+import ConfirmDelete from "../../../../ui/ConfirmDelete";
 
 function PendingTrainerInfoBar() {
     const colors = styles();
@@ -30,7 +33,7 @@ function PendingTrainerInfoBar() {
                             <img
                                 src={profilePhoto}
                                 alt="Profile"
-                                className="rounded-md h-16 w-16 object-cover mr-4"
+                                className="rounded-md h-24 w-24 object-cover mr-4"
                             />
                             <div className="flex flex-col gap-1 justify-center">
                                 <h4 className={`flex justify-start items-center gap-1 font-bold text-md ${isDarkMode ? colors.text_gray_50 : colors.text_gray_700}`}>
@@ -41,10 +44,13 @@ function PendingTrainerInfoBar() {
                                     <span>{email}</span>
                                     <span>{phoneNumber}</span>
                                 </p>
+                                <p>
+                                    <StatusLabel status={status} />
+                                </p>
                             </div>
                         </div>
                         {
-                            (status !== "accepted" && status !== "rejected") &&
+                            (status === "pending") &&
                             <div className="flex items-center justify-center gap-2 text-sm">
                                 <Button
                                     type="accept"
@@ -66,26 +72,32 @@ function PendingTrainerInfoBar() {
                                         }
                                     </p>
                                 </Button>
-                                <Button
-                                    type="reject"
-                                    onClick={() => rejectPendingTrainer(_id, {
-                                        onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
-                                    })}
-                                >
-                                    <p className="flex justify-center items-center gap-2 tracking-wide">
-                                        {
-                                            isRejecting ?
-                                                <SpinnerMini />
-                                                :
-                                                <>
-                                                    <span className="text-base">
-                                                        <RxCross1 />
-                                                    </span>
-                                                    <span>Reject</span>
-                                                </>
-                                        }
-                                    </p>
-                                </Button>
+                                <Modal>
+                                    <Modal.Open opens="reject-trainer">
+                                        <Button
+                                            type="reject"
+                                        >
+                                            <p className="flex justify-center items-center gap-2 tracking-wide">
+                                                {
+                                                    isRejecting ?
+                                                        <SpinnerMini />
+                                                        :
+                                                        <>
+                                                            <span className="text-base">
+                                                                <RxCross1 />
+                                                            </span>
+                                                            <span>Reject</span>
+                                                        </>
+                                                }
+                                            </p>
+                                        </Button>
+                                    </Modal.Open>
+                                    <Modal.Window opens="reject-trainer">
+                                            <ConfirmDelete action="reject" resourceName={"trainer"} isLoading={isRejecting} onConfirm={() => rejectPendingTrainer(_id, {
+                                            onSuccess: () => navigate("/admin/trainer-approval", { replace: true })
+                                        })} />
+                                    </Modal.Window>
+                                </Modal>
                             </div>
                         }
                     </>

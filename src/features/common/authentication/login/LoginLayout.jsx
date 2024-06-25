@@ -18,8 +18,8 @@ function LoginLayout() {
                         <h2 className={`text-2xl font-extrabold ${isDarkMode ? colors.text_white : colors.text_blue_700}`}>
                             ProFIT
                         </h2>
-                        <p className={`text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>
-                            Admin Portal
+                        <p className={`text-xs capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>
+                            online coaching platform
                         </p>
                     </div>
                 </div>

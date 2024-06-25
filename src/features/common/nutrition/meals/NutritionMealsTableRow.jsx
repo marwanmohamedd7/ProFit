@@ -32,7 +32,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
         dispatch({ type: "diet/loadMeal", payload: { day: section.day, mealId: section.mealId, meal: { mealname, mealtype, mealnote, mealmacros, foods: ingredients } } })
         dispatch({ type: "diet/calcDayMacros", payload: section.day })
         toast.success("Added meal item!")
-        onCloseModal()
+        onCloseModal?.();
     }
     return (
         section === "meal" ?
@@ -55,38 +55,6 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
                         carbs={mealmacros?.carbs}
                         fats={mealmacros?.fats}
                     />
-                    {/* <div className="bg-gray-100 px-4 py-2 rounded-md border">
-                        <div className="flex items-center justify-between gap-2 text-lg font-bold text-blue-700">
-                            <h3 className="flex flex-col gap-1">
-                                <p className="flex items-center gap-1">
-                                    <span>{Math.round(mealmacros.calories)}</span>
-                                    <span className="font-normal">Kcal</span>
-                                </p>
-                                <span className="text-xs text-blue-900 font-normal">calories</span>
-                            </h3>
-                            <h3 className="flex flex-col gap-1">
-                                <p className="flex items-center gap-1">
-                                    <span>{Math.round(mealmacros.proteins)}</span>
-                                    <span className="font-normal">g</span>
-                                </p>
-                                <span className="text-xs text-blue-900 font-normal">proteins</span>
-                            </h3>
-                            <h3 className="flex flex-col gap-1">
-                                <p className="flex items-center gap-1">
-                                    <span>{Math.round(mealmacros.fats)}</span>
-                                    <span className="font-normal">g</span>
-                                </p>
-                                <span className="text-xs text-blue-900 font-normal">fats</span>
-                            </h3>
-                            <h3 className="flex flex-col gap-1">
-                                <p className="flex items-center gap-1">
-                                    <span>{Math.round(mealmacros.carbs)}</span>
-                                    <span className="font-normal">g</span>
-                                </p>
-                                <span className="text-xs text-blue-900 font-normal">carbs</span>
-                            </h3>
-                        </div>
-                    </div> */}
                 </td>
 
                 <td className="p-4 whitespace-nowrap text-sm text-right font-medium">
@@ -139,15 +107,15 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
             </Table.Row>
             :
             <Table.Row>
-                <td className="p-2 whitespace-nowrap text-left">
+                <td className="p-4 whitespace-nowrap text-left">
                     <p className="flex flex-col gap-1">
-                        <span className="font-bold text-lg text-blue-700">{mealname}</span>
-                        <span className="font-normal text-xs text-gray-500">{mealtype}</span>
+                        <span className="font-bold text-lg">{mealname}</span>
+                        <span className={`font-normal text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{mealtype}</span>
                     </p>
                 </td>
 
-                <td colSpan="2" className="p-2 gap-2 text-left flex flex-wrap">
-                    {ingredients.map(ing => <span key={ing._id} className="bg-blue-100 px-2 py-1 rounded-full text-blue-900 text-xs font-semibold w-fit">{`${ing.foodname} ${ing.amount} ${ing.servingUnit.at(0).toLowerCase()}`}</span>)}
+                <td className="p-4 gap-2 text-left flex flex-wrap">
+                    {ingredients.map(ing => <span key={ing._id} className={`${isDarkMode ? `${colors.bg_white} bg-opacity-10 ${colors.text_gray_50}` : `${colors.bg_gray_100}`} px-2 py-1 rounded-full text-xs font-semibold w-fit`}>{`${ing.foodname} ${ing.amount} ${ing.servingUnit.at(0).toLowerCase()}`}</span>)}
                 </td>
 
                 <td colSpan="3" className="p-2 whitespace-nowrap text-left">

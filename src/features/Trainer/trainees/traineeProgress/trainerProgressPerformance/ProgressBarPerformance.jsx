@@ -4,7 +4,6 @@ import styles from "../../../../../styles/styles";
 function ProgressBarPerformance({ label,color, progressColor, percentage }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-
     return (
         <div className="flex flex-col gap-1 pb-3">
             <p className={`${color} font-bold text-base`}>{label}%</p>

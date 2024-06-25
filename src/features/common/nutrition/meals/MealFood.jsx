@@ -77,7 +77,7 @@ function MealFood({ food, section, isExist = false }) {
     }
 
     return (
-        <div className={`px-4 py-2 rounded-md w-full border ${inadvisableFood ? "bg-red-100" : `${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_gray_50}`}`}>
+        <div className={`p-4 rounded-md w-full border ${inadvisableFood ? "bg-red-100" : `${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_gray_50}`}`}>
             <div className={`flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2 text-lg font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900}`}>
                 <div className="flex flex-col xl:items-center xl:flex-row xl:gap-3 gap-2 xl:mb-0 mb-1 xl:basis-72">
                     <div className="xl:h-24 xl:w-24 sm:w-44 sm:h-44 w-40 h-40 flex items-center justify-center">

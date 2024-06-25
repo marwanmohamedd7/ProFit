@@ -17,7 +17,7 @@ function DietsFreePlanTableRow({ diet }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { _id, planName, plantype, daysCount, planmacros, published } = diet
-    const [isActive, setIsActive] = useState(published ?? true)
+    const [isActive, setIsActive] = useState(published)
     const { deleteDietTemplate, isDeleting } = useDeleteDietTemplate();
     const { updateDietTemplate, isUpdating } = useUpdateDietTemplate()
     function onDelete(id) {
@@ -25,10 +25,7 @@ function DietsFreePlanTableRow({ diet }) {
         if (!id) return
         deleteDietTemplate(id)
     }
-    useEffect(function () {
-        if (published === isActive) return
-        updateDietTemplate({ _id, dietData: { published: isActive } })
-    }, [isActive, published, _id, setIsActive, updateDietTemplate])
+    useEffect(() => setIsActive(published), [published])
     return (
         <Table.Row>
             <td className="p-4 whitespace-nowrap text-left">
@@ -49,7 +46,15 @@ function DietsFreePlanTableRow({ diet }) {
                 />
             </td>
 
-            <td className="p-4 whitespace-nowrap text-left">{<ActiveButton isActive={isActive} setIsActive={setIsActive} disabled={isUpdating} />}</td>
+            <td className="p-4 whitespace-nowrap text-left">
+                {
+                    <ActiveButton onClick={() => updateDietTemplate({ _id, dietData: { published: !isActive } })}
+                        isActive={isActive}
+                        setIsActive={setIsActive}
+                        disabled={isUpdating}
+                    />
+                }
+            </td>
 
             <td className="p-4 whitespace-nowrap text-sm text-left font-medium">
                 <div className='flex items-center gap-1'>
@@ -58,13 +63,13 @@ function DietsFreePlanTableRow({ diet }) {
                     </Button>
 
                     <Modal>
-                        <Modal.Open opens="delete-diet-template">
+                        <Modal.Open opens="delete-free-plan">
                             <Button type="icon-delete"
                             >
                                 <HiTrash />
                             </Button>
                         </Modal.Open>
-                        <Modal.Window opens="delete-diet-template">
+                        <Modal.Window opens="delete-free-plan">
                             <ConfirmDelete isLoading={isDeleting} onConfirm={() => onDelete(_id)} resourceName="diet plan" />
                         </Modal.Window>
                     </Modal>

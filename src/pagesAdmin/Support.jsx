@@ -1,12 +1,6 @@
-import Title from "../ui/Title";
-import BreadCrumbs from "../ui/BreadCrumbs";
+import FutureFeatures from "../ui/FutureFeatures";
 
 function Support() {
-  return (
-    <>
-        <BreadCrumbs />
-        <Title />
-    </>
-  )
+  return <FutureFeatures />
 }
 export default Support;

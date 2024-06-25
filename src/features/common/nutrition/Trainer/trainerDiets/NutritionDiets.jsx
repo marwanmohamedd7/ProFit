@@ -20,7 +20,7 @@ function NutritionDiets({ dietType = "my plan", onCloseModal }) {
                 setSearchKeyword={setSearchKeyword}
             >
                 {
-                    dietType !== "customized plan" &&
+                    dietType !== "customized plan" && dietType !== "free plan" &&
                     <Button type="primary" onClick={() => navigate("diets")}>
                         <p className="capitalize flex justify-center items-center gap-1">
                             <span>create new diet template</span>

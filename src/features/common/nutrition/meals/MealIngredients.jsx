@@ -27,7 +27,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                 }
                 <div className="col-span-full">
                     <Modal>
-                        <Modal.Open opens={`choose-meal-recipes`}>
+                        <Modal.Open opens="choose-meal-recipes">
                             <Button type="primary" customeStyle="mx-auto py-2.5 w-full">
                                 <p className="capitalize flex justify-center items-center gap-1">
                                     <span>add meal recipe</span>
@@ -35,7 +35,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                                 </p>
                             </Button>
                         </Modal.Open>
-                        <Modal.Window opens={`choose-meal-recipes`}>
+                        <Modal.Window opens="choose-meal-recipes">
                             <div className="py-4">
                                 {userRole === "admin" ? <NutritionAppFood section={section} /> : <NutritionFoods section={section} />}
                             </div>

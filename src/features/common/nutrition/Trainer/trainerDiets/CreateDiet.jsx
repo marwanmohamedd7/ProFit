@@ -6,9 +6,10 @@ import DaysTabsItems from "../../../../../ui/DaysTabsItems"
 import DietForm from "./DietForm"
 import { useDarkMode } from "../../../../../context/DarkModeProvider"
 import styles from "../../../../../styles/styles"
+import ActiveButton from "../../../../../ui/ActiveButton"
 // import InputDropdown from "../../../../../ui/InputDropdown"
 
-function CreateDiet({ register, watch, getValues, errors }) {
+function CreateDiet({ register, watch, getValues, errors, dietType, isActive, setIsActive }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { days, targetmacros = {} } = useDietProvider();
@@ -22,7 +23,21 @@ function CreateDiet({ register, watch, getValues, errors }) {
                     <h4 className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         diet template details
                     </h4>
-                    <DietForm register={register} watch={watch} errors={errors} getValues={getValues} />
+                    <div>
+                        <DietForm register={register} watch={watch} errors={errors} getValues={getValues} />
+                        {
+                            dietType === "free plan" &&
+                            <div className="flex gap-2 pt-4">
+                                <span>
+                                    <ActiveButton isActive={isActive} setIsActive={setIsActive} />
+                                </span>
+                                <p className={`flex flex-col justify-center capitalize text-xs ${isDarkMode ? colors.text_gray_300 : colors.text_gray_700}`}>
+                                    <span>published</span>
+                                    <span className={`${isDarkMode ? colors.text_gray_500 : colors.text_gray_400}`}>set as default</span>
+                                </p>
+                            </div>
+                        }
+                    </div>
                 </div>
             }
 
