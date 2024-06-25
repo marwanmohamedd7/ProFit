@@ -1,9 +1,7 @@
+import FoodOperationPage from "../features/common/nutrition/foods/FoodOperationPage"
+
 function Foods() {
-    return (
-        <div>
-            
-        </div>
-    )
+    return <FoodOperationPage />
 }
 
 export default Foods
