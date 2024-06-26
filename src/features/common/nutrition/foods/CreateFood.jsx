@@ -157,7 +157,8 @@ function CreateFood({ foodToUpdate = {} }) {
                                 id: "category",
                                 label: "Category",
                                 options: [
-                                    "Desserts", "Vegetables", "Fruits", "Bakeries", "Spices", "Seafood", "Juices", "Meat", "Oils", "Nuts", "Chicken", "Supplements", "Egg", "Milk Product", "Sauces"
+                                    "Desserts", "Vegetables", "Fruits", "Bakeries", "Spices", "Seafood", "Juices", "Meat", "Oils", "Nuts", "Chicken", "Supplements", "Egg", "Milk Product", "Sauces", "Grain Product",
+                                    "Grains",
                                 ]
                             }}
                             disabled={isLoading}

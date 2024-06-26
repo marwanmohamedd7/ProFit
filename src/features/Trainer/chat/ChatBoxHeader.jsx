@@ -8,7 +8,7 @@ function ChatBoxHeader({ chat }) {
     const { isDarkMode } = useDarkMode();
     const { participant: { firstName, lastName, profilePhoto } } = chat;
     return (
-        <div className={`flex justify-between items-center gap-2 p-2 cursor-pointer border-b ${isDarkMode ? `${colors.bg_slate_900} ${colors.border_gray_700}` : `${colors.border_gray_200}`} sticky top-0 shadow-sm`}>
+        <div className={`flex justify-between items-center gap-2 p-2 cursor-pointer border-b ${isDarkMode ? `${colors.bg_slate_900} ${colors.border_gray_700}` : `${colors.bg_white} ${colors.border_gray_200}`} sticky top-0 shadow-sm`}>
             <div className="flex items-center gap-3">
                 <div className="h-12 w-12">
                     <ImageViewer imageURL={profilePhoto}>

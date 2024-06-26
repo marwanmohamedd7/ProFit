@@ -4,13 +4,14 @@ import styles from "../../../../../../styles/styles";
 import ProgressBarPerformance from "../ProgressBarPerformance";
 import TrainerProgressPerformanceCards from "../TrainerProgressPerformanceCards";
 
-function PerformanceWorkoutCommitment() {
+function PerformanceWorkoutCommitment({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
+    const { percentage, totalExercises, totalExercisesDone } = data;
     return (
         <TrainerProgressPerformanceCards detailedData={{ title: "workout commitment", data: [] }} icon={<DumbbellIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="workout commitment">
-            <ProgressBarPerformance label={70} percentage={70} key={"label"} color={isDarkMode ? `text-red-500` : `text-red-600`} progressColor={isDarkMode ? `bg-red-500` : `bg-red-600`} />
-            <span className={`text-xs text-right ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>last 7 days</span>
+            <ProgressBarPerformance label={percentage} percentage={percentage} key={"label"} color={isDarkMode ? `text-red-500` : `text-red-600`} progressColor={isDarkMode ? `bg-red-500` : `bg-red-600`} />
+            <span className={`text-sm text-right ${isDarkMode ? colors.text_gray_50 : colors.text_gray_700}`}>{totalExercisesDone} / {totalExercises} <strong>Exercises</strong></span>
         </TrainerProgressPerformanceCards>
     )
 }

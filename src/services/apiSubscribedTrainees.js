@@ -66,7 +66,7 @@ export async function updateDietAssessmentSettingsForm(dietData, token, id) {
 
 export async function getSubscribedTraineeCommitments(token, id) {
   const response = await fetch(
-    `https://pro-fit.onrender.com/api/v1/trainers/trainees/trackingTraineePlans/${id}`,
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/trackingCurrentTraineePlan/${id}`,
     {
       method: "GET",
       headers: {

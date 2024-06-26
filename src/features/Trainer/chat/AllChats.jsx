@@ -16,7 +16,7 @@ function AllChats({ chats, activeChat, setActiveChat, searchKeyword }) {
     return (
         <div className="flex flex-col justify-center gap-2">
             <h4 className={`capitalize text-sm ${isDarkMode ? colors.text_gray_200 : colors.text_gray_700} font-semibold`}>all chats</h4>
-            <div className="flex flex-col justify-start gap-2 w-80 max-h-[33.25rem] overflow-y-scroll scrollbar--custom">
+            <div className="flex flex-col justify-start gap-2 w-80 max-h-[34rem] overflow-y-scroll scrollbar--custom">
                 {
                     sortedChats.map((chat) =>
                         <Chat
