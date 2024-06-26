@@ -1,9 +1,15 @@
-import { differenceInYears, format, formatDistance, parseISO } from "date-fns";
+import { differenceInHours, differenceInMinutes, differenceInYears, format, formatDistance, parseISO } from "date-fns";
 import { differenceInDays } from "date-fns";
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) =>
   differenceInDays(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
+
+export const subtractDatesHours = (dateStr1, dateStr2) =>
+  differenceInHours(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
+
+export const subtractDatesMinutes = (dateStr1, dateStr2) =>
+  differenceInMinutes(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
 
 export const calcBirthday = (date) =>
   differenceInYears(new Date(), parseISO(date));

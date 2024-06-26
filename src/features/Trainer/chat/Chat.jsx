@@ -17,7 +17,9 @@ function Chat({ chat, active, onClick }) {
                         <span>{firstName}</span>
                         <span>{lastName}</span>
                     </p>
-                    <p className={`text-xs ${isDarkMode ? colors.text_gray_100 : colors.text_gray_500}`}>{content}</p>
+                    <p className={`text-xs ${isDarkMode ? colors.text_gray_100 : colors.text_gray_500} overflow-hidden text-ellipsis whitespace-nowrap`} style={{ maxWidth: '10rem' }}>
+                        {content}
+                    </p>
                 </div>
             </div>
             <p className={`py-2 text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500} whitespace-nowrap`}>{createdAt ? formatTime(createdAt) : ''}</p>

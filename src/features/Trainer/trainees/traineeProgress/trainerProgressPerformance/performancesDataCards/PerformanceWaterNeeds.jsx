@@ -10,7 +10,7 @@ import InputFloatingLabel from "../../../../../../ui/InputFloatingLabel";
 function PerformanceWaterNeeds({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-    const { goal, weeklyWaterIntake } = data;
+    const { goal, intake, weeklyWaterIntake } = data;
     const [isOpen, setIsOpen] = useState(false);
     const [addGoal, setAddGoal] = useState(goal ?? "");
     return (
@@ -18,7 +18,7 @@ function PerformanceWaterNeeds({ data }) {
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                     <span className={`text-2xl font-bold uppercase ${isDarkMode ? `text-cyan-500` : `text-cyan-600`}`}>
-                        {goal ?? 0} ml
+                        {intake ?? 0}/{goal ?? 0} ml
                     </span>
                     <span className={`text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{formatDate(new Date())}</span>
                 </div>

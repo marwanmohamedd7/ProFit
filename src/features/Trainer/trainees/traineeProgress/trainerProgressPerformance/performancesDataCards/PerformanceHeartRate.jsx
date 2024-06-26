@@ -8,13 +8,13 @@ import TrainerProgressPerformanceCards from "../TrainerProgressPerformanceCards"
 function PerformanceHeartRate({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-    const { bpm, createdAt, weeklyHeartRate } = data;
+    const { value, createdAt, weeklyHeartRate } = data;
     return (
         <TrainerProgressPerformanceCards detailedData={{ data: weeklyHeartRate ?? [], chart: "barChart", yAxisLabel:" bpm"}} icon={<HeartIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="heart rate">
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-2 uppercase">
-                    <span className={`text-lg ${isDarkMode ? `text-red-500` : `text-red-600`}`}><strong className="text-2xl">{bpm ?? 0}</strong> bpm</span>
-                    <span className={`text-sm ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{formatDate(createdAt ?? new Date())}</span>
+                    <span className={`text-lg ${isDarkMode ? `text-red-500` : `text-red-600`}`}><strong className="text-2xl">{value ?? 0}</strong> bpm</span>
+                    <span className={`text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{formatDate(createdAt ?? new Date())}</span>
                 </div>
                 <span className="">
                     <HeartRateIcon />
