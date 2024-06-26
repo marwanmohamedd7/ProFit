@@ -17,12 +17,12 @@ function AdminFinancial() {
             <div className="space-y-4">
                 <div className="flex flex-wrap gap-2 lg:gap-0 justify-between px-4">
                     <SearchInput
-                        placeholder="search transcation..."
+                        placeholder="search financial..."
                         setSearchKeyword={setSearchKeyword}
                     />
                     <FilterButtons
                         fiterBtns={{
-                            fiterFeild: "transcations",
+                            fiterFeild: "financials",
                             options: [
                                 { label: "All", value: "All" },
                                 { label: "Active", value: "Active" },

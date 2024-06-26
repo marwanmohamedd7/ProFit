@@ -9,6 +9,7 @@ import styles from "../../../../../styles/styles"
 import { useDarkMode } from "../../../../../context/DarkModeProvider"
 import SearchInput from "../../../../../ui/SearchInput"
 import { useSearch } from "../../../../../hooks/useSearch"
+import TableOperationsContainer from "../../../../../ui/TableOperationsContainer"
 
 function DietsFreePlan() {
     const colors = styles();
@@ -20,37 +21,35 @@ function DietsFreePlan() {
     const dataCount = searchKeyword ? 1 : count
     const dataReady = searchKeyword ? searchedItems : getDietFreePlans;
     return (
-        <>
-            <div className={`pb-4 rounded-lg border w-full ${isDarkMode ? `${colors.text_white} ${colors.border_gray_700} ${colors.bg_slate_800}` : `${colors.text_gray_900} ${colors.bg_white}`}`}>
-                {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-2xl" /></div> :
-                    <>
-                        <div className="space-y-4 p-4">
-                            <div className="flex flex-col gap-0.5">
-                                <h2 className="font-bold text-xl capitalize">free plans</h2>
-                                <p className={`text-sm capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>Boost Marketing and Engage more Trainees</p>
-                            </div>
-                            <div className="flex items-center justify-between gap-2">
-                                <SearchInput
-                                    placeholder="Search Free Diet Plan..."
-                                    setSearchKeyword={setSearchKeyword}
-                                />
-                                <Button type="primary" onClick={() => {
-                                    navigate("diets")
-                                    dispatch({ type: "diet/startFreeDietPlan" })
-                                }
-                                }>
-                                    <p className="capitalize flex justify-center items-center gap-1">
-                                        <span>create new free plan</span>
-                                        <span className="text-lg"><HiPlusSm /></span>
-                                    </p>
-                                </Button>
-                            </div>
+        <TableOperationsContainer>
+            {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-2xl" /></div> :
+                <>
+                    <div className="space-y-4 px-4 pb-4">
+                        <div className="flex flex-col gap-0.5">
+                            <h2 className="font-bold text-xl capitalize">free plans</h2>
+                            <p className={`text-sm capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>Boost Marketing and Engage more Trainees</p>
                         </div>
-                        <DietsFreePlanTable diets={dataReady} count={dataCount} />
-                    </>
-                }
-            </div>
-        </>
+                        <div className="flex items-center justify-between gap-2">
+                            <SearchInput
+                                placeholder="Search Free Diet Plan..."
+                                setSearchKeyword={setSearchKeyword}
+                            />
+                            <Button type="primary" onClick={() => {
+                                navigate("diets")
+                                dispatch({ type: "diet/startFreeDietPlan" })
+                            }
+                            }>
+                                <p className="capitalize flex justify-center items-center gap-1">
+                                    <span>create new free plan</span>
+                                    <span className="text-lg"><HiPlusSm /></span>
+                                </p>
+                            </Button>
+                        </div>
+                    </div>
+                    <DietsFreePlanTable diets={dataReady} count={dataCount} />
+                </>
+            }
+        </TableOperationsContainer>
 
     )
 }

@@ -1,6 +1,6 @@
+import styles from "../styles/styles";
 import { useSearchParams } from "react-router-dom"
 import { useDarkMode } from "../context/DarkModeProvider";
-import styles from "../styles/styles";
 
 function FilterButtons({ fiterBtns: { fiterFeild, options } }) {
   const colors = styles();
@@ -23,12 +23,6 @@ function FilterButtons({ fiterBtns: { fiterFeild, options } }) {
           {label}
         </button>
       )}
-      {/* <button className="flex items-center justify-center gap-2 px-4 py-2 text-gray-900 bg-white hover:bg-gray-100 outline-none focus:bg-gray-100 focus:text-blue-600 transition-all duration-300 relative">
-        <span>Sorting</span>
-        <svg className="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button> */}
     </div >
   )
 }

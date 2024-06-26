@@ -9,7 +9,7 @@ function PerformanceWorkoutCommitment({ data }) {
     const { isDarkMode } = useDarkMode();
     const { percentage, totalExercises, totalExercisesDone } = data;
     return (
-        <TrainerProgressPerformanceCards detailedData={{ title: "workout commitment", data: [] }} icon={<DumbbellIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="workout commitment">
+        <TrainerProgressPerformanceCards detailedData={{ chart: "biBarChart", data: [] }} icon={<DumbbellIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="workout commitment">
             <ProgressBarPerformance label={percentage} percentage={percentage} key={"label"} color={isDarkMode ? `text-red-500` : `text-red-600`} progressColor={isDarkMode ? `bg-red-500` : `bg-red-600`} />
             <span className={`text-sm text-right ${isDarkMode ? colors.text_gray_50 : colors.text_gray_700}`}>{totalExercisesDone} / {totalExercises} <strong>Exercises</strong></span>
         </TrainerProgressPerformanceCards>

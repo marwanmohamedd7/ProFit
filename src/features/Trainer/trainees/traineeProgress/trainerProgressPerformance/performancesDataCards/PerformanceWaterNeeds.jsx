@@ -14,7 +14,7 @@ function PerformanceWaterNeeds({ data }) {
     const [isOpen, setIsOpen] = useState(false);
     const [addGoal, setAddGoal] = useState(goal ?? "");
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake, title: "water needs", yAxisLabel: " ml" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake ?? [], chart: "barChart", yAxisLabel: " ml" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                     <span className={`text-2xl font-bold uppercase ${isDarkMode ? `text-cyan-500` : `text-cyan-600`}`}>

@@ -4,6 +4,7 @@ import { TbRulerMeasure } from "react-icons/tb";
 import { MdOutlinePhotoCamera } from "react-icons/md";
 import TraineeProgressPhotos from "./traineeProgressPhotos/TraineeProgressPhotos";
 import TrainerProgressPerformance from "./trainerProgressPerformance/TrainerProgressPerformance";
+import TrainerProgressMeasurements from "./trainerProgressMeasurements/TrainerProgressMeasurements";
 function TraineeProgress() {
     return (
         <div className="space-y-10 py-4 rounded-md">
@@ -25,7 +26,7 @@ function TraineeProgress() {
                     <TrainerProgressPerformance />
                 </VerticualTabs.Window>
                 <VerticualTabs.Window opens="measurement">
-                    {/* <DietsFreePlan/> */}
+                    <TrainerProgressMeasurements/>
                 </VerticualTabs.Window>
                 <VerticualTabs.Window opens="photo">
                     <TraineeProgressPhotos />

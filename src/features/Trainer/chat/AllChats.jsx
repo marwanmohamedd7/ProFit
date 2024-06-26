@@ -15,7 +15,7 @@ function AllChats({ chats, activeChat, setActiveChat, searchKeyword }) {
         <h1 className={`${isDarkMode ? colors.text_white : colors.text_gray_900} text-center px-4 py-10 text-sm w-full capitalize`}>welcome to <strong>ProFIT</strong> messages! start a conversation</h1>
     return (
         <div className="flex flex-col justify-center gap-2">
-            <h4 className={`capitalize text-sm ${isDarkMode ? colors.text_gray_200 : colors.text_gray_700} font-semibold`}>all chats</h4>
+            <h4 className={`capitalize text-sm ${isDarkMode ? colors.text_gray_200 : colors.text_gray_700} font-bold`}>all chats</h4>
             <div className="flex flex-col justify-start gap-2 w-80 max-h-[34rem] overflow-y-scroll scrollbar--custom">
                 {
                     sortedChats.map((chat) =>

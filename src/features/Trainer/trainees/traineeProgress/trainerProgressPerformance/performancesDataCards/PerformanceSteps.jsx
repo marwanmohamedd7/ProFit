@@ -14,7 +14,7 @@ function PerformanceSteps({ data }) {
     const [isOpen, setIsOpen] = useState(false);
     const [addGoal, setAddGoal] = useState(goal ?? 0);
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklySteps, title: "steps", yAxisLabel: " step" }} icon={<StepsIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="steps">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklySteps ?? [], chart: "barChart", yAxisLabel: " step" }} icon={<StepsIcon />} color={isDarkMode ? `text-red-500` : `text-red-600`} title="steps">
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                     <span className={`text-2xl font-bold ${isDarkMode ? `text-indigo-500` : `text-indigo-500`}`}>

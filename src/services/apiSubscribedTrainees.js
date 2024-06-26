@@ -66,7 +66,7 @@ export async function updateDietAssessmentSettingsForm(dietData, token, id) {
 
 export async function getSubscribedTraineeCommitments(token, id) {
   const response = await fetch(
-    `https://pro-fit.onrender.com/api/v1/trainers/trainees/trackingCurrentTraineePlan/${id}`,
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/trackingTraineePlans/${id}`,
     {
       method: "GET",
       headers: {
@@ -189,6 +189,21 @@ export async function getTraineeSubscriptions(token, id, page) {
 export async function getTraineeProgressPhotos(token, id) {
   const response = await fetch(
     `https://pro-fit.onrender.com/api/v1/trainers/trainees/progress/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function getTraineeProgressMeasurements(token, id) {
+  const response = await fetch(
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/measurements/${id}`,
     {
       method: "GET",
       headers: {

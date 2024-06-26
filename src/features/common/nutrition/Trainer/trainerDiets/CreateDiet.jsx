@@ -21,7 +21,7 @@ function CreateDiet({ register, watch, getValues, errors, dietType, isActive, se
             {
                 <div className={`p-4 rounded-md border flex flex-col justify-center gap-6 ${isDarkMode ? `${colors.border_gray_700} ${colors.bg_slate_800}` : colors.bg_white}`}>
                     <h4 className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
-                        diet template details
+                        diet details
                     </h4>
                     <div>
                         <DietForm register={register} watch={watch} errors={errors} getValues={getValues} />

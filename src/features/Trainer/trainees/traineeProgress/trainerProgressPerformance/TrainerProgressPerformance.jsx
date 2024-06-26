@@ -13,12 +13,11 @@ function TrainerProgressPerformance() {
     const { getTraineeProgressPerformances, isLoading: isGettingperformances } = useGetProgressPerformances();
     if (isGettingperformances || isGettingCommitments) return <div className="h-[20rem] w-full flex items-center justify-center"><SpinnerMini /></div>
     const { heartRate, sleepData, steps, waterIntake, weeklyHeartRate, weeklySleep, weeklySteps, weeklyWaterIntake } = getTraineeProgressPerformances;
-    const { Diet, Workout } = getTraineeProgressCommitments;
-    console.log(getTraineeProgressPerformances)
+    const { diet, workout, dietDetails } = getTraineeProgressCommitments;
     return (
         <div className="grid grid-rows-[1fr_1fr] grid-cols-3 w-full gap-4 rounded-lg">
-            <PerformanceDietCommitment data={Diet} />
-            <PerformanceWorkoutCommitment data={Workout}/>
+            <PerformanceDietCommitment data={{ ...diet, dietDetails }} />
+            <PerformanceWorkoutCommitment data={workout} />
             <PerformanceSleepTrack data={{ ...sleepData, weeklySleep }} />
             <PerformanceSteps data={{ ...steps, weeklySteps }} />
             <PerformanceWaterNeeds data={{ ...waterIntake, weeklyWaterIntake }} />

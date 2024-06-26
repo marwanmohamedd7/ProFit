@@ -1,8 +1,8 @@
-import { format, parseISO } from "date-fns";
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useDarkMode } from "../../../../../context/DarkModeProvider";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { format, parseISO } from "date-fns";
 
-function ProgressBarChart({ barChartData, yAxisLabel }) {
+function ProgressAreaChart({ data, yAxisLabel }) {
     const { isDarkMode } = useDarkMode();
     const colors = {
         light: {
@@ -29,18 +29,14 @@ function ProgressBarChart({ barChartData, yAxisLabel }) {
 
     const currentColors = isDarkMode ? colors.dark : colors.light;
 
-    if (!barChartData || !barChartData.length)
-        return <h1 className={`${isDarkMode ? "text-gray-50" : "text-gray-700"} text-center p-10 text-lg h-[15rem] w-full capitalize`}>You don't have any progress</h1>
-
-    const dataReady = barChartData.map(({ createdAt, value }) => ({ date: format(parseISO(createdAt), 'MMMM d'), value }));
-
+    const dataReady = data.map(({ createdAt, value }) => ({ date: format(parseISO(createdAt), 'MMMM d'), value }));
     return (
-        <div className="w-[40rem] h-[25rem]">
+        <div className="flex justify-between gap-4 w-full">
             <div className="rounded-md" style={{ width: '100%' }}>
-                <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={dataReady}>
-                        <CartesianGrid strokeDasharray="3 3" stroke={currentColors.grid} />
-                        <Bar
+                <ResponsiveContainer width="100%" height={350}>
+                    <AreaChart data={dataReady}>
+                        <CartesianGrid strokeDasharray="4" stroke={currentColors.grid} />
+                        <Area
                             dataKey="value"
                             type="monotone"
                             stroke={currentColors.stroke}
@@ -61,13 +57,14 @@ function ProgressBarChart({ barChartData, yAxisLabel }) {
                                                 Date: {payload[0].payload.date}
                                             </p>
                                             <p style={{ color: currentColors.tooltipText }}>
-                                                Total sales: {payload[0].payload.value}
+                                                Value: {payload[0].payload.value} {yAxisLabel}
                                             </p>
                                         </div>
                                     );
                                 }
                                 return null;
-                            }} />
+                            }}
+                        />
                         <XAxis
                             dataKey="date"
                             tick={{ fill: currentColors.xAxisTick }}
@@ -85,11 +82,11 @@ function ProgressBarChart({ barChartData, yAxisLabel }) {
                             tickSize={4}
                             tickCount={6}
                         />
-                    </BarChart>
+                    </AreaChart>
                 </ResponsiveContainer>
             </div>
         </div>
-    );
+    )
 }
 
-export default ProgressBarChart;
+export default ProgressAreaChart

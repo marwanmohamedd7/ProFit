@@ -60,7 +60,7 @@ function ChatBox({ activeChat, socket }) {
     if (!activeChat) return null;
 
     return (
-        <div className={`${isDarkMode ? colors.bg_slate_900 : colors.bg_white} grid grid-rows-[auto_1fr_auto] border-l ${isDarkMode ? colors.border_gray_700 : ''}`}>
+        <div className={`${isDarkMode ? colors.bg_slate_900 : colors.bg_white} overflow-y-auto grid grid-rows-[auto_1fr_auto] border-l ${isDarkMode ? colors.border_gray_700 : ''}`}>
             <ChatBoxHeader chat={activeChat} />
             {isLoading ? (
                 <div className={`flex justify-center items-center h-full ${isDarkMode && colors.text_white}`}>

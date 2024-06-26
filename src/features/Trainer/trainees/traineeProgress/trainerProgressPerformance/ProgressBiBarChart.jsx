@@ -1,53 +1,61 @@
-import { format, parseISO } from "date-fns";
-import { useDarkMode } from "../../../../../context/DarkModeProvider";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { format, parseISO } from 'date-fns';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useDarkMode } from '../../../../../context/DarkModeProvider';
 
-function ProgressBarChart({ barChartData, yAxisLabel }) {
+function ProgressBiBarChart({ biBarChartData }) {
     const { isDarkMode } = useDarkMode();
     const colors = {
         light: {
-            stroke: "#1D4ED8",
-            fill: "#1D4ED8",
             grid: "#E5E7EB",
             tooltipBg: "#FFFFFF",
             tooltipBorder: "#E5E7EB",
             tooltipText: "#374151",
             xAxisTick: "#374151",
-            yAxisTick: "#374151"
+            yAxisLeftTick: "#8884d8",
+            yAxisRightTick: "#82ca9d",
+            barLeft: "#8884d8", // Color for the left bar in light mode
+            barRight: "#82ca9d" // Color for the right bar in light mode
         },
         dark: {
-            stroke: "#93C5FD",
-            fill: "#2563EB",
             grid: "#4B5563",
             tooltipBg: "#1F2937",
             tooltipBorder: "#374151",
             tooltipText: "#F9FAFB",
             xAxisTick: "#F9FAFB",
-            yAxisTick: "#F9FAFB"
+            yAxisLeftTick: "#93C5FD",
+            yAxisRightTick: "#34D399",
+            barLeft: "#93C5FD", // Color for the left bar in dark mode
+            barRight: "#34D399" // Color for the right bar in dark mode
         }
     };
 
     const currentColors = isDarkMode ? colors.dark : colors.light;
 
-    if (!barChartData || !barChartData.length)
+    if (!biBarChartData || !biBarChartData.length)
         return <h1 className={`${isDarkMode ? "text-gray-50" : "text-gray-700"} text-center p-10 text-lg h-[15rem] w-full capitalize`}>You don't have any progress</h1>
-
-    const dataReady = barChartData.map(({ createdAt, value }) => ({ date: format(parseISO(createdAt), 'MMMM d'), value }));
+   
+    const dataReady = biBarChartData.map(({ createdAt, target, value }) => ({ date: format(parseISO(createdAt), 'MMMM d'), value, target }));
 
     return (
         <div className="w-[40rem] h-[25rem]">
             <div className="rounded-md" style={{ width: '100%' }}>
                 <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={dataReady}>
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={dataReady}
+                        margin={{
+                            top: 20,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
                         <CartesianGrid strokeDasharray="3 3" stroke={currentColors.grid} />
-                        <Bar
-                            dataKey="value"
-                            type="monotone"
-                            stroke={currentColors.stroke}
-                            fill={currentColors.fill}
-                            strokeWidth={2}
-                            cursor="pointer"
-                        />
+                        <XAxis dataKey="date" tick={{ fill: currentColors.xAxisTick }} />
+                        <YAxis yAxisId="left" orientation="left" tick={{ fill: currentColors.yAxisLeftTick }} />
+                        <YAxis yAxisId="right" orientation="right" tick={{ fill: currentColors.yAxisRightTick }} />
                         <Tooltip
                             content={({ active, payload }) => {
                                 if (active && payload && payload.length) {
@@ -61,30 +69,20 @@ function ProgressBarChart({ barChartData, yAxisLabel }) {
                                                 Date: {payload[0].payload.date}
                                             </p>
                                             <p style={{ color: currentColors.tooltipText }}>
-                                                Total sales: {payload[0].payload.value}
+                                                Target: {payload[0].payload.target}
+                                            </p>
+                                            <p style={{ color: currentColors.tooltipText }}>
+                                                Value: {payload[1].payload.value}
                                             </p>
                                         </div>
                                     );
                                 }
                                 return null;
-                            }} />
-                        <XAxis
-                            dataKey="date"
-                            tick={{ fill: currentColors.xAxisTick }}
-                            tickLine={{ stroke: currentColors.xAxisTick }}
-                            fontSize={14}
-                            tickMargin={10}
-                            tickSize={4}
+                            }}
                         />
-                        <YAxis
-                            unit={yAxisLabel}
-                            tick={{ fill: currentColors.yAxisTick }}
-                            tickLine={{ stroke: currentColors.yAxisTick }}
-                            fontSize={14}
-                            tickMargin={5}
-                            tickSize={4}
-                            tickCount={6}
-                        />
+                        <Legend />
+                        <Bar yAxisId="left" dataKey="target" fill={currentColors.barLeft} />
+                        <Bar yAxisId="right" dataKey="value" fill={currentColors.barRight} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
@@ -92,4 +90,4 @@ function ProgressBarChart({ barChartData, yAxisLabel }) {
     );
 }
 
-export default ProgressBarChart;
+export default ProgressBiBarChart;
