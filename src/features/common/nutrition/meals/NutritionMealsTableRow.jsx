@@ -79,7 +79,7 @@ function NutritionMealsTableRow({ meal, section, onCloseModal }) {
                         :
                         meal?.admin ?
                             <div className='flex items-center justify-end mr-8 gap-1'>
-                                <Button type="icon-update"
+                                <Button onClick={() => navigate(`meals/${_id}`)} type="icon-update"
                                 >
                                     <IoEyeOutline />
                                 </Button>

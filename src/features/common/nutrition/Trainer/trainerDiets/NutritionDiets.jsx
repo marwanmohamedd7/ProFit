@@ -6,9 +6,13 @@ import Spinner from "../../../../../ui/Spinner";
 import NutritionDietsTable from "./NutritionDietsTable";
 import NutritionOperations from "../../NutritionOperations";
 import { useSearch } from "../../../../../hooks/useSearch";
+import { useDietProvider } from "../../../../../context/DietProvider";
+import { useMealProvider } from "../../../../../context/MealProvider";
 
 function NutritionDiets({ dietType = "my plan", onCloseModal }) {
     const navigate = useNavigate();
+    const { dispatch: dispatchMeal } = useMealProvider();
+    const { dispatch: dispatchDiet } = useDietProvider();
     const { getDietTemplates, allTrainerDietTemplates, count, isLoading } = useGetDietTemplates();
     const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allTrainerDietTemplates, ["planName", "plantype", "daysCount"]);
     const dataCount = searchKeyword ? 1 : count
@@ -21,7 +25,11 @@ function NutritionDiets({ dietType = "my plan", onCloseModal }) {
             >
                 {
                     dietType !== "customized plan" && dietType !== "free plan" &&
-                    <Button type="primary" onClick={() => navigate("diets")}>
+                    <Button type="primary" onClick={() => {
+                        dispatchMeal({ type: "meal/endSession" })
+                        dispatchDiet({ type: "diet/endSession" })
+                        navigate("diets")
+                    }}>
                         <p className="capitalize flex justify-center items-center gap-1">
                             <span>create new diet template</span>
                             <span className="text-lg"><HiPlusSm /></span>

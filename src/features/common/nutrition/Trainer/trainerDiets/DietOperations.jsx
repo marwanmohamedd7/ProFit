@@ -132,9 +132,9 @@ function DietOperations({ traineeData = {}, dietToUpdate = {}, dietType }) {
                     <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_white}`} rounded-md border p-4`}>
                         {/* <BreadCrumbs /> */}
                         <div className="flex justify-between items-center gap-4">
-                            <div className="flex items-start gap-3">
-                                <div className="flex-shrink-0 h-14 w-14">
-                                    <img className="h-14 w-14 rounded-lg" src={traineeData?.profilePhoto} alt={traineeData?.firstName} />
+                            <div className="flex items-center gap-4">
+                                <div className="flex-shrink-0 h-16 w-16">
+                                    <img className="h-16 w-16 rounded-lg" src={traineeData?.profilePhoto} alt={traineeData?.firstName} />
                                 </div>
                                 <div className="flex flex-col justify-center gap-1">
                                     <p className={`flex items-center gap-1 capitalize ${isDarkMode ? colors.text_white : colors.text_gray_900}`}>

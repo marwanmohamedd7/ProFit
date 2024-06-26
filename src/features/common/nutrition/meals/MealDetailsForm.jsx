@@ -8,7 +8,7 @@ import InputTextArea from "../../../../ui/InputTextArea"
 import Modal from "../../../../ui/Modal"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6"
 
-function MealDetailsForm({ register, watch, errors, getValues, variation, mealToggle, setMealToggle, activeDayMeals, handleDeleteMealSection }) {
+function MealDetailsForm({ register, watch, errors, getValues, disabled, variation, mealToggle, setMealToggle, activeDayMeals, handleDeleteMealSection }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     return (
@@ -16,7 +16,7 @@ function MealDetailsForm({ register, watch, errors, getValues, variation, mealTo
             <div className="col-span-2 flex items-center gap-2 grow w-full">
                 <InputFloatingLabel
                     item={{ id: "mealname", label: "meal name", value: watch("mealname") }}
-                    // disabled={isLoading}
+                    disabled={disabled}
                     error={errors?.mealname?.message}
                     register={
                         {
@@ -33,7 +33,7 @@ function MealDetailsForm({ register, watch, errors, getValues, variation, mealTo
                         options: ["Breakfast", "Lunch", "Snack", "Dinner"]
                     }
                 }
-                    //    disabled={isLoading}
+                    disabled={disabled}
                     error={errors?.mealtype?.message}
                     getValues={getValues}
                     register={{
@@ -59,6 +59,7 @@ function MealDetailsForm({ register, watch, errors, getValues, variation, mealTo
             </div>
             <div className="grid col-span-2">
                 <InputTextArea
+                    disabled={disabled}
                     errors={errors?.mealnote?.message}
                     placeholder="Meal note..."
                     register={{

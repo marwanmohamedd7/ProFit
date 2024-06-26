@@ -18,11 +18,14 @@ function MealOperationsPage() {
 
     useEffect(function () {
         if (isLoading) return; // Do nothing while loading
+
         if (!getMeal?.ingredients) dispatch({ type: "meal/startSession" });
         else dispatch({ type: "meal/updateMeal", payload: getMeal?.ingredients });
     }, [getMeal?.ingredients, isLoading, dispatch])
 
     if (isLoading) return <div className="flex items-center justify-center h-[80dvh]"><Spinner /></div>
+    const isExist = Boolean(getMeal?._id)
+
     return (
         <div className="space-y-4 divide-y">
             <div>
@@ -30,8 +33,8 @@ function MealOperationsPage() {
                 <div className="">
                     <div className="flex justify-between items-center mb-4">
                         <p className="flex items-center justify-center gap-4">
-                            <BackBtn path={`/${userRole}/nutrition?nutrition=meals_templates`} />
-                            <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{getMeal?._id ? "update meal" : "Create New Meal"}</span>
+                            <BackBtn onClick={() => dispatch({ type: "meal/endSession" })} path={`/${userRole}/nutrition?nutrition=meals_templates`} />
+                            <span className={`font-bold ${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} text-2xl capitalize`}>{(userRole !== "admin" && getMeal?.admin) ? "view proFIT meal" : isExist ? "update meal" : "Create New Meal"}</span>
                         </p>
                     </div>
                 </div>

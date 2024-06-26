@@ -6,9 +6,14 @@ import Spinner from "../../../../../ui/Spinner"
 import NutritionOperations from "../../NutritionOperations"
 import NutritionMealsTable from "../../meals/NutritionMealsTable"
 import { useSearch } from "../../../../../hooks/useSearch"
+import { useMealProvider } from "../../../../../context/MealProvider"
+import { useDietProvider } from "../../../../../context/DietProvider"
 
 function NutritionMeals({ section = "meal", onCloseModal }) {
     const navigate = useNavigate();
+    const { dispatch: dispatchMeal } = useMealProvider();
+    const { dispatch: dispatchDiet } = useDietProvider();
+
     const { trainerMeals, allTrainerMeals, count, isLoading } = useGetTrainerMeals();
 
     const { searchedItems, searchKeyword, setSearchKeyword } = useSearch(allTrainerMeals, ["mealname", "mealtype", ["mealmacros", "calories"], ["mealmacros", "carbs"], ["mealmacros", "fats"], ["mealmacros", "proteins"]]);
@@ -31,7 +36,11 @@ function NutritionMeals({ section = "meal", onCloseModal }) {
             >
                 {
                     section === "meal" &&
-                    <Button type="primary" onClick={() => navigate("meals")}>
+                    <Button type="primary" onClick={() => {
+                        dispatchMeal({ type: "meal/endSession" })
+                        dispatchDiet({ type: "diet/endSession" })
+                        navigate("meals")
+                    }}>
                         <p className="capitalize flex justify-center items-center gap-1">
                             <span>create new meal</span>
                             <span className="text-lg"><HiPlusSm /></span>

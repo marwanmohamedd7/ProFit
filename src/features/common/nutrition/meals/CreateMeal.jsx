@@ -19,7 +19,7 @@ import styles from "../../../../styles/styles";
 function CreateMeal({ mealToUpdate = {} }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-    const { _id } = mealToUpdate
+    const { _id, admin } = mealToUpdate
     const isExist = Boolean(_id)
     const navigate = useNavigate()
     const { userRole } = useCurrentUser()
@@ -34,7 +34,7 @@ function CreateMeal({ mealToUpdate = {} }) {
         dispatch,
         mealMacros,
     } = useMealProvider()
-    const isLoading = isCreating || isUpdating;
+    const isLoading = isCreating || isUpdating || (userRole !== "admin" && admin);
     function onSubmit(data) {
         if (!data || !foods.length) return
         const mealData = { ...data, ingredients: foods, mealmacros: mealMacros };
@@ -66,13 +66,13 @@ function CreateMeal({ mealToUpdate = {} }) {
     return (
         <>
             <div className="space-y-4">
-                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_white}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal details
                     </div>
-                    <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} />
+                    <MealDetailsForm register={register} watch={watch} errors={errors} getValues={getValues()} disabled={isLoading} />
                 </div>
-                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_white}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal macros
                     </div>
@@ -83,27 +83,48 @@ function CreateMeal({ mealToUpdate = {} }) {
                         calories={mealMacros?.calories ?? 0}
                     />
                 </div>
-                <div className={`${isDarkMode && `${colors.bg_slate_800} ${colors.border_gray_700}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
+                <div className={`${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : `${colors.bg_white}`} p-4 rounded-md border flex flex-col justify-center gap-4`}>
                     <div className={`${isDarkMode ? colors.text_gray_100 : colors.text_gray_900} font-bold capitalize`}>
                         meal ingredients
                     </div>
-                    <MealIngredients foods={foods} isExist={isExist} section="meal" />
+                    <MealIngredients foods={foods} isExist={isExist} disabled={isLoading} section="meal" />
                 </div>
-                <div className="flex items-center gap-2">
-                    <Button type="primary" onClick={handleSubmit(onSubmit)}>
-                        <p className="capitalize">
-                            {isLoading ? <SpinnerMini dark={false} /> : isExist ? "update meal" : "save new meal"}
-                        </p>
-                    </Button>
-                    <Button onClick={() => {
-                        dispatch({ type: "meal/endSession" })
-                        navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
-                    }} type="secondary">
-                        <p className="capitalize">
-                            cancel
-                        </p>
-                    </Button>
-                </div>
+                {
+                    userRole === "admin" ?
+                        <div className="flex items-center gap-2">
+                            <Button disabled={isLoading} type="primary" onClick={handleSubmit(onSubmit)}>
+                                <p className="capitalize">
+                                    {isLoading ? <SpinnerMini dark={false} /> : isExist ? "update meal" : "save new meal"}
+                                </p>
+                            </Button>
+                            <Button disabled={isLoading} onClick={() => {
+                                dispatch({ type: "meal/endSession" })
+                                navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
+                            }} type="secondary">
+                                <p className="capitalize">
+                                    cancel
+                                </p>
+                            </Button>
+                        </div>
+                        :
+                        !admin &&
+                        <div className="flex items-center gap-2">
+                            <Button disabled={isLoading} type="primary" onClick={handleSubmit(onSubmit)}>
+                                <p className="capitalize">
+                                    {isLoading ? <SpinnerMini dark={false} /> : isExist ? "update meal" : "save new meal"}
+                                </p>
+                            </Button>
+                            <Button disabled={isLoading} onClick={() => {
+                                dispatch({ type: "meal/endSession" })
+                                navigate(`/${userRole}/nutrition?nutrition=meals_templates`)
+                            }} type="secondary">
+                                <p className="capitalize">
+                                    cancel
+                                </p>
+                            </Button>
+                        </div>
+                }
+
             </div>
         </>
     )

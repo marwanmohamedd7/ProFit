@@ -49,6 +49,21 @@ export async function getTrainerFoods(
   return data;
 }
 
+export async function getSpecificFood(id, token) {
+  const response = await fetch(
+    `https://pro-fit.onrender.com/api/v1/Food/${id}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
 export async function createFood(token, foodData) {
   const response = await fetch("https://pro-fit.onrender.com/api/v1/Food", {
     method: "POST",

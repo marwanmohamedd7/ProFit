@@ -49,7 +49,7 @@ function InputDropdownMultiSelection({ name, placeholder, options, required, con
     const formattedOptions = typeof options[0] === "string" ? options.map(option => ({ value: option, label: option })) : options;
     return (
         <div className="relative flex flex-col gap-1.5">
-            {/* <span className={`text-xs pl-0.5 ${isDarkMode ? "text-gray-100" : "text-gray-700"}`}>{placeholder}</span> */}
+            <span className={`text-xs pl-0.5 ${isDarkMode ? "text-gray-100" : "text-gray-700"}`}>{placeholder}</span>
             <Controller
                 name={name}
                 control={control}

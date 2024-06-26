@@ -8,7 +8,7 @@ import NutritionAppFood from "../Admin/ProFitFoods/NutritionAppFood"
 import { useDarkMode } from "../../../../context/DarkModeProvider"
 import styles from "../../../../styles/styles"
 
-function MealIngredients({ foods = [], isExist = false, section = "food" }) {
+function MealIngredients({ foods = [], disabled, isExist = false, section = "food" }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
     const { userRole } = useCurrentUser();
@@ -21,6 +21,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                             food={food}
                             isExist={isExist}
                             section={section}
+                            disabled={disabled}
                             key={isExist ? (food.food?._id ? food.food?._id : food.food) : food.food}
                         />
                     )
@@ -28,7 +29,7 @@ function MealIngredients({ foods = [], isExist = false, section = "food" }) {
                 <div className="col-span-full">
                     <Modal>
                         <Modal.Open opens="choose-meal-recipes">
-                            <Button type="primary" customeStyle="mx-auto py-2.5 w-full">
+                            <Button disabled={disabled} type="primary" customeStyle="mx-auto py-2.5 w-full">
                                 <p className="capitalize flex justify-center items-center gap-1">
                                     <span>add meal recipe</span>
                                     <span className="text-lg"><HiPlusSm /></span>

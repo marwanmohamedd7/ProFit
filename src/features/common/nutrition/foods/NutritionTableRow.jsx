@@ -5,7 +5,6 @@ import { HiPencil, HiTrash } from "react-icons/hi"
 import { useCurrentUser } from "../../../../context/UserProvider";
 import { useMealProvider } from "../../../../context/MealProvider";
 import toast from "react-hot-toast";
-import CreateFood from "./CreateFood";
 import Table from "../../../../ui/Table"
 import Modal from "../../../../ui/Modal";
 import Button from "../../../../ui/Button";
@@ -16,16 +15,18 @@ import ImageViewer from "../../../../ui/ImageViewer";
 import StatusLabel from "../../../../ui/StatusLabel";
 import { useDarkMode } from "../../../../context/DarkModeProvider";
 import styles from "../../../../styles/styles";
+import { useNavigate } from "react-router-dom";
 
 function NutritionTableRow({ food, section, onCloseModal }) {
     const colors = styles();
+    const navigate = useNavigate();
     const { isDarkMode } = useDarkMode();
     // const { id: mealId } = useParams();
     let inadvisableFood = false;
     const { userRole } = useCurrentUser();
     const { deleteFood, isDeleting } = useDeleteFood();
     const { dispatch: dispatchMeal, foods: mealFoods } = useMealProvider();
-    const { per: amount, diseaseCompatibility, foodAllergens, foodImage, foodname, category, macros, servingUnit } = food;
+    const { _id, per: amount, diseaseCompatibility, foodAllergens, foodImage, foodname, category, macros, servingUnit } = food;
     const { dispatch: dispatchDiet, days: dietDays, plantype, disease: planDiseases, foodAllergens: planFoodAllergens } = useDietProvider();
 
     if (planDiseases?.length && typeof section !== "string" && plantype === "Customized plan") planDiseases.map(disease => {
@@ -97,16 +98,9 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                     {
                         userRole === "admin" ?
                             <div className='flex items-center justify-start gap-2'>
-                                <Modal>
-                                    <Modal.Open opens="update-food">
-                                        <Button type="icon-update">
-                                            <HiPencil />
-                                        </Button>
-                                    </Modal.Open>
-                                    <Modal.Window opens="update-food" >
-                                        <CreateFood foodToUpdate={food} />
-                                    </Modal.Window>
-                                </Modal>
+                                <Button onClick={() => navigate(`/${userRole}/nutrition/foods/${_id}`)} type="icon-update">
+                                    <HiPencil />
+                                </Button>
 
                                 <Modal>
                                     <Modal.Open opens="delete-food">
@@ -123,29 +117,15 @@ function NutritionTableRow({ food, section, onCloseModal }) {
                             :
                             food.admin ?
                                 <div className='flex items-center justify-start gap-2'>
-                                    <Modal>
-                                        <Modal.Open opens="update-food">
-                                            <Button type="icon-update">
-                                                <IoEyeOutline />
-                                            </Button>
-                                        </Modal.Open>
-                                        <Modal.Window opens="update-food" >
-                                            <CreateFood foodToUpdate={food} overwrite={false} isLoading={true} />
-                                        </Modal.Window>
-                                    </Modal>
+                                    <Button onClick={() => navigate(`/${userRole}/nutrition/foods/${_id}`)} type="icon-update">
+                                        <IoEyeOutline />
+                                    </Button>
                                 </div>
                                 :
                                 <div className='flex items-center justify-start gap-2'>
-                                    <Modal>
-                                        <Modal.Open opens="update-food">
-                                            <Button type="icon-update">
-                                                <HiPencil />
-                                            </Button>
-                                        </Modal.Open>
-                                        <Modal.Window opens="update-food" >
-                                            <CreateFood foodToUpdate={food} />
-                                        </Modal.Window>
-                                    </Modal>
+                                    <Button onClick={() => navigate(`/${userRole}/nutrition/foods/${_id}`)} type="icon-update">
+                                        <HiPencil />
+                                    </Button>
 
                                     <Modal>
                                         <Modal.Open opens="delete-food">

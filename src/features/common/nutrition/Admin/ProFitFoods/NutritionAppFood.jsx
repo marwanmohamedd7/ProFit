@@ -1,15 +1,15 @@
 import { HiPlusSm } from "react-icons/hi";
 import { useGetAppFoods } from "./useGetAppFoods";
-import Modal from "../../../../../ui/Modal";
 import Button from "../../../../../ui/Button";
-import CreateFood from "../../foods/CreateFood";
 import Spinner from "../../../../../ui/Spinner";
 import NutritionTable from "../../foods/NutritionTable";
 import NutritionOperations from "../../NutritionOperations";
 import NutritionFoodFilterForm from "../../foods/NutritionFoodFilterForm";
 import { useSearch } from "../../../../../hooks/useSearch";
+import { useNavigate } from "react-router-dom";
 
 function NutritionAppFood({ section = "food", onCloseModal }) {
+    const navigate = useNavigate();
     const { appFoods, allAppFoods, count, isLoading } = useGetAppFoods();
 
     // Use the useSearch hook to filter foods based on the search keyword
@@ -25,19 +25,12 @@ function NutritionAppFood({ section = "food", onCloseModal }) {
             >
                 {
                     section === "food" &&
-                    <Modal>
-                        <Modal.Open opens={`create-new-food`}>
-                            <Button>
-                                <p className="capitalize flex justify-center items-center gap-1">
-                                    <span>create new food</span>
-                                    <span className="text-lg"><HiPlusSm /></span>
-                                </p>
-                            </Button>
-                        </Modal.Open>
-                        <Modal.Window opens={`create-new-food`}>
-                            <CreateFood />
-                        </Modal.Window>
-                    </Modal>
+                    <Button onClick={() => navigate("/admin/nutrition/foods")} type="primary">
+                        <p className="capitalize flex justify-center items-center gap-1">
+                            <span>create new food</span>
+                            <span className="text-lg"><HiPlusSm /></span>
+                        </p>
+                    </Button>
                 }
             </NutritionOperations>
             {
