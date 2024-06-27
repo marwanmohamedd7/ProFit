@@ -9,6 +9,7 @@ import { useUpdateUserAboutData } from "./useUpdateUserAboutData"
 import SpinnerMini from "../../../../ui/SpinnerMini"
 import { useDarkMode } from "../../../../context/DarkModeProvider"
 import styles from "../../../../styles/styles"
+import DivContainerPortoflio from "../../../../ui/DivContainerPortoflio"
 
 function AboutMeForm({ getUserAboutData = {} }) {
     const colors = styles();
@@ -59,55 +60,62 @@ function AboutMeForm({ getUserAboutData = {} }) {
     }
     return (
         <form onSubmit={handleSubmit(submit)}>
-            <div className="space-y-10 p-4 rounded-md">
-                <div className="space-y-4">
-                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>personal information</h1>
-                    <PersonalInformationForm
-                        watch={watch}
-                        errors={errors}
-                        setValue={setValue}
-                        register={register}
-                        getValues={getValues}
-                        disabled={isUpdating}
-                        profilePhoto={profilePhoto}
-                        isLoadingImg={isLoadingImg}
-                        setIsLoadingImg={setIsLoadingImg}
-                        requiredImgMessage={requiredImgMessage}
-                        setRequiredImgMessage={setRequiredImgMessage}
-                    />
-                </div>
-
-                <div className="space-y-4">
-                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>professional credentials</h1>
-                    <ProfessionalCredentialsForm
-                        watch={watch}
-                        errors={errors}
-                        control={control}
-                        register={register}
-                        disabled={isUpdating}
-                    />
-                </div>
-
-                <div className="space-y-4">
-                    <h1 className={`capitalize ${h1Style} font-bold text-xl`}>Social Media and Contact Links</h1>
-                    <div className="space-y-2">
-                        <SocialMedia link={{ url: socialMedia?.facebook ?? "", name: 'Facebook', img: '/images/facebook.png' }}
-                            watch={watch("facebook")}
+            <div className="space-y-4 py-4 rounded-md">
+                <DivContainerPortoflio>
+                    <div className="space-y-4">
+                        <h1 className={`capitalize ${h1Style} font-bold text-xl`}>personal information</h1>
+                        <PersonalInformationForm
+                            watch={watch}
+                            errors={errors}
+                            setValue={setValue}
+                            register={register}
+                            getValues={getValues}
                             disabled={isUpdating}
-                            register={{ ...register("facebook", { required: false }) }}
-                        />
-                        <SocialMedia link={{ url: socialMedia?.instagram ?? "", name: 'Instagram', img: '/images/instagram.png' }}
-                            watch={watch("instagram")}
-                            disabled={isUpdating}
-                            register={{ ...register("instagram", { required: false }) }}
-                        />
-                        <SocialMedia link={{ url: socialMedia?.X ?? "", name: 'Twitter (X)', img: '/images/X.png' }}
-                            watch={watch("X")}
-                            disabled={isUpdating}
-                            register={{ ...register("X", { required: false }) }}
+                            profilePhoto={profilePhoto}
+                            isLoadingImg={isLoadingImg}
+                            setIsLoadingImg={setIsLoadingImg}
+                            requiredImgMessage={requiredImgMessage}
+                            setRequiredImgMessage={setRequiredImgMessage}
                         />
                     </div>
-                </div>
+                </DivContainerPortoflio>
+
+                <DivContainerPortoflio>
+                    <div className="space-y-4">
+                        <h1 className={`capitalize ${h1Style} font-bold text-xl`}>professional credentials</h1>
+                        <ProfessionalCredentialsForm
+                            watch={watch}
+                            errors={errors}
+                            control={control}
+                            register={register}
+                            disabled={isUpdating}
+                        />
+                    </div>
+                </DivContainerPortoflio>
+
+                <DivContainerPortoflio>
+                    <div className="space-y-4">
+                        <h1 className={`capitalize ${h1Style} font-bold text-xl`}>Social Media and Contact Links</h1>
+                        <div className="space-y-2">
+                            <SocialMedia link={{ url: socialMedia?.facebook ?? "", name: 'Facebook', img: '/images/facebook.png' }}
+                                watch={watch("facebook")}
+                                disabled={isUpdating}
+                                register={{ ...register("facebook", { required: false }) }}
+                            />
+                            <SocialMedia link={{ url: socialMedia?.instagram ?? "", name: 'Instagram', img: '/images/instagram.png' }}
+                                watch={watch("instagram")}
+                                disabled={isUpdating}
+                                register={{ ...register("instagram", { required: false }) }}
+                            />
+                            <SocialMedia link={{ url: socialMedia?.X ?? "", name: 'Twitter (X)', img: '/images/X.png' }}
+                                watch={watch("X")}
+                                disabled={isUpdating}
+                                register={{ ...register("X", { required: false }) }}
+                            />
+                        </div>
+                    </div>
+                </DivContainerPortoflio>
+                
                 <div className="flex justify-end items-center">
                     <Button>
                         {
@@ -121,6 +129,7 @@ function AboutMeForm({ getUserAboutData = {} }) {
                         }
                     </Button>
                 </div>
+
             </div>
         </form>
     )

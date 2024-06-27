@@ -6,15 +6,24 @@ import Button from "../../../../../../ui/Button";
 import { formatDate } from "../../../../../../utils/helpers";
 import TrainerProgressPerformanceCards from "../TrainerProgressPerformanceCards";
 import InputFloatingLabel from "../../../../../../ui/InputFloatingLabel";
+import useUpdateWaterNeedTarget from "./useUpdateWaterNeedTarget";
+import SpinnerMini from "../../../../../../ui/SpinnerMini";
 
 function PerformanceWaterNeeds({ data }) {
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-    const { goal, intake, weeklyWaterIntake } = data;
     const [isOpen, setIsOpen] = useState(false);
+    const { goal, intake, weeklyWaterIntake } = data;
     const [addGoal, setAddGoal] = useState(goal ?? "");
+    const { updateWaterNeedTarget, isUpdating } = useUpdateWaterNeedTarget();
+
+    function handleSetGoal() {
+        updateWaterNeedTarget(addGoal);
+        setAddGoal("");
+    }
+
     return (
-        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake ?? [], chart: "barChart", yAxisLabel: " ml" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
+        <TrainerProgressPerformanceCards detailedData={{ data: weeklyWaterIntake ?? [], chart: "biBarChart", yAxisLabel: " ml" }} icon={<WaterNeedIcon />} color={isDarkMode ? `text-cyan-500` : `text-cyan-600`} title="water needs">
             <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                     <span className={`text-2xl font-bold uppercase ${isDarkMode ? `text-cyan-500` : `text-cyan-600`}`}>
@@ -28,7 +37,9 @@ function PerformanceWaterNeeds({ data }) {
                     <div className="flex gap-2">
                         <InputFloatingLabel item={{ label: "water need goal", id: "waterNeedGoal", value: addGoal, type: "number" }} onChange={(e) => setAddGoal(e.target.value)} />
                         <div className="flex gap-2">
-                            <Button type="primary" customeStyle="whitespace-nowrap">set goal</Button>
+                            <Button onClick={handleSetGoal} type="primary" customeStyle="whitespace-nowrap">
+                                {isUpdating ? <SpinnerMini dark={false} /> : "set goal"}
+                            </Button>
                             <Button onClick={() => setIsOpen(false)} type="secondary">cancel</Button>
                         </div>
                     </div>

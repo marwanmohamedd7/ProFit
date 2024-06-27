@@ -14,8 +14,8 @@ function PerformanceSleepTrack({ data }) {
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-2 lowercase">
                     <div className="flex items-center gap-2 lowercase">
-                        <span className={`text-lg ${isDarkMode ? `text-blue-500` : `text-blue-600`}`}><strong className="text-2xl">{subtractDatesHours(wakeUpTime, fallAsleepTime) ?? 0}</strong> hrs</span>
-                        <span className={`text-lg ${isDarkMode ? `text-blue-500` : `text-blue-600`}`}><strong className="text-2xl">{(subtractDatesMinutes(wakeUpTime, fallAsleepTime) % 60).toFixed(0) ?? 0}</strong> mins</span>
+                        <span className={`text-lg ${isDarkMode ? `text-blue-500` : `text-blue-600`}`}><strong className="text-2xl">{subtractDatesHours(wakeUpTime, fallAsleepTime) || 0}</strong> hrs</span>
+                        <span className={`text-lg ${isDarkMode ? `text-blue-500` : `text-blue-600`}`}><strong className="text-2xl">{subtractDatesMinutes(wakeUpTime, fallAsleepTime) ? (subtractDatesMinutes(wakeUpTime, fallAsleepTime) % 60)?.toFixed(0) : 0}</strong> mins</span>
                     </div>
                     <span className={`text-xs ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>{formatDate(createdAt ? createdAt : new Date())}</span>
                 </div>

@@ -14,7 +14,7 @@ function Transformations() {
     const { isDarkMode } = useDarkMode();
 
     return (
-        <div className="space-y-4 my-4">
+        <div className={`space-y-4 my-4 `}>
             {
                 (transformations.length < 1) || isLoading ?
                     <div className="lg:w-1/2 w-full">

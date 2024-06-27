@@ -16,7 +16,7 @@ function DietsFreePlanTableRow({ diet }) {
     const navigate = useNavigate()
     const colors = styles();
     const { isDarkMode } = useDarkMode();
-    const { _id, planName, plantype, daysCount, planmacros, published } = diet
+    const { _id, planName, plantype, daysCount, planmacros, published, subscribers } = diet
     const [isActive, setIsActive] = useState(published)
     const { deleteDietTemplate, isDeleting } = useDeleteDietTemplate();
     const { updateDietTemplate, isUpdating } = useUpdateDietTemplate()
@@ -35,8 +35,7 @@ function DietsFreePlanTableRow({ diet }) {
                 </p>
             </td>
             <td className="p-4 whitespace-nowrap text-left">{daysCount}</td>
-            <td className="p-4 whitespace-nowrap text-left">subscribers</td>
-            <td className="p-4 whitespace-nowrap text-left">rating</td>
+            <td className="p-4 whitespace-nowrap text-left">{subscribers}</td>
             <td className="p-4 whitespace-nowrap text-left">
                 <DietTableRowMacros
                     fats={planmacros.fats}

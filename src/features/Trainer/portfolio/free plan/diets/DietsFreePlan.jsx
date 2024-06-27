@@ -22,9 +22,9 @@ function DietsFreePlan() {
     const dataReady = searchKeyword ? searchedItems : getDietFreePlans;
     return (
         <TableOperationsContainer>
-            {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-2xl" /></div> :
+            {isLoading ? <div className="flex items-center justify-center h-[40dvh]"><SpinnerMini size="text-xl" /></div> :
                 <>
-                    <div className="space-y-4 px-4 pb-4">
+                    <div className={`space-y-4 px-4 pb-4 ${isDarkMode ? colors.text_white : colors.text_gray_900}`}>
                         <div className="flex flex-col gap-0.5">
                             <h2 className="font-bold text-xl capitalize">free plans</h2>
                             <p className={`text-sm capitalize ${isDarkMode ? colors.text_gray_400 : colors.text_gray_500}`}>Boost Marketing and Engage more Trainees</p>

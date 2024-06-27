@@ -9,7 +9,7 @@ function TrainerOverallRating({ averageRating, ratingsDistribution }) {
 
     return (
         <div>
-            <div className={`rounded-md p-4 border ${isDarkMode ? `${colors.bg_slate_800} ${colors.border_gray_700}` : colors.bg_white} space-y-2`}>
+            <div className={`rounded-md p-4 border ${isDarkMode ? `${colors.bg_slate_700} ${colors.border_gray_700}` : colors.bg_gray_50} space-y-2`}>
                 <h4 className={`capitalize ${isDarkMode ? colors.text_white : colors.text_gray_900} text-lg font-bold`}>overall rating</h4>
                 <div className="flex items-center justify-center gap-4">
                     <div className="flex flex-col items-center gap-2 justify-center">

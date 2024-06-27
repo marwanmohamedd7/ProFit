@@ -6,12 +6,11 @@ import Empty from "../../../../../ui/Empty"
 import { useSorting } from "../../../../../hooks/useSorting"
 import SortTableColumnsHeader from "../../../../../ui/SortTableColumnsHeader"
 
-// const columns = [
-//     { key: "planName", label: "plan name" },
-//     { key: "daysCount", label: "days count" },
-//     { key: "daysCount", label: "days count" },
-//     { key: ["planmacros", "calories"], label: "program macros" },
-// ];
+const columns = [
+    { key: "planName", label: "plan name" },
+    { key: "daysCount", label: "days count" },
+    { key: "subscribers", label: "Subscribers" },
+];
 
 function DietsFreePlanTable({ diets, count }) {
     const { sortedData, sortConfig, setSortConfig } = useSorting(diets);
@@ -19,24 +18,18 @@ function DietsFreePlanTable({ diets, count }) {
     return (
         <Table>
             <Table.Header>
-                <th className="px-4 py-2 text-left whitespace-nowrap">
-                    <SortTableColumnsHeader
-                        sortingKey="planName"
-                        columnName="plan name"
-                        sortConfig={sortConfig}
-                        setSortConfig={setSortConfig}
-                    />
-                </th>
-                <th className="px-4 py-2 text-left whitespace-nowrap">
-                    <SortTableColumnsHeader
-                        sortingKey="daysCount"
-                        columnName="days count"
-                        sortConfig={sortConfig}
-                        setSortConfig={setSortConfig}
-                    />
-                </th>
-                <th className="px-4 py-2 text-left whitespace-nowrap">subscribers</th>
-                <th className="px-4 py-2 text-left whitespace-nowrap">rating</th>
+                {
+                    columns.map(({ key, label }) => (
+                        <th className="px-4 py-2 text-left whitespace-nowrap">
+                            <SortTableColumnsHeader
+                                sortingKey={key}
+                                columnName={label}
+                                sortConfig={sortConfig}
+                                setSortConfig={setSortConfig}
+                            />
+                        </th>
+                    ))
+                }
                 <th className="px-4 py-2 text-left whitespace-nowrap">
                     <SortTableColumnsHeader
                         sortingKey={["planmacros", "calories"]}

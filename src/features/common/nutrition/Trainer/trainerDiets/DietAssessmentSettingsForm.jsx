@@ -56,7 +56,7 @@ function DietAssessmentSettingsForm({ getDietAssessmentSettingsForm, onCloseModa
                     <div className="py-4 space-y-4 capitalize">
                         <h1 className={`font-bold ${isDarkMode ? colors.text_white : colors.text_gray_700}`}>Personal Data</h1>
                         <div className="grid grid-cols-2 gap-4">
-                            <SubscribedTrainerInfoCard field="Goal" value={fitnessGoals} backgroundColor={colors.bg_gray_50} />
+                            <SubscribedTrainerInfoCard field="Goal" value={fitnessGoals || 22} backgroundColor={colors.bg_gray_50} />
                             <SubscribedTrainerInfoCard field="Activity Level" value={activityLevel} backgroundColor={colors.bg_gray_50} />
                         </div>
                     </div>
@@ -78,9 +78,9 @@ function DietAssessmentSettingsForm({ getDietAssessmentSettingsForm, onCloseModa
                         <div className="space-y-4">
                             <h1 className={`font-bold ${isDarkMode ? colors.text_white : colors.text_gray_700}`}>Diet Preferences</h1>
                             <div className="grid grid-cols-2 gap-4">
-                                <SubscribedTrainerInfoCard field="Number of Meals" value={numberofmeals} backgroundColor={colors.bg_gray_50} />
+                                <SubscribedTrainerInfoCard field="Number of Meals" value={numberofmeals || 2} backgroundColor={colors.bg_gray_50} />
                                 <SubscribedTrainerInfoCard field="Diet Type" value={dietType} backgroundColor={colors.bg_gray_50} />
-                                <SubscribedTrainerInfoCard field="Religion Restriction" value={religionrestriction.join(", ")} backgroundColor={colors.bg_gray_50} />
+                                <SubscribedTrainerInfoCard field="Religion Restriction" value={religionrestriction.join(", ") || "Pork, Alcohol"} backgroundColor={colors.bg_gray_50} />
                             </div>
                         </div>
                         <div className="space-y-4 pt-4">

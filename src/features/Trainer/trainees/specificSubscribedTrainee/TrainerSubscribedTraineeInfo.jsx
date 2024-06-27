@@ -26,10 +26,10 @@ function TrainerSubscribedTraineeInfo() {
     const { requestAssessment, isRequesting } = useCreateRequestAssessment();
     const { getSpecificSubscribedTrainee, isLoading } = useGetSpecificSubscribedTrainee();
 
-    if (isLoading) return <div className="flex items-center justify-center h-[75dvh]"><Spinner /></div>
+    if (isLoading) return <div className="flex items-center justify-center h-[90dvh]"><Spinner /></div>
 
     const { _id, firstName, lastName, email, phoneNumber, profilePhoto, dietAssessmentStatus, traineeDietAssessment = {}, status } = getSpecificSubscribedTrainee;
-    const { activityLevel, fitnessGoals, birthDate, gender, height, weight, createdAt } = traineeDietAssessment;
+    const { activityLevel, fitnessGoals = "build muscle", birthDate, gender, height, weight, createdAt } = traineeDietAssessment;
     if (dietAssessmentStatus === "Working" || dietAssessmentStatus === "Pending") assessmentStatus = "request assessment";
     if (dietAssessmentStatus === "Ready") assessmentStatus = "assessment ready";
     if (dietAssessmentStatus === "In Preparation") assessmentStatus = "in progress...";
@@ -86,7 +86,7 @@ function TrainerSubscribedTraineeInfo() {
             </div>
             {
                 (dietAssessmentStatus !== "Pending" && Object.keys(traineeDietAssessment).length > 0) &&
-                <div className="flex justify-start gap-4 capitalize">
+                <div className="grid grid-cols-6 gap-4 capitalize">
                     <SubscribedTrainerInfoCard field="gender" value={gender} />
                     <SubscribedTrainerInfoCard field="age" value={calcBirthday(birthDate)} />
                     <SubscribedTrainerInfoCard field="height" value={height} />

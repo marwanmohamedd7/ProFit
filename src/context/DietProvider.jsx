@@ -376,7 +376,6 @@ function DietProvider({ children }) {
     const { days } = state;
 
     useEffect(function () {
-        // console.log(state)
         function calcPlanMacros() {
             // Sum the macros for all days
             const totalMacros = days.reduce((acc, day) => {

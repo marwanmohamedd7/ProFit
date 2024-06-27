@@ -7,7 +7,7 @@ export function useGetProgressMeasurements() {
      const { id } = useParams();
      const { userToken } = useCurrentUser();
      const { data: getTraineeProgressMeasurements, isLoading } = useQuery({
-       queryKey: ["traineeProgressPhotos", id],
+       queryKey: ["traineeProgressMeasurements", id],
        queryFn: () => apiGetTraineeProgressMeasurements(userToken, id),
        retry: false, // If the request fails, retry once more
      });

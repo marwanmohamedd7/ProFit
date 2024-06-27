@@ -17,16 +17,16 @@ function NutritionDietsTableRow({ diet, dietType, onCloseModal }) {
     const { isDarkMode } = useDarkMode();
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
-    const { dispatch } = useDietProvider();
+    const { dispatch, plantype: dietPlanType } = useDietProvider();
     const { deleteDietTemplate, isDeleting } = useDeleteDietTemplate();
     const { _id, planName, plantype, planmacros, description, daysCount, days } = diet;
+
     function onDelete(id) {
         if (!id) return;
         deleteDietTemplate(id);
     }
-
     function handleLoadDiet() {
-        dispatch({ type: "diet/loadDietPlan", payload: { days, description, daysCount, planName, planmacros, plantype: "Customized plan" } });
+        dispatch({ type: "diet/loadDietPlan", payload: { days, description, daysCount, planName, planmacros, plantype: dietPlanType } });
         searchParams.set("day", 1);
         setSearchParams(searchParams);
         toast.success("Added diet item!");

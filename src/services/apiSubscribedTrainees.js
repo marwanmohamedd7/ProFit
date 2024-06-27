@@ -94,6 +94,40 @@ export async function getSubscribedTraineePerformances(token, id) {
   return data;
 }
 
+export async function updateStepsGoal(stepsData, token, id) {
+  const response = await fetch(
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/steps/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stepsData),
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
+export async function updateWaterNeedTarget(waterNeedData, token, id) {
+  const response = await fetch(
+    `https://pro-fit.onrender.com/api/v1/trainers/trainees/water/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(waterNeedData),
+    }
+  );
+  if (!response.ok) throw new Error(response.status);
+  const data = await response.json();
+  return data;
+}
+
 export async function doRequestAssessment(token, id) {
   const response = await fetch(
     `https://pro-fit.onrender.com/api/v1/trainers/trainees/makeRequestAssessment/${id}`,
