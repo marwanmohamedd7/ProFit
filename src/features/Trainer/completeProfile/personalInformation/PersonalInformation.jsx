@@ -22,6 +22,7 @@ function PersonalInformation({ getPersonalInfo = {} }) {
     const { formState: { errors }, register, handleSubmit, reset, watch, setValue, getValues } = useForm({
         defaultValues: isExist ? PersonalInfo : {},
     });
+    
     function onSubmit(data) {
         if (!data || !profilePhoto) {
             !profilePhoto && setRequiredImgMessage("Profile photo is required")

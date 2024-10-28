@@ -1,0 +1,404 @@
+"filename", "language", "JSON with Comments", "JavaScript", "JSON", "Markdown", "HTML", "JavaScript JSX", "XML", "CSS", "comment", "blank", "total"
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\.eslintrc.json", "JSON with Comments", 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\README.md", "Markdown", 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\index.html", "HTML", 0, 0, 0, 0, 16, 0, 0, 0, 0, 3, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\inpppp.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 15, 4, 32
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\package-lock.json", "JSON", 0, 0, 10789, 0, 0, 0, 0, 0, 0, 1, 10790
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\package.json", "JSON", 0, 0, 53, 0, 0, 0, 0, 0, 0, 1, 54
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\postcss.config.js", "JavaScript", 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\Seitsenpainos_logo.svg", "XML", 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\Seitsenpainos_logo_white.svg", "XML", 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\Coming Soon.svg", "XML", 0, 0, 0, 0, 0, 0, 153, 0, 0, 1, 154
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\Heart Rate.svg", "XML", 0, 0, 0, 0, 0, 0, 11, 0, 0, 1, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\Sleep.svg", "XML", 0, 0, 0, 0, 0, 0, 45, 0, 0, 1, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\Steps Icon.svg", "XML", 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 4
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\Water Need Icon.svg", "XML", 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\avatar.svg", "XML", 0, 0, 0, 0, 0, 0, 5, 0, 0, 1, 6
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\heart rate icon.svg", "XML", 0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 5
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\images\trophy.svg", "XML", 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 4
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\logo.svg", "XML", 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\public\vercel.json", "JSON", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\App.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 151, 0, 0, 5, 11, 167
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\AppleIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\Avatar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\CoinIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 14, 0, 0, 0, 2, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\DumbbellIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\FutureFeaturesIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 158, 0, 0, 0, 1, 159
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\GlobalIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\GridIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 2, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\HeadphonesIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\HeartIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\HeartRateIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 16, 0, 0, 0, 2, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\LogoutIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\MessageIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\PackageIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\PinPaperCheckIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 3, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\SleepIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 7, 3, 61
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\SleepTrackIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 2, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\StarIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 4, 2, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\StepsIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\TrophyIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\UsersIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 3, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\UsersMoreIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\WalletIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\Icons\WaterNeedIcon.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 2, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\DarkModeProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 8, 38
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\DietProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 390, 0, 0, 10, 16, 416
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\MainNavProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 16, 0, 0, 0, 5, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\MealProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 17, 85
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\SocketProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 1, 9, 42
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\context\UserProvider.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 5, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\SystemUsers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 3, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainees\SystemTrainees.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 3, 32
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainees\SystemTraineesTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 2, 4, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainees\SystemTraineesTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 59, 0, 0, 17, 5, 81
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainers\SystemTrainers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 3, 33
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainers\SystemTrainersTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 4, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\trainers\SystemTrainersTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 56, 0, 0, 21, 2, 79
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\system users\useGetSystemUsers.js", "JavaScript", 0, 40, 0, 0, 0, 0, 0, 0, 1, 6, 47
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\PendingTrainerCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 0, 4, 36
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\PendingTrainers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 3, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\PendingTrainerInfoBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 107, 0, 0, 0, 3, 110
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\TrainerReviewProfile.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 3, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\personal information\PendingTrainerPersonalInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 4, 28
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\personal information\PendingTrainerPersonalInfoForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 116, 0, 0, 1, 8, 125
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\personal information\useGetTrainerPersonalInfo.js", "JavaScript", 0, 14, 0, 0, 0, 0, 0, 0, 0, 2, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\PendingTrainerProfessionalData.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 3, 5, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\clientsTransformation\PendingTrainerClientTransformationCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 3, 27
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\clientsTransformation\PendingTrainerClientsTransformation.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 4, 33
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\clientsTransformation\useGetPendingTrainerClientsTransformation.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\professionalCredentials\PendingTrainerProfessionalCred.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 4, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\professionalCredentials\PendingTrainerProfessionalCredForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 1, 5, 43
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\professionalCredentials\PendingTrainerProfessionalCredentials.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\professionalCredentials\PendingTrainerSocialMedia.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 1, 3, 53
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\professionalCredentials\useGetPendingTrainerProfessionalCred.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\qualificationsAndAchievements\PendingTrainerQualifications.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 4, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\professional credentials\qualificationsAndAchievements\useGetPendingTrainerQualifications.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\subscrption pricing\PendingTrainerPackageRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 3, 36
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\subscrption pricing\PendingTrainerPackages.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 4, 35
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\subscrption pricing\PendingTrainerPackagesTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 3, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\subscrption pricing\useGetPendingTrainerPackages.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\useGetPendingTrainerInfoBar.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\usePendingTrainerAccept.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 2, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\trainer profile\usePendingTrainerReject.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 2, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Admin\trainer approval\useGetPendingTrainers.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\AllChats.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 1, 4, 36
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\Chat.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 3, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBox-v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 3, 6, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBox.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 4, 12, 78
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBoxFooter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 2, 9, 95
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBoxHeader.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 38, 0, 0, 0, 2, 40
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBoxMessageReceived.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 1, 4, 28
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBoxMessageSent.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 1, 3, 26
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\ChatBoxMessages.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 1, 7, 43
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\TrainerMessages-v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 13, 4, 53
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\TrainerMessages.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 27, 10, 87
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\useGetChatMessages.js", "JavaScript", 0, 13, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\useGetChats.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\chat\useSendChatMessage.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\CompleteProfileLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 9
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\CompleteProfileMain.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 56, 0, 0, 0, 3, 59
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\CompleteProfileProcedures.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 0, 4, 113
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\personalInformation\PersonalInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\personalInformation\PersonalInformation.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 0, 4, 88
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\personalInformation\PersonalInformationForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 153, 0, 0, 5, 11, 169
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\personalInformation\useGetPersonalInfo.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\personalInformation\useSetPersonalInfo.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\ProfessionalCred.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 5, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\ProfessionalCredentials.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 114, 0, 0, 36, 21, 171
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\ProfessionalCredentialsForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 21, 7, 53
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\SocialMedia.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 4, 3, 52
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\useGetProfileCredentials.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\professionalCredentials\useSetProfileCredentials.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\submissionAndReview\SubmissionAndReview.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 1, 9, 90
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\submissionAndReview\useSubmitProfile.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 1, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\completeProfile\subscriptionPricing\SubscriptionPricing.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 3, 64
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\AddPackage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 175, 0, 0, 0, 12, 187
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\PackagesTrainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 3, 43
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\ProfilePackagesTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 4, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\ProfilePackagesTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 64, 0, 0, 0, 7, 71
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\useCreatePackage.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\useDeletePackage.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\useGetPackages.js", "JavaScript", 0, 37, 0, 0, 0, 0, 0, 0, 1, 6, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\packages\useUpdatePackage.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\TrainerPortfolio.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 56, 0, 0, 0, 4, 60
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\about me\AboutMe.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\about me\AboutMeForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 124, 0, 0, 3, 12, 139
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\about me\useGetUserAboutData.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\about me\useUpdateUserAboutData.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\FreePlans.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 1, 4, 30
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\diets\CreateDietFreePlan.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 3, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\diets\DietsFreePlan.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 54, 0, 0, 0, 5, 59
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\diets\DietsFreePlanTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 0, 4, 53
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\diets\DietsFreePlanTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 75, 0, 0, 1, 6, 82
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\free plan\diets\useGetFreeDietPlans.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 1, 5, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\Gallery.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 3, 30
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\qualifications\QualificationAndAchievement.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 66, 0, 0, 4, 7, 77
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\qualifications\QualificationAndAchievementPhoto.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 5, 41
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\qualifications\useAddQualification.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\qualifications\useDeleteQualification.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\qualifications\useGetQualification.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\AddTransformation.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 116, 0, 0, 4, 5, 125
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\TransformationCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 1, 9, 78
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\Transformations.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 0, 4, 54
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\useCreateTransformation.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 1, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\useDeleteTransformation.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\useGetTransformations.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\gallery\transformations\useUpdateTransformation.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\ClientReview.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 4, 37
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\RatingBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 3, 30
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\TrainerClientsReviews.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 3, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\TrainerOverallRating.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 4, 33
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\TrainerReviews.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 2, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\portfolio\reviews\useGetAllReviews.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\TrainerTrainees.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 3, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\specificSubscribedTrainee\TrainerSubscribedTraineeInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 115, 0, 0, 0, 8, 123
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\specificSubscribedTrainee\useCreateRequestAssessment.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\specificSubscribedTrainee\useGetSpecificSubscribedTrainee.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 2, 2, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesAssessmentsTable\SubscribedTraineesAssessments.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 0, 3, 28
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesAssessmentsTable\useGetSubscribedTraineesAssessment.js", "JavaScript", 0, 47, 0, 0, 0, 0, 0, 0, 1, 6, 54
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesTable\SubscribedTrainees.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 3, 40
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesTable\SubscribedTraineesTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 1, 4, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesTable\SubscribedTraineesTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 94, 0, 0, 0, 6, 100
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\subscribedTraineesTable\useGetSubscribedTrainees.js", "JavaScript", 0, 42, 0, 0, 0, 0, 0, 0, 1, 6, 49
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\CreateTraineeDietPlan.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 3, 26
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\TraineeDietPlans.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 14, 0, 0, 0, 3, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\TraineeDietPlansTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 2, 3, 38
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\TraineeDietPlansTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 11, 5, 56
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\useCreateCustomizedPlan.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\useGetSpecificTraineeCustomizedPlanInfo.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 2, 2, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeDietPlans\useGetTraineeAllCustomizePlans.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 1, 6, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\TraineeProgress.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 1, 3, 40
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\traineeProgressPhotos\TraineeProgressPhotos.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\traineeProgressPhotos\TraineeProgressPhotosCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 3, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\traineeProgressPhotos\useGetTraineeProgressPhotos.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressMeasurements\ProgressAreaChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 88, 0, 0, 0, 5, 93
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressMeasurements\TrainerProgressMeasurements.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 3, 40
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressMeasurements\useGetProgressMeasurements.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\ProgressBarChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 89, 0, 0, 0, 7, 96
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\ProgressBarPerformance.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 3, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\ProgressBiBarChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 7, 94
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\TrainerProgressPerformance.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 3, 30
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\TrainerProgressPerformanceCards.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 38, 0, 0, 0, 3, 41
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceChallenges.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 3, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceDietCommitment.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 3, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceHeartRate.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 3, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceSleepTrack.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 3, 30
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceSteps.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 1, 5, 56
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceWaterNeeds.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 1, 5, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\PerformanceWorkoutCommitment.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\useUpdateStepsGoal.js", "JavaScript", 0, 20, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\performancesDataCards\useUpdateWaterNeedTarget.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 3, 24
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\useGetProgressCommitments.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 2, 1, 24
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeProgress\trainerProgressPerformance\useGetProgressPerformances.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 2, 3, 27
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeSubcriptions\TraineeSubscriptions.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 14, 0, 0, 0, 3, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeSubcriptions\TraineeSubscriptionsTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 4, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeSubcriptions\TraineeSubscriptionsTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\Trainer\trainees\traineeSubcriptions\useGetTraineeSubscriptions.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 1, 5, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\BackgroundCoverAuth.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 4, 27
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\UpdatePasswordForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 59, 0, 0, 0, 8, 67
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\login\LoginForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 89, 0, 0, 4, 9, 102
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\login\LoginLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 2, 2, 35
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\login\useLogin.js", "JavaScript", 0, 33, 0, 0, 0, 0, 0, 0, 0, 2, 35
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\signup\Trainer\SignUpTrainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 3, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\signup\Trainer\SignUpTrainerForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 164, 0, 0, 2, 4, 170
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\signup\Trainer\useSignUp.js", "JavaScript", 0, 26, 0, 0, 0, 0, 0, 0, 0, 2, 28
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\authentication\useUser.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 1, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardAreaChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 92, 0, 0, 0, 6, 98
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardBarChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 113, 0, 0, 0, 7, 120
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardDountChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 105, 0, 0, 0, 5, 110
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardFilter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 6, 8, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardInfoCardLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 3, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\DashboardPieChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 117, 0, 0, 0, 8, 125
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\Stat.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 3, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\Stats.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\admin\DashboardAdminLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 59, 8, 176
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\admin\useGetAdminDashboardData.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\admin\useGetAdminDashboardPerformanceMetrics.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\DashboardTrainerLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 53, 8, 161
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\assessmentChart\AssessmentsChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 4, 3, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\assessmentChart\AssessmentsOverviewTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 16, 3, 56
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\assessmentChart\AssessmentsOverviewTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 49, 5, 109
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\assessmentChart\useGetDashboardTraineesAssessments.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\useGetTrainerDashboardData.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\dashboard\trainer\useGetTrainerDashboardPerformanceMetrics.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\admin\AdminFinancial.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 3, 42
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\admin\AdminFinancialTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 4, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\admin\AdminFinancialTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 3, 27
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\admin\useGetAdminFinancials.js", "JavaScript", 0, 42, 0, 0, 0, 0, 0, 0, 1, 6, 49
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\trainer\TrainerTranscations.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 3, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\trainer\TrainerTranscationsTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 4, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\trainer\TrainerTranscationsTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 3, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\financial\trainer\useGetTrainerTranscations.js", "JavaScript", 0, 42, 0, 0, 0, 0, 0, 0, 1, 5, 48
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Admin\NutritionAdmin.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 38, 0, 0, 6, 3, 47
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Admin\ProFitFoods\NutritionAppFood.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 1, 4, 47
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Admin\ProFitFoods\useGetAppFoods.js", "JavaScript", 0, 40, 0, 0, 0, 0, 0, 0, 1, 6, 47
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Admin\ProFitMealTemplate\NutritionAppMeals.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 2, 4, 54
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\NutritionOperations.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 3, 42
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\NutritionTrainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 5, 60
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\CreateDiet.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 1, 4, 57
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietAssessmentSettings.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietAssessmentSettingsForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 120, 0, 0, 0, 6, 126
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 11, 3, 69
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietMacros.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 5, 62
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietMacrosCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietMeal.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 1, 7, 86
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietMeals.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 1, 3, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietOperations.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 179, 0, 0, 3, 9, 191
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietPlanTemplate.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 3, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietSettingsForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 274, 0, 0, 32, 10, 316
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\DietTableRowMacros.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 3, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\NutritionDiets.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 3, 43
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\NutritionDietsTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 38, 0, 0, 0, 4, 42
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\NutritionDietsTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 85, 0, 0, 0, 6, 91
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useCreateDietTemplate.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useDeleteDietTemplate.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useGetDietAssessmentSettingsForm.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 2, 2, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useGetDietTemplates.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 1, 6, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useGetSpecificDietTemplate.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 2, 2, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useUpdateDietAssessmentSettingsForm.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 2, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerDiets\useUpdateDietTemplate.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerFoods\NutritionFoods.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 1, 4, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerFoods\useGetTrainerFoods.js", "JavaScript", 0, 58, 0, 0, 0, 0, 0, 0, 1, 6, 65
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerMeals\NutritionMeals.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 56, 0, 0, 1, 5, 62
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\Trainer\trainerMeals\useGetTrainerMeals.js", "JavaScript", 0, 37, 0, 0, 0, 0, 0, 0, 1, 6, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\CreateFood.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 373, 0, 0, 5, 12, 390
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\FoodOperationPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 5, 38
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\NutritionFoodFilterForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 77, 0, 0, 3, 8, 88
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\NutritionTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 46, 0, 0, 0, 4, 50
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\NutritionTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 162, 0, 0, 7, 9, 178
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\useCreateFood.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\useDeleteFood.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\useGetSpecificFood.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 2, 2, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\foods\useUpdateFood.js", "JavaScript", 0, 20, 0, 0, 0, 0, 0, 0, 0, 2, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\CreateMeal.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 127, 0, 0, 3, 4, 134
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\FoodMacros.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 2, 37
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\MealDetailsForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 74, 0, 0, 0, 3, 77
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\MealFood.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 105, 0, 0, 2, 10, 117
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\MealIngredients.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 0, 3, 52
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\MealMacros.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 2, 41
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\MealOperationsPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 7, 48
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\NutritionMealFilterForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 38, 0, 0, 26, 5, 69
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\NutritionMealsTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 3, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\NutritionMealsTableRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 0, 12, 144
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\useCreateMeal.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\useDeleteMeal.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\useGetAppMeals.js", "JavaScript", 0, 37, 0, 0, 0, 0, 0, 0, 1, 6, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\useGetSpecificMeal.js", "JavaScript", 0, 18, 0, 0, 0, 0, 0, 0, 2, 2, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\nutrition\meals\useUpdateMeal.js", "JavaScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\workout\Admin\WorkoutAdmin.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 12, 3, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\workout\Admin\WorkoutRow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 4, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\workout\Admin\WorkoutTable.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 1, 5, 64
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\features\common\workout\Admin\exercises\Exercises.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 44, 0, 0, 0, 3, 47
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useLocalStorageState.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 4, 15
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useMessageListener.js", "JavaScript", 0, 23, 0, 0, 0, 0, 0, 0, 25, 12, 60
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useMoveBack.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useOutSideClick.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\usePageLocation.js", "JavaScript", 0, 16, 0, 0, 0, 0, 0, 0, 1, 2, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useSearch.js", "JavaScript", 0, 23, 0, 0, 0, 0, 0, 0, 4, 7, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\hooks\useSorting.js", "JavaScript", 0, 28, 0, 0, 0, 0, 0, 0, 0, 6, 34
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\main.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 27, 4, 61
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\package-lock.json", "JSON", 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\Account.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 1, 5
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\Settings.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 2, 6
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\Support.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 7
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\TrainerReview.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 2, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\TrainersApproval.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesAdmin\Users.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 4, 23
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Dashboard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 3, 11
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Foods.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Login.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 4, 15
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Meals.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Nutrition.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 3, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Transcations.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 3, 25
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesCommon\Workout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 10, 4, 21
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\CompleteProfile.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 4, 9
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\DietPlanCustomized.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\DietPlanFree.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\DietPlanTrainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\Messages.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\Packages.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 3, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\Portfolio.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 3, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\SignUp.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 3, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\TraineeInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\pagesTrainer\Trainees.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiAdmin.js", "JavaScript", 0, 148, 0, 0, 0, 0, 0, 0, 0, 11, 159
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiAuth.js", "JavaScript", 0, 49, 0, 0, 0, 0, 0, 0, 0, 4, 53
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiChat.js", "JavaScript", 0, 43, 0, 0, 0, 0, 0, 0, 0, 3, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiCompleteProfile.js", "JavaScript", 0, 263, 0, 0, 0, 0, 0, 0, 0, 18, 281
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiDashboard.js", "JavaScript", 0, 72, 0, 0, 0, 0, 0, 0, 2, 5, 79
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiDiets.js", "JavaScript", 0, 89, 0, 0, 0, 0, 0, 0, 0, 7, 96
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiFoods.js", "JavaScript", 0, 102, 0, 0, 0, 0, 0, 0, 0, 7, 109
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiMeals.js", "JavaScript", 0, 86, 0, 0, 0, 0, 0, 0, 0, 7, 93
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiSubscribedTrainees.js", "JavaScript", 0, 235, 0, 0, 0, 0, 0, 0, 0, 17, 252
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\services\apiTrainer.js", "JavaScript", 0, 46, 0, 0, 0, 0, 0, 0, 0, 4, 50
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\styles\index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 45, 249, 28, 322
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\styles\styles.js", "JavaScript", 0, 177, 0, 0, 0, 0, 0, 0, 52, 6, 235
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ActiveButton.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 1, 6, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Admin.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 3, 9
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\AppLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 6, 5, 59
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\BackBtn.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 2, 22
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\BreadCrumbs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 76, 0, 0, 0, 3, 79
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Button.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 107, 0, 0, 0, 16, 123
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Checkbox.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 4, 44
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\CircularProgress.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 60, 0, 0, 9, 4, 73
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\CompoundTabs-v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 8, 49
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\CompoundTabs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 63, 0, 0, 8, 14, 85
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ConfirmDelete.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 3, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\DaysTabs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 107, 0, 0, 18, 16, 141
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\DaysTabsItems.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 1, 3, 26
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\DivContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 3, 15
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\DivContainerPortoflio.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 3, 15
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Empty.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 4, 19
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ErrorFallBack.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 1, 3, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Filter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FilterButtons.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 1, 4, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FilterButtonsState.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 1, 5, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FilterForm-v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 13, 6, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FilterForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 34, 0, 0, 3, 2, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FilterTabs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 3, 6, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\FutureFeatures.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 3, 20
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Header.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 1, 49
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Image.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 3, 71
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ImageCropper.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 26, 16, 174
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ImageViewer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 3, 27
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Input.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 1, 2, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\InputDropdown.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 97, 14, 206
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\InputDropdownMultiSelection.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 74, 0, 0, 0, 4, 78
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\InputFloatingLabel.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 43, 0, 0, 0, 3, 46
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\InputRadiaButtons.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 4, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\InputTextArea.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 2, 3, 24
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Logo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 6, 67
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\MainNav.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 3, 5, 196
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\MainNavLists.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 4, 26
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Menus -v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 11, 92
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Menus.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 96, 0, 0, 0, 8, 104
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Modal.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 7, 64
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\PageNotFound.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 2, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Pagination.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 2, 4, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ProtectedRoute.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 9, 7, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\ProtectedRouteProfile.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 6, 7, 39
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\SearchInput.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 8, 3, 36
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Sidebar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 3, 18
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\SortTableColumnsHeader.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 7, 68
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Spinner.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 5, 3, 50
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\SpinnerMini.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 3, 14
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\StatusLabel.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 14, 0, 0, 0, 3, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\SubscribedTrainerInfoCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 3, 29
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Table.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 125, 31, 213
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\TableOperationsContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 3, 15
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Title.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\Trainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 3, 9
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\UploadImage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 1, 3, 55
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\UploadImageForm-v1.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 76, 0, 0, 53, 8, 137
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\UploadImageForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 0, 4, 82
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\ui\VerticualTabs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 54, 0, 0, 0, 8, 62
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\utils\checkTokenValidity.js", "JavaScript", 0, 10, 0, 0, 0, 0, 0, 0, 3, 4, 17
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\utils\constants.js", "JavaScript", 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\utils\helpers.js", "JavaScript", 0, 33, 0, 0, 0, 0, 0, 0, 4, 12, 49
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\src\utils\setCanvasPreview.js", "JavaScript", 0, 34, 0, 0, 0, 0, 0, 0, 5, 6, 45
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\tailwind.config.js", "JavaScript", 0, 27, 0, 0, 0, 0, 0, 0, 2, 2, 31
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\vercel.json", "JSON", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 13
+"c:\courses\Graduation Project\ProFit Admin\profit-admin\vite.config.js", "JavaScript", 0, 16, 0, 0, 0, 0, 0, 0, 1, 2, 19
+"Total", "-", 3, 3230, 10874, 2, 16, 12917, 291, 45, 1376, 1716, 30470

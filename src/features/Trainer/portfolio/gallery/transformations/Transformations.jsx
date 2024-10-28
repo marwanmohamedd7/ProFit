@@ -32,19 +32,19 @@ function Transformations() {
                     </div>
             }
             <Modal>
-                <Modal.Window opens="add-new-transformation">
-                    <AddTransformation />
-                </Modal.Window>
                 <Modal.Open opens="add-new-transformation">
                     <Button
                         disabled={isLoading}
-                        onClick={(e) => e.preventDefault()} type="secondary">
+                        type="secondary">
                         <p className="flex justify-center items-center gap-2 capitalize">
                             <span>add new transformation</span>
                             <span className="text-lg">&#43;</span>
                         </p>
                     </Button>
                 </Modal.Open>
+                <Modal.Window opens="add-new-transformation">
+                    <AddTransformation />
+                </Modal.Window>
             </Modal>
         </div>
     );
