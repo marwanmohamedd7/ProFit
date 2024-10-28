@@ -30,6 +30,14 @@ function SubscribedTraineesTableRow({ trainee }) {
         status,
     } = trainee ?? {};
 
+    function allDays(startDate, endDate) {
+        return (differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100
+    }
+
+    function daysLeft(endDate) {
+        return differenceInDays(parseISO(endDate), new Date()) - 1
+    }
+
     return (
         <Table.Row onClick={(e) => {
             e.stopPropagation();
@@ -60,7 +68,7 @@ function SubscribedTraineesTableRow({ trainee }) {
                 <div className="flex items-center gap-2">
                     {status === "Active" ? (
                         <>
-                            <span><CircularProgress allDays={(differenceInDays(parseISO(endDate), new Date()) / differenceInDays(parseISO(endDate), parseISO(startDate))) * 100} days={differenceInDays(parseISO(endDate), new Date()) - 1} size="size-12" variations="daysCount" /></span>
+                            <span><CircularProgress allDays={allDays(startDate, endDate) <= 0 ? 100 : allDays(startDate, endDate)} days={daysLeft(endDate) <= 0 ? 0 : daysLeft(endDate)} size="size-12" variations="daysCount" /></span>
                             <span>days left</span>
                         </>
                     ) : (
@@ -71,7 +79,7 @@ function SubscribedTraineesTableRow({ trainee }) {
                     )}
                 </div>
             </td>
-            <td className="px-6 py-4 whitespace-nowrap capitalize"><StatusLabel status={status} /></td>
+            <td className="px-6 py-4 whitespace-nowrap capitalize"><StatusLabel status={status?.toLowerCase() === "active" && allDays(startDate, endDate) <= 0 && daysLeft(endDate) <= 0 ? "Expired" : status} /></td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div className='flex items-center justify-start gap-2'>
                     <button
